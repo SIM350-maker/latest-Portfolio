@@ -157,7 +157,7 @@ Parallel lanes: M009 and M010 can proceed simultaneously after M008; M012 and (l
 
 Top 5 loop-generators observed in this environment, with concrete unblocks:
 
-1. **Doc-code drift loop.** The roadmap's own numbers are stale (26/26 vs actual 38/38; catalogue "NOT STARTED" vs dashboard "TESTS PASSING"; ghost `GET /claims` route). *Symptom:* planning against roadmap text, re-discovering the code is ahead. **Unblock:** never trust a status claim in `docs/` — re-derive with `npm test`, `npm run lint`, and a file read before acting; then apply MODULE-014 so the drift cannot recur.
+1. **Doc-code drift loop.** The roadmap's own numbers are stale (38/38 vs actual 38/38; catalogue "NOT STARTED" vs dashboard "TESTS PASSING"; ghost `GET /claims` route). *Symptom:* planning against roadmap text, re-discovering the code is ahead. **Unblock:** never trust a status claim in `docs/` — re-derive with `npm test`, `npm run lint`, and a file read before acting; then apply MODULE-014 so the drift cannot recur.
 2. **Governance-authorization loop.** Frozen docs demand decision-log entries and forbid contradicting frozen design (`roadmap:462-467`); the roadmap's own last line withholds git init "requires your explicit go-ahead" (`:490`). This can deadlock indefinitely. **Unblock:** *you* are the authority — for each new module, append one decision-log entry (date/decision/rationale/alternatives/impact) **before** coding; treat MODULE-008 as pre-authorized by this document.
 3. **Schema-change loop.** `schema.sql` is idempotent-apply only; editing it against an existing `data/dev.db` silently does nothing, making changes appear "broken". **Unblock:** no schema edit without MODULE-012's migration runner; for local experiments either delete `data/dev.db` (it is regenerated) or write a migration.
 4. **Test-environment coupling loop.** Every test file must call `configureTestEnv()` **before** `require('../src/app')` (`tests/helpers.js:14-19`), and rate limits only relax under `NODE_ENV=test` (`rateLimiters.js:7`). New tests written without this hit CSRF/rate-limit failures that look like app bugs. **Unblock:** copy the header block of `tests/manageEvidenceList.test.js:1-9` verbatim into every new suite.
@@ -216,7 +216,7 @@ git push -u origin main
 - Enable branch protection: require `verify`, 1 review.
 
 **Hours 6–8 — Buffer / first PR drill**
-- Branch `docs/test-count-sync`, edit `README.md:8` "26/26" → "38/38", open PR, merge when green. (Partial MODULE-014; proves the PR regime.)
+- Branch `docs/test-count-sync`, edit `README.md:8` "38/38" → "38/38", open PR, merge when green. (Partial MODULE-014; proves the PR regime.)
 
 ### Day 2 — Container (MODULE-010)
 

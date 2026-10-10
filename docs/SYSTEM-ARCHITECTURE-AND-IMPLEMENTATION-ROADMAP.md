@@ -11,7 +11,7 @@
 | **Last Updated** | 2026-10-10 |
 | **Purpose** | Persistent, evidence-based source for understanding the whole system's architecture and implementation progress. |
 | **Authoritative Sources** | `docs/03-REQUIREMENTS.md` (ACCEPTED); `docs/05-DOMAIN-MODEL.md` (ACCEPTED); `docs/06-SYSTEM-ARCHITECTURE.md` (ACCEPTED AND FROZEN); `docs/07-TECHNOLOGY-AND-IMPLEMENTATION-STRATEGY.md` (Stage 4.1); `docs/08-APPLICATION-AND-USE-CASE-DESIGN.md` (Stage 4.2); `docs/09-DATA-AND-PERSISTENCE-DESIGN.md` (ACCEPTED AND FROZEN); `docs/10-INTERFACE-AND-API-DESIGN.md` (AUDITED, ACCEPTED AND FROZEN); `docs/11-AUTHENTICATION-AND-SECURITY-DESIGN.md` (ACCEPTED AND FROZEN); `docs/12-TECHNOLOGY-DECISIONS.md` (ACCEPTED AND FROZEN, Stage 4.9); `docs/13-TESTING-DESIGN.md` (ACCEPTED AND FROZEN, Stage 4.7); `docs/14-DECISION-LOG.md` (2026-10-09: Stage 4.12 ACCEPTED AND FROZEN); `docs/15-GOVERNANCE-AND-STAGE-LIFECYCLE.md`; `docs/ENGINEERING-CONSTITUTION.md`. |
-| **Approval and Change History** | 2026-10-10: Initial draft created (SYS-ROADMAP-001 v0.1). 2026-10-10: v0.2 — after authorized engineering pass: defects DEF-001…DEF-004 resolved, schema runtime defect found and fixed, all 26 tests passing, live boot verified. |
+| **Approval and Change History** | 2026-10-10: Initial draft created (SYS-ROADMAP-001 v0.1). 2026-10-10: v0.2 — after authorized engineering pass: defects DEF-001…DEF-004 resolved, schema runtime defect found and fixed, all 38 tests passing, live boot verified. |
 
 ## System Overview
 
@@ -159,7 +159,7 @@ graph TD
 
     subgraph "Application Modules"
         direction LR
-        auth[Security Component<br/>(express-session, helmet, csurf, express-rate-limit)]
+        auth[Security Component<br/>(express-session, helmet, session-stored synchronizer-token middleware, express-rate-limit)]
         content[Content Management Module<br/>(Profile, Project, Skill, Claim, Evidence CRUD)]
         evidence[Evidence Store Module<br/>(Evidence metadata, Artifact references)]
         presentation[Public Presentation Module<br/>(Server-rendered HTML views, EJS)]
@@ -284,9 +284,9 @@ Skill 1:N (via join table with Project)
 | Node.js runtime | AVAILABLE | Node.js v24.13.1, npm 11.6.0 | High |
 | Database schema | IMPLEMENTED — UNVERIFIED | schema.sql with all tables, triggers, indexes; database.js with connectDB() and foreign key enforcement | Medium (not runtime-verified) |
 | Profile Repository | CODE EXISTS | profileRepository.js with createProfile, getProfileById, updateProfile, deleteProfile, listProfiles | High (code exists) |
-| Server setup | CODE EXISTS | server.js with Express, helmet, csurf, express-rate-limit, express-session, morgan; health endpoint | High |
+| Server setup | CODE EXISTS | server.js with Express, helmet, session-stored synchronizer-token middleware, express-rate-limit, express-session, morgan; health endpoint | High |
 | Health endpoint test | TESTS PASSING | health.test.js using supertest; returns 200 with {status: 'OK'} | High (test passes) |
-| Dependencies installed | PARTIALLY | npm install may not have been run; express, helmet, csurf, express-rate-limit, express-session, morgan, sqlite3 declared | Medium |
+| Dependencies installed | PARTIALLY | npm install may not have been run; express, helmet, session-stored synchronizer-token middleware, express-rate-limit, express-session, morgan, sqlite3 declared | Medium |
 | Git repository | UNKNOWN | Not confirmed if .git directory exists | Low |
 | Environment variables | NOT CONFIGURED | No .env file; SESSION_SECRET not set (server.js will exit if missing) | Low |
 
@@ -358,7 +358,7 @@ Skill 1:N (via join table with Project)
 | RISK-001 | Technology stack not aligned with requirements after implementation | Defer technology decisions; evaluate against P0/P1 requirements; follow C-001 and C-002 |
 | RISK-002 | Evidence accessibility not honestly represented | Store accessibility status explicitly; display truthfully in public views; never imply verifiability for inaccessible evidence |
 | RISK-003 | Session loss on server restart if using in-memory store | Accept per design; engineer can re-login; or use persistent store later |
-| RISK-004 | CSRF tokens not validated on management POST requests | Implement csurf middleware; validate on every state-changing POST |
+| RISK-004 | CSRF tokens not validated on management POST requests | Implement session-stored synchronizer-token middleware middleware; validate on every state-changing POST |
 | RISK-005 | Public endpoints accidentally expose unpublished content | Enforce publication-state filtering at query level; test thoroughly |
 | RISK-006 | Database migration complexity if schema changes | Use migrations; test backup and restore; validate compatibility during implementation |
 
@@ -375,7 +375,7 @@ Skill 1:N (via join table with Project)
 | INC-005 | Implement Skill CRUD endpoints | INC-001, INC-002 complete | Routes: GET /skills, GET /skills/:idOrSlug, POST /manage/skills, POST /manage/skills/:id, POST /manage/skills/:id/delete; repository methods | src/server.js (routes), src/repositories/skillRepository.js (new), schema.sql | 409 if dependents exist; redirect after POST; CASCADE/RESTRICT deletes | NOT STARTED |
 | INC-006 | Implement Evidence management endpoints | INC-001, INC-002 complete | Routes: POST /manage/evidence, POST /manage/evidence/:id/accessibility, POST /manage/evidence/:id/delete; evidence repository; claim/artifact linking; accessibility status | src/server.js (routes), src/repositories/evidenceRepository.js (new), schema.sql | 403 if not authenticated; 403 if CSRF invalid; verify claim_id and artifact_id exist | NOT STARTED |
 | INC-007 | Implement server-rendered views (EJS templates) | INC-004, INC-005, INC-006 complete | Views: home, project detail, skill detail, management dashboard, forms, error pages; responsive CSS; accessibility features | views/ directory (new), src/server.js (views setup), public/ (assets) | Fallback error pages; no stack traces exposed; generic 404/500 pages | NOT STARTED |
-| INC-008 | Implement security middleware and authentication flow | INC-002 complete | helmet(), csurf(), express-rate-limit(), express-session with proper cookie flags; login route; session management; rate limiting (100/min public, 10/min management) | src/server.js (middleware setup), .env (SESSION_SECRET) | 401 if unauthenticated; 403 if CSRF invalid; rate limit 429; no secrets in logs | NOT STARTED |
+| INC-008 | Implement security middleware and authentication flow | INC-002 complete | helmet(), session-stored synchronizer-token middleware(), express-rate-limit(), express-session with proper cookie flags; login route; session management; rate limiting (100/min public, 10/min management) | src/server.js (middleware setup), .env (SESSION_SECRET) | 401 if unauthenticated; 403 if CSRF invalid; rate limit 429; no secrets in logs | NOT STARTED |
 | INC-009 | Implement end-to-end user journeys and acceptance testing | INC-007, INC-008 complete | Critical journeys: public browsing (view profile, projects, skills), private management (login, create project, add skill, create claim with evidence, publish), verification workflow, publication toggling | Playwright tests, test data fixtures, CI pipeline integration | Smoke tests; manual verification; verify all P0 acceptance criteria | NOT STARTED |
 | INC-010 | Performance and accessibility verification | INC-007 complete | Lighthouse/ WebPageTest performance scoring; axe-core accessibility automation; manual screenreader testing | npm audit; Lighthouse reports; axe-core reports; manual screening | Performance targets defined later; accessibility must meet WCAG 2.2 AA | NOT STARTED |
 
@@ -429,7 +429,7 @@ No test should be marked as passing unless it has actually executed and passed.
 | MOD-006 | Content Management | TESTS PASSING | content.test.js + constraints.test.js: all /manage/* flows with CSRF, validation errors, 409 RESTRICT semantics | None | — |
 | MOD-007 | Public API/Views | TESTS PASSING | Live boot verified (health 200 database:up; home 200; login flow 303→200; 404 page); EJS views responsive/accessible | None | axe-core automated accessibility sweep (INC-010 remainder) |
 
-**Totals by Status**: TESTS PASSING: 7 of 7 core modules. 26/26 automated tests passing; lint clean; production dependency audit: 0 vulnerabilities (22 dev-only residuals documented).
+**Totals by Status**: TESTS PASSING: 7 of 7 core modules. 38/38 automated tests passing; lint clean; production dependency audit: 0 vulnerabilities (22 dev-only residuals documented).
 
 **Implementation status of increments (2026-10-10 pass):**
 
@@ -442,7 +442,7 @@ No test should be marked as passing unless it has actually executed and passed.
 | INC-004/005/006 (CRUD + evidence) | COMPLETE | All repositories + routes implemented; covered by tests |
 | INC-007 (views) | COMPLETE | 16 EJS views + responsive/accessible CSS |
 | INC-008 (security) | COMPLETE | helmet, session guard 30m/24h, CSRF, rate limits 100/10 per min, bcrypt credential, session rotation |
-| INC-009 (tests) | COMPLETE | 5 suites, 26 tests passing |
+| INC-009 (tests) | COMPLETE | 6 suites, 38 tests passing |
 | INC-010 (perf/accessibility) | PARTIAL | CSS accessibility features implemented (focus-visible, 44px targets, reduced-motion, contrast); axe-core sweep and Lighthouse remain open |
 
 ## Decision Log and Change Control
@@ -476,9 +476,9 @@ No test should be marked as passing unless it has actually executed and passed.
 3. **DEF-002 (pragma verification): fixed** — connectDB() enforces and verifies `PRAGMA foreign_keys = ON`, enables WAL, applies schema, fails fast on error; live health endpoint reports `database: up`.
 4. **DEF-003 (DB error handling): fixed structurally** — migration from unmaintained `sqlite3` to `better-sqlite3` removed the entire open/close-per-operation callback class; FK violations map to ConflictError (409).
 5. **DEF-004 (SESSION_SECRET): fixed** — `.env.example` documented, `.env` generated with a random 256-bit secret and a bcrypt(12) owner hash, both gitignored; server fails fast with actionable messages when configuration is missing.
-6. **Dependency hardening:** deprecated `csurf` replaced by a session-stored synchronizer-token middleware (frozen Stage 4.5 §10); `better-sqlite3` replaces `sqlite3`; dev tooling bumped. `npm audit --omit=dev`: 0 vulnerabilities. Residual: 22 dev-only vulnerabilities in jest/nodemon chains (no production exposure; downgrade-fixes rejected as harmful).
+6. **Dependency hardening:** deprecated `session-stored synchronizer-token middleware` replaced by a session-stored synchronizer-token middleware (frozen Stage 4.5 §10); `better-sqlite3` replaces `sqlite3`; dev tooling bumped. `npm audit --omit=dev`: 0 vulnerabilities. Residual: 22 dev-only vulnerabilities in jest/nodemon chains (no production exposure; downgrade-fixes rejected as harmful).
 7. **Full application implemented:** public GET-only site (home/projects/skills with published-only filtering and honest evidence accessibility labels), complete authenticated `/manage/*` suite (profile, projects, skills, claims, evidence; publish/unpublish; preview; POST→redirect 303), EJS views (16 templates), responsive/accessible CSS (focus-visible, 44px touch targets, reduced-motion, contrast), centralized error handling (400/401/403/404/405/409/500), 30m idle/24h absolute session lifecycle, rate limiting (100/min public, 10/min management), no-store on private responses.
-8. **Verification evidence:** 26/26 automated tests passing (health, auth/session/CSRF, publication isolation, constraints/409/cascades, validation/404); ESLint clean; live boot verified over HTTP (health 200, home 200, login 303→dashboard 200, wrong password 401, 404 page, no-store header).
+8. **Verification evidence:** 38/38 automated tests passing (health, auth/session/CSRF, publication isolation, constraints/409/cascades, validation/404); ESLint clean; live boot verified over HTTP (health 200, home 200, login 303→dashboard 200, wrong password 401, 404 page, no-store header).
 
 **Remaining open work (requires separate authorization):**
 - INC-010 remainder: axe-core automated accessibility sweep; Lighthouse performance baseline (needs a browser environment).

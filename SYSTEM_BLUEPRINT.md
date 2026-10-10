@@ -351,11 +351,11 @@ All P0 functional scope: FR-001 profile, FR-002 project evidence, FR-003 claim�
 | Persistent session store | MemoryStore only (single-instance assumption) | roadmap `:61`, RISK-003 |
 
 ### 8.3 Contradictions & drift found (fix candidates)
-1. **Roadmap test-count drift:** roadmap v0.2 says "26/26 automated tests" / 5 suites (`:432,481`); reality is **38 tests / 6 suites** (verified). `manageEvidenceList.test.js` postdates the roadmap update.
+1. **Roadmap test-count drift:** roadmap v0.2 says "38/38 automated tests" / 6 suites (`:432,481`); reality is **38 tests / 6 suites** (verified). `manageEvidenceList.test.js` postdates the roadmap update.
 2. **Roadmap self-contradiction on module status:** the Module Catalogue table lists MOD-002/003/004/006/007 as "NOT STARTED" (`:270-275`) while the Progress Dashboard marks all 7 "TESTS PASSING" (`:422-432`). The catalogue is stale.
 3. **Ghost route `GET /claims` in the roadmap's context diagram** (`:98`) — no such public endpoint exists; claims are rendered inside project/skill detail pages only (`publicRoutes.js`).
 4. **Roadmap dependency text mentions `csurf`** (`:162,361`) — replaced by the session-stored synchronizer token (roadmap `:479` itself records the replacement; the diagrams lag).
-5. README claims "26/26 automated tests" (`README.md:8`) — same drift as (1).
+5. README claims "38/38 automated tests" (`README.md:8`) — same drift as (1).
 
 ### 8.4 Dead code
 None found (dissection ledger agrees, `docs/16-SYSTEM-DISSECTION-AND-ADJUSTMENT-LEDGER.md:38`). Closest to dead: `Archived` enum value, unused `experience`/`education` tables, `PUBLICATION_STATES` export with only 2 live states — all documented as deferred hooks, not junk.

@@ -35,3 +35,4 @@ data/
 
 # Uploads (if any)
 public/uploads/
+.neon
