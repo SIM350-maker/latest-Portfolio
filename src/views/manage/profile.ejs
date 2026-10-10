@@ -1,0 +1,52 @@
+<%- include('../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1>Profile</h1>
+
+<% if (profile) { %>
+  <p class="meta">Publication state: <strong><%= profile.publication_state %></strong>
+    <% if (profile.publication_state !== 'Published') { %>
+      <form method="post" action="/manage/profile/publish" class="inline-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="button-primary">Publish profile</button>
+      </form>
+    <% } else { %>
+      <form method="post" action="/manage/profile/unpublish" class="inline-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit" class="button-secondary">Unpublish (revert to Draft)</button>
+      </form>
+    <% } %>
+  </p>
+<% } %>
+
+<form method="post" action="/manage/profile" novalidate>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="form-field">
+    <label for="name">Name <span aria-hidden="true">*</span></label>
+    <input type="text" id="name" name="name" value="<%= values.name || '' %>" required maxlength="200" aria-describedby="name-error">
+    <% if (fieldErrors.name) { %><p class="field-error" id="name-error"><%= fieldErrors.name %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="role">Role / target role <span aria-hidden="true">*</span></label>
+    <input type="text" id="role" name="role" value="<%= values.role || '' %>" required maxlength="200" aria-describedby="role-error">
+    <% if (fieldErrors.role) { %><p class="field-error" id="role-error"><%= fieldErrors.role %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="summary">Professional summary <span aria-hidden="true">*</span></label>
+    <textarea id="summary" name="summary" rows="5" required maxlength="5000" aria-describedby="summary-error"><%= values.summary || '' %></textarea>
+    <% if (fieldErrors.summary) { %><p class="field-error" id="summary-error"><%= fieldErrors.summary %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="contact_info">Contact information</label>
+    <input type="text" id="contact_info" name="contact_info" value="<%= values.contact_info || '' %>" maxlength="2000" aria-describedby="contact_info-hint">
+    <p class="hint" id="contact_info-hint">e.g., an email address or LinkedIn profile URL.</p>
+    <% if (fieldErrors.contact_info) { %><p class="field-error" id="contact_info-error"><%= fieldErrors.contact_info %></p><% } %>
+  </div>
+
+  <button type="submit" class="button-primary"><%= profile ? 'Save changes' : 'Create profile' %></button>
+</form>
+
+<%- include('../partials/footer') %>

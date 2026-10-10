@@ -1,0 +1,17 @@
+<%- include('../partials/header', { title, isAuthenticated, csrfToken: '' }) %>
+
+<h1>Skills</h1>
+<% if (skills.length === 0) { %>
+  <p>No published skills yet.</p>
+<% } else { %>
+  <ul class="card-list">
+    <% skills.forEach(function (s) { %>
+      <li class="card">
+        <h2><a href="/skills/<%= s.id %>"><%= s.name %></a></h2>
+        <% if (s.description) { %><p><%= s.description %></p><% } %>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../partials/footer') %>

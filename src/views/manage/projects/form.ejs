@@ -1,0 +1,45 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1><%= mode === 'new' ? 'New project' : 'Edit project' %></h1>
+
+<form method="post" action="<%= mode === 'new' ? '/manage/projects' : '/manage/projects/' + project.id %>" novalidate>
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <div class="form-field">
+    <label for="title">Title <span aria-hidden="true">*</span></label>
+    <input type="text" id="title" name="title" value="<%= values.title || '' %>" required maxlength="300" aria-describedby="title-error">
+    <% if (fieldErrors.title) { %><p class="field-error" id="title-error"><%= fieldErrors.title %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="6" maxlength="10000" aria-describedby="description-error"><%= values.description || '' %></textarea>
+    <% if (fieldErrors.description) { %><p class="field-error" id="description-error"><%= fieldErrors.description %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="outcomes">Outcomes</label>
+    <textarea id="outcomes" name="outcomes" rows="4" maxlength="5000" aria-describedby="outcomes-error"><%= values.outcomes || '' %></textarea>
+    <% if (fieldErrors.outcomes) { %><p class="field-error" id="outcomes-error"><%= fieldErrors.outcomes %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="roles">Role</label>
+    <input type="text" id="roles" name="roles" value="<%= values.roles || '' %>" maxlength="500">
+    <% if (fieldErrors.roles) { %><p class="field-error" id="roles-error"><%= fieldErrors.roles %></p><% } %>
+  </div>
+
+  <div class="form-field">
+    <label for="technologies">Technologies</label>
+    <input type="text" id="technologies" name="technologies" value="<%= values.technologies || '' %>" maxlength="1000" aria-describedby="technologies-hint">
+    <p class="hint" id="technologies-hint">Comma-separated list, e.g., Node.js, Express, SQLite.</p>
+    <% if (fieldErrors.technologies) { %><p class="field-error" id="technologies-error"><%= fieldErrors.technologies %></p><% } %>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="button-primary"><%= mode === 'new' ? 'Create project' : 'Save changes' %></button>
+    <a href="/manage/projects" class="button-secondary">Cancel</a>
+  </div>
+</form>
+
+<%- include('../../partials/footer') %>

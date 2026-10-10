@@ -1,0 +1,43 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<div class="manage-toolbar">
+  <h1>Projects</h1>
+  <a class="button-primary" href="/manage/projects/new">New project</a>
+</div>
+
+<% if (projects.length === 0) { %>
+  <p>No projects yet. <a href="/manage/projects/new">Create the first one.</a></p>
+<% } else { %>
+  <ul class="manage-list">
+    <% projects.forEach(function (p) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h2><%= p.title %></h2>
+          <p class="meta">State: <strong><%= p.publication_state %></strong><% if (p.technologies) { %> · <%= p.technologies %><% } %></p>
+        </div>
+        <div class="manage-item-actions">
+          <a href="/manage/preview/project/<%= p.id %>">Preview</a>
+          <a href="/manage/projects/<%= p.id %>/edit">Edit</a>
+          <% if (p.publication_state !== 'Published') { %>
+            <form method="post" action="/manage/projects/<%= p.id %>/publish" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Publish</button>
+            </form>
+          <% } else { %>
+            <form method="post" action="/manage/projects/<%= p.id %>/unpublish" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Unpublish</button>
+            </form>
+          <% } %>
+          <form method="post" action="/manage/projects/<%= p.id %>/delete" class="inline-form" data-confirm="Delete this project? Projects with claims cannot be deleted.">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="link-button link-danger">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../../partials/footer') %>
+

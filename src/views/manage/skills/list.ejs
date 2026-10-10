@@ -1,0 +1,61 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1>Skills</h1>
+
+<section aria-labelledby="new-skill-heading">
+  <h2 id="new-skill-heading">Add a skill</h2>
+  <% if (fieldErrors && Object.keys(fieldErrors).length > 0) { %>
+    <div class="banner banner-error" role="alert">Please fix the errors below.</div>
+  <% } %>
+  <form method="post" action="/manage/skills" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="form-field">
+      <label for="name">Name <span aria-hidden="true">*</span></label>
+      <input type="text" id="name" name="name" value="<%= values.name || '' %>" required maxlength="200" aria-describedby="name-error">
+      <% if (fieldErrors.name) { %><p class="field-error" id="name-error"><%= fieldErrors.name %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="3" maxlength="5000" aria-describedby="description-error"><%= values.description || '' %></textarea>
+      <% if (fieldErrors.description) { %><p class="field-error" id="description-error"><%= fieldErrors.description %></p><% } %>
+    </div>
+    <button type="submit" class="button-primary">Add skill</button>
+  </form>
+</section>
+
+<% if (skills.length === 0) { %>
+  <p>No skills yet.</p>
+<% } else { %>
+  <ul class="manage-list">
+    <% skills.forEach(function (s) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h3><%= s.name %></h3>
+          <p class="meta">State: <strong><%= s.publication_state %></strong><% if (s.description) { %> · <%= s.description %><% } %></p>
+          <% if (fieldErrors && fieldErrors['edit_' + s.id]) { %><p class="field-error"><%= fieldErrors['edit_' + s.id] %></p><% } %>
+        </div>
+        <div class="manage-item-actions">
+          <a href="/manage/preview/skill/<%= s.id %>">Preview</a>
+          <% if (s.publication_state !== 'Published') { %>
+            <form method="post" action="/manage/skills/<%= s.id %>/publish" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Publish</button>
+            </form>
+          <% } else { %>
+            <form method="post" action="/manage/skills/<%= s.id %>/unpublish" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Unpublish</button>
+            </form>
+          <% } %>
+          <form method="post" action="/manage/skills/<%= s.id %>/delete" class="inline-form" data-confirm="Delete this skill? Skills referenced by claims cannot be deleted.">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="link-button link-danger">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../../partials/footer') %>
+

@@ -1,0 +1,22 @@
+<%- include('../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1>Management dashboard</h1>
+
+<section class="stat-grid" aria-label="Content overview">
+  <div class="stat"><span class="stat-number"><%= counts.projects %></span><span class="stat-label">Projects (<%= counts.publishedProjects %> published)</span></div>
+  <div class="stat"><span class="stat-number"><%= counts.skills %></span><span class="stat-label">Skills (<%= counts.publishedSkills %> published)</span></div>
+  <div class="stat"><span class="stat-number"><%= counts.claims %></span><span class="stat-label">Claims</span></div>
+  <div class="stat"><span class="stat-number"><%= counts.evidence %></span><span class="stat-label">Evidence items</span></div>
+</section>
+
+<nav aria-label="Management sections">
+  <ul class="manage-links">
+    <li><a href="/manage/profile">Profile</a> — <%= profile ? 'publication state: ' + profile.publication_state : 'not created yet' %></li>
+    <li><a href="/manage/projects">Projects</a></li>
+    <li><a href="/manage/skills">Skills</a></li>
+    <li><a href="/manage/claims">Claims</a></li>
+    <li><a href="/manage/evidence">Evidence</a></li>
+  </ul>
+</nav>
+
+<%- include('../partials/footer') %>

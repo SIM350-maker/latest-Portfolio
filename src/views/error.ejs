@@ -1,0 +1,14 @@
+<%- include('partials/header', { title, isAuthenticated: typeof isAuthenticated !== 'undefined' ? isAuthenticated : false, csrfToken: typeof csrfToken !== 'undefined' ? csrfToken : '' }) %>
+
+<section class="error-box">
+  <h1><%= heading %></h1>
+  <p><%= message %></p>
+  <ul class="error-links">
+    <li><a href="/">Go to the homepage</a></li>
+    <li><a href="/projects">Browse projects</a></li>
+    <li><a href="/skills">Browse skills</a></li>
+    <% if (!isAuthenticated) { %><li><a href="/manage/login">Sign in to manage content</a></li><% } %>
+  </ul>
+</section>
+
+<%- include('partials/footer') %>

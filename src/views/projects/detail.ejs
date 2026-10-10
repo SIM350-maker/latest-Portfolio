@@ -1,0 +1,77 @@
+<%- include('../partials/header', { title, isAuthenticated, csrfToken: '' }) %>
+
+<article class="detail">
+  <h1><%= project.title %></h1>
+
+  <% if (project.description) { %><section><h2>Description</h2><p><%= project.description %></p></section><% } %>
+  <% if (project.outcomes) { %><section><h2>Outcomes</h2><p><%= project.outcomes %></p></section><% } %>
+  <% if (project.roles) { %><section><h2>Role</h2><p><%= project.roles %></p></section><% } %>
+  <% if (project.technologies) { %><section><h2>Technologies</h2><p><%= project.technologies %></p></section><% } %>
+
+  <% if (typeof skills !== 'undefined' && skills.length > 0) { %>
+    <section>
+      <h2>Skills demonstrated</h2>
+      <ul class="chip-list">
+        <% skills.forEach(function (s) { %>
+          <li class="chip"><a href="/skills/<%= s.id %>"><%= s.name %></a></li>
+        <% }); %>
+      </ul>
+    </section>
+  <% } %>
+
+  <% if (claims && claims.length > 0) { %>
+    <section aria-labelledby="claims-heading">
+      <h2 id="claims-heading">Claims and supporting evidence</h2>
+      <% claims.forEach(function (c) { %>
+        <div class="claim">
+          <h3>“<%= c.statement %>”</h3>
+          <% if (c.justification) { %><p class="justification"><%= c.justification %></p><% } %>
+          <% if (c.evidence.length === 0) { %>
+            <p class="meta">No evidence is attached to this claim.</p>
+          <% } else { %>
+            <ul class="evidence-list">
+              <% c.evidence.forEach(function (e) { %>
+                <li class="evidence evidence-<%= e.accessibility_status === 'Public' ? 'public' : 'restricted' %>">
+                  <% if (e.accessibility_status === 'Public' && e.file_path) { %>
+                    <a href="<%= e.file_path %>" rel="noopener noreferrer"><%= e.description || e.file_path %></a>
+                  <% } else { %>
+                    <span><%= e.description || e.file_type || 'Evidence' %></span>
+                  <% } %>
+                  <span class="badge badge-<%= e.accessibility_status === 'Public' ? 'public' : 'restricted' %>">Access: <%= e.accessibility_status %></span>
+                  <% if (e.accessibility_status !== 'Public') { %>
+                    <p class="meta">This evidence is not publicly accessible; it cannot be independently verified here.</p>
+                  <% } %>
+                </li>
+              <% }); %>
+            </ul>
+          <% } %>
+        </div>
+      <% }); %>
+    </section>
+  <% } %>
+
+  <% if (evidence && evidence.length > 0 && (!claims || claims.length === 0)) { %>
+    <section aria-labelledby="evidence-heading">
+      <h2 id="evidence-heading">Project evidence</h2>
+      <ul class="evidence-list">
+        <% evidence.forEach(function (e) { %>
+          <li class="evidence">
+            <% if (e.accessibility_status === 'Public' && e.file_path) { %>
+              <a href="<%= e.file_path %>" rel="noopener noreferrer"><%= e.description || e.file_path %></a>
+            <% } else { %>
+              <span><%= e.description || e.file_type || 'Evidence' %></span>
+            <% } %>
+            <span class="badge badge-<%= e.accessibility_status === 'Public' ? 'public' : 'restricted' %>">Access: <%= e.accessibility_status %></span>
+            <% if (e.accessibility_status !== 'Public') { %>
+              <p class="meta">This evidence is not publicly accessible; it cannot be independently verified here.</p>
+            <% } %>
+          </li>
+        <% }); %>
+      </ul>
+    </section>
+  <% } %>
+</article>
+
+<p><a href="/projects">← Back to projects</a></p>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,98 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1>Claims</h1>
+<p class="meta">A claim may exist without evidence; supporting evidence can be attached below (frozen business rule).</p>
+
+<section aria-labelledby="new-claim-heading">
+  <h2 id="new-claim-heading">Create a claim</h2>
+  <% if (fieldErrors && Object.keys(fieldErrors).length > 0) { %>
+    <div class="banner banner-error" role="alert">Please fix the errors below.</div>
+  <% } %>
+  <form method="post" action="/manage/claims" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="form-field">
+      <label for="statement">Statement <span aria-hidden="true">*</span></label>
+      <input type="text" id="statement" name="statement" value="<%= values.statement || '' %>" required maxlength="1000" aria-describedby="statement-error">
+      <% if (fieldErrors.statement) { %><p class="field-error" id="statement-error"><%= fieldErrors.statement %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="justification">Justification</label>
+      <textarea id="justification" name="justification" rows="3" maxlength="5000" aria-describedby="justification-error"><%= values.justification || '' %></textarea>
+      <% if (fieldErrors.justification) { %><p class="field-error" id="justification-error"><%= fieldErrors.justification %></p><% } %>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="source_entity_type">Context (optional)</label>
+        <select id="source_entity_type" name="source_entity_type" aria-describedby="source-error">
+          <option value="">— none —</option>
+          <option value="profile">Profile</option>
+          <option value="project">Project</option>
+          <option value="skill">Skill</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="source_entity_id">Context record ID</label>
+        <input type="number" id="source_entity_id" name="source_entity_id" min="1" value="<%= values.source_entity_id || '' %>" aria-describedby="source-error">
+        <p class="hint">The ID of the project, skill, or profile this claim belongs to.</p>
+      </div>
+    </div>
+    <% if (fieldErrors.source_entity_type) { %><p class="field-error" id="source-error"><%= fieldErrors.source_entity_type %></p><% } %>
+    <% if (fieldErrors.source_entity_id) { %><p class="field-error" id="source-error"><%= fieldErrors.source_entity_id %></p><% } %>
+    <button type="submit" class="button-primary">Create claim</button>
+  </form>
+</section>
+
+<% if (claims.length === 0) { %>
+  <p>No claims yet.</p>
+<% } else { %>
+  <ul class="manage-list">
+    <% claims.forEach(function (c) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h3>“<%= c.statement %>”</h3>
+          <p class="meta">
+            State: <strong><%= c.publication_state %></strong>
+            <% if (c.source_entity_type) { %> · in <%= c.source_entity_type %> #<%= c.source_entity_id %><% } %>
+          </p>
+          <% if (c.evidence.length === 0) { %>
+            <p class="meta">Unsupported claim — no evidence attached.</p>
+          <% } else { %>
+            <ul class="evidence-list">
+              <% c.evidence.forEach(function (e) { %>
+                <li class="evidence"><span><%= e.description || e.file_path || ('Evidence #' + e.id) %></span>
+                  <span class="badge badge-<%= e.accessibility_status === 'Public' ? 'public' : 'restricted' %>"><%= e.accessibility_status %></span>
+                </li>
+              <% }); %>
+            </ul>
+          <% } %>
+        </div>
+        <div class="manage-item-actions">
+          <form method="post" action="/manage/claims/<%= c.id %>/evidence" class="inline-form attach-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <label class="visually-hidden" for="evidence-<%= c.id %>">Evidence ID to attach</label>
+            <input type="number" id="evidence-<%= c.id %>" name="evidence_id" min="1" placeholder="Evidence ID" required>
+            <button type="submit" class="link-button">Attach evidence</button>
+          </form>
+          <% if (c.publication_state !== 'Published') { %>
+            <form method="post" action="/manage/claims/<%= c.id %>/publish" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Publish</button>
+            </form>
+          <% } else { %>
+            <form method="post" action="/manage/claims/<%= c.id %>/unpublish" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Unpublish</button>
+            </form>
+          <% } %>
+          <form method="post" action="/manage/claims/<%= c.id %>/delete" class="inline-form" data-confirm="Delete this claim? Its evidence links are removed; evidence items themselves are kept.">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="link-button link-danger">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../../partials/footer') %>
+
