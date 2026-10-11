@@ -3,6 +3,8 @@
 **Document ID:** SYS-BUILD-001 · **Version:** 1.0 · **Date:** 2026-10-10
 **Read with:** `SYSTEM_BLUEPRINT.md` (SYS-BLUEPRINT-001). All module IDs below continue the existing catalog (`MOD-001..007` are DONE and test-locked — do not rebuild them).
 **SUPERSEDED ORDERING NOTICE (2026-10-10):** `BLUEPRINT.md` is now the single source of truth for build order and file inventory. Where Section F of that file conflicts with the milestones below, BLUEPRINT wins. The analysis below remains valid as background.
+
+**PROGRESS UPDATE (2026-10-11):** M0 (git baseline + CI), M1 (containerized deployment, verified live: health 200, login 303, unauth POST 403, volume persistence), M2 (axe sweep 0 violations + Lighthouse baseline in `docs/PERFORMANCE-BASELINE.md`), and M3 (migration runner + Experience/Education module) are COMPLETE. 64/64 tests across 9 suites; lint clean; production audit 0 vulnerabilities. Remaining: M4 release tagging (this update), G-9 TLS decision, FR-007 CV generation. The "38/38" figures below are historical baseline evidence, quoted as recorded.
 ---
 
 ## 3.1 CRITICAL PATH ANALYSIS
