@@ -9,6 +9,9 @@ const projectRepo = require('../repositories/projectRepository');
 const skillRepo = require('../repositories/skillRepository');
 const claimRepo = require('../repositories/claimRepository');
 const evidenceRepo = require('../repositories/evidenceRepository');
+
+const experienceRepo = require('../repositories/experienceRepository');
+const educationRepo = require('../repositories/educationRepository');
 const {
   ValidationError, NotFoundError,
   ACCESSIBILITY_STATES, CLAIM_SOURCES,
@@ -62,6 +65,8 @@ router.get('/', (req, res, next) => {
       publishedSkills: skillRepo.listPublished().length,
       claims: claimRepo.listAll().length,
       evidence: evidenceRepo.listAll().length,
+      experiences: experienceRepo.listAll().length,
+      educations: educationRepo.listAll().length,
     };
     return res.render('manage/dashboard', { title: 'Dashboard', profile, counts });
   } catch (err) { return next(err); }
@@ -294,6 +299,116 @@ router.post('/skills/:id(\\d+)/evidence', (req, res, next) => {
     if (!evidenceId || !evidenceRepo.getById(evidenceId)) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
     skillRepo.attachEvidence(skill.id, evidenceId);
     return res.redirect(303, '/manage/skills');
+  } catch (err) { return next(err); }
+});
+
+// ---------------------------------------------------------------- experience
+router.get('/experience', (req, res, next) => {
+  try {
+    const experiences = experienceRepo.listAll();
+    return res.render('manage/experience/list', { title: 'Experience', experiences, values: {}, fieldErrors: {} });
+  } catch (err) { return next(err); }
+});
+
+router.post('/experience', (req, res, next) => {
+  const errors = {};
+  const values = {
+    title: requireText(req.body.title, 'title', errors, 200),
+    company: requireText(req.body.company, 'company', errors, 200),
+    start_date: requireText(req.body.start_date, 'start_date', errors, 50),
+    end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    description: optionalText(req.body.description, 'description', errors, 5000),
+  };
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).render('manage/experience/list', {
+      title: 'Experience', experiences: experienceRepo.listAll(), values, fieldErrors: errors,
+    });
+  }
+  try {
+    experienceRepo.create(values);
+    return res.redirect(303, '/manage/experience');
+  } catch (err) { return next(err); }
+});
+
+router.post('/experience/:id(\\d+)', (req, res, next) => {
+  const id = Number(req.params.id);
+  const errors = {};
+  const values = {
+    title: requireText(req.body.title, 'title', errors, 200),
+    company: requireText(req.body.company, 'company', errors, 200),
+    start_date: requireText(req.body.start_date, 'start_date', errors, 50),
+    end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    description: optionalText(req.body.description, 'description', errors, 5000),
+  };
+  if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
+  try {
+    if (experienceRepo.update(id, values) === 0 && !experienceRepo.getById(id)) {
+      throw new NotFoundError('Experience entry not found.');
+    }
+    return res.redirect(303, '/manage/experience');
+  } catch (err) { return next(err); }
+});
+
+router.post('/experience/:id(\\d+)/delete', (req, res, next) => {
+  try {
+    if (!experienceRepo.remove(Number(req.params.id))) throw new NotFoundError('Experience entry not found.');
+    return res.redirect(303, '/manage/experience');
+  } catch (err) { return next(err); }
+});
+
+// ---------------------------------------------------------------- education
+router.get('/education', (req, res, next) => {
+  try {
+    const educations = educationRepo.listAll();
+    return res.render('manage/education/list', { title: 'Education', educations, values: {}, fieldErrors: {} });
+  } catch (err) { return next(err); }
+});
+
+router.post('/education', (req, res, next) => {
+  const errors = {};
+  const values = {
+    institution: requireText(req.body.institution, 'institution', errors, 200),
+    degree: requireText(req.body.degree, 'degree', errors, 200),
+    field_of_study: optionalText(req.body.field_of_study, 'field_of_study', errors, 200),
+    start_date: requireText(req.body.start_date, 'start_date', errors, 50),
+    end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    description: optionalText(req.body.description, 'description', errors, 5000),
+  };
+  if (Object.keys(errors).length > 0) {
+    return res.status(400).render('manage/education/list', {
+      title: 'Education', educations: educationRepo.listAll(), values, fieldErrors: errors,
+    });
+  }
+  try {
+    educationRepo.create(values);
+    return res.redirect(303, '/manage/education');
+  } catch (err) { return next(err); }
+});
+
+router.post('/education/:id(\\d+)', (req, res, next) => {
+  const id = Number(req.params.id);
+  const errors = {};
+  const values = {
+    institution: requireText(req.body.institution, 'institution', errors, 200),
+    degree: requireText(req.body.degree, 'degree', errors, 200),
+    field_of_study: optionalText(req.body.field_of_study, 'field_of_study', errors, 200),
+    start_date: requireText(req.body.start_date, 'start_date', errors, 50),
+    end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    description: optionalText(req.body.description, 'description', errors, 5000),
+  };
+  if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
+  try {
+    if (educationRepo.update(id, values) === 0 && !educationRepo.getById(id)) {
+      throw new NotFoundError('Education entry not found.');
+    }
+    return res.redirect(303, '/manage/education');
+  } catch (err) { return next(err); }
+});
+
+router.post('/education/:id(\\d+)/delete', (req, res, next) => {
+  try {
+    if (!educationRepo.remove(Number(req.params.id))) throw new NotFoundError('Education entry not found.');
+    return res.redirect(303, '/manage/education');
   } catch (err) { return next(err); }
 });
 

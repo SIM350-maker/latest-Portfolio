@@ -1,0 +1,63 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1>Experience</h1>
+
+<section aria-labelledby="new-experience-heading">
+  <h2 id="new-experience-heading">Add an experience entry</h2>
+  <% if (fieldErrors && Object.keys(fieldErrors).length > 0) { %>
+    <div class="banner banner-error" role="alert">Please fix the errors below.</div>
+  <% } %>
+  <form method="post" action="/manage/experience" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="form-field">
+      <label for="title">Title <span aria-hidden="true">*</span></label>
+      <input type="text" id="title" name="title" value="<%= values.title || '' %>" required maxlength="200" aria-describedby="title-error">
+      <% if (fieldErrors.title) { %><p class="field-error" id="title-error"><%= fieldErrors.title %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="company">Company <span aria-hidden="true">*</span></label>
+      <input type="text" id="company" name="company" value="<%= values.company || '' %>" required maxlength="200" aria-describedby="company-error">
+      <% if (fieldErrors.company) { %><p class="field-error" id="company-error"><%= fieldErrors.company %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="start_date">Start date <span aria-hidden="true">*</span></label>
+      <input type="text" id="start_date" name="start_date" value="<%= values.start_date || '' %>" required maxlength="50" placeholder="e.g. 2024-01" aria-describedby="start_date-error">
+      <% if (fieldErrors.start_date) { %><p class="field-error" id="start_date-error"><%= fieldErrors.start_date %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="end_date">End date</label>
+      <input type="text" id="end_date" name="end_date" value="<%= values.end_date || '' %>" maxlength="50" placeholder="leave empty for present" aria-describedby="end_date-error">
+      <% if (fieldErrors.end_date) { %><p class="field-error" id="end_date-error"><%= fieldErrors.end_date %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="3" maxlength="5000" aria-describedby="description-error"><%= values.description || '' %></textarea>
+      <% if (fieldErrors.description) { %><p class="field-error" id="description-error"><%= fieldErrors.description %></p><% } %>
+    </div>
+    <button type="submit" class="button-primary">Add experience</button>
+  </form>
+</section>
+
+<% if (experiences.length === 0) { %>
+  <p>No experience entries yet.</p>
+<% } else { %>
+  <ul class="manage-list">
+    <% experiences.forEach(function (e) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h3><%= e.title %> — <%= e.company %></h3>
+          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %><% if (e.description) { %> · <%= e.description %><% } %></p>
+          <% if (fieldErrors && fieldErrors['edit_' + e.id]) { %><p class="field-error"><%= fieldErrors['edit_' + e.id] %></p><% } %>
+        </div>
+        <div class="manage-item-actions">
+          <form method="post" action="/manage/experience/<%= e.id %>/delete" class="inline-form" data-confirm="Delete this experience entry?">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="link-button link-danger">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../../partials/footer') %>
