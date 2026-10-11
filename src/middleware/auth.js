@@ -22,7 +22,7 @@ function sessionGuard(req, res, next) {
   }
   if (now - createdAt > ABSOLUTE_TIMEOUT_MS || (lastSeen && now - lastSeen > IDLE_TIMEOUT_MS)) {
     req.session.destroy(() => {
-      res.clearCookie('connect.sid');
+      res.clearCookie('portfolio.sid');
       // Re-issue a fresh anonymous session via the normal middleware chain.
       return next();
     });

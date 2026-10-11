@@ -99,3 +99,9 @@ VALIDATION STATUS: NOT YET VALIDED
 - Rationale: MODULE-012 (migration runner) was complete and verified; the schema already contained the orphaned `experience`/`education` tables, so no migration was needed. Existing patterns (whitelisted columns, singleton profile, CSRF-protected forms) were mirrored exactly.
 - Alternatives Considered: adding publication_state columns to experience/education (rejected — schema has no such column and roadmap does not require it for this module); separate edit pages (rejected — list-with-inline-form pattern matches skills module).
 - Impact: Dashboard now surfaces experience/education counts; owner can manage career history without code changes (NFR-002). 62/62 tests green, lint clean. Unblocks FR-007 CV generation.
+
+- Date: 2026-10-11
+- Decision: Session cookie `secure` flag changed from `isProd()` (boolean) to `'auto'` (express-session) with the existing production `trust proxy = 1`. Additionally fixed `sessionGuard` to clear the correct cookie name (`portfolio.sid`, was `connect.sid`).
+- Rationale: Container verification (MODULE-010) showed that `secure: true` under plain HTTP suppresses `Set-Cookie` entirely, so production HTTP deployments could not hold sessions at all. `'auto'` keeps the Secure flag whenever the request is HTTPS (honoring X-Forwarded-Proto via trust proxy), satisfying the frozen "Secure in production (TLS)" design, while allowing the first-release HTTP demo the roadmap explicitly anticipated (SYS-BUILD-001 §MODULE-010 risk note).
+- Alternatives Considered: TLS-only deployment via reverse proxy before any container demo (deferred — G-9 decision remains open); disabling secure cookies entirely (rejected — weakens the frozen design when TLS is present).
+- Impact: Production HTTP demo deployments get working sessions; TLS deployments retain Secure cookies. New regression test `tests/productionCookie.test.js` proves anonymous session issuance in production HTTP.

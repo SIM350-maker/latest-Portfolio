@@ -54,8 +54,11 @@ function createApp() {
   app.use(express.urlencoded({ extended: false, limit: '100kb' }));
   app.use(express.json({ limit: '100kb' }));
 
-  // 3. Sessions: HTTPOnly, SameSite=Lax, Secure in production; 24h absolute
-  //    cookie lifetime; rolling refresh supports the 30m idle timeout.
+  // 3. Sessions: HTTPOnly, SameSite=Lax, Secure when the connection is HTTPS
+  //    ('auto' + trust proxy: TLS-terminating reverse proxies keep the Secure
+  //    flag; plain-HTTP first-release demos still get sessions — decision
+  //    logged 2026-10-11, docs/14-DECISION-LOG.md). 24h absolute cookie
+  //    lifetime; rolling refresh supports the 30m idle timeout.
   app.use(require('express-session')({
     name: 'portfolio.sid',
     secret: process.env.SESSION_SECRET,
@@ -64,7 +67,7 @@ function createApp() {
     rolling: true,
     cookie: {
       httpOnly: true,
-      secure: isProd(),
+      secure: 'auto',
       sameSite: 'lax',
       maxAge: ABSOLUTE_TIMEOUT_MS,
     },

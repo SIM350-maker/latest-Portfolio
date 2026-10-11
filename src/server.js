@@ -4,7 +4,16 @@
 const fs = require('fs');
 const path = require('path');
 if (fs.existsSync(path.resolve(__dirname, '..', '.env'))) {
-  require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
+  // Docker compose interpolates "$VAR" in env_file values, so "$" in bcrypt
+  // hashes must be doubled ("$$") in .env; compose unescapes them. dotenv does
+  // not, so normalize "$$" -> "$" here for local runs (no other config value
+  // legitimately contains consecutive dollar signs).
+  const loaded = require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
+  for (const [key, value] of Object.entries(loaded.parsed || {})) {
+    if (typeof value === 'string' && value.includes('$$')) {
+      process.env[key] = value.replace(/\$\$/g, '$');
+    }
+  }
 }
 
 const { startServer } = require('./app');
