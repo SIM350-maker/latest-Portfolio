@@ -22,6 +22,9 @@ function connectDB() {
   let dbPath;
   if (process.env.DB_PATH && process.env.DB_PATH.trim() !== '') {
     dbPath = path.resolve(process.cwd(), process.env.DB_PATH);
+    // Ensure the parent directory exists — fresh checkouts (CI, containers with
+    // a mounted DB_PATH) may not have it yet; SQLITE_CANTOPEN otherwise.
+    fs.mkdirSync(path.dirname(dbPath), { recursive: true });
   } else {
     const dataDir = path.resolve(__dirname, '..', '..', 'data');
     fs.mkdirSync(dataDir, { recursive: true });

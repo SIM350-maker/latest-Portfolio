@@ -584,4 +584,39 @@ router.get('/preview/skill/:id(\\d+)', (req, res, next) => {
   } catch (err) { return next(err); }
 });
 
+// ---------------------------------------------------------------- CV (FR-007)
+// Single source of truth: rendered from the same repositories as the public
+// site. Published skills only (honesty invariant); experience/education have
+// no publication state, so all rows are included.
+function buildCvData() {
+  const profile = profileRepo.getProfile();
+  return {
+    profile,
+    skills: skillRepo.listPublished(),
+    experiences: experienceRepo.listAll(),
+    educations: educationRepo.listAll(),
+  };
+}
+
+function cvFileName(profile) {
+  if (!profile || !profile.name) return 'cv.html';
+  const base = String(profile.name).replace(/[^a-z0-9]+/gi, '-').replace(/^-+|-+$/g, '').toLowerCase();
+  return (base || 'cv') + '-cv.html';
+}
+
+router.get('/cv', (req, res, next) => {
+  try {
+    const cv = buildCvData();
+    return res.render('manage/cv', { title: 'CV preview', ...cv, download: false });
+  } catch (err) { return next(err); }
+});
+
+router.get('/cv/download', (req, res, next) => {
+  try {
+    const cv = buildCvData();
+    res.set('Content-Disposition', 'attachment; filename="' + cvFileName(cv.profile) + '"');
+    return res.render('manage/cv', { title: 'Curriculum Vitae', ...cv, download: true });
+  } catch (err) { return next(err); }
+});
+
 module.exports = router;
