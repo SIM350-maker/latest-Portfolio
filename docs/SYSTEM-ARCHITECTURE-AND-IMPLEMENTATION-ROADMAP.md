@@ -433,9 +433,9 @@ No test should be marked as passing unless it has actually executed and passed.
 | MOD-010 | Containerized Deployment | COMPLETE | Dockerfile (multi-stage, non-root, healthcheck) + docker-compose.yml (volume ./data:/data); verified live: build, /health 200 database:up, login 303→200, unauth POST 403, data survives down+up | None | TLS/reverse-proxy decision (G-9) for public deploy |
 | MOD-011 | Accessibility & Performance | COMPLETE | a11y.playwright.test.js: axe WCAG sweep on /, /projects, /skills, /manage/login — 0 violations; Lighthouse baseline recorded in docs/PERFORMANCE-BASELINE.md | None | — |
 | MOD-012 | Schema Migration Framework | COMPLETE | database.js: _migrations table, transactional idempotent runner; migrations.test.js: baseline applied, second boot no-op, FK/WAL pragmas | None | — |
-| MOD-013 | Experience & Education Management | TESTS PASSING | manageExperienceEducation.test.js (15 tests): CRUD, validation 400s, unknown-id 404s, unauth 302s, CSRF 403s, dashboard counts | None | Public CV rendering (FR-007) as next P1 module |
+| MOD-013 | Experience & Education Management | TESTS PASSING | manageExperienceEducation.test.js (15 tests): CRUD, validation 400s, unknown-id 404s, unauth 302s, CSRF 403s, dashboard counts | None | FR-007 CV generation COMPLETE (tests/cv.test.js; /manage/cv + download) |
 
-**Totals by Status**: TESTS PASSING: 7 of 7 core modules + MOD-008..013 (release track) complete. 64/64 automated tests passing across 9 suites; lint clean; production dependency audit: 0 vulnerabilities (re-verified 2026-10-11; 22 dev-only residuals documented).
+**Totals by Status**: TESTS PASSING: 7 of 7 core modules + MOD-008..013 (release track) complete. 70/70 automated tests passing across 10 suites; lint clean; production dependency audit: 0 vulnerabilities (re-verified 2026-10-11; 22 dev-only residuals documented).
 
 **Implementation status of increments (2026-10-10 pass):**
 
@@ -448,7 +448,7 @@ No test should be marked as passing unless it has actually executed and passed.
 | INC-004/005/006 (CRUD + evidence) | COMPLETE | All repositories + routes implemented; covered by tests |
 | INC-007 (views) | COMPLETE | 16 EJS views + responsive/accessible CSS |
 | INC-008 (security) | COMPLETE | helmet, session guard 30m/24h, CSRF, rate limits 100/10 per min, bcrypt credential, session rotation |
-| INC-009 (tests) | COMPLETE | 9 suites, 64 tests passing |
+| INC-009 (tests) | COMPLETE | 10 suites, 70 tests passing |
 | INC-010 (perf/accessibility) | PARTIAL | CSS accessibility features implemented (focus-visible, 44px targets, reduced-motion, contrast); axe-core sweep and Lighthouse remain open |
 
 ## Decision Log and Change Control
@@ -484,11 +484,10 @@ No test should be marked as passing unless it has actually executed and passed.
 5. **DEF-004 (SESSION_SECRET): fixed** — `.env.example` documented, `.env` generated with a random 256-bit secret and a bcrypt(12) owner hash, both gitignored; server fails fast with actionable messages when configuration is missing.
 6. **Dependency hardening:** deprecated `session-stored synchronizer-token middleware` replaced by a session-stored synchronizer-token middleware (frozen Stage 4.5 §10); `better-sqlite3` replaces `sqlite3`; dev tooling bumped. `npm audit --omit=dev`: 0 vulnerabilities. Residual: 22 dev-only vulnerabilities in jest/nodemon chains (no production exposure; downgrade-fixes rejected as harmful).
 7. **Full application implemented:** public GET-only site (home/projects/skills with published-only filtering and honest evidence accessibility labels), complete authenticated `/manage/*` suite (profile, projects, skills, claims, evidence; publish/unpublish; preview; POST→redirect 303), EJS views (16 templates), responsive/accessible CSS (focus-visible, 44px touch targets, reduced-motion, contrast), centralized error handling (400/401/403/404/405/409/500), 30m idle/24h absolute session lifecycle, rate limiting (100/min public, 10/min management), no-store on private responses.
-8. **Verification evidence:** 64/64 automated tests passing across 9 suites (health, auth/session/CSRF, publication isolation, constraints/409/cascades, validation/404, migrations, axe accessibility, production-HTTP sessions, experience/education management); ESLint clean; live boot verified over HTTP (health 200, home 200, login 303→dashboard 200, wrong password 401, 404 page, no-store header); containerized deployment verified (build, healthcheck, volume persistence).
+8. **Verification evidence:** 70/70 automated tests passing across 10 suites (health, auth/session/CSRF, publication isolation, constraints/409/cascades, validation/404, migrations, axe accessibility, production-HTTP sessions, experience/education management, CV generation); ESLint clean; live boot verified over HTTP (health 200, home 200, login 303→dashboard 200, wrong password 401, 404 page, no-store header); containerized deployment verified (build, healthcheck, volume persistence, CV download); CI verify green on push.
 
 **Remaining open work (requires separate authorization):**
 - Public deployment behind TLS (G-9) — container demo verified over local HTTP; TLS decision open.
-- FR-007 CV generation (public rendering of profile + experience + education) — P1-deferred; MOD-013 provides the management foundation.
 - Dev-only dependency vulnerabilities (jest/nodemon chains) — revisit when tooling majors stabilize.
 
 **Immediate next action:** Initialize the Git repository and make the first commit of the verified baseline, OR begin the INC-010 accessibility/performance verification pass. Either requires your explicit go-ahead.

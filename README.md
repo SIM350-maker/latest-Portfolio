@@ -5,7 +5,7 @@ A web-based portfolio that makes a software engineer's capabilities observable, 
 ## Status
 
 - Requirements, domain model, architecture, and implementation design: ACCEPTED AND FROZEN (see `docs/`).
-- Implementation: core system implemented and verified — 64/64 automated tests passing (9 suites), ESLint clean, live boot verified, containerized deployment verified (health, login, volume persistence), CI on every push, axe accessibility sweep 0 violations, idempotent schema migrations.
+- Implementation: core system implemented and verified — 70/70 automated tests passing (10 suites), ESLint clean, live boot verified, containerized deployment verified (health, login, volume persistence), CI on every push, axe accessibility sweep 0 violations, idempotent schema migrations, CV generation from live data.
 - Progress tracking: `docs/SYSTEM-ARCHITECTURE-AND-IMPLEMENTATION-ROADMAP.md`.
 
 ## Technology
