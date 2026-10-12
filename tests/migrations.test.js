@@ -126,20 +126,21 @@ describe('Migration runner', () => {
 
   describe('migration idempotency', () => {
     it('should not reapply the same migration on second connection', () => {
-      // This test verifies that connecting again doesn't try to reapply migrations
-      // We can check by ensuring the _migrations table still has only one entry
-      // for 001_baseline.sql
-      
+      // Idempotency: the number of applied migrations must equal the number of
+      // migration files, and must not grow when connecting again.
+      const migrationsDir = path.resolve(__dirname, '..', 'src', 'db', 'migrations');
+      const fileCount = fs.readdirSync(migrationsDir).filter((f) => f.endsWith('.sql')).length;
+
       const count = db.prepare("SELECT COUNT(*) as count FROM _migrations").get();
-      
-      expect(count.count).toBe(1);
-      
+
+      expect(count.count).toBe(fileCount);
+
       // Reconnect to simulate second boot
       const db2 = connectDB();
-      
+
       const countAfter = db2.prepare("SELECT COUNT(*) as count FROM _migrations").get();
-      
-      expect(countAfter.count).toBe(1);
+
+      expect(countAfter.count).toBe(fileCount);
     });
   });
 
