@@ -14,13 +14,13 @@ const { connectDB } = require('../src/config/database');
 describe('FR-007 — CV generation', () => {
   const app = createApp();
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const db = connectDB();
     db.prepare('DELETE FROM experience').run();
     db.prepare('DELETE FROM education').run();
     db.prepare('DELETE FROM skill').run();
-    if (!profileRepo.getProfile()) {
-      profileRepo.createProfile({
+    if (!(await profileRepo.getProfile())) {
+        await profileRepo.createProfile({
         name: 'Ada Lovelace',
         role: 'Software Engineer',
         summary: 'Writes observable, verifiable software.',
@@ -35,13 +35,13 @@ describe('FR-007 — CV generation', () => {
   });
 
   it('CV preview renders summary, skills, experience, and education sections (200)', async () => {
-    skillRepo.create({ name: 'TypeScript', description: 'typed JS' });
-    skillRepo.create({ name: 'Hidden Skill', description: 'draft only' });
-    const skill = skillRepo.listAll().find((s) => s.name === 'TypeScript');
-    skillRepo.setPublicationState(skill.id, 'Published');
+    await skillRepo.create({ name: 'TypeScript', description: 'typed JS' });
+    await skillRepo.create({ name: 'Hidden Skill', description: 'draft only' });
+    const skill = (await skillRepo.listAll()).find((s) => s.name === 'TypeScript');
+    await skillRepo.setPublicationState(skill.id, 'Published');
 
-    experienceRepo.create({ title: 'Engineer', company: 'Acme', start_date: '2024-01', description: 'Built things' });
-    educationRepo.create({ institution: 'State U', degree: 'BSc', start_date: '2016-09' });
+    await experienceRepo.create({ title: 'Engineer', company: 'Acme', start_date: '2024-01', description: 'Built things' });
+    await educationRepo.create({ institution: 'State U', degree: 'BSc', start_date: '2016-09' });
 
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/cv');
@@ -67,8 +67,8 @@ describe('FR-007 — CV generation', () => {
   });
 
   it('download endpoint sanitizes unsafe filename characters', async () => {
-    const profile = profileRepo.getProfile();
-    profileRepo.updateProfile(profile.id, { name: 'Ada <Lovelace> / "Countess"' });
+    const profile = await profileRepo.getProfile();
+    await profileRepo.updateProfile(profile.id, { name: 'Ada <Lovelace> / "Countess"' });
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/cv/download');
     expect(res.headers['content-disposition']).toContain('ada-lovelace-countess-cv.html');
@@ -76,12 +76,12 @@ describe('FR-007 — CV generation', () => {
 
   it('CV reflects live data: new rows appear, deleted rows disappear', async () => {
     const { agent } = await loginAgent(request, app);
-    const id = experienceRepo.create({ title: 'Temp Role', company: 'Temp Co', start_date: '2020-01' });
+    const id = await experienceRepo.create({ title: 'Temp Role', company: 'Temp Co', start_date: '2020-01' });
 
     const withRow = await agent.get('/manage/cv');
     expect(withRow.text).toContain('Temp Role — Temp Co');
 
-    experienceRepo.remove(id);
+    await experienceRepo.remove(id);
     const withoutRow = await agent.get('/manage/cv');
     expect(withoutRow.text).not.toContain('Temp Role — Temp Co');
   });
@@ -94,3 +94,4 @@ describe('FR-007 — CV generation', () => {
     expect(res.text).toContain('No profile created yet');
   });
 });
+

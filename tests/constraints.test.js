@@ -12,8 +12,8 @@ describe('Data constraints and referential integrity', () => {
   const app = createApp();
 
   it('enforces the profile singleton (DEF-001 fix): second create fails with ConflictError', async () => {
-    profileRepo.createProfile({ name: 'A', role: 'R', summary: 'S' });
-    expect(() => profileRepo.createProfile({ name: 'B', role: 'R', summary: 'S' })).toThrow(ConflictError);
+    await profileRepo.createProfile({ name: 'A', role: 'R', summary: 'S' });
+    await expect(profileRepo.createProfile({ name: 'B', role: 'R', summary: 'S' })).rejects.toThrow(ConflictError);
     const all = require('../src/config/database').connectDB().prepare('SELECT COUNT(*) AS n FROM profile').get();
     expect(all.n).toBe(1);
   });
@@ -53,14 +53,14 @@ describe('Data constraints and referential integrity', () => {
     const evidenceId = /\/manage\/evidence\/(\d+)\/accessibility/.exec(evidencePage.text)[1];
 
     await postForm(agent, csrf, '/manage/claims/' + claimId + '/evidence', { evidence_id: evidenceId });
-    let claimEvidence = require('../src/repositories/claimRepository').listEvidence(Number(claimId));
+    let claimEvidence = await require('../src/repositories/claimRepository').listEvidence(Number(claimId));
     expect(claimEvidence).toHaveLength(1);
 
     await postForm(agent, csrf, '/manage/claims/' + claimId + '/delete');
-    claimEvidence = require('../src/repositories/claimRepository').listEvidence(Number(claimId));
+    claimEvidence = await require('../src/repositories/claimRepository').listEvidence(Number(claimId));
     expect(claimEvidence).toHaveLength(0);
     // The evidence row itself survives (cascade touches links only).
-    expect(require('../src/repositories/evidenceRepository').getById(Number(evidenceId))).not.toBeNull();
+    expect(await require('../src/repositories/evidenceRepository').getById(Number(evidenceId))).not.toBeNull();
   });
 
   it('validates evidence reference URLs and accessibility enum (FR-006)', async () => {

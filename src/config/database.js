@@ -7,6 +7,80 @@ const Database = require('better-sqlite3');
 let dbInstance = null;
 
 /**
+ * Active driver: 'sqlite' (default, hermetic tests + local dev) or 'postgres'
+ * (Neon). Phase 3 of docs/POSTGRES-DATA-ARCHITECTURE.md flips the default;
+ * until then postgres requires explicit DB_DRIVER=postgres.
+ * Read dynamically — .env may load after this module is first required.
+ */
+function getDriver() {
+  return (process.env.DB_DRIVER || 'sqlite').toLowerCase() === 'postgres' ? 'postgres' : 'sqlite';
+}
+
+/** Parameterized query. $1/$2 placeholders; returns pg-style { rows, rowCount }. */
+async function query(sql, params = []) {
+  if (getDriver() === 'postgres') {
+    const pg = require('../db/postgres');
+    return pg.pgQuery(sql, params);
+  }
+  const db = connectDB();
+  const text = sql.replace(/\$(\d+)/g, '?');
+  if (/^\s*(SELECT|WITH)/i.test(sql) || /\bRETURNING\b/i.test(sql)) {
+    const rows = db.prepare(text).all(...params);
+    return { rows, rowCount: rows.length };
+  }
+  const info = db.prepare(text).run(...params);
+  return { rows: [], rowCount: info.changes };
+}
+
+/** First row or null. */
+async function one(sql, params = []) {
+  const { rows } = await query(sql, params);
+  return rows[0] || null;
+}
+
+/** All rows. */
+async function all(sql, params = []) {
+  const { rows } = await query(sql, params);
+  return rows;
+}
+
+/**
+ * Driver-aware boot initialization:
+ *  - sqlite: opens the connection, applies schema + migrations (sync).
+ *  - postgres: pool + retry + idempotent schema application (async).
+ * Safe to call repeatedly. server.js awaits this before listening.
+ */
+async function initDatabase() {
+  if (getDriver() === 'postgres') {
+    const pg = require('../db/postgres');
+    await pg.initPostgres();
+    return 'postgres';
+  }
+  connectDB();
+  return 'sqlite';
+}
+
+/** Graceful shutdown for the active driver. Safe to call repeatedly. */
+async function closeDatabase() {
+  if (getDriver() === 'postgres') {
+    const pg = require('../db/postgres');
+    await pg.closePostgres();
+    return;
+  }
+  if (dbInstance) {
+    const db = dbInstance;
+    dbInstance = null;
+    try { db.close(); } catch (_) { /* already closed */ }
+  }
+}
+
+/** True when err is a database constraint violation (FK/unique/check). */
+function isConstraintError(err) {
+  if (!err || typeof err.code !== 'string') return false;
+  return err.code.startsWith('SQLITE_CONSTRAINT') || err.code.startsWith('23');
+}
+
+/**
  * Open (once) and return the SQLite database connection.
  * - Enforces PRAGMA foreign_keys = ON and verifies it (fails fast otherwise).
  * - Enables WAL journal mode for reliability.
@@ -114,7 +188,10 @@ function applyPendingMigrations(db) {
 
 function isOperationalError(err) {
   if (!err || typeof err.code !== 'string') return false;
-  return err.code.startsWith('SQLITE_');
+  return err.code.startsWith('SQLITE_') || /^[0-9]/.test(err.code);
 }
 
-module.exports = { connectDB, isOperationalError };
+module.exports = {
+  connectDB, isOperationalError,
+  getDriver, query, one, all, initDatabase, closeDatabase, isConstraintError,
+};

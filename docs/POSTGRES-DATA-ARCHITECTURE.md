@@ -67,7 +67,11 @@ async function create(data) {
 }
 ```
 
-The unified `query(sql, params)` wrapper (to be added in `src/config/database.js`) runs `pgQuery` for PostgreSQL and, for SQLite, translates `$N → ?` and maps `SELECT/RETURNING` statements through `prepare().all()` and mutations through `run()` (rowCount = changes). Repositories therefore stay **single-source**, and the driver is chosen once, at boot: `DB_DRIVER=postgres` (default when `DATABASE_URL` is present) or `DB_DRIVER=sqlite` (forced in tests for hermeticity).
+The unified `query(sql, params)` wrapper (implemented in `src/config/database.js`) runs `pgQuery` for PostgreSQL and, for SQLite, translates `$N → ?` and maps `SELECT/RETURNING` statements through `prepare().all()` and mutations through `run()` (rowCount = changes). Repositories are therefore **single-source**, and the driver is chosen at boot: `DB_DRIVER=sqlite` (default until Phase 3) or `DB_DRIVER=postgres`. **Driver note:** the default stays SQLite until the data migration lands, so a developer's `pnpm dev` never silently points at an empty production database; Neon runs are explicit.
+
+**Dialect rule:** repository SQL must be valid on both drivers — no `::` casts (use plain `COUNT(*) AS n` + `Number(row.n)`, since pg returns BIGINT counts as strings), `ON CONFLICT DO NOTHING` instead of `INSERT OR IGNORE`, and no SQLite pragmas in repository code.
+
+**Sequence note:** PostgreSQL identity sequences advance even when a transaction rolls back (the verification probe consumed ids); never assume dense/sequential ids — always read ids from `RETURNING` or from rendered pages (this bit us once during live verification).
 
 ## 3. API layer (validated, business rules enforced)
 
@@ -111,8 +115,9 @@ The unified `query(sql, params)` wrapper (to be added in `src/config/database.js
 | Phase | Scope | Files | Exit criteria | Status |
 |---|---|---|---|---|
 | **1. Foundation** | Connection layer, Postgres schema, RBAC, pipeline test, verify script | `src/db/postgres.js`, `src/db/schema.postgres.sql`, `src/middleware/rbac.js`, `app.js`, `scripts/verify-postgres.js`, `tests/postgresPipeline.test.js` | Verify script + pipeline suite green against Neon | ✅ **Done** |
-| **2. Unified query layer + async repos/routes** | `query()` wrapper in `database.js`; convert all 8 repositories to async dialect-neutral SQL; `async` route handlers (try/catch preserved → Express 4-safe); `/health` reports driver; `closePostgres()` in shutdown; force `DB_DRIVER=sqlite` in test helpers | `src/config/database.js`, all `src/repositories/*.js`, `src/routes/*.js`, `tests/helpers.js` | 70/70 still green on SQLite; skills module spot-checked against Neon | ☐ |
+| **2. Unified query layer + async repos/routes** | `query()` wrapper in `database.js`; all 8 repositories async dialect-neutral SQL; `async` route handlers; driver-aware `/health` (`"driver"` field); `closeDatabase()` in shutdown; `DB_DRIVER=sqlite` forced in test helpers | `src/config/database.js`, all `src/repositories/*.js`, `src/routes/*.js`, `tests/helpers.js`, 6 test files awaited | 70/70 green on SQLite **✅**; live app on Neon verified: health `driver:"postgres"`, login 303, skill create/publish/delete over HTTP, public page reads back from Neon **✅** | ✅ **Done** |
 | **3. Data migration + live cutover** | `scripts/migrate-sqlite-to-postgres.js` (idempotent, `ON CONFLICT DO NOTHING`, identity reset via `setval`); Neon branch for rehearsal; flip default driver; SSE channel | scripts, `docker-compose.yml` (`DATABASE_URL` passthrough), `src/views/partials/header.ejs`, `public/js/live.js` | All content lives in Neon; volume DB retired; UI reflects cross-session changes | ☐ |
 | **4. Ops hardening** | CI Postgres matrix (branch-per-run or service container); `/health` driver-aware; backup/restore runbook (`neon branches`); monitoring | `.github/workflows/ci.yml`, `src/routes/healthRoutes.js`, docs | CI green on both drivers; recovery drill documented | ☐ |
 
 **Risks & mitigations**: async conversion regressions (mitigated by the 70-test suite + per-repo commits); Neon cold-start latency at boot (retry logic implemented); PgBouncer + prepared statements (repositories use unnamed statements only); drift between dialects (single repo codebase + dual-dialect schema pair + pipeline suite runs both).
+

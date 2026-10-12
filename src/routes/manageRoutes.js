@@ -20,6 +20,16 @@ const {
 
 const router = express.Router();
 
+/** Claims decorated with their evidence (bidirectional traceability). */
+async function claimsWithEvidence(claims) {
+  return Promise.all(claims.map(async (c) => ({ ...c, evidence: await claimRepo.listEvidence(c.id) })));
+}
+
+/** Evidence decorated with the claims it supports. */
+async function evidenceWithClaims(evidence) {
+  return Promise.all(evidence.map(async (e) => ({ ...e, claims: await evidenceRepo.listClaims(e.id) })));
+}
+
 // ---------------------------------------------------------------- login/logout
 // (public: the login page itself must be reachable without a session)
 router.get('/login', (req, res) => {
@@ -55,32 +65,43 @@ router.post('/logout', (req, res) => {
 router.use(requireAuth);
 
 // ---------------------------------------------------------------- dashboard
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const profile = profileRepo.getProfile();
+    const [profile, projects, publishedProjects, skills, publishedSkills, claims, evidence, experiences, educations] =
+      await Promise.all([
+        profileRepo.getProfile(),
+        projectRepo.listAll(),
+        projectRepo.listPublished(),
+        skillRepo.listAll(),
+        skillRepo.listPublished(),
+        claimRepo.listAll(),
+        evidenceRepo.listAll(),
+        experienceRepo.listAll(),
+        educationRepo.listAll(),
+      ]);
     const counts = {
-      projects: projectRepo.listAll().length,
-      publishedProjects: projectRepo.listPublished().length,
-      skills: skillRepo.listAll().length,
-      publishedSkills: skillRepo.listPublished().length,
-      claims: claimRepo.listAll().length,
-      evidence: evidenceRepo.listAll().length,
-      experiences: experienceRepo.listAll().length,
-      educations: educationRepo.listAll().length,
+      projects: projects.length,
+      publishedProjects: publishedProjects.length,
+      skills: skills.length,
+      publishedSkills: publishedSkills.length,
+      claims: claims.length,
+      evidence: evidence.length,
+      experiences: experiences.length,
+      educations: educations.length,
     };
     return res.render('manage/dashboard', { title: 'Dashboard', profile, counts });
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- profile
-router.get('/profile', (req, res, next) => {
+router.get('/profile', async (req, res, next) => {
   try {
-    const profile = profileRepo.getProfile();
+    const profile = await profileRepo.getProfile();
     return res.render('manage/profile', { title: 'Edit profile', profile, fieldErrors: {}, values: profile || {} });
   } catch (err) { return next(err); }
 });
 
-router.post('/profile', (req, res, next) => {
+router.post('/profile', async (req, res, next) => {
   const errors = {};
   const values = {
     name: requireText(req.body.name, 'name', errors, 200),
@@ -90,42 +111,42 @@ router.post('/profile', (req, res, next) => {
   };
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/profile', {
-      title: 'Edit profile', profile: profileRepo.getProfile(), fieldErrors: errors, values,
+      title: 'Edit profile', profile: await profileRepo.getProfile(), fieldErrors: errors, values,
     });
   }
   try {
-    const existing = profileRepo.getProfile();
+    const existing = await profileRepo.getProfile();
     if (existing) {
-      profileRepo.updateProfile(existing.id, values);
+      await profileRepo.updateProfile(existing.id, values);
     } else {
-      profileRepo.createProfile(values);
+      await profileRepo.createProfile(values);
     }
     return res.redirect(303, '/manage/profile');
   } catch (err) { return next(err); }
 });
 
-router.post('/profile/publish', (req, res, next) => {
+router.post('/profile/publish', async (req, res, next) => {
   try {
-    const profile = profileRepo.getProfile();
+    const profile = await profileRepo.getProfile();
     if (!profile) throw new NotFoundError('No profile exists yet.');
-    profileRepo.setPublicationState(profile.id, 'Published');
+    await profileRepo.setPublicationState(profile.id, 'Published');
     return res.redirect(303, '/manage/profile');
   } catch (err) { return next(err); }
 });
 
-router.post('/profile/unpublish', (req, res, next) => {
+router.post('/profile/unpublish', async (req, res, next) => {
   try {
-    const profile = profileRepo.getProfile();
+    const profile = await profileRepo.getProfile();
     if (!profile) throw new NotFoundError('No profile exists yet.');
-    profileRepo.setPublicationState(profile.id, 'Draft');
+    await profileRepo.setPublicationState(profile.id, 'Draft');
     return res.redirect(303, '/manage/profile');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- projects
-router.get('/projects', (req, res, next) => {
+router.get('/projects', async (req, res, next) => {
   try {
-    const projects = projectRepo.listAll();
+    const projects = await projectRepo.listAll();
     return res.render('manage/projects/list', { title: 'Projects', projects });
   } catch (err) { return next(err); }
 });
@@ -134,7 +155,7 @@ router.get('/projects/new', (req, res) => {
   return res.render('manage/projects/form', { title: 'New project', mode: 'new', project: null, values: {}, fieldErrors: {} });
 });
 
-router.post('/projects', (req, res, next) => {
+router.post('/projects', async (req, res, next) => {
   const errors = {};
   const values = {
     title: requireText(req.body.title, 'title', errors, 300),
@@ -147,20 +168,20 @@ router.post('/projects', (req, res, next) => {
     return res.status(400).render('manage/projects/form', { title: 'New project', mode: 'new', project: null, values, fieldErrors: errors });
   }
   try {
-    projectRepo.create(values);
+    await projectRepo.create(values);
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
-router.get('/projects/:id(\\d+)/edit', (req, res, next) => {
+router.get('/projects/:id(\\d+)/edit', async (req, res, next) => {
   try {
-    const project = projectRepo.getById(Number(req.params.id));
+    const project = await projectRepo.getById(Number(req.params.id));
     if (!project) throw new NotFoundError('Project not found.');
     return res.render('manage/projects/form', { title: 'Edit project', mode: 'edit', project, values: project, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
-router.post('/projects/:id(\\d+)', (req, res, next) => {
+router.post('/projects/:id(\\d+)', async (req, res, next) => {
   const id = Number(req.params.id);
   const errors = {};
   const values = {
@@ -174,65 +195,65 @@ router.post('/projects/:id(\\d+)', (req, res, next) => {
     return res.status(400).render('manage/projects/form', { title: 'Edit project', mode: 'edit', project: { id }, values, fieldErrors: errors });
   }
   try {
-    if (projectRepo.update(id, values) === 0 && !projectRepo.getById(id)) {
+    if ((await projectRepo.update(id, values)) === 0 && !(await projectRepo.getById(id))) {
       throw new NotFoundError('Project not found.');
     }
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
-router.post('/projects/:id(\\d+)/delete', (req, res, next) => {
+router.post('/projects/:id(\\d+)/delete', async (req, res, next) => {
   try {
-    projectRepo.remove(Number(req.params.id)); // ConflictError (409) if claims exist
+    await projectRepo.remove(Number(req.params.id)); // ConflictError (409) if claims exist
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
-router.post('/projects/:id(\\d+)/publish', (req, res, next) => {
+router.post('/projects/:id(\\d+)/publish', async (req, res, next) => {
   try {
-    projectRepo.setPublicationState(Number(req.params.id), 'Published');
+    await projectRepo.setPublicationState(Number(req.params.id), 'Published');
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
-router.post('/projects/:id(\\d+)/unpublish', (req, res, next) => {
+router.post('/projects/:id(\\d+)/unpublish', async (req, res, next) => {
   try {
-    projectRepo.setPublicationState(Number(req.params.id), 'Draft');
+    await projectRepo.setPublicationState(Number(req.params.id), 'Draft');
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
-router.post('/projects/:id(\\d+)/evidence', (req, res, next) => {
+router.post('/projects/:id(\\d+)/evidence', async (req, res, next) => {
   try {
-    const project = projectRepo.getById(Number(req.params.id));
+    const project = await projectRepo.getById(Number(req.params.id));
     if (!project) throw new NotFoundError('Project not found.');
     const evidenceId = optionalInt(req.body.evidence_id, 'evidence_id', {});
-    if (!evidenceId || !evidenceRepo.getById(evidenceId)) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
-    projectRepo.attachEvidence(project.id, evidenceId);
+    if (!evidenceId || !(await evidenceRepo.getById(evidenceId))) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
+    await projectRepo.attachEvidence(project.id, evidenceId);
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
-router.post('/projects/:id(\\d+)/skills', (req, res, next) => {
+router.post('/projects/:id(\\d+)/skills', async (req, res, next) => {
   try {
-    const project = projectRepo.getById(Number(req.params.id));
+    const project = await projectRepo.getById(Number(req.params.id));
     if (!project) throw new NotFoundError('Project not found.');
     const skillId = optionalInt(req.body.skill_id, 'skill_id', {});
-    if (!skillId || !skillRepo.getById(skillId)) throw new ValidationError('Choose an existing skill.', { skill_id: 'Choose an existing skill.' });
-    projectRepo.attachSkill(project.id, skillId);
+    if (!skillId || !(await skillRepo.getById(skillId))) throw new ValidationError('Choose an existing skill.', { skill_id: 'Choose an existing skill.' });
+    await projectRepo.attachSkill(project.id, skillId);
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- skills
-router.get('/skills', (req, res, next) => {
+router.get('/skills', async (req, res, next) => {
   try {
-    const skills = skillRepo.listAll();
+    const skills = await skillRepo.listAll();
     return res.render('manage/skills/list', { title: 'Skills', skills, values: {}, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
-router.post('/skills', (req, res, next) => {
+router.post('/skills', async (req, res, next) => {
   const errors = {};
   const values = {
     name: requireText(req.body.name, 'name', errors, 200),
@@ -240,19 +261,19 @@ router.post('/skills', (req, res, next) => {
   };
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/skills/list', {
-      title: 'Skills', skills: skillRepo.listAll(), formOpen: true, values, fieldErrors: errors,
+      title: 'Skills', skills: await skillRepo.listAll(), formOpen: true, values, fieldErrors: errors,
     });
   }
   try {
-    if (skillRepo.findByName(values.name)) {
+    if (await skillRepo.findByName(values.name)) {
       throw new ValidationError('A skill with this name already exists.', { name: 'A skill with this name already exists.' });
     }
-    skillRepo.create(values);
+    await skillRepo.create(values);
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
-router.post('/skills/:id(\\d+)', (req, res, next) => {
+router.post('/skills/:id(\\d+)', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     const errors = {};
@@ -261,56 +282,56 @@ router.post('/skills/:id(\\d+)', (req, res, next) => {
       description: optionalText(req.body.description, 'description', errors, 5000),
     };
     if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
-    const dupe = skillRepo.findByName(values.name);
+    const dupe = await skillRepo.findByName(values.name);
     if (dupe && dupe.id !== id) {
       throw new ValidationError('A skill with this name already exists.', { name: 'A skill with this name already exists.' });
     }
-    if (skillRepo.update(id, values) === 0 && !skillRepo.getById(id)) throw new NotFoundError('Skill not found.');
+    if ((await skillRepo.update(id, values)) === 0 && !(await skillRepo.getById(id))) throw new NotFoundError('Skill not found.');
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
-router.post('/skills/:id(\\d+)/delete', (req, res, next) => {
+router.post('/skills/:id(\\d+)/delete', async (req, res, next) => {
   try {
-    skillRepo.remove(Number(req.params.id));
+    await skillRepo.remove(Number(req.params.id));
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
-router.post('/skills/:id(\\d+)/publish', (req, res, next) => {
+router.post('/skills/:id(\\d+)/publish', async (req, res, next) => {
   try {
-    skillRepo.setPublicationState(Number(req.params.id), 'Published');
+    await skillRepo.setPublicationState(Number(req.params.id), 'Published');
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
-router.post('/skills/:id(\\d+)/unpublish', (req, res, next) => {
+router.post('/skills/:id(\\d+)/unpublish', async (req, res, next) => {
   try {
-    skillRepo.setPublicationState(Number(req.params.id), 'Draft');
+    await skillRepo.setPublicationState(Number(req.params.id), 'Draft');
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
-router.post('/skills/:id(\\d+)/evidence', (req, res, next) => {
+router.post('/skills/:id(\\d+)/evidence', async (req, res, next) => {
   try {
-    const skill = skillRepo.getById(Number(req.params.id));
+    const skill = await skillRepo.getById(Number(req.params.id));
     if (!skill) throw new NotFoundError('Skill not found.');
     const evidenceId = optionalInt(req.body.evidence_id, 'evidence_id', {});
-    if (!evidenceId || !evidenceRepo.getById(evidenceId)) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
-    skillRepo.attachEvidence(skill.id, evidenceId);
+    if (!evidenceId || !(await evidenceRepo.getById(evidenceId))) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
+    await skillRepo.attachEvidence(skill.id, evidenceId);
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- experience
-router.get('/experience', (req, res, next) => {
+router.get('/experience', async (req, res, next) => {
   try {
-    const experiences = experienceRepo.listAll();
+    const experiences = await experienceRepo.listAll();
     return res.render('manage/experience/list', { title: 'Experience', experiences, values: {}, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
-router.post('/experience', (req, res, next) => {
+router.post('/experience', async (req, res, next) => {
   const errors = {};
   const values = {
     title: requireText(req.body.title, 'title', errors, 200),
@@ -321,16 +342,16 @@ router.post('/experience', (req, res, next) => {
   };
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/experience/list', {
-      title: 'Experience', experiences: experienceRepo.listAll(), values, fieldErrors: errors,
+      title: 'Experience', experiences: await experienceRepo.listAll(), values, fieldErrors: errors,
     });
   }
   try {
-    experienceRepo.create(values);
+    await experienceRepo.create(values);
     return res.redirect(303, '/manage/experience');
   } catch (err) { return next(err); }
 });
 
-router.post('/experience/:id(\\d+)', (req, res, next) => {
+router.post('/experience/:id(\\d+)', async (req, res, next) => {
   const id = Number(req.params.id);
   const errors = {};
   const values = {
@@ -342,29 +363,29 @@ router.post('/experience/:id(\\d+)', (req, res, next) => {
   };
   if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
   try {
-    if (experienceRepo.update(id, values) === 0 && !experienceRepo.getById(id)) {
+    if ((await experienceRepo.update(id, values)) === 0 && !(await experienceRepo.getById(id))) {
       throw new NotFoundError('Experience entry not found.');
     }
     return res.redirect(303, '/manage/experience');
   } catch (err) { return next(err); }
 });
 
-router.post('/experience/:id(\\d+)/delete', (req, res, next) => {
+router.post('/experience/:id(\\d+)/delete', async (req, res, next) => {
   try {
-    if (!experienceRepo.remove(Number(req.params.id))) throw new NotFoundError('Experience entry not found.');
+    if (!(await experienceRepo.remove(Number(req.params.id)))) throw new NotFoundError('Experience entry not found.');
     return res.redirect(303, '/manage/experience');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- education
-router.get('/education', (req, res, next) => {
+router.get('/education', async (req, res, next) => {
   try {
-    const educations = educationRepo.listAll();
+    const educations = await educationRepo.listAll();
     return res.render('manage/education/list', { title: 'Education', educations, values: {}, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
-router.post('/education', (req, res, next) => {
+router.post('/education', async (req, res, next) => {
   const errors = {};
   const values = {
     institution: requireText(req.body.institution, 'institution', errors, 200),
@@ -376,16 +397,16 @@ router.post('/education', (req, res, next) => {
   };
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/education/list', {
-      title: 'Education', educations: educationRepo.listAll(), values, fieldErrors: errors,
+      title: 'Education', educations: await educationRepo.listAll(), values, fieldErrors: errors,
     });
   }
   try {
-    educationRepo.create(values);
+    await educationRepo.create(values);
     return res.redirect(303, '/manage/education');
   } catch (err) { return next(err); }
 });
 
-router.post('/education/:id(\\d+)', (req, res, next) => {
+router.post('/education/:id(\\d+)', async (req, res, next) => {
   const id = Number(req.params.id);
   const errors = {};
   const values = {
@@ -398,29 +419,29 @@ router.post('/education/:id(\\d+)', (req, res, next) => {
   };
   if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
   try {
-    if (educationRepo.update(id, values) === 0 && !educationRepo.getById(id)) {
+    if ((await educationRepo.update(id, values)) === 0 && !(await educationRepo.getById(id))) {
       throw new NotFoundError('Education entry not found.');
     }
     return res.redirect(303, '/manage/education');
   } catch (err) { return next(err); }
 });
 
-router.post('/education/:id(\\d+)/delete', (req, res, next) => {
+router.post('/education/:id(\\d+)/delete', async (req, res, next) => {
   try {
-    if (!educationRepo.remove(Number(req.params.id))) throw new NotFoundError('Education entry not found.');
+    if (!(await educationRepo.remove(Number(req.params.id)))) throw new NotFoundError('Education entry not found.');
     return res.redirect(303, '/manage/education');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- claims
-router.get('/claims', (req, res, next) => {
+router.get('/claims', async (req, res, next) => {
   try {
-    const claims = claimRepo.listAll().map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) }));
+    const claims = await claimsWithEvidence(await claimRepo.listAll());
     return res.render('manage/claims/list', { title: 'Claims', claims, values: {}, fieldErrors: {}, claimSources: CLAIM_SOURCES });
   } catch (err) { return next(err); }
 });
 
-router.post('/claims', (req, res, next) => {
+router.post('/claims', async (req, res, next) => {
   const errors = {};
   const statement = requireText(req.body.statement, 'statement', errors, 1000);
   const justification = optionalText(req.body.justification, 'justification', errors, 5000);
@@ -430,8 +451,8 @@ router.post('/claims', (req, res, next) => {
     const type = requireEnum(sourceType, 'source_entity_type', errors, CLAIM_SOURCES);
     const sourceId = optionalInt(req.body.source_entity_id, 'source_entity_id', errors);
     if (type && sourceId) {
-      const exists = type === 'project' ? projectRepo.getById(sourceId)
-        : type === 'skill' ? skillRepo.getById(sourceId) : profileRepo.getProfileById(sourceId);
+      const exists = type === 'project' ? await projectRepo.getById(sourceId)
+        : type === 'skill' ? await skillRepo.getById(sourceId) : await profileRepo.getProfileById(sourceId);
       if (!exists) errors.source_entity_id = 'The referenced record does not exist.';
       else source = { type, id: sourceId };
     }
@@ -439,19 +460,19 @@ router.post('/claims', (req, res, next) => {
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/claims/list', {
       title: 'Claims',
-      claims: claimRepo.listAll().map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) })),
+      claims: await claimsWithEvidence(await claimRepo.listAll()),
       values: { statement: req.body.statement, justification: req.body.justification },
       fieldErrors: errors,
       claimSources: CLAIM_SOURCES,
     });
   }
   try {
-    claimRepo.create({ statement, justification, source });
+    await claimRepo.create({ statement, justification, source });
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
-router.post('/claims/:id(\\d+)', (req, res, next) => {
+router.post('/claims/:id(\\d+)', async (req, res, next) => {
   const id = Number(req.params.id);
   const errors = {};
   const statement = requireText(req.body.statement, 'statement', errors, 1000);
@@ -459,62 +480,62 @@ router.post('/claims/:id(\\d+)', (req, res, next) => {
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/claims/list', {
       title: 'Claims',
-      claims: claimRepo.listAll().map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) })),
+      claims: await claimsWithEvidence(await claimRepo.listAll()),
       values: { statement: req.body.statement, justification: req.body.justification },
       fieldErrors: errors,
       claimSources: CLAIM_SOURCES,
     });
   }
   try {
-    if (claimRepo.update(id, { statement, justification }) === 0 && !claimRepo.getById(id)) {
+    if ((await claimRepo.update(id, { statement, justification })) === 0 && !(await claimRepo.getById(id))) {
       throw new NotFoundError('Claim not found.');
     }
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
-router.post('/claims/:id(\\d+)/delete', (req, res, next) => {
+router.post('/claims/:id(\\d+)/delete', async (req, res, next) => {
   try {
-    if (!claimRepo.getById(Number(req.params.id))) throw new NotFoundError('Claim not found.');
-    claimRepo.remove(Number(req.params.id)); // cascades claim_evidence links only
+    if (!(await claimRepo.getById(Number(req.params.id)))) throw new NotFoundError('Claim not found.');
+    await claimRepo.remove(Number(req.params.id)); // cascades claim_evidence links only
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
-router.post('/claims/:id(\\d+)/publish', (req, res, next) => {
+router.post('/claims/:id(\\d+)/publish', async (req, res, next) => {
   try {
-    claimRepo.setPublicationState(Number(req.params.id), 'Published');
+    await claimRepo.setPublicationState(Number(req.params.id), 'Published');
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
-router.post('/claims/:id(\\d+)/unpublish', (req, res, next) => {
+router.post('/claims/:id(\\d+)/unpublish', async (req, res, next) => {
   try {
-    claimRepo.setPublicationState(Number(req.params.id), 'Draft');
+    await claimRepo.setPublicationState(Number(req.params.id), 'Draft');
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
-router.post('/claims/:id(\\d+)/evidence', (req, res, next) => {
+router.post('/claims/:id(\\d+)/evidence', async (req, res, next) => {
   try {
-    const claim = claimRepo.getById(Number(req.params.id));
+    const claim = await claimRepo.getById(Number(req.params.id));
     if (!claim) throw new NotFoundError('Claim not found.');
     const evidenceId = optionalInt(req.body.evidence_id, 'evidence_id', {});
-    if (!evidenceId || !evidenceRepo.getById(evidenceId)) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
-    claimRepo.attachEvidence(claim.id, evidenceId);
+    if (!evidenceId || !(await evidenceRepo.getById(evidenceId))) throw new ValidationError('Choose an existing evidence item.', { evidence_id: 'Choose an existing evidence item.' });
+    await claimRepo.attachEvidence(claim.id, evidenceId);
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- evidence
-router.get('/evidence', (req, res, next) => {
+router.get('/evidence', async (req, res, next) => {
   try {
-    const evidence = evidenceRepo.listAll().map((e) => ({ ...e, claims: evidenceRepo.listClaims(e.id) }));
+    const evidence = await evidenceWithClaims(await evidenceRepo.listAll());
     return res.render('manage/evidence/list', { title: 'Evidence', evidence, values: {}, fieldErrors: {}, accessibilityStates: ACCESSIBILITY_STATES });
   } catch (err) { return next(err); }
 });
 
-router.post('/evidence', (req, res, next) => {
+router.post('/evidence', async (req, res, next) => {
   const errors = {};
   const description = optionalText(req.body.description, 'description', errors, 2000);
   const filePath = optionalText(req.body.file_path, 'file_path', errors, 2000);
@@ -528,57 +549,57 @@ router.post('/evidence', (req, res, next) => {
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/evidence/list', {
       title: 'Evidence',
-      evidence: evidenceRepo.listAll().map((e) => ({ ...e, claims: evidenceRepo.listClaims(e.id) })),
+      evidence: await evidenceWithClaims(await evidenceRepo.listAll()),
       values: { description: req.body.description, file_path: req.body.file_path, file_type: req.body.file_type },
       fieldErrors: errors,
       accessibilityStates: ACCESSIBILITY_STATES,
     });
   }
   try {
-    evidenceRepo.create({ description, file_path: filePath, file_type: fileType });
+    await evidenceRepo.create({ description, file_path: filePath, file_type: fileType });
     return res.redirect(303, '/manage/evidence');
   } catch (err) { return next(err); }
 });
 
-router.post('/evidence/:id(\\d+)/accessibility', (req, res, next) => {
+router.post('/evidence/:id(\\d+)/accessibility', async (req, res, next) => {
   try {
     const errors = {};
     const status = requireEnum(req.body.accessibility_status, 'accessibility_status', errors, ACCESSIBILITY_STATES);
     if (!status) throw new ValidationError('Invalid accessibility status.', errors);
-    if (!evidenceRepo.getById(Number(req.params.id))) throw new NotFoundError('Evidence not found.');
-    evidenceRepo.setAccessibility(Number(req.params.id), status);
+    if (!(await evidenceRepo.getById(Number(req.params.id)))) throw new NotFoundError('Evidence not found.');
+    await evidenceRepo.setAccessibility(Number(req.params.id), status);
     return res.redirect(303, '/manage/evidence');
   } catch (err) { return next(err); }
 });
 
-router.post('/evidence/:id(\\d+)/delete', (req, res, next) => {
+router.post('/evidence/:id(\\d+)/delete', async (req, res, next) => {
   try {
-    if (!evidenceRepo.getById(Number(req.params.id))) throw new NotFoundError('Evidence not found.');
-    evidenceRepo.remove(Number(req.params.id));
+    if (!(await evidenceRepo.getById(Number(req.params.id)))) throw new NotFoundError('Evidence not found.');
+    await evidenceRepo.remove(Number(req.params.id));
     return res.redirect(303, '/manage/evidence');
   } catch (err) { return next(err); }
 });
 
 // ---------------------------------------------------------------- preview
-router.get('/preview/project/:id(\\d+)', (req, res, next) => {
+router.get('/preview/project/:id(\\d+)', async (req, res, next) => {
   try {
-    const project = projectRepo.getById(Number(req.params.id));
+    const project = await projectRepo.getById(Number(req.params.id));
     if (!project) throw new NotFoundError('Project not found.');
-    const claims = projectRepo.listClaims(project.id, false).map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) }));
+    const claims = await claimsWithEvidence(await projectRepo.listClaims(project.id, false));
     return res.render('projects/detail', {
-      title: 'Preview: ' + project.title, project, claims, evidence: projectRepo.listEvidence(project.id),
-      skills: projectRepo.listSkills(project.id), isAuthenticated: true, preview: true,
+      title: 'Preview: ' + project.title, project, claims, evidence: await projectRepo.listEvidence(project.id),
+      skills: await projectRepo.listSkills(project.id), isAuthenticated: true, preview: true,
     });
   } catch (err) { return next(err); }
 });
 
-router.get('/preview/skill/:id(\\d+)', (req, res, next) => {
+router.get('/preview/skill/:id(\\d+)', async (req, res, next) => {
   try {
-    const skill = skillRepo.getById(Number(req.params.id));
+    const skill = await skillRepo.getById(Number(req.params.id));
     if (!skill) throw new NotFoundError('Skill not found.');
-    const claims = skillRepo.listClaims(skill.id, false).map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) }));
+    const claims = await claimsWithEvidence(await skillRepo.listClaims(skill.id, false));
     return res.render('skills/detail', {
-      title: 'Preview: ' + skill.name, skill, claims, evidence: skillRepo.listEvidence(skill.id),
+      title: 'Preview: ' + skill.name, skill, claims, evidence: await skillRepo.listEvidence(skill.id),
       isAuthenticated: true, preview: true,
     });
   } catch (err) { return next(err); }
@@ -588,14 +609,14 @@ router.get('/preview/skill/:id(\\d+)', (req, res, next) => {
 // Single source of truth: rendered from the same repositories as the public
 // site. Published skills only (honesty invariant); experience/education have
 // no publication state, so all rows are included.
-function buildCvData() {
-  const profile = profileRepo.getProfile();
-  return {
-    profile,
-    skills: skillRepo.listPublished(),
-    experiences: experienceRepo.listAll(),
-    educations: educationRepo.listAll(),
-  };
+async function buildCvData() {
+  const [profile, skills, experiences, educations] = await Promise.all([
+    profileRepo.getProfile(),
+    skillRepo.listPublished(),
+    experienceRepo.listAll(),
+    educationRepo.listAll(),
+  ]);
+  return { profile, skills, experiences, educations };
 }
 
 function cvFileName(profile) {
@@ -604,16 +625,16 @@ function cvFileName(profile) {
   return (base || 'cv') + '-cv.html';
 }
 
-router.get('/cv', (req, res, next) => {
+router.get('/cv', async (req, res, next) => {
   try {
-    const cv = buildCvData();
+    const cv = await buildCvData();
     return res.render('manage/cv', { title: 'CV preview', ...cv, download: false });
   } catch (err) { return next(err); }
 });
 
-router.get('/cv/download', (req, res, next) => {
+router.get('/cv/download', async (req, res, next) => {
   try {
-    const cv = buildCvData();
+    const cv = await buildCvData();
     res.set('Content-Disposition', 'attachment; filename="' + cvFileName(cv.profile) + '"');
     return res.render('manage/cv', { title: 'Curriculum Vitae', ...cv, download: true });
   } catch (err) { return next(err); }

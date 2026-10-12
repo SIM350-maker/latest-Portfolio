@@ -10,9 +10,12 @@ const TEST_PASSWORD = 'test-management-password';
 /**
  * Configure a unique per-process test database and required environment.
  * Must be called BEFORE requiring src/app so configuration checks pass.
+ * Tests always run on the SQLite driver (hermetic, no external services);
+ * the PostgreSQL pipeline is covered separately by tests/postgresPipeline.test.js.
  */
 function configureTestEnv() {
   process.env.NODE_ENV = 'test';
+  process.env.DB_DRIVER = 'sqlite';
   process.env.DB_PATH = path.join(os.tmpdir(), 'portfolio-test-' + crypto.randomBytes(6).toString('hex') + '.db');
   process.env.SESSION_SECRET = crypto.randomBytes(32).toString('hex');
   process.env.OWNER_BCRYPT_HASH = bcrypt.hashSync(TEST_PASSWORD, 12);

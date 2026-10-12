@@ -5,7 +5,7 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
-const { connectDB } = require('./config/database');
+const { connectDB, closeDatabase, getDriver } = require('./config/database');
 const { sessionGuard, ABSOLUTE_TIMEOUT_MS } = require('./middleware/auth');
 const { attachPrincipal } = require('./middleware/rbac');
 const { csrfMiddleware } = require('./middleware/csrf');
@@ -40,7 +40,8 @@ function requireConfiguration() {
 /** Build the fully configured application (initializes the database). */
 function createApp() {
   requireConfiguration();
-  connectDB(); // fail fast: pragma verification + schema apply
+  if (getDriver() === 'sqlite') connectDB(); // fail fast: pragma verification + schema apply
+  // PostgreSQL: server.js awaits initDatabase() (connect + schema with retry).
 
   const app = express();
   app.disable('x-powered-by');
@@ -156,8 +157,9 @@ function startServer(port) {
   const shutdown = (signal) => {
     console.log(signal + ' received: shutting down');
     server.close(() => {
-      connectDB().close(); // singleton handle; the process exits immediately after
-      process.exit(0);
+      closeDatabase() // close the active driver (SQLite handle or pg pool)
+        .catch(() => {})
+        .finally(() => process.exit(0));
     });
     setTimeout(() => process.exit(1), 5000).unref();
   };

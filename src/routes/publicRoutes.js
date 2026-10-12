@@ -15,26 +15,27 @@ function baseLocals(req) {
 }
 
 /** FR-001: homepage renders the published profile plus published overview. */
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const profileRow = profileRepo.getProfile();
+    const profileRow = await profileRepo.getProfile();
     const profile = profileRow && profileRow.publication_state === 'Published' ? profileRow : null;
-    const projects = profile ? projectRepo.listPublished() : [];
-    const skills = profile ? skillRepo.listPublished() : [];
+    const [projects, skills] = profile
+      ? await Promise.all([projectRepo.listPublished(), skillRepo.listPublished()])
+      : [[], []];
     return res.render('index', { ...baseLocals(req), title: 'Home', profile, projects, skills });
   } catch (err) { return next(err); }
 });
 
-router.get('/projects', (req, res, next) => {
+router.get('/projects', async (req, res, next) => {
   try {
-    const projects = projectRepo.listPublished();
+    const projects = await projectRepo.listPublished();
     return res.render('projects/list', { ...baseLocals(req), title: 'Projects', projects });
   } catch (err) { return next(err); }
 });
 
-router.get('/projects/:id(\\d+)', (req, res, next) => {
+router.get('/projects/:id(\\d+)', async (req, res, next) => {
   try {
-    const project = projectRepo.getById(Number(req.params.id));
+    const project = await projectRepo.getById(Number(req.params.id));
     if (!project || project.publication_state !== 'Published') {
       return res.status(404).render('error', {
         title: '404 — Not found', heading: '404 — Not found',
@@ -42,27 +43,31 @@ router.get('/projects/:id(\\d+)', (req, res, next) => {
         isAuthenticated: Boolean(req.session && req.session.authenticated),
       });
     }
-    const claims = projectRepo.listClaims(project.id, true);
-    const evidence = projectRepo.listEvidence(project.id);
-    const skills = projectRepo.listSkills(project.id);
+    const [claims, evidence, skills] = await Promise.all([
+      projectRepo.listClaims(project.id, true),
+      projectRepo.listEvidence(project.id),
+      projectRepo.listSkills(project.id),
+    ]);
     // Bidirectional traceability (FR-003): each claim carries its evidence.
-    const claimsWithEvidence = claims.map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) }));
+    const claimsWithEvidence = await Promise.all(
+      claims.map(async (c) => ({ ...c, evidence: await claimRepo.listEvidence(c.id) }))
+    );
     return res.render('projects/detail', {
       ...baseLocals(req), title: project.title, project, claims: claimsWithEvidence, evidence, skills,
     });
   } catch (err) { return next(err); }
 });
 
-router.get('/skills', (req, res, next) => {
+router.get('/skills', async (req, res, next) => {
   try {
-    const skills = skillRepo.listPublished();
+    const skills = await skillRepo.listPublished();
     return res.render('skills/list', { ...baseLocals(req), title: 'Skills', skills });
   } catch (err) { return next(err); }
 });
 
-router.get('/skills/:id(\\d+)', (req, res, next) => {
+router.get('/skills/:id(\\d+)', async (req, res, next) => {
   try {
-    const skill = skillRepo.getById(Number(req.params.id));
+    const skill = await skillRepo.getById(Number(req.params.id));
     if (!skill || skill.publication_state !== 'Published') {
       return res.status(404).render('error', {
         title: '404 — Not found', heading: '404 — Not found',
@@ -70,9 +75,13 @@ router.get('/skills/:id(\\d+)', (req, res, next) => {
         isAuthenticated: Boolean(req.session && req.session.authenticated),
       });
     }
-    const claims = skillRepo.listClaims(skill.id, true);
-    const evidence = skillRepo.listEvidence(skill.id);
-    const claimsWithEvidence = claims.map((c) => ({ ...c, evidence: claimRepo.listEvidence(c.id) }));
+    const [claims, evidence] = await Promise.all([
+      skillRepo.listClaims(skill.id, true),
+      skillRepo.listEvidence(skill.id),
+    ]);
+    const claimsWithEvidence = await Promise.all(
+      claims.map(async (c) => ({ ...c, evidence: await claimRepo.listEvidence(c.id) }))
+    );
     return res.render('skills/detail', {
       ...baseLocals(req), title: skill.name, skill, claims: claimsWithEvidence, evidence,
     });

@@ -42,7 +42,7 @@ describe('Content validation and error contracts', () => {
   it('updates an existing claim via POST /manage/claims/:id (MOD-006-001)', async () => {
     const { agent, csrf } = await loginAgent(request, app);
     await postForm(agent, csrf, '/manage/claims', { statement: 'Original claim statement' });
-    const claimId = require('../src/repositories/claimRepository').listAll()[0].id;
+    const claimId = await require('../src/repositories/claimRepository').listAll().then((rows) => rows[0].id);
     const res = await postForm(agent, csrf, `/manage/claims/${claimId}`, {
       statement: 'Updated claim statement',
       justification: 'Updated justification',
@@ -57,7 +57,7 @@ describe('Content validation and error contracts', () => {
   it('returns 400 with field errors when updating a claim without a statement (MOD-006-001)', async () => {
     const { agent, csrf } = await loginAgent(request, app);
     await postForm(agent, csrf, '/manage/claims', { statement: 'Claim for validation' });
-    const claimId = require('../src/repositories/claimRepository').listAll()[0].id;
+    const claimId = await require('../src/repositories/claimRepository').listAll().then((rows) => rows[0].id);
     const res = await postForm(agent, csrf, `/manage/claims/${claimId}`, { statement: '   ' });
     expect(res.status).toBe(400);
     expect(res.text).toContain('This field is required.');
@@ -95,4 +95,5 @@ describe('Content validation and error contracts', () => {
     expect(after.text).toContain('Senior Software Engineer');
   });
 });
+
 

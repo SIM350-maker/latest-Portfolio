@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const { connectDB } = require('../config/database');
+const { getDriver, initDatabase, query } = require('../config/database');
 
 const router = express.Router();
 
@@ -9,14 +9,16 @@ const router = express.Router();
  * Health check (implementation framework section 15):
  * verifies the process can serve requests AND the database responds to a
  * trivial query. 200 when healthy, 503 when the database check fails.
+ * Driver-aware: reports which database layer is backing the process.
  */
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const timestamp = new Date().toISOString();
   try {
-    const db = connectDB();
-    db.prepare('SELECT 1 AS ok').get();
-    return res.status(200).json({ status: 'OK', database: 'up', timestamp: new Date().toISOString() });
+    await initDatabase();
+    await query('SELECT 1 AS ok');
+    return res.status(200).json({ status: 'OK', database: 'up', driver: getDriver(), timestamp });
   } catch (err) {
-    return res.status(503).json({ status: 'ERROR', database: 'down', timestamp: new Date().toISOString() });
+    return res.status(503).json({ status: 'ERROR', database: 'down', driver: getDriver(), timestamp });
   }
 });
 

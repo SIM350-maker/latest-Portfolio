@@ -13,12 +13,12 @@ const { connectDB } = require('../src/config/database');
 describe('MOD-013 — Experience & Education management', () => {
   const app = createApp();
 
-  beforeEach(() => {
+  beforeEach(async () => {
     const db = connectDB();
     db.prepare('DELETE FROM experience').run();
     db.prepare('DELETE FROM education').run();
-    if (!profileRepo.getProfile()) {
-      profileRepo.createProfile({ name: 'Test Owner', role: 'Engineer', summary: 'Test profile', contact_info: null });
+    if (!(await profileRepo.getProfile())) {
+      await profileRepo.createProfile({ name: 'Test Owner', role: 'Engineer', summary: 'Test profile', contact_info: null });
     }
   });
 
@@ -30,7 +30,7 @@ describe('MOD-013 — Experience & Education management', () => {
       start_date: '2024-01', end_date: '', description: 'Built things',
     });
     expect(res.status).toBe(303);
-    const rows = experienceRepo.listAll();
+    const rows = await experienceRepo.listAll();
     expect(rows.length).toBe(1);
     expect(rows[0].title).toBe('Software Engineer');
     expect(rows[0].company).toBe('Acme Corp');
@@ -44,17 +44,17 @@ describe('MOD-013 — Experience & Education management', () => {
     const res = await postForm(agent, csrf, '/manage/experience', { title: '', company: '', start_date: '' });
     expect(res.status).toBe(400);
     expect(res.text).toContain('Title');
-    expect(experienceRepo.listAll().length).toBe(0);
+    expect((await experienceRepo.listAll()).length).toBe(0);
   });
 
   it('experience — POST /manage/experience/:id updates the row', async () => {
     const { agent, csrf } = await loginAgent(request, app);
-    const id = experienceRepo.create({ title: 'Junior Dev', company: 'Beta LLC', start_date: '2020-01' });
+    const id = await experienceRepo.create({ title: 'Junior Dev', company: 'Beta LLC', start_date: '2020-01' });
     const res = await postForm(agent, csrf, '/manage/experience/' + id, {
       title: 'Senior Dev', company: 'Beta LLC', start_date: '2020-01', end_date: '', description: 'Promoted',
     });
     expect(res.status).toBe(303);
-    const row = experienceRepo.getById(id);
+    const row = await experienceRepo.getById(id);
     expect(row.title).toBe('Senior Dev');
     expect(row.description).toBe('Promoted');
   });
@@ -69,10 +69,10 @@ describe('MOD-013 — Experience & Education management', () => {
 
   it('experience — delete removes the row; unknown id returns 404', async () => {
     const { agent, csrf } = await loginAgent(request, app);
-    const id = experienceRepo.create({ title: 'Temp', company: 'Temp Co', start_date: '2019-01' });
+    const id = await experienceRepo.create({ title: 'Temp', company: 'Temp Co', start_date: '2019-01' });
     const res = await postForm(agent, csrf, '/manage/experience/' + id + '/delete');
     expect(res.status).toBe(303);
-    expect(experienceRepo.getById(id)).toBeNull();
+    expect(await experienceRepo.getById(id)).toBeNull();
     const res404 = await postForm(agent, csrf, '/manage/experience/999999/delete');
     expect(res404.status).toBe(404);
   });
@@ -85,7 +85,7 @@ describe('MOD-013 — Experience & Education management', () => {
       field_of_study: 'Computer Science', start_date: '2016-09', end_date: '2020-06', description: '',
     });
     expect(res.status).toBe(303);
-    const rows = educationRepo.listAll();
+    const rows = await educationRepo.listAll();
     expect(rows.length).toBe(1);
     expect(rows[0].institution).toBe('State University');
     const page = await agent.get('/manage/education');
@@ -98,18 +98,18 @@ describe('MOD-013 — Experience & Education management', () => {
     const res = await postForm(agent, csrf, '/manage/education', { institution: '', degree: '', start_date: '' });
     expect(res.status).toBe(400);
     expect(res.text).toContain('Institution');
-    expect(educationRepo.listAll().length).toBe(0);
+    expect((await educationRepo.listAll()).length).toBe(0);
   });
 
   it('education — POST /manage/education/:id updates the row', async () => {
     const { agent, csrf } = await loginAgent(request, app);
-    const id = educationRepo.create({ institution: 'Old College', degree: 'BA', start_date: '2012-09' });
+    const id = await educationRepo.create({ institution: 'Old College', degree: 'BA', start_date: '2012-09' });
     const res = await postForm(agent, csrf, '/manage/education/' + id, {
       institution: 'New College', degree: 'MSc', field_of_study: 'HCI',
       start_date: '2021-09', end_date: '', description: '',
     });
     expect(res.status).toBe(303);
-    const row = educationRepo.getById(id);
+    const row = await educationRepo.getById(id);
     expect(row.institution).toBe('New College');
     expect(row.degree).toBe('MSc');
   });
@@ -124,10 +124,10 @@ describe('MOD-013 — Experience & Education management', () => {
 
   it('education — delete removes the row; unknown id returns 404', async () => {
     const { agent, csrf } = await loginAgent(request, app);
-    const id = educationRepo.create({ institution: 'Temp U', degree: 'PhD', start_date: '2018-01' });
+    const id = await educationRepo.create({ institution: 'Temp U', degree: 'PhD', start_date: '2018-01' });
     const res = await postForm(agent, csrf, '/manage/education/' + id + '/delete');
     expect(res.status).toBe(303);
-    expect(educationRepo.getById(id)).toBeNull();
+    expect(await educationRepo.getById(id)).toBeNull();
     const res404 = await postForm(agent, csrf, '/manage/education/999999/delete');
     expect(res404.status).toBe(404);
   });
@@ -158,8 +158,8 @@ describe('MOD-013 — Experience & Education management', () => {
   // ---------------------------------------------------------- dashboard
   it('dashboard shows experience and education counts', async () => {
     const { agent } = await loginAgent(request, app);
-    experienceRepo.create({ title: 'Role', company: 'Co', start_date: '2020-01' });
-    educationRepo.create({ institution: 'U', degree: 'BSc', start_date: '2016-09' });
+    await experienceRepo.create({ title: 'Role', company: 'Co', start_date: '2020-01' });
+    await educationRepo.create({ institution: 'U', degree: 'BSc', start_date: '2016-09' });
     const page = await agent.get('/manage');
     expect(page.status).toBe(200);
     expect(page.text).toContain('Experience entries');
@@ -174,3 +174,4 @@ describe('MOD-013 — Experience & Education management', () => {
     expect(extractCsrf(edu.text)).toBeTruthy();
   });
 });
+

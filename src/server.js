@@ -3,6 +3,7 @@
 // Load .env when present (never committed; see .env.example and .gitignore).
 const fs = require('fs');
 const path = require('path');
+const { initDatabase } = require('./config/database');
 if (fs.existsSync(path.resolve(__dirname, '..', '.env'))) {
   // Docker compose interpolates "$VAR" in env_file values, so "$" in bcrypt
   // hashes must be doubled ("$$") in .env; compose unescapes them. dotenv does
@@ -24,11 +25,21 @@ if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
   process.exit(1);
 }
 
-try {
-  startServer(PORT);
-} catch (err) {
-  // Config/DB failures (missing secrets, unreadable or corrupt database, bad
-  // DB_PATH) land here with a clear message; no stack dump for operators.
+async function main() {
+  try {
+    // Driver-aware boot: SQLite opens synchronously; PostgreSQL connects with
+    // retry + applies the schema (see src/config/database.js / db/postgres.js).
+    await initDatabase();
+    await startServer(PORT);
+  } catch (err) {
+    // Config/DB failures (missing secrets, unreachable database, bad DB_PATH)
+    // land here with a clear message; no stack dump for operators.
+    console.error('FATAL: ' + (err && err.message ? err.message : err));
+    process.exit(1);
+  }
+}
+
+main().catch((err) => {
   console.error('FATAL: ' + (err && err.message ? err.message : err));
   process.exit(1);
-}
+});

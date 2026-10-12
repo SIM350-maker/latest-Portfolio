@@ -1,56 +1,54 @@
 'use strict';
 
-const { connectDB } = require('../config/database');
+const { query, one, all } = require('../config/database');
 const { ConflictError } = require('../lib/validation');
 
-function listAll() {
-  const db = connectDB();
-  return db.prepare('SELECT * FROM education ORDER BY start_date DESC, id DESC').all();
+async function listAll() {
+  return all('SELECT * FROM education ORDER BY start_date DESC, id DESC');
 }
 
-function getById(id) {
-  const db = connectDB();
-  return db.prepare('SELECT * FROM education WHERE id = ?').get(id) || null;
+async function getById(id) {
+  return one('SELECT * FROM education WHERE id = $1', [id]) || null;
 }
 
-function create(data) {
-  const db = connectDB();
-  const profile = db.prepare('SELECT id FROM profile LIMIT 1').get();
+async function create(data) {
+  const profile = await one('SELECT id FROM profile LIMIT 1');
   if (!profile) {
     throw new ConflictError('Create a profile before adding education entries.');
   }
-  const stmt = db.prepare(
-    'INSERT INTO education (profile_id, institution, degree, field_of_study, start_date, end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?)'
+  const { rows } = await query(
+    'INSERT INTO education (profile_id, institution, degree, field_of_study, start_date, end_date, description) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
+    [
+      profile.id, data.institution, data.degree, data.field_of_study || null,
+      data.start_date, data.end_date || null, data.description || null,
+    ]
   );
-  const info = stmt.run(
-    profile.id, data.institution, data.degree, data.field_of_study || null,
-    data.start_date, data.end_date || null, data.description || null
-  );
-  return info.lastInsertRowid;
+  return rows[0].id;
 }
 
-function update(id, changes) {
-  const db = connectDB();
+async function update(id, changes) {
+  const allowed = ['institution', 'degree', 'field_of_study', 'start_date', 'end_date', 'description'];
   const fields = [];
   const values = [];
-  const allowed = ['institution', 'degree', 'field_of_study', 'start_date', 'end_date', 'description'];
+  let n = 1;
   for (const key of allowed) {
     if (changes[key] !== undefined) {
-      fields.push(key + ' = ?');
+      fields.push(key + ' = $' + n++);
       values.push(changes[key]);
     }
   }
   if (fields.length === 0) return 0;
   values.push(id);
-  const info = db.prepare('UPDATE education SET ' + fields.join(', ') + ' WHERE id = ?').run(...values);
-  return info.changes;
+  const { rowCount } = await query(
+    'UPDATE education SET ' + fields.join(', ') + ' WHERE id = $' + n, values
+  );
+  return rowCount;
 }
 
 /** education rows cascade on profile delete; standalone rows have no dependents. */
-function remove(id) {
-  const db = connectDB();
-  const info = db.prepare('DELETE FROM education WHERE id = ?').run(id);
-  return info.changes > 0;
+async function remove(id) {
+  const { rowCount } = await query('DELETE FROM education WHERE id = $1', [id]);
+  return rowCount > 0;
 }
 
 module.exports = { listAll, getById, create, update, remove };

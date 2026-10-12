@@ -16,8 +16,8 @@ describe('MOD-004 — GET /manage/evidence', () => {
   });
 
   it('MOD-004 — evidence listing — returns 200 with two seeded evidence rows', async () => {
-    evidenceRepo.create({ description: 'Alpha verification screenshot', file_path: 'https://example.com/alpha.png', file_type: 'document' });
-    evidenceRepo.create({ description: 'Beta deployment record', file_path: 'https://example.com/beta', file_type: 'deployment' });
+    await evidenceRepo.create({ description: 'Alpha verification screenshot', file_path: 'https://example.com/alpha.png', file_type: 'document' });
+    await evidenceRepo.create({ description: 'Beta deployment record', file_path: 'https://example.com/beta', file_type: 'deployment' });
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/evidence');
     expect(res.status).toBe(200);
@@ -25,8 +25,8 @@ describe('MOD-004 — GET /manage/evidence', () => {
   });
 
   it('MOD-004 — evidence listing — response body contains both seeded rows identifying fields', async () => {
-    evidenceRepo.create({ description: 'Gamma interface contract', file_path: 'https://example.com/gamma.md', file_type: 'document' });
-    evidenceRepo.create({ description: 'Delta load test log', file_path: 'https://example.com/delta.log', file_type: 'deployment' });
+    await evidenceRepo.create({ description: 'Gamma interface contract', file_path: 'https://example.com/gamma.md', file_type: 'document' });
+    await evidenceRepo.create({ description: 'Delta load test log', file_path: 'https://example.com/delta.log', file_type: 'deployment' });
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/evidence');
     expect(res.text).toContain('Gamma interface contract');
@@ -36,7 +36,7 @@ describe('MOD-004 — GET /manage/evidence', () => {
   });
 
   it('MOD-004 — evidence listing — feeds the reverse-traceability query with zero claims (supports no claims)', async () => {
-    evidenceRepo.create({ description: 'Epsilon unlinked record', file_path: null, file_type: null });
+    await evidenceRepo.create({ description: 'Epsilon unlinked record', file_path: null, file_type: null });
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/evidence');
     expect(res.text).toContain('Epsilon unlinked record');
@@ -44,7 +44,7 @@ describe('MOD-004 — GET /manage/evidence', () => {
   });
 
   it('MOD-004 — evidence listing — sets Cache-Control: no-store', async () => {
-    evidenceRepo.create({ description: 'Zeta cache check', file_path: 'https://example.com/zeta', file_type: 'deployment' });
+    await evidenceRepo.create({ description: 'Zeta cache check', file_path: 'https://example.com/zeta', file_type: 'deployment' });
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/evidence');
     expect(res.headers['cache-control']).toBe('no-store');
@@ -82,3 +82,4 @@ describe('MOD-004 — GET /manage/evidence', () => {
     expect(res.text).toContain('404 — Not found');
   });
 });
+
