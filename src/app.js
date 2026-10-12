@@ -7,6 +7,7 @@ const morgan = require('morgan');
 
 const { connectDB } = require('./config/database');
 const { sessionGuard, ABSOLUTE_TIMEOUT_MS } = require('./middleware/auth');
+const { attachPrincipal } = require('./middleware/rbac');
 const { csrfMiddleware } = require('./middleware/csrf');
 const { publicLimiter, manageLimiter, manageGetLimiter } = require('./middleware/rateLimiters');
 const { noStorePrivate } = require('./middleware/noStore');
@@ -75,6 +76,9 @@ function createApp() {
 
   // 4. Session lifecycle: 30m idle / 24h absolute (frozen security design).
   app.use(sessionGuard);
+
+  // 4b. Role-based access control principal (owner | reader) — requirement 6.
+  app.use(attachPrincipal);
 
   // 5. Rate limiting: 100/min public; management mutations & credential
   //    endpoints 10/min (frozen section 5.1 — the anti-guessing budget);
