@@ -249,14 +249,18 @@ router.post('/projects/:id(\\d+)/delete', async (req, res, next) => {
 
 router.post('/projects/:id(\\d+)/publish', async (req, res, next) => {
   try {
-    await projectRepo.setPublicationState(Number(req.params.id), 'Published');
+    if (!(await projectRepo.setPublicationState(Number(req.params.id), 'Published'))) {
+      throw new NotFoundError('Project not found.');
+    }
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
 
 router.post('/projects/:id(\\d+)/unpublish', async (req, res, next) => {
   try {
-    await projectRepo.setPublicationState(Number(req.params.id), 'Draft');
+    if (!(await projectRepo.setPublicationState(Number(req.params.id), 'Draft'))) {
+      throw new NotFoundError('Project not found.');
+    }
     return res.redirect(303, '/manage/projects');
   } catch (err) { return next(err); }
 });
@@ -340,14 +344,18 @@ router.post('/skills/:id(\\d+)/delete', async (req, res, next) => {
 
 router.post('/skills/:id(\\d+)/publish', async (req, res, next) => {
   try {
-    await skillRepo.setPublicationState(Number(req.params.id), 'Published');
+    if (!(await skillRepo.setPublicationState(Number(req.params.id), 'Published'))) {
+      throw new NotFoundError('Skill not found.');
+    }
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
 
 router.post('/skills/:id(\\d+)/unpublish', async (req, res, next) => {
   try {
-    await skillRepo.setPublicationState(Number(req.params.id), 'Draft');
+    if (!(await skillRepo.setPublicationState(Number(req.params.id), 'Draft'))) {
+      throw new NotFoundError('Skill not found.');
+    }
     return res.redirect(303, '/manage/skills');
   } catch (err) { return next(err); }
 });
@@ -550,14 +558,18 @@ router.post('/claims/:id(\\d+)/delete', async (req, res, next) => {
 
 router.post('/claims/:id(\\d+)/publish', async (req, res, next) => {
   try {
-    await claimRepo.setPublicationState(Number(req.params.id), 'Published');
+    if (!(await claimRepo.setPublicationState(Number(req.params.id), 'Published'))) {
+      throw new NotFoundError('Claim not found.');
+    }
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
 
 router.post('/claims/:id(\\d+)/unpublish', async (req, res, next) => {
   try {
-    await claimRepo.setPublicationState(Number(req.params.id), 'Draft');
+    if (!(await claimRepo.setPublicationState(Number(req.params.id), 'Draft'))) {
+      throw new NotFoundError('Claim not found.');
+    }
     return res.redirect(303, '/manage/claims');
   } catch (err) { return next(err); }
 });
@@ -687,3 +699,4 @@ router.get('/cv/download', async (req, res, next) => {
 });
 
 module.exports = router;
+

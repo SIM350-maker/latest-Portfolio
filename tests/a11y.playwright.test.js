@@ -76,3 +76,16 @@ test('authenticated manage pages have no accessibility violations', async ({ pag
     await expectNoViolations(page, url);
   }
 });
+
+test('CV print button triggers window.print through the external script (F-01)', async ({ page }) => {
+  await page.addInitScript(() => {
+    window.__printed = false;
+    window.print = () => { window.__printed = true; };
+  });
+  await login(page);
+  await page.goto(baseUrl + '/manage/cv', { waitUntil: 'networkidle' });
+  // CSP (script-src-attr: none) must not block the externally-wired listener
+  await page.click('#print-cv');
+  const printed = await page.evaluate(() => window.__printed);
+  expect(printed).toBe(true);
+});

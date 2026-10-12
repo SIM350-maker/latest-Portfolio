@@ -30,6 +30,10 @@ module.exports = [
         afterEach: 'readonly',
         beforeAll: 'readonly',
         afterAll: 'readonly',
+        test: 'readonly',
+        // Playwright tests execute in Node but reference browser globals.
+        window: 'readonly',
+        document: 'readonly',
       },
     },
     rules: {

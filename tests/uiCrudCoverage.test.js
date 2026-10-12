@@ -147,3 +147,25 @@ describe('UI CRUD coverage — edit forms reach UPDATE endpoints', () => {
 
 
 
+
+describe('F-02 — publish endpoints return 404 for nonexistent rows', () => {
+  const app = createApp();
+
+  it('projects publish/unpublish on unknown id returns 404', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    expect((await postForm(agent, csrf, '/manage/projects/999999/publish')).status).toBe(404);
+    expect((await postForm(agent, csrf, '/manage/projects/999999/unpublish')).status).toBe(404);
+  });
+
+  it('skills publish/unpublish on unknown id returns 404', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    expect((await postForm(agent, csrf, '/manage/skills/999999/publish')).status).toBe(404);
+    expect((await postForm(agent, csrf, '/manage/skills/999999/unpublish')).status).toBe(404);
+  });
+
+  it('claims publish/unpublish on unknown id returns 404', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    expect((await postForm(agent, csrf, '/manage/claims/999999/publish')).status).toBe(404);
+    expect((await postForm(agent, csrf, '/manage/claims/999999/unpublish')).status).toBe(404);
+  });
+});
