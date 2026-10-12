@@ -10,15 +10,28 @@ const TEST_PASSWORD = 'test-management-password';
 /**
  * Configure a unique per-process test database and required environment.
  * Must be called BEFORE requiring src/app so configuration checks pass.
- * Tests always run on the SQLite driver (hermetic, no external services);
- * the PostgreSQL pipeline is covered separately by tests/postgresPipeline.test.js.
+ *
+ * Driver policy:
+ *  - default: SQLite (hermetic, no external services, per-worker tmp file).
+ *  - CI matrix lane sets DB_DRIVER=postgres + DATABASE_URL (a throwaway
+ *    Postgres — Neon rehearsal branch or service container); tests/jest-global-setup.js
+ *    then resets the schema once for the whole run and suites execute serially
+ *    (--runInBand) against the shared database.
  */
 function configureTestEnv() {
   process.env.NODE_ENV = 'test';
-  process.env.DB_DRIVER = 'sqlite';
-  process.env.DB_PATH = path.join(os.tmpdir(), 'portfolio-test-' + crypto.randomBytes(6).toString('hex') + '.db');
-  process.env.SESSION_SECRET = crypto.randomBytes(32).toString('hex');
-  process.env.OWNER_BCRYPT_HASH = bcrypt.hashSync(TEST_PASSWORD, 12);
+  if (!process.env.DB_DRIVER) {
+    process.env.DB_DRIVER = 'sqlite';
+  }
+  if (process.env.DB_DRIVER === 'sqlite') {
+    process.env.DB_PATH = path.join(os.tmpdir(), 'portfolio-test-' + crypto.randomBytes(6).toString('hex') + '.db');
+  }
+  if (!process.env.SESSION_SECRET) {
+    process.env.SESSION_SECRET = crypto.randomBytes(32).toString('hex');
+  }
+  if (!process.env.OWNER_BCRYPT_HASH) {
+    process.env.OWNER_BCRYPT_HASH = bcrypt.hashSync(TEST_PASSWORD, 12);
+  }
 }
 
 /** Extract the CSRF token from a rendered form page. */
@@ -49,4 +62,30 @@ function postForm(agent, csrf, url, fields) {
   return agent.post(url).type('form').redirects(0).send({ _csrf: csrf, ...(fields || {}) });
 }
 
-module.exports = { configureTestEnv, extractCsrf, loginAgent, postForm, TEST_PASSWORD };
+/**
+ * Wipe all application data between suites. Gives every suite the clean-database
+ * semantics the per-worker SQLite files used to provide — required when the
+ * whole run shares one PostgreSQL database (CI matrix lane / Neon rehearsal).
+ * Driver-neutral: TRUNCATE ... RESTART IDENTITY CASCADE on PostgreSQL, ordered
+ * DELETEs on SQLite.
+ */
+async function resetTestData() {
+  if (process.env.DB_DRIVER === 'postgres') {
+    const { query } = require('../src/config/database');
+    await query(
+      'TRUNCATE profile, project, skill, evidence, claim, experience, education, ' +
+      'project_skill, project_evidence, skill_evidence, claim_evidence RESTART IDENTITY CASCADE'
+    );
+    return;
+  }
+  const { connectDB } = require('../src/config/database');
+  const db = connectDB();
+  for (const table of [
+    'project_skill', 'project_evidence', 'skill_evidence', 'claim_evidence',
+    'experience', 'education', 'claim', 'evidence', 'skill', 'project', 'profile',
+  ]) {
+    db.prepare('DELETE FROM ' + table).run();
+  }
+}
+
+module.exports = { configureTestEnv, extractCsrf, loginAgent, postForm, TEST_PASSWORD, resetTestData };

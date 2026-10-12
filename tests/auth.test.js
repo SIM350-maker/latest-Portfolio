@@ -5,9 +5,14 @@ configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
+const { closeDatabase } = require('../src/config/database');
 
 describe('Authentication and session security', () => {
   const app = createApp();
+
+  afterAll(async () => {
+    await closeDatabase();
+  });
 
   it('redirects unauthenticated GET /manage to the login page', async () => {
     const res = await request(app).get('/manage').redirects(0);
@@ -94,4 +99,5 @@ describe('Authentication and session security', () => {
     expect(TEST_PASSWORD.length).toBeGreaterThan(0);
   });
 });
+
 

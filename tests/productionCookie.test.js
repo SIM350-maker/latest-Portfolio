@@ -11,10 +11,16 @@ process.env.DB_PATH = require('path').join(require('os').tmpdir(), 'portfolio-pr
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
+const { closeDatabase } = require('../src/config/database');
 const { extractCsrf } = require('./helpers');
 
 describe('production HTTP session cookies (secure: auto)', () => {
   const app = createApp();
+
+
+  afterAll(async () => {
+    await closeDatabase();
+  });
 
   it('GET /manage/login sets a portfolio.sid session cookie over plain HTTP', async () => {
     const res = await request(app).get('/manage/login');
@@ -40,3 +46,6 @@ describe('production HTTP session cookies (secure: auto)', () => {
     expect(dash.text).toContain('Management dashboard');
   });
 });
+
+
+

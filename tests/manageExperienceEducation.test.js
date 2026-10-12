@@ -1,6 +1,6 @@
 'use strict';
 
-const { configureTestEnv, loginAgent, extractCsrf, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, extractCsrf, postForm, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
@@ -8,15 +8,17 @@ const { createApp } = require('../src/app');
 const experienceRepo = require('../src/repositories/experienceRepository');
 const educationRepo = require('../src/repositories/educationRepository');
 const profileRepo = require('../src/repositories/profileRepository');
-const { connectDB } = require('../src/config/database');
+const { closeDatabase } = require('../src/config/database');
 
 describe('MOD-013 — Experience & Education management', () => {
   const app = createApp();
 
+  afterAll(async () => {
+    await closeDatabase();
+  });
+
   beforeEach(async () => {
-    const db = connectDB();
-    db.prepare('DELETE FROM experience').run();
-    db.prepare('DELETE FROM education').run();
+    await resetTestData();
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'Test Owner', role: 'Engineer', summary: 'Test profile', contact_info: null });
     }
@@ -174,4 +176,6 @@ describe('MOD-013 — Experience & Education management', () => {
     expect(extractCsrf(edu.text)).toBeTruthy();
   });
 });
+
+
 

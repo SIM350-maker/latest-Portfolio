@@ -1,13 +1,22 @@
 'use strict';
 
-const { configureTestEnv, loginAgent, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, postForm, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
+const { closeDatabase } = require('../src/config/database');
 
 describe('Publication-state isolation (public sees Published only)', () => {
   const app = createApp();
+
+  beforeEach(async () => {
+    await resetTestData();
+  });
+
+  afterAll(async () => {
+    await closeDatabase();
+  });
 
   it('hides draft projects from the public site, shows them after publish, hides them after unpublish', async () => {
     const { agent, csrf } = await loginAgent(request, app);
@@ -71,4 +80,6 @@ describe('Publication-state isolation (public sees Published only)', () => {
     expect(res.status).toBe(405);
   });
 });
+
+
 

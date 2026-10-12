@@ -1,6 +1,6 @@
 'use strict';
 
-const { configureTestEnv, loginAgent } = require('./helpers');
+const { configureTestEnv, loginAgent, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
@@ -9,16 +9,17 @@ const profileRepo = require('../src/repositories/profileRepository');
 const skillRepo = require('../src/repositories/skillRepository');
 const experienceRepo = require('../src/repositories/experienceRepository');
 const educationRepo = require('../src/repositories/educationRepository');
-const { connectDB } = require('../src/config/database');
+const { query, closeDatabase } = require('../src/config/database');
 
 describe('FR-007 — CV generation', () => {
   const app = createApp();
 
+  afterAll(async () => {
+    await closeDatabase();
+  });
+
   beforeEach(async () => {
-    const db = connectDB();
-    db.prepare('DELETE FROM experience').run();
-    db.prepare('DELETE FROM education').run();
-    db.prepare('DELETE FROM skill').run();
+    await resetTestData();
     if (!(await profileRepo.getProfile())) {
         await profileRepo.createProfile({
         name: 'Ada Lovelace',
@@ -87,11 +88,14 @@ describe('FR-007 — CV generation', () => {
   });
 
   it('no profile yet renders an empty-state CV without crashing', async () => {
-    connectDB().prepare('DELETE FROM profile').run();
+    await query('DELETE FROM profile');
     const { agent } = await loginAgent(request, app);
     const res = await agent.get('/manage/cv');
     expect(res.status).toBe(200);
     expect(res.text).toContain('No profile created yet');
   });
 });
+
+
+
 

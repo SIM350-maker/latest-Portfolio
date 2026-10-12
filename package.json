@@ -18,7 +18,9 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/tests/a11y.playwright.test.js"
-    ]
+    ],
+    "globalSetup": "./tests/jest-global-setup.js",
+    "testTimeout": 20000
   },
   "dependencies": {
     "@neon/config": "^1.8.6",

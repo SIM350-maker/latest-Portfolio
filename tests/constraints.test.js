@@ -1,21 +1,31 @@
 'use strict';
 
-const { configureTestEnv, loginAgent, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, postForm, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
+const { closeDatabase } = require('../src/config/database');
 const profileRepo = require('../src/repositories/profileRepository');
 const { ConflictError } = require('../src/lib/validation');
 
 describe('Data constraints and referential integrity', () => {
   const app = createApp();
 
+  beforeEach(async () => {
+    await resetTestData();
+  });
+
+  afterAll(async () => {
+    await closeDatabase();
+  });
+
   it('enforces the profile singleton (DEF-001 fix): second create fails with ConflictError', async () => {
     await profileRepo.createProfile({ name: 'A', role: 'R', summary: 'S' });
     await expect(profileRepo.createProfile({ name: 'B', role: 'R', summary: 'S' })).rejects.toThrow(ConflictError);
-    const all = require('../src/config/database').connectDB().prepare('SELECT COUNT(*) AS n FROM profile').get();
-    expect(all.n).toBe(1);
+    const { all: dbAll } = require('../src/config/database');
+    const countRows = await dbAll('SELECT COUNT(*) AS n FROM profile');
+    expect(Number(countRows[0].n)).toBe(1);
   });
 
   it('blocks project deletion while claims reference it (409), allows it after claim removal', async () => {
@@ -101,4 +111,6 @@ describe('Data constraints and referential integrity', () => {
     expect(detail.text).toContain('not publicly accessible');
   });
 });
+
+
 

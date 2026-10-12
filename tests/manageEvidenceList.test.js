@@ -1,18 +1,22 @@
 'use strict';
 
-const { configureTestEnv, loginAgent, extractCsrf, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, extractCsrf, postForm, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
 const evidenceRepo = require('../src/repositories/evidenceRepository');
-const { connectDB } = require('../src/config/database');
+const { closeDatabase } = require('../src/config/database');
 
 describe('MOD-004 — GET /manage/evidence', () => {
   const app = createApp();
 
-  afterEach(() => {
-    connectDB().prepare('DELETE FROM evidence').run();
+  afterAll(async () => {
+    await closeDatabase();
+  });
+
+  beforeEach(async () => {
+    await resetTestData();
   });
 
   it('MOD-004 — evidence listing — returns 200 with two seeded evidence rows', async () => {
@@ -82,4 +86,6 @@ describe('MOD-004 — GET /manage/evidence', () => {
     expect(res.text).toContain('404 — Not found');
   });
 });
+
+
 

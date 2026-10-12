@@ -1,13 +1,22 @@
 'use strict';
 
-const { configureTestEnv, loginAgent, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, postForm, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
+const { closeDatabase } = require('../src/config/database');
 
 describe('Content validation and error contracts', () => {
   const app = createApp();
+
+  beforeEach(async () => {
+    await resetTestData();
+  });
+
+  afterAll(async () => {
+    await closeDatabase();
+  });
 
   it('rejects a project without a title (400 with field errors)', async () => {
     const { agent, csrf } = await loginAgent(request, app);
@@ -84,10 +93,16 @@ describe('Content validation and error contracts', () => {
   });
 
   it('renders the public homepage only after the profile is published (FR-001)', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    await postForm(agent, csrf, '/manage/profile', {
+      name: 'Jane Engineer', role: 'Senior Software Engineer',
+      summary: 'Builds verifiable systems.', contact_info: 'jane@example.com',
+    });
+
     const before = await request(app).get('/');
+    expect(before.status).toBe(200);
     expect(before.text).not.toContain('Jane Engineer');
 
-    const { agent, csrf } = await loginAgent(request, app);
     await postForm(agent, csrf, '/manage/profile/publish');
     const after = await request(app).get('/');
     expect(after.status).toBe(200);
@@ -95,5 +110,7 @@ describe('Content validation and error contracts', () => {
     expect(after.text).toContain('Senior Software Engineer');
   });
 });
+
+
 
 
