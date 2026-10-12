@@ -20,8 +20,10 @@ A web-based portfolio that makes a software engineer's capabilities observable, 
 
 - npm: `npm install` → `npm run dev` (nodemon) or `npm start`
 - pnpm: `pnpm install` → `pnpm dev` (pnpm ≥10 requires the `pnpm.onlyBuiltDependencies` allowlist already present in `package.json` so `better-sqlite3` builds its native bindings — do not remove it)
-- Docker: `docker compose up --build` (container forces production mode and `/data/portfolio.db` on the `./data` volume regardless of your local `.env`)
-- Requires Node ≥ 20 (`engines` pinned); port conflicts and unreadable/corrupt databases exit with a clear `FATAL:` message instead of a stack trace.
+- Docker: `docker compose up --build` (container forces production mode; DATABASE_URL from .env drives the Neon PostgreSQL data layer)
+- Requires Node >= 20 (`engines` pinned); port conflicts and unreachable databases exit with a clear `FATAL:` message instead of a stack trace.
+- Neon PostgreSQL verification: `node scripts/verify-postgres.js` (schema + CRUD roundtrip) and `node scripts/verify-sse.js` (live-update channel; set VERIFY_PASSWORD).
+- Data migration from the legacy SQLite dev database: `node scripts/migrate-sqlite-to-postgres.js` (idempotent; the app default is PostgreSQL whenever `DATABASE_URL` is set, SQLite otherwise).
 
 ## Setup
 
@@ -55,3 +57,4 @@ The SQLite database is created and migrated automatically at `data/dev.db` (or `
 ## Documentation
 
 All authoritative engineering documents live in `docs/` — start with `docs/ENGINEERING-CONSTITUTION.md`, `docs/03-REQUIREMENTS.md`, and the roadmap for current implementation status.
+

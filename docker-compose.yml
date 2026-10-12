@@ -5,8 +5,13 @@ services:
     env_file: .env
     environment:
       # Container runtime values — override env_file so a local-developer .env
-      # (NODE_ENV=development, empty DB_PATH) never leaks into the container.
+      # never leaks into the container. Phase 3 cutover: the app runs on Neon
+      # PostgreSQL via DATABASE_URL (passed through env_file, no $ escapes
+      # needed); NODE_ENV forced to production in the container.
       NODE_ENV: production
       PORT: "3000"
+      # Rollback path: DB_PATH + the ./data volume keep the legacy SQLite
+      # database available; the SQLite driver activates only with an explicit
+      # DB_DRIVER=sqlite or when DATABASE_URL is absent.
       DB_PATH: /data/portfolio.db
     volumes: ["./data:/data"]
