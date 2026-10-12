@@ -85,7 +85,7 @@ async function listClaims(skillId, onlyPublished) {
 
 async function listEvidence(skillId) {
   return all(
-    'SELECT e.* FROM evidence e JOIN skill_evidence se ON se.evidence_id = e.id WHERE se.skill_id = $1 ORDER BY e.created_at DESC, e.id DESC',
+    'SELECT e.* FROM evidence e JOIN skill_evidence se ON se.evidence_id = e.id WHERE se.skill_id = $1 AND e.deleted_at IS NULL ORDER BY e.created_at DESC, e.id DESC',
     [skillId]
   );
 }
@@ -102,6 +102,7 @@ module.exports = {
   listAll, listPublished, getById, findByName, create, update, setPublicationState, remove,
   listClaims, listEvidence, attachEvidence,
 };
+
 
 
 

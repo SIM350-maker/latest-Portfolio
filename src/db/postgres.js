@@ -92,8 +92,21 @@ function initPostgres({ retries = 5, baseDelayMs = 400 } = {}) {
 }
 
 /** Parameterized query ($1/$2/… placeholders). Returns pg-style { rows, rowCount }. */
-async function pgQuery(sql, params = []) {
+/** Parameterized query ($1/$2/… placeholders). Returns pg-style { rows, rowCount }.
+ * opts.user: when present (mutations from request context), the statement runs
+ * on a dedicated client with app.user_id set (session scope) so audit triggers
+ * can attribute the change. */
+async function pgQuery(sql, params = [], opts = {}) {
   await initPostgres();
+  if (opts && opts.user) {
+    const client = await pool.connect();
+    try {
+      await client.query('SELECT set_config($1, $2, false)', ['app.user_id', String(opts.user)]);
+      return await client.query(sql, params);
+    } finally {
+      client.release();
+    }
+  }
   return pool.query(sql, params);
 }
 

@@ -5,6 +5,7 @@ configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
+const profileRepo = require('../src/repositories/profileRepository');
 const { closeDatabase } = require('../src/config/database');
 
 describe('Publication-state isolation (public sees Published only)', () => {
@@ -12,6 +13,9 @@ describe('Publication-state isolation (public sees Published only)', () => {
 
   beforeEach(async () => {
     await resetTestData();
+    if (!(await profileRepo.getProfile())) {
+      await profileRepo.createProfile({ name: 'Suite Owner', role: 'Engineer', summary: 'profile', contact_info: null });
+    }
   });
 
   afterAll(async () => {
@@ -80,6 +84,7 @@ describe('Publication-state isolation (public sees Published only)', () => {
     expect(res.status).toBe(405);
   });
 });
+
 
 
 

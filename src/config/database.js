@@ -30,7 +30,9 @@ async function query(sql, params = []) {
   let result;
   if (driver === 'postgres') {
     const pg = require('../db/postgres');
-    result = await pg.pgQuery(sql, params.map((p) => (typeof p === 'boolean' ? p : p)));
+    const { getRequestUser } = require('../lib/requestContext');
+    const opts = isMutation ? { user: getRequestUser() } : undefined;
+    result = await pg.pgQuery(sql, params, opts);
   } else {
     const db = connectDB();
     const text = sql.replace(/\$(\d+)/g, '?');

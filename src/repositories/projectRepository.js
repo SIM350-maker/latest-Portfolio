@@ -18,9 +18,13 @@ async function getById(id) {
 }
 
 async function create(data) {
+  const profile = await one('SELECT id FROM profile LIMIT 1');
+  if (!profile) {
+    throw new ConflictError('Create a profile before adding projects.');
+  }
   const { rows } = await query(
-    "INSERT INTO project (title, description, outcomes, roles, technologies, deploy_url, publication_state) VALUES ($1, $2, $3, $4, $5, $6, 'Draft') RETURNING id",
-    [data.title, data.description || null, data.outcomes || null, data.roles || null, data.technologies || null, data.deploy_url || null]
+    "INSERT INTO project (title, description, outcomes, roles, technologies, deploy_url, profile_id, publication_state) VALUES ($1, $2, $3, $4, $5, $6, $7, 'Draft') RETURNING id",
+    [data.title, data.description || null, data.outcomes || null, data.roles || null, data.technologies || null, data.deploy_url || null, profile.id]
   );
   return rows[0].id;
 }
@@ -85,7 +89,7 @@ async function listClaims(projectId, onlyPublished) {
 /** Evidence attached to this project via the project_evidence join. */
 async function listEvidence(projectId) {
   return all(
-    'SELECT e.* FROM evidence e JOIN project_evidence pe ON pe.evidence_id = e.id WHERE pe.project_id = $1 ORDER BY e.created_at DESC, e.id DESC',
+    'SELECT e.* FROM evidence e JOIN project_evidence pe ON pe.evidence_id = e.id WHERE pe.project_id = $1 AND e.deleted_at IS NULL ORDER BY e.created_at DESC, e.id DESC',
     [projectId]
   );
 }
@@ -118,6 +122,7 @@ module.exports = {
   listAll, listPublished, getById, create, update, setPublicationState, remove,
   listClaims, listEvidence, attachEvidence, listSkills, attachSkill,
 };
+
 
 
 

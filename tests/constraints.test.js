@@ -14,6 +14,9 @@ describe('Data constraints and referential integrity', () => {
 
   beforeEach(async () => {
     await resetTestData();
+    if (!(await profileRepo.getProfile())) {
+      await profileRepo.createProfile({ name: 'Suite Owner', role: 'Engineer', summary: 'profile', contact_info: null });
+    }
   });
 
   afterAll(async () => {
@@ -21,9 +24,12 @@ describe('Data constraints and referential integrity', () => {
   });
 
   it('enforces the profile singleton (DEF-001 fix): second create fails with ConflictError', async () => {
+    // The singleton invariant requires the empty state; other suites in the
+    // shared run seed a profile, so clear it explicitly here.
+    const { query: dbQuery, all: dbAll } = require('../src/config/database');
+    await dbQuery('DELETE FROM profile');
     await profileRepo.createProfile({ name: 'A', role: 'R', summary: 'S' });
     await expect(profileRepo.createProfile({ name: 'B', role: 'R', summary: 'S' })).rejects.toThrow(ConflictError);
-    const { all: dbAll } = require('../src/config/database');
     const countRows = await dbAll('SELECT COUNT(*) AS n FROM profile');
     expect(Number(countRows[0].n)).toBe(1);
   });

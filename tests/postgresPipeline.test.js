@@ -86,3 +86,40 @@ describePg('PostgreSQL data pipeline (Neon)', () => {
     )).rejects.toThrow(/check|violat/i);
   });
 });
+
+describePg('audit trail attribution (db remediation P3-1)', () => {
+  const requestContext = require('../src/lib/requestContext');
+  const { query, one, closeDatabase } = require('../src/config/database');
+
+  afterAll(async () => {
+    await closeDatabase();
+  });
+
+  it('attributes mutations to the request principal via app.user_id', async () => {
+    await requestContext.runContext({ user: 'owner' }, async () => {
+      const { rows } = await query(
+        "INSERT INTO skill (name, description, publication_state) VALUES ('__audit_attr__', NULL, 'Draft') RETURNING id"
+      );
+      const id = rows[0].id;
+      const row = await one(
+        "SELECT action, changed_by FROM audit_log WHERE table_name = 'skill' AND row_id = $1 ORDER BY id DESC LIMIT 1",
+        [id]
+      );
+      expect(row).toBeTruthy();
+      expect(row.action).toBe('INSERT');
+      expect(row.changed_by).toBe('owner');
+      await query('DELETE FROM skill WHERE id = $1', [id]);
+      await query("DELETE FROM audit_log WHERE table_name = 'skill' AND row_id = $1", [id]);
+    });
+  });
+
+  it('evidence soft delete hides rows from reads while retaining them', async () => {
+    const evidenceRepo = require('../src/repositories/evidenceRepository');
+    const id = await evidenceRepo.create({ description: '__softdel__', file_path: 'https://example.com/s.png' });
+    expect(await evidenceRepo.remove(id)).toBe(true);
+    expect(await evidenceRepo.getById(id)).toBeNull();
+    const retained = await one('SELECT deleted_at FROM evidence WHERE id = $1', [id]);
+    expect(retained && retained.deleted_at).toBeTruthy();
+    await query('DELETE FROM evidence WHERE id = $1', [id]);
+  });
+});

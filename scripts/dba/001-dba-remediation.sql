@@ -55,26 +55,40 @@ CREATE UNIQUE INDEX IF NOT EXISTS uq_project_person_title
 -- ---------------------------------------------------------------------
 -- P2-1. URL format CHECKs (defense-in-depth; the app validates too).
 --        Non-URL values already in data: 0 (verified 2026-10-12).
+--        Wrapped in DO blocks: re-runnable (no ADD CONSTRAINT IF NOT EXISTS).
 -- ---------------------------------------------------------------------
-ALTER TABLE evidence ADD CONSTRAINT chk_evidence_file_path_url
-  CHECK (file_path IS NULL OR file_path ~* '^https?://\S+$');
-ALTER TABLE project ADD CONSTRAINT chk_project_deploy_url
-  CHECK (deploy_url IS NULL OR deploy_url ~* '^https?://\S+$');
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_evidence_file_path_url' AND conrelid = 'evidence'::regclass) THEN
+    ALTER TABLE evidence ADD CONSTRAINT chk_evidence_file_path_url CHECK (file_path IS NULL OR file_path ~* '^https?://\S+$');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_project_deploy_url' AND conrelid = 'project'::regclass) THEN
+    ALTER TABLE project ADD CONSTRAINT chk_project_deploy_url CHECK (deploy_url IS NULL OR deploy_url ~* '^https?://\S+$');
+  END IF;
+END $$;
 
 -- ---------------------------------------------------------------------
 -- P2-2. Polymorphic claim linkage: require id when type is present and
 --        vice versa (currently type and id are independently nullable).
 --        Verified data impact: 0 violating rows.
 -- ---------------------------------------------------------------------
-ALTER TABLE claim ADD CONSTRAINT chk_claim_source_pair
-  CHECK ((source_entity_type IS NULL) = (source_entity_id IS NULL));
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_claim_source_pair' AND conrelid = 'claim'::regclass) THEN
+    ALTER TABLE claim ADD CONSTRAINT chk_claim_source_pair CHECK ((source_entity_type IS NULL) = (source_entity_id IS NULL));
+  END IF;
+END $$;
 
 -- ---------------------------------------------------------------------
 -- P2-3. Evidence must carry content (app rule, now in the schema).
 --        Verified data impact: 0 violating rows.
 -- ---------------------------------------------------------------------
-ALTER TABLE evidence ADD CONSTRAINT chk_evidence_has_content
-  CHECK (description IS NOT NULL OR file_path IS NOT NULL);
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_evidence_has_content' AND conrelid = 'evidence'::regclass) THEN
+    ALTER TABLE evidence ADD CONSTRAINT chk_evidence_has_content CHECK (description IS NOT NULL OR file_path IS NOT NULL);
+  END IF;
+END $$;
 
 -- ---------------------------------------------------------------------
 -- P2-4. cv_references audit-column parity (it alone lacked updated_at).
@@ -92,11 +106,17 @@ FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 --        grandfathered by validating only on write (Postgres CHECKs are
 --        evaluated on INSERT/UPDATE, existing rows pass until touched).
 --        Migrate existing prose dates first (see report §5 step 3).
+--        Dates were normalized 2026-10-12 (5 rows) — CHECK applied after.
 -- ---------------------------------------------------------------------
-ALTER TABLE experience ADD CONSTRAINT chk_experience_start_date_iso
-  CHECK (start_date ~ '^\d{4}-\d{2}$');
-ALTER TABLE education ADD CONSTRAINT chk_education_start_date_iso
-  CHECK (start_date ~ '^\d{4}-\d{2}$');
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_experience_start_date_iso' AND conrelid = 'experience'::regclass) THEN
+    ALTER TABLE experience ADD CONSTRAINT chk_experience_start_date_iso CHECK (start_date ~ '^\d{4}-\d{2}$');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_education_start_date_iso' AND conrelid = 'education'::regclass) THEN
+    ALTER TABLE education ADD CONSTRAINT chk_education_start_date_iso CHECK (start_date ~ '^\d{4}-\d{2}$');
+  END IF;
+END $$;
 
 -- ---------------------------------------------------------------------
 -- P3-1. Audit log (net-new). Append-only; records who changed what.

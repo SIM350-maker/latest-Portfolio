@@ -74,7 +74,7 @@ async function remove(id) {
 /** Evidence linked to this claim (bidirectional traceability). */
 async function listEvidence(claimId) {
   return all(
-    'SELECT e.* FROM evidence e JOIN claim_evidence ce ON ce.evidence_id = e.id WHERE ce.claim_id = $1 ORDER BY e.created_at DESC, e.id DESC',
+    'SELECT e.* FROM evidence e JOIN claim_evidence ce ON ce.evidence_id = e.id WHERE ce.claim_id = $1 AND e.deleted_at IS NULL ORDER BY e.created_at DESC, e.id DESC',
     [claimId]
   );
 }
@@ -92,3 +92,4 @@ module.exports = {
   listAll, getById, create, update, setPublicationState, remove,
   listEvidence, attachEvidence,
 };
+

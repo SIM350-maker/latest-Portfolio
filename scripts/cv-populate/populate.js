@@ -53,7 +53,7 @@ const EXPERIENCES = [
     role: 'Systems Administrator & Web Developer',
     company: 'Bright Promise School',
     location: 'Nairobi, Kenya',
-    start_date: 'July 2026',
+    start_date: '2026-07',
     end_date: null,
     is_current: true,
     description: "Develop and maintain the school's website to support online communication and institutional visibility. Manage and support digital management systems and information workflows. Provide day-to-day ICT support and assist staff with technical issues and digital tools. Train staff on ICT tools, digital workflows, and digital literacy. Digitize academic records and examination results to reduce reliance on manual processing. Maintain website content and support the school's digital communication activities. Assist with administration and maintenance of the school's ICT environment.",
@@ -62,8 +62,8 @@ const EXPERIENCES = [
     role: 'Full Stack Developer',
     company: 'Intersoft Technologies Consulting (E.A) Ltd',
     location: 'Kenya',
-    start_date: 'May 2025',
-    end_date: 'August 2025',
+    start_date: '2025-05',
+    end_date: '2025-08',
     is_current: false,
     description: 'Developed and maintained components of a telemedicine application using C# MAUI and Microsoft SQL Server. Implemented application features and addressed identified coding gaps. Participated in testing, debugging, and performance improvement activities. Worked with SMARTCARE workflows in ETL-related processes. Supported customer data migration and onboarding activities. Worked with MSSQL data while maintaining integrity and consistency. Assisted with deployment, configuration, and maintenance across environments. Participated in code reviews and maintained technical documentation.',
   },
@@ -118,8 +118,8 @@ const EDUCATION = {
   degree: 'Bachelor of Science in Applied Computer Science',
   institution: 'Chuka University',
   field_of_study: 'Applied Computer Science',
-  start_date: 'September 2022',
-  end_date: 'April 2026',
+  start_date: '2022-09',
+  end_date: '2026-04',
   grade: 'Second Class Honours',
   description: 'Developed web and application-based projects as part of the Applied Computer Science program. Served as a senior developer within assigned Computer Science project groups. Implemented assigned components and contributed to integration with other group-developed components. Participated in requirements analysis, development, testing, debugging, and documentation. Applied programming, database, user-interface, and software engineering concepts to practical projects.',
 };
@@ -411,8 +411,7 @@ async function main() {
 
     // ---------- 6b. legacy rows not present in the CV (no-delete rule) ----------
     const legacy = await client.query(`
-      SELECT 'project' AS t, title AS detail FROM project WHERE profile_id IS NULL
-      UNION ALL SELECT 'skill', name FROM skill WHERE id NOT IN (SELECT skill_id FROM person_skills)
+      SELECT 'skill' AS t, name AS detail FROM skill WHERE id NOT IN (SELECT skill_id FROM person_skills)
       UNION ALL SELECT 'education', institution || ' / ' || degree FROM education WHERE NOT (lower(institution)='chuka university')
       UNION ALL SELECT 'experience', company || ' / ' || title FROM experience WHERE NOT (lower(company) IN ('bright promise school', 'intersoft technologies consulting (e.a) ltd'))
     `);
@@ -486,7 +485,7 @@ async function main() {
 
     // expectation gates
     const expect = [
-      ['persons_by_email', 1], ['skills_linked_to_person', SKILLS.length], ['projects_for_person', PROJECTS.length],
+      ['persons_by_email', 1], ['skills_linked_to_person', SKILLS.length], ['projects_for_person', PROJECTS.length + 1], // 6 CV + 1 pre-existing row backfilled (dba remediation)
       ['experiences_cv_matched', 2], ['education_cv_matched', 1], ['certifications', 4],
       ['references', 3], ['recommendations', 1], ['orphan_foreign_keys', 0], ['duplicate_person_emails', 0],
     ];
@@ -522,6 +521,8 @@ async function main() {
 }
 
 main();
+
+
 
 
 

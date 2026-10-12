@@ -259,3 +259,99 @@ CREATE TRIGGER trg_recommendations_updated_at
 BEFORE UPDATE ON recommendations
 FOR EACH ROW EXECUTE FUNCTION set_updated_at();
 
+
+-- ===== 003_dba_remediation: FK indexes, partial indexes, uniqueness, URL/pairing
+-- CHECKs, audit_log + triggers, evidence soft delete, project ownership =====
+
+CREATE INDEX IF NOT EXISTS idx_experience_profile_id        ON experience (profile_id);
+CREATE INDEX IF NOT EXISTS idx_education_profile_id         ON education (profile_id);
+CREATE INDEX IF NOT EXISTS idx_project_profile_id           ON project (profile_id);
+CREATE INDEX IF NOT EXISTS idx_certifications_person_id     ON certifications (person_id);
+CREATE INDEX IF NOT EXISTS idx_cv_references_person_id      ON cv_references (person_id);
+CREATE INDEX IF NOT EXISTS idx_recommendations_person_id    ON recommendations (person_id);
+CREATE INDEX IF NOT EXISTS idx_person_skills_skill_id       ON person_skills (skill_id);
+CREATE INDEX IF NOT EXISTS idx_project_skill_skill_id       ON project_skill (skill_id);
+CREATE INDEX IF NOT EXISTS idx_project_evidence_evidence_id ON project_evidence (evidence_id);
+CREATE INDEX IF NOT EXISTS idx_skill_evidence_evidence_id   ON skill_evidence (evidence_id);
+CREATE INDEX IF NOT EXISTS idx_claim_evidence_evidence_id   ON claim_evidence (evidence_id);
+
+DROP INDEX IF EXISTS idx_project_publication_state;
+CREATE INDEX IF NOT EXISTS idx_project_published_updated
+  ON project (updated_at DESC) WHERE publication_state = 'Published';
+DROP INDEX IF EXISTS idx_skill_publication_state;
+CREATE INDEX IF NOT EXISTS idx_skill_published_name
+  ON skill (name ASC) WHERE publication_state = 'Published';
+
+CREATE UNIQUE INDEX IF NOT EXISTS uq_skill_name_ci ON skill (lower(name));
+CREATE UNIQUE INDEX IF NOT EXISTS uq_project_person_title
+  ON project (profile_id, lower(title)) WHERE profile_id IS NOT NULL;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_evidence_file_path_url' AND conrelid = 'evidence'::regclass) THEN
+    ALTER TABLE evidence ADD CONSTRAINT chk_evidence_file_path_url CHECK (file_path IS NULL OR file_path ~* '^https?://\S+$');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_project_deploy_url' AND conrelid = 'project'::regclass) THEN
+    ALTER TABLE project ADD CONSTRAINT chk_project_deploy_url CHECK (deploy_url IS NULL OR deploy_url ~* '^https?://\S+$');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_claim_source_pair' AND conrelid = 'claim'::regclass) THEN
+    ALTER TABLE claim ADD CONSTRAINT chk_claim_source_pair CHECK ((source_entity_type IS NULL) = (source_entity_id IS NULL));
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_evidence_has_content' AND conrelid = 'evidence'::regclass) THEN
+    ALTER TABLE evidence ADD CONSTRAINT chk_evidence_has_content CHECK (description IS NOT NULL OR file_path IS NOT NULL);
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_experience_start_date_iso' AND conrelid = 'experience'::regclass) THEN
+    ALTER TABLE experience ADD CONSTRAINT chk_experience_start_date_iso CHECK (start_date ~ '^\d{4}-\d{2}$');
+  END IF;
+  IF NOT EXISTS (SELECT 1 FROM pg_constraint WHERE conname = 'chk_education_start_date_iso' AND conrelid = 'education'::regclass) THEN
+    ALTER TABLE education ADD CONSTRAINT chk_education_start_date_iso CHECK (start_date ~ '^\d{4}-\d{2}$');
+  END IF;
+END $$;
+
+ALTER TABLE cv_references ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT now();
+DROP TRIGGER IF EXISTS trg_cv_references_updated_at ON cv_references;
+CREATE TRIGGER trg_cv_references_updated_at
+BEFORE UPDATE ON cv_references
+FOR EACH ROW EXECUTE FUNCTION set_updated_at();
+
+ALTER TABLE evidence ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ;
+CREATE INDEX IF NOT EXISTS idx_evidence_deleted_at ON evidence (deleted_at) WHERE deleted_at IS NULL;
+
+CREATE TABLE IF NOT EXISTS audit_log (
+    id           BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    table_name   TEXT        NOT NULL,
+    row_id       BIGINT,
+    action       TEXT        NOT NULL CHECK (action IN ('INSERT','UPDATE','DELETE')),
+    changed_by   TEXT,
+    changed_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
+    old_data     JSONB,
+    new_data     JSONB
+);
+CREATE INDEX IF NOT EXISTS idx_audit_log_table_row ON audit_log (table_name, row_id, changed_at DESC);
+
+CREATE OR REPLACE FUNCTION fn_audit_row() RETURNS trigger AS $fn$
+BEGIN
+    INSERT INTO audit_log (table_name, row_id, action, changed_by, old_data, new_data)
+    VALUES (
+        TG_TABLE_NAME,
+        CASE WHEN TG_OP = 'DELETE' THEN (to_jsonb(OLD)->>'id')::bigint ELSE (to_jsonb(NEW)->>'id')::bigint END,
+        TG_OP,
+        current_setting('app.user_id', true),
+        CASE WHEN TG_OP IN ('UPDATE','DELETE') THEN to_jsonb(OLD) END,
+        CASE WHEN TG_OP IN ('INSERT','UPDATE') THEN to_jsonb(NEW) END
+    );
+    RETURN COALESCE(NEW, OLD);
+END;
+$fn$ LANGUAGE plpgsql;
+
+DO $$
+DECLARE t TEXT;
+BEGIN
+    FOREACH t IN ARRAY ARRAY['profile','project','skill','evidence','claim','experience','education','certifications']
+    LOOP
+        EXECUTE format('DROP TRIGGER IF EXISTS audit_%1$s ON %1$s', t);
+        EXECUTE format(
+            'CREATE TRIGGER audit_%1$s AFTER INSERT OR UPDATE OR DELETE ON %1$s FOR EACH ROW EXECUTE FUNCTION fn_audit_row()', t);
+    END LOOP;
+END $$;
+
