@@ -8,6 +8,7 @@
     <% skills.forEach(function (s) { %>
       <li class="card">
         <h2><a href="/skills/<%= s.id %>"><%= s.name %></a></h2>
+        <% if (s.category) { %><p class="meta"><%= s.category %></p><% } %>
         <% if (s.description) { %><p><%= s.description %></p><% } %>
       </li>
     <% }); %>
@@ -15,3 +16,4 @@
 <% } %>
 
 <%- include('../partials/footer') %>
+

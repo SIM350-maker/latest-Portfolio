@@ -84,6 +84,8 @@ describe('UI CRUD coverage — edit forms reach UPDATE endpoints', () => {
     expect(res.status).toBe(303);
     const row = await educationRepo.getById(id);
     expect(row.grade).toBe('Second Class Honours');
+    const renderedEdu = await agent.get('/manage/education');
+    expect(renderedEdu.text).toContain('Second Class Honours'); // grade surfaced in the list
   });
 
   it('claims — edit disclosure posts statement/justification to the update endpoint', async () => {
@@ -142,5 +144,6 @@ describe('UI CRUD coverage — edit forms reach UPDATE endpoints', () => {
     expect(row.deploy_url).toBe('https://example.com/deploy');
   });
 });
+
 
 

@@ -2,6 +2,7 @@
 
 <article class="detail">
   <h1><%= skill.name %></h1>
+  <% if (skill.category) { %><p class="meta"><%= skill.category %></p><% } %>
   <% if (skill.description) { %><p><%= skill.description %></p><% } %>
 
   <% if (claims && claims.length > 0) { %>
@@ -57,3 +58,4 @@
 <p><a href="/skills">← Back to skills</a></p>
 
 <%- include('../partials/footer') %>
+

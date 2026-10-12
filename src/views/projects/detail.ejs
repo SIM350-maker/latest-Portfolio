@@ -7,6 +7,7 @@
   <% if (project.outcomes) { %><section><h2>Outcomes</h2><p><%= project.outcomes %></p></section><% } %>
   <% if (project.roles) { %><section><h2>Role</h2><p><%= project.roles %></p></section><% } %>
   <% if (project.technologies) { %><section><h2>Technologies</h2><p><%= project.technologies %></p></section><% } %>
+  <% if (project.deploy_url) { %><section><h2>Live deployment</h2><p><a href="<%= project.deploy_url %>" rel="noopener noreferrer"><%= project.deploy_url %></a></p></section><% } %>
 
   <% if (typeof skills !== 'undefined' && skills.length > 0) { %>
     <section>

@@ -100,7 +100,7 @@
       <% experiences.forEach(function (e) { %>
         <div class="item">
           <h3><%= e.title %> — <%= e.company %></h3>
-          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %></p>
+          <p class="meta"><%= formatRange(e.start_date, e.end_date) %></p>
           <% if (e.description) { %><p><%= e.description %></p><% } %>
         </div>
       <% }); %>
@@ -115,7 +115,7 @@
       <% educations.forEach(function (e) { %>
         <div class="item">
           <h3><%= e.degree %> — <%= e.institution %></h3>
-          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %><% if (e.field_of_study) { %> · <%= e.field_of_study %><% } %></p>
+          <p class="meta"><%= formatRange(e.start_date, e.end_date) %><% if (e.grade) { %> · <%= e.grade %><% } %><% if (e.field_of_study) { %> · <%= e.field_of_study %><% } %></p>
           <% if (e.description) { %><p><%= e.description %></p><% } %>
         </div>
       <% }); %>
@@ -124,4 +124,5 @@
   </main>
 </body>
 </html>
+
 

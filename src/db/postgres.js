@@ -98,16 +98,27 @@ function initPostgres({ retries = 5, baseDelayMs = 400 } = {}) {
  * can attribute the change. */
 async function pgQuery(sql, params = [], opts = {}) {
   await initPostgres();
+  let result;
   if (opts && opts.user) {
     const client = await pool.connect();
     try {
       await client.query('SELECT set_config($1, $2, false)', ['app.user_id', String(opts.user)]);
-      return await client.query(sql, params);
+      result = await client.query(sql, params);
     } finally {
       client.release();
     }
+  } else {
+    result = await pool.query(sql, params);
   }
-  return pool.query(sql, params);
+  // Data contract: rows are JSON-safe plain objects on both drivers.
+  // node-pg materializes TIMESTAMPTZ as Date instances; normalize to ISO
+  // strings so SQLite (strings) and PostgreSQL (Dates) read identically.
+  for (const row of result.rows) {
+    for (const key of Object.keys(row)) {
+      if (row[key] instanceof Date) row[key] = row[key].toISOString();
+    }
+  }
+  return result;
 }
 
 /** Convenience: first row or null. */

@@ -55,7 +55,7 @@
       <li class="manage-item">
         <div class="manage-item-main">
           <h3><%= e.title %> — <%= e.company %></h3>
-          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %><% if (e.location) { %> · <%= e.location %><% } %><% if (e.is_current) { %> · current<% } %></p>
+          <p class="meta"><%= formatRange(e.start_date, e.end_date) %><% if (e.location) { %> · <%= e.location %><% } %><% if (e.is_current) { %> · current<% } %></p>
           <% if (e.description) { %><p><%= e.description %></p><% } %>
         </div>
         <div class="manage-item-actions">
@@ -105,3 +105,4 @@
 <% } %>
 
 <%- include('../../partials/footer') %>
+

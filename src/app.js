@@ -48,6 +48,10 @@ function createApp() {
   app.disable('x-powered-by');
   if (isProd()) app.set('trust proxy', 1);
   app.set('view engine', 'ejs');
+  // View-layer formatting helpers (EJS resolves app.locals automatically).
+  const { formatMonth, formatRange } = require('./lib/format');
+  app.locals.formatMonth = formatMonth;
+  app.locals.formatRange = formatRange;
   app.set('views', path.resolve(__dirname, 'views'));
 
   // 1. Security headers (helmet defaults include CSP, HSTS, nosniff, frameguard).

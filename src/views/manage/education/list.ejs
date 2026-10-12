@@ -56,7 +56,7 @@
       <li class="manage-item">
         <div class="manage-item-main">
           <h3><%= e.degree %> — <%= e.institution %></h3>
-          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %><% if (e.field_of_study) { %> · <%= e.field_of_study %><% } %><% if (e.description) { %> · <%= e.description %><% } %></p>
+          <p class="meta"><%= formatRange(e.start_date, e.end_date) %><% if (e.grade) { %> · <%= e.grade %><% } %><% if (e.field_of_study) { %> · <%= e.field_of_study %><% } %><% if (e.description) { %> · <%= e.description %><% } %></p>
           <% if (fieldErrors && fieldErrors['edit_' + e.id]) { %><p class="field-error"><%= fieldErrors['edit_' + e.id] %></p><% } %>
         </div>
         <div class="manage-item-actions">
@@ -106,4 +106,5 @@
 <% } %>
 
 <%- include('../../partials/footer') %>
+
 
