@@ -16,10 +16,15 @@ module.exports = async function globalSetup() {
     throw new Error('DB_DRIVER=postgres requires DATABASE_URL (CI service or Neon rehearsal branch).');
   }
   const { Pool } = require('pg');
+  const url = process.env.DATABASE_URL;
   const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: url,
     max: 2,
-    ssl: { rejectUnauthorized: process.env.PG_ALLOW_SELF_SIGNED === '1' ? false : true },
+    // Only negotiate TLS when the connection string asks for it — local/CI
+    // service containers do not support SSL.
+    ssl: /sslmode=(?!disable)/.test(url)
+      ? { rejectUnauthorized: process.env.PG_ALLOW_SELF_SIGNED === '1' ? false : true }
+      : undefined,
   });
   try {
     // Fresh schema for the entire run; initPostgres re-applies it on first query.

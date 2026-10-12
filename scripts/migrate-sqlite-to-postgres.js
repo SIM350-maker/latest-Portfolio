@@ -120,7 +120,11 @@ async function main() {
   const pg = new Pool({
     connectionString: cs,
     max: 2,
-    ssl: { rejectUnauthorized: process.env.PG_ALLOW_SELF_SIGNED === '1' ? false : true },
+    // Only negotiate TLS when the connection string asks for it (Neon) —
+    // local/CI service containers do not support SSL.
+    ssl: /sslmode=(?!disable)/.test(cs)
+      ? { rejectUnauthorized: process.env.PG_ALLOW_SELF_SIGNED === '1' ? false : true }
+      : undefined,
   });
 
   const client = await pg.connect();
