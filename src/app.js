@@ -134,6 +134,16 @@ function startServer(port) {
   const server = app.listen(port, () => {
     console.log('Server is running on port ' + port + ' (' + process.env.NODE_ENV + ')');
   });
+  server.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+      console.error('FATAL: Port ' + port + ' is already in use. Stop the other process (e.g. an existing container or dev server) or set PORT to a free port, then try again.');
+    } else if (err && err.code === 'EACCES') {
+      console.error('FATAL: Port ' + port + ' requires elevated privileges. Set PORT to a value above 1024.');
+    } else {
+      console.error('FATAL: Server failed to start: ' + (err && err.message ? err.message : err));
+    }
+    process.exit(1);
+  });
   const shutdown = (signal) => {
     console.log(signal + ' received: shutting down');
     server.close(() => {

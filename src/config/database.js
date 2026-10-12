@@ -32,9 +32,8 @@ function connectDB() {
     dbPath = path.join(dataDir, fileName);
   }
   
-  const db = new Database(dbPath);
-  
   try {
+    const db = new Database(dbPath);
     db.pragma('foreign_keys = ON');
     const fk = db.pragma('foreign_keys', { simple: true });
     if (fk !== 1) {

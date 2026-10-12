@@ -1,5 +1,8 @@
 {
   "name": "portfolio-system",
+  "engines": {
+    "node": ">=20"
+  },
   "version": "1.0.0",
   "description": "Portfolio system for software engineers",
   "main": "src/server.js",
@@ -39,5 +42,10 @@
     "nodemon": "^3.1.14",
     "playwright": "^1.x",
     "supertest": "^7.3.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3"
+    ]
   }
 }

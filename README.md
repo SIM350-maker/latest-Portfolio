@@ -16,6 +16,13 @@ A web-based portfolio that makes a software engineer's capabilities observable, 
 - bcrypt credential hashing (owner credential stored as a bcrypt hash in an environment variable)
 - Jest + Supertest for automated verification
 
+## Running
+
+- npm: `npm install` → `npm run dev` (nodemon) or `npm start`
+- pnpm: `pnpm install` → `pnpm dev` (pnpm ≥10 requires the `pnpm.onlyBuiltDependencies` allowlist already present in `package.json` so `better-sqlite3` builds its native bindings — do not remove it)
+- Docker: `docker compose up --build` (container forces production mode and `/data/portfolio.db` on the `./data` volume regardless of your local `.env`)
+- Requires Node ≥ 20 (`engines` pinned); port conflicts and unreadable/corrupt databases exit with a clear `FATAL:` message instead of a stack trace.
+
 ## Setup
 
 1. Install Node.js (LTS) and npm.

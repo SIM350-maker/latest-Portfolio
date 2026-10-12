@@ -24,4 +24,11 @@ if (!Number.isInteger(PORT) || PORT < 1 || PORT > 65535) {
   process.exit(1);
 }
 
-startServer(PORT);
+try {
+  startServer(PORT);
+} catch (err) {
+  // Config/DB failures (missing secrets, unreadable or corrupt database, bad
+  // DB_PATH) land here with a clear message; no stack dump for operators.
+  console.error('FATAL: ' + (err && err.message ? err.message : err));
+  process.exit(1);
+}

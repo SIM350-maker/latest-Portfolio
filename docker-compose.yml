@@ -3,4 +3,10 @@ services:
     build: .
     ports: ["3000:3000"]
     env_file: .env
+    environment:
+      # Container runtime values — override env_file so a local-developer .env
+      # (NODE_ENV=development, empty DB_PATH) never leaks into the container.
+      NODE_ENV: production
+      PORT: "3000"
+      DB_PATH: /data/portfolio.db
     volumes: ["./data:/data"]
