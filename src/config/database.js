@@ -32,8 +32,9 @@ function connectDB() {
     dbPath = path.join(dataDir, fileName);
   }
   
+  let db = null;
   try {
-    const db = new Database(dbPath);
+    db = new Database(dbPath);
     db.pragma('foreign_keys = ON');
     const fk = db.pragma('foreign_keys', { simple: true });
     if (fk !== 1) {
@@ -48,7 +49,7 @@ function connectDB() {
     dbInstance = db;
     return dbInstance;
   } catch (err) {
-    try { db.close(); } catch (_) { /* ignore close failure */ }
+    try { if (db) db.close(); } catch (_) { /* ignore close failure */ }
     throw new Error('Database initialization failed (' + dbPath + '): ' + err.message);
   }
 }
