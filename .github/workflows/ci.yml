@@ -41,3 +41,16 @@ jobs:
         with: { node-version: 20, cache: npm }
       - run: npm ci
       - run: npm test -- --runInBand
+
+  # Accessibility sweep (axe-core, WCAG): public + authenticated manage pages.
+  # Non-blocking first (roadmap INC-010 staging); flip to blocking once stable.
+  a11y:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npx playwright install chromium --with-deps
+      - run: npm run test:a11y

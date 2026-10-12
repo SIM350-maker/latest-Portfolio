@@ -1,4 +1,4 @@
-const { configureTestEnv } = require('./helpers');
+const { configureTestEnv, TEST_PASSWORD } = require('./helpers');
 configureTestEnv();
 
 const { createApp } = require('../src/app');
@@ -8,17 +8,17 @@ const { AxeBuilder } = require('@axe-core/playwright');
 let app;
 let server;
 let port;
+let baseUrl;
 
 test.beforeAll(async () => {
   app = createApp();
-  // Get a free port
   const net = require('net');
   const temporaryServer = net.createServer();
   await new Promise((resolve) => temporaryServer.listen(0, resolve));
   port = temporaryServer.address().port;
   temporaryServer.close();
-  
-  // Start the real server and wait for it to be ready
+  baseUrl = 'http://localhost:' + port;
+
   await new Promise((resolve, reject) => {
     server = app.listen(port);
     server.on('listening', resolve);
@@ -32,35 +32,47 @@ test.afterAll(async () => {
   }
 });
 
-test('should bootstrap app and check accessibility of P0 pages', async ({ page }) => {
-  const testUrls = [
-    '/',
-    '/projects',
-    '/skills',
-    '/manage/login'
+/** Sign in through the real login form so authenticated pages can be scanned. */
+async function login(page) {
+  await page.goto(baseUrl + '/manage/login', { waitUntil: 'networkidle' });
+  await page.fill('input[name="password"]', TEST_PASSWORD);
+  await Promise.all([
+    page.waitForURL('**/manage'),
+    page.click('button[type="submit"]'),
+  ]);
+}
+
+async function expectNoViolations(page, url) {
+  await page.goto(baseUrl + url, { waitUntil: 'networkidle' });
+  const results = await new AxeBuilder({ page }).analyze();
+  const report = results.violations
+    .map((v) => v.id + ' [' + v.impact + '] ' + v.nodes.length + ' node(s) on ' + url)
+    .join('\n');
+  expect(report, 'axe violations on ' + url).toBe('');
+}
+
+test('public P0 pages have no accessibility violations', async ({ page }) => {
+  const publicPages = ['/', '/projects', '/skills', '/manage/login'];
+  for (const url of publicPages) {
+    await expectNoViolations(page, url);
+  }
+});
+
+test('authenticated manage pages have no accessibility violations', async ({ page }) => {
+  await login(page);
+  const managePages = [
+    '/manage',
+    '/manage/profile',
+    '/manage/projects',
+    '/manage/projects/new',
+    '/manage/skills',
+    '/manage/claims',
+    '/manage/evidence',
+    '/manage/experience',
+    '/manage/education',
+    '/manage/cv',
   ];
-
-  // Note: For dynamic routes like /projects/:id and /skills/:id,
-  // we would need to seed data first and then test with actual IDs
-  // For simplicity in this implementation, we'll test the static routes
-  // and note that dynamic route testing would require seeding
-
-  // Use playwright to test each URL
-  for (const url of testUrls) {
-    try {
-      await page.goto('http://localhost:' + port + url, {
-        waitUntil: 'networkidle'
-      });
-      
-      // Inject axe and run accessibility check
-      const axeBuilder = new AxeBuilder({ page });
-      const accessibilityScanResults = await axeBuilder.analyze();
-      
-      // Assert that there are no accessibility violations
-      expect(accessibilityScanResults.violations).toEqual([]);
-    } catch (error) {
-      console.error('Failed to test URL:', url, error);
-      throw error;
-    }
+  for (const url of managePages) {
+    await expectNoViolations(page, url);
   }
 });

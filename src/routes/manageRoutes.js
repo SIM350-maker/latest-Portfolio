@@ -193,7 +193,11 @@ router.post('/projects', async (req, res, next) => {
     outcomes: optionalText(req.body.outcomes, 'outcomes', errors, 5000),
     roles: optionalText(req.body.roles, 'roles', errors, 500),
     technologies: optionalText(req.body.technologies, 'technologies', errors, 1000),
+    deploy_url: optionalText(req.body.deploy_url, 'deploy_url', errors, 2000),
   };
+  if (values.deploy_url && !isHttpUrl(values.deploy_url)) {
+    errors.deploy_url = 'Must be a valid http(s) URL.';
+  }
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/projects/form', { title: 'New project', mode: 'new', project: null, values, fieldErrors: errors });
   }
@@ -220,7 +224,11 @@ router.post('/projects/:id(\\d+)', async (req, res, next) => {
     outcomes: optionalText(req.body.outcomes, 'outcomes', errors, 5000),
     roles: optionalText(req.body.roles, 'roles', errors, 500),
     technologies: optionalText(req.body.technologies, 'technologies', errors, 1000),
+    deploy_url: optionalText(req.body.deploy_url, 'deploy_url', errors, 2000),
   };
+  if (values.deploy_url && !isHttpUrl(values.deploy_url)) {
+    errors.deploy_url = 'Must be a valid http(s) URL.';
+  }
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/projects/form', { title: 'Edit project', mode: 'edit', project: { id }, values, fieldErrors: errors });
   }
@@ -288,6 +296,7 @@ router.post('/skills', async (req, res, next) => {
   const values = {
     name: requireText(req.body.name, 'name', errors, 200),
     description: optionalText(req.body.description, 'description', errors, 5000),
+    category: optionalText(req.body.category, 'category', errors, 100),
   };
   if (Object.keys(errors).length > 0) {
     return res.status(400).render('manage/skills/list', {
@@ -310,6 +319,7 @@ router.post('/skills/:id(\\d+)', async (req, res, next) => {
     const values = {
       name: requireText(req.body.name, 'name', errors, 200),
       description: optionalText(req.body.description, 'description', errors, 5000),
+      category: optionalText(req.body.category, 'category', errors, 100),
     };
     if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
     const dupe = await skillRepo.findByName(values.name);
@@ -366,8 +376,10 @@ router.post('/experience', async (req, res, next) => {
   const values = {
     title: requireText(req.body.title, 'title', errors, 200),
     company: requireText(req.body.company, 'company', errors, 200),
+    location: optionalText(req.body.location, 'location', errors, 200),
     start_date: requireText(req.body.start_date, 'start_date', errors, 50),
     end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    is_current: req.body.is_current === 'on',
     description: optionalText(req.body.description, 'description', errors, 5000),
   };
   if (Object.keys(errors).length > 0) {
@@ -387,8 +399,10 @@ router.post('/experience/:id(\\d+)', async (req, res, next) => {
   const values = {
     title: requireText(req.body.title, 'title', errors, 200),
     company: requireText(req.body.company, 'company', errors, 200),
+    location: optionalText(req.body.location, 'location', errors, 200),
     start_date: requireText(req.body.start_date, 'start_date', errors, 50),
     end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    is_current: req.body.is_current === 'on',
     description: optionalText(req.body.description, 'description', errors, 5000),
   };
   if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
@@ -423,6 +437,7 @@ router.post('/education', async (req, res, next) => {
     field_of_study: optionalText(req.body.field_of_study, 'field_of_study', errors, 200),
     start_date: requireText(req.body.start_date, 'start_date', errors, 50),
     end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    grade: optionalText(req.body.grade, 'grade', errors, 100),
     description: optionalText(req.body.description, 'description', errors, 5000),
   };
   if (Object.keys(errors).length > 0) {
@@ -445,6 +460,7 @@ router.post('/education/:id(\\d+)', async (req, res, next) => {
     field_of_study: optionalText(req.body.field_of_study, 'field_of_study', errors, 200),
     start_date: requireText(req.body.start_date, 'start_date', errors, 50),
     end_date: optionalText(req.body.end_date, 'end_date', errors, 50),
+    grade: optionalText(req.body.grade, 'grade', errors, 100),
     description: optionalText(req.body.description, 'description', errors, 5000),
   };
   if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);

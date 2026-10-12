@@ -17,14 +17,14 @@ async function create(data) {
     throw new ConflictError('Create a profile before adding experience entries.');
   }
   const { rows } = await query(
-    'INSERT INTO experience (profile_id, title, company, start_date, end_date, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
-    [profile.id, data.title, data.company, data.start_date, data.end_date || null, data.description || null]
+    'INSERT INTO experience (profile_id, title, company, location, start_date, end_date, is_current, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id',
+    [profile.id, data.title, data.company, data.location || null, data.start_date, data.end_date || null, Boolean(data.is_current), data.description || null]
   );
   return rows[0].id;
 }
 
 async function update(id, changes) {
-  const allowed = ['title', 'company', 'start_date', 'end_date', 'description'];
+  const allowed = ['title', 'company', 'location', 'start_date', 'end_date', 'is_current', 'description'];
   const fields = [];
   const values = [];
   let n = 1;
@@ -49,3 +49,4 @@ async function remove(id) {
 }
 
 module.exports = { listAll, getById, create, update, remove };
+

@@ -19,14 +19,14 @@ async function getById(id) {
 
 async function create(data) {
   const { rows } = await query(
-    "INSERT INTO project (title, description, outcomes, roles, technologies, publication_state) VALUES ($1, $2, $3, $4, $5, 'Draft') RETURNING id",
-    [data.title, data.description || null, data.outcomes || null, data.roles || null, data.technologies || null]
+    "INSERT INTO project (title, description, outcomes, roles, technologies, deploy_url, publication_state) VALUES ($1, $2, $3, $4, $5, $6, 'Draft') RETURNING id",
+    [data.title, data.description || null, data.outcomes || null, data.roles || null, data.technologies || null, data.deploy_url || null]
   );
   return rows[0].id;
 }
 
 async function update(id, changes) {
-  const allowed = ['title', 'description', 'outcomes', 'roles', 'technologies'];
+  const allowed = ['title', 'description', 'outcomes', 'roles', 'technologies', 'deploy_url'];
   const fields = [];
   const values = [];
   let n = 1;
@@ -118,5 +118,6 @@ module.exports = {
   listAll, listPublished, getById, create, update, setPublicationState, remove,
   listClaims, listEvidence, attachEvidence, listSkills, attachSkill,
 };
+
 
 

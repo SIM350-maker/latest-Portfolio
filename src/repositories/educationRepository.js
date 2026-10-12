@@ -17,17 +17,17 @@ async function create(data) {
     throw new ConflictError('Create a profile before adding education entries.');
   }
   const { rows } = await query(
-    'INSERT INTO education (profile_id, institution, degree, field_of_study, start_date, end_date, description) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
+    'INSERT INTO education (profile_id, institution, degree, field_of_study, start_date, end_date, grade, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id',
     [
       profile.id, data.institution, data.degree, data.field_of_study || null,
-      data.start_date, data.end_date || null, data.description || null,
+      data.start_date, data.end_date || null, data.grade || null, data.description || null,
     ]
   );
   return rows[0].id;
 }
 
 async function update(id, changes) {
-  const allowed = ['institution', 'degree', 'field_of_study', 'start_date', 'end_date', 'description'];
+  const allowed = ['institution', 'degree', 'field_of_study', 'start_date', 'end_date', 'grade', 'description'];
   const fields = [];
   const values = [];
   let n = 1;
@@ -52,3 +52,4 @@ async function remove(id) {
 }
 
 module.exports = { listAll, getById, create, update, remove };
+

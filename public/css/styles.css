@@ -172,6 +172,10 @@ button, .button-primary, .button-secondary {
 .manage-item-main { min-width: 0; flex: 1 1 24rem; }
 .manage-item-main h2, .manage-item-main h3 { margin: 0 0 0.25rem; overflow-wrap: anywhere; }
 .manage-item-actions { display: flex; align-items: center; gap: 0.25rem 0.75rem; flex-wrap: wrap; }
+.edit-disclosure { flex-basis: 100%; border-top: 1px dashed var(--line); margin-top: 0.25rem; padding-top: 0.5rem; }
+.edit-disclosure summary { cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; color: var(--ink-soft); }
+.edit-disclosure form { margin-top: 0.5rem; display: grid; gap: 0.5rem; max-width: 34rem; }
+.edit-disclosure .form-field { margin: 0; }
 .truncate { max-width: 24rem; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom; }
 
 .stat-grid { display: grid; gap: 0.75rem; grid-template-columns: 1fr 1fr; }

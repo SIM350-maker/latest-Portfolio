@@ -66,6 +66,21 @@
             </ul>
           <% } %>
         </div>
+        <details class="edit-disclosure">
+          <summary>Edit</summary>
+          <form method="post" action="/manage/claims/<%= c.id %>" novalidate>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-field">
+              <label for="claim-statement-<%= c.id %>">Statement <span aria-hidden="true">*</span></label>
+              <input type="text" id="claim-statement-<%= c.id %>" name="statement" value="<%= c.statement %>" required maxlength="1000">
+            </div>
+            <div class="form-field">
+              <label for="claim-justification-<%= c.id %>">Justification</label>
+              <textarea id="claim-justification-<%= c.id %>" name="justification" rows="2" maxlength="5000"><%= c.justification || '' %></textarea>
+            </div>
+            <button type="submit" class="button-secondary">Save changes</button>
+          </form>
+        </details>
         <div class="manage-item-actions">
           <form method="post" action="/manage/claims/<%= c.id %>/evidence" class="inline-form attach-form">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -95,4 +110,5 @@
 <% } %>
 
 <%- include('../../partials/footer') %>
+
 

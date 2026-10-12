@@ -15,6 +15,11 @@
       <% if (fieldErrors.name) { %><p class="field-error" id="name-error"><%= fieldErrors.name %></p><% } %>
     </div>
     <div class="form-field">
+      <label for="category">Category</label>
+      <input type="text" id="category" name="category" value="<%= values.category || '' %>" maxlength="100" placeholder="e.g. Programming, Frameworks, Databases">
+      <% if (fieldErrors.category) { %><p class="field-error" id="category-error"><%= fieldErrors.category %></p><% } %>
+    </div>
+    <div class="form-field">
       <label for="description">Description</label>
       <textarea id="description" name="description" rows="3" maxlength="5000" aria-describedby="description-error"><%= values.description || '' %></textarea>
       <% if (fieldErrors.description) { %><p class="field-error" id="description-error"><%= fieldErrors.description %></p><% } %>
@@ -30,9 +35,8 @@
     <% skills.forEach(function (s) { %>
       <li class="manage-item">
         <div class="manage-item-main">
-          <h3><%= s.name %></h3>
+          <h3><%= s.name %><% if (s.category) { %> <span class="meta">(<%= s.category %>)</span><% } %></h3>
           <p class="meta">State: <strong><%= s.publication_state %></strong><% if (s.description) { %> · <%= s.description %><% } %></p>
-          <% if (fieldErrors && fieldErrors['edit_' + s.id]) { %><p class="field-error"><%= fieldErrors['edit_' + s.id] %></p><% } %>
         </div>
         <div class="manage-item-actions">
           <a href="/manage/preview/skill/<%= s.id %>">Preview</a>
@@ -52,10 +56,28 @@
             <button type="submit" class="link-button link-danger">Delete</button>
           </form>
         </div>
+        <details class="edit-disclosure">
+          <summary>Edit</summary>
+          <form method="post" action="/manage/skills/<%= s.id %>" novalidate>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-field">
+              <label for="edit-name-<%= s.id %>">Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="edit-name-<%= s.id %>" name="name" value="<%= s.name %>" required maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="edit-category-<%= s.id %>">Category</label>
+              <input type="text" id="edit-category-<%= s.id %>" name="category" value="<%= s.category || '' %>" maxlength="100">
+            </div>
+            <div class="form-field">
+              <label for="edit-description-<%= s.id %>">Description</label>
+              <textarea id="edit-description-<%= s.id %>" name="description" rows="2" maxlength="5000"><%= s.description || '' %></textarea>
+            </div>
+            <button type="submit" class="button-secondary">Save changes</button>
+          </form>
+        </details>
       </li>
     <% }); %>
   </ul>
 <% } %>
 
 <%- include('../../partials/footer') %>
-

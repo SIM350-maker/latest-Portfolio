@@ -20,22 +20,25 @@ function getDriver() {
 }
 
 /** Parameterized query. $1/$2 placeholders; returns pg-style { rows, rowCount }.
- * Successful mutations publish a 'data-changed' event (SSE near-real-time). */
+ * Successful mutations publish a 'data-changed' event (SSE near-real-time).
+ * JS booleans are normalized per driver (pg BOOLEAN vs SQLite INTEGER). */
 async function query(sql, params = []) {
   const isMutation = /^\s*(INSERT|UPDATE|DELETE|REPLACE)/i.test(sql);
   const returnsRows = /^\s*(SELECT|WITH)/i.test(sql) || /\bRETURNING\b/i.test(sql);
+  const driver = getDriver();
+  const norm = params.map((p) => (typeof p === 'boolean' ? (driver === 'postgres' ? p : Number(p)) : p));
   let result;
-  if (getDriver() === 'postgres') {
+  if (driver === 'postgres') {
     const pg = require('../db/postgres');
-    result = await pg.pgQuery(sql, params);
+    result = await pg.pgQuery(sql, params.map((p) => (typeof p === 'boolean' ? p : p)));
   } else {
     const db = connectDB();
     const text = sql.replace(/\$(\d+)/g, '?');
     if (returnsRows) {
-      const rows = db.prepare(text).all(...params);
+      const rows = db.prepare(text).all(...norm);
       result = { rows, rowCount: rows.length };
     } else {
-      const info = db.prepare(text).run(...params);
+      const info = db.prepare(text).run(...norm);
       result = { rows: [], rowCount: info.changes };
     }
   }

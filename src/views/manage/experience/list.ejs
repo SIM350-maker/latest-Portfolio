@@ -20,6 +20,11 @@
       <% if (fieldErrors.company) { %><p class="field-error" id="company-error"><%= fieldErrors.company %></p><% } %>
     </div>
     <div class="form-field">
+      <label for="location">Location</label>
+      <input type="text" id="location" name="location" value="<%= values.location || '' %>" maxlength="200">
+      <% if (fieldErrors.location) { %><p class="field-error" id="location-error"><%= fieldErrors.location %></p><% } %>
+    </div>
+    <div class="form-field">
       <label for="start_date">Start date <span aria-hidden="true">*</span></label>
       <input type="text" id="start_date" name="start_date" value="<%= values.start_date || '' %>" required maxlength="50" placeholder="e.g. 2024-01" aria-describedby="start_date-error">
       <% if (fieldErrors.start_date) { %><p class="field-error" id="start_date-error"><%= fieldErrors.start_date %></p><% } %>
@@ -28,6 +33,10 @@
       <label for="end_date">End date</label>
       <input type="text" id="end_date" name="end_date" value="<%= values.end_date || '' %>" maxlength="50" placeholder="leave empty for present" aria-describedby="end_date-error">
       <% if (fieldErrors.end_date) { %><p class="field-error" id="end_date-error"><%= fieldErrors.end_date %></p><% } %>
+    </div>
+    <div class="form-field">
+      <input type="checkbox" id="is_current" name="is_current" <% if (values.is_current) { %>checked<% } %>>
+      <label for="is_current">This is my current role</label>
     </div>
     <div class="form-field">
       <label for="description">Description</label>
@@ -46,8 +55,8 @@
       <li class="manage-item">
         <div class="manage-item-main">
           <h3><%= e.title %> — <%= e.company %></h3>
-          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %><% if (e.description) { %> · <%= e.description %><% } %></p>
-          <% if (fieldErrors && fieldErrors['edit_' + e.id]) { %><p class="field-error"><%= fieldErrors['edit_' + e.id] %></p><% } %>
+          <p class="meta"><%= e.start_date %><%= e.end_date ? ' – ' + e.end_date : ' – present' %><% if (e.location) { %> · <%= e.location %><% } %><% if (e.is_current) { %> · current<% } %></p>
+          <% if (e.description) { %><p><%= e.description %></p><% } %>
         </div>
         <div class="manage-item-actions">
           <form method="post" action="/manage/experience/<%= e.id %>/delete" class="inline-form" data-confirm="Delete this experience entry?">
@@ -55,6 +64,41 @@
             <button type="submit" class="link-button link-danger">Delete</button>
           </form>
         </div>
+        <details class="edit-disclosure">
+          <summary>Edit</summary>
+          <form method="post" action="/manage/experience/<%= e.id %>" novalidate>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-field">
+              <label for="exp-title-<%= e.id %>">Title <span aria-hidden="true">*</span></label>
+              <input type="text" id="exp-title-<%= e.id %>" name="title" value="<%= e.title %>" required maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="exp-company-<%= e.id %>">Company <span aria-hidden="true">*</span></label>
+              <input type="text" id="exp-company-<%= e.id %>" name="company" value="<%= e.company %>" required maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="exp-location-<%= e.id %>">Location</label>
+              <input type="text" id="exp-location-<%= e.id %>" name="location" value="<%= e.location || '' %>" maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="exp-start-<%= e.id %>">Start date <span aria-hidden="true">*</span></label>
+              <input type="text" id="exp-start-<%= e.id %>" name="start_date" value="<%= e.start_date %>" required maxlength="50">
+            </div>
+            <div class="form-field">
+              <label for="exp-end-<%= e.id %>">End date</label>
+              <input type="text" id="exp-end-<%= e.id %>" name="end_date" value="<%= e.end_date || '' %>" maxlength="50" placeholder="leave empty for present">
+            </div>
+            <div class="form-field">
+              <input type="checkbox" id="exp-current-<%= e.id %>" name="is_current" <% if (e.is_current) { %>checked<% } %>>
+              <label for="exp-current-<%= e.id %>">This is my current role</label>
+            </div>
+            <div class="form-field">
+              <label for="exp-desc-<%= e.id %>">Description</label>
+              <textarea id="exp-desc-<%= e.id %>" name="description" rows="3" maxlength="5000"><%= e.description || '' %></textarea>
+            </div>
+            <button type="submit" class="button-secondary">Save changes</button>
+          </form>
+        </details>
       </li>
     <% }); %>
   </ul>

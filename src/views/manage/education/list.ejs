@@ -35,6 +35,11 @@
       <% if (fieldErrors.end_date) { %><p class="field-error" id="end_date-error"><%= fieldErrors.end_date %></p><% } %>
     </div>
     <div class="form-field">
+      <label for="grade">Grade</label>
+      <input type="text" id="grade" name="grade" value="<%= values.grade || '' %>" maxlength="100" placeholder="e.g. Second Class Honours">
+      <% if (fieldErrors.grade) { %><p class="field-error" id="grade-error"><%= fieldErrors.grade %></p><% } %>
+    </div>
+        <div class="form-field">
       <label for="description">Description</label>
       <textarea id="description" name="description" rows="3" maxlength="5000" aria-describedby="description-error"><%= values.description || '' %></textarea>
       <% if (fieldErrors.description) { %><p class="field-error" id="description-error"><%= fieldErrors.description %></p><% } %>
@@ -60,9 +65,45 @@
             <button type="submit" class="link-button link-danger">Delete</button>
           </form>
         </div>
+        <details class="edit-disclosure">
+          <summary>Edit</summary>
+          <form method="post" action="/manage/education/<%= e.id %>" novalidate>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-field">
+              <label for="edu-inst-<%= e.id %>">Institution <span aria-hidden="true">*</span></label>
+              <input type="text" id="edu-inst-<%= e.id %>" name="institution" value="<%= e.institution %>" required maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="edu-degree-<%= e.id %>">Degree <span aria-hidden="true">*</span></label>
+              <input type="text" id="edu-degree-<%= e.id %>" name="degree" value="<%= e.degree %>" required maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="edu-field-<%= e.id %>">Field of study</label>
+              <input type="text" id="edu-field-<%= e.id %>" name="field_of_study" value="<%= e.field_of_study || '' %>" maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="edu-start-<%= e.id %>">Start date <span aria-hidden="true">*</span></label>
+              <input type="text" id="edu-start-<%= e.id %>" name="start_date" value="<%= e.start_date %>" required maxlength="50">
+            </div>
+            <div class="form-field">
+              <label for="edu-end-<%= e.id %>">End date</label>
+              <input type="text" id="edu-end-<%= e.id %>" name="end_date" value="<%= e.end_date || '' %>" maxlength="50">
+            </div>
+            <div class="form-field">
+              <label for="edu-grade-<%= e.id %>">Grade</label>
+              <input type="text" id="edu-grade-<%= e.id %>" name="grade" value="<%= e.grade || '' %>" maxlength="100">
+            </div>
+            <div class="form-field">
+              <label for="edu-desc-<%= e.id %>">Description</label>
+              <textarea id="edu-desc-<%= e.id %>" name="description" rows="3" maxlength="5000"><%= e.description || '' %></textarea>
+            </div>
+            <button type="submit" class="button-secondary">Save changes</button>
+          </form>
+        </details>
       </li>
     <% }); %>
   </ul>
 <% } %>
 
 <%- include('../../partials/footer') %>
+

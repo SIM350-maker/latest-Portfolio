@@ -58,3 +58,4 @@ The SQLite database is created and migrated automatically at `data/dev.db` (or `
 
 All authoritative engineering documents live in `docs/` — start with `docs/ENGINEERING-CONSTITUTION.md`, `docs/03-REQUIREMENTS.md`, and the roadmap for current implementation status.
 
+

@@ -37,3 +37,14 @@ data/
 # Uploads (if any)
 public/uploads/
 .neon
+
+# Test artifacts & derived evidence
+test-results/
+playwright-report/
+scripts/cv-populate/cv-extracted.txt
+scripts/cv-populate/schema-discovery.json
+sse-cookies.txt
+cookies*.txt
+
+# CV document (distributed separately, not part of the codebase)
+*.pdf

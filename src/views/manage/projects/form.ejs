@@ -36,6 +36,13 @@
     <% if (fieldErrors.technologies) { %><p class="field-error" id="technologies-error"><%= fieldErrors.technologies %></p><% } %>
   </div>
 
+  <div class="form-field">
+    <label for="deploy_url">Deploy URL</label>
+    <input type="url" id="deploy_url" name="deploy_url" value="<%= values.deploy_url || '' %>" maxlength="2000" placeholder="https://…">
+    <p class="hint" id="deploy_url-hint">Public deployment link, if the project is live.</p>
+    <% if (fieldErrors.deploy_url) { %><p class="field-error" id="deploy_url-error"><%= fieldErrors.deploy_url %></p><% } %>
+  </div>
+
   <div class="form-actions">
     <button type="submit" class="button-primary"><%= mode === 'new' ? 'Create project' : 'Save changes' %></button>
     <a href="/manage/projects" class="button-secondary">Cancel</a>

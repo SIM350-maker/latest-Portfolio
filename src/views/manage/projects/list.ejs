@@ -34,6 +34,21 @@
             <button type="submit" class="link-button link-danger">Delete</button>
           </form>
         </div>
+        <details class="edit-disclosure">
+          <summary>Link evidence / skills</summary>
+          <form method="post" action="/manage/projects/<%= p.id %>/evidence" class="inline-form attach-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <label class="visually-hidden" for="proj-evidence-<%= p.id %>">Evidence ID to attach</label>
+            <input type="number" id="proj-evidence-<%= p.id %>" name="evidence_id" min="1" placeholder="Evidence ID" required>
+            <button type="submit" class="link-button">Attach evidence</button>
+          </form>
+          <form method="post" action="/manage/projects/<%= p.id %>/skills" class="inline-form attach-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <label class="visually-hidden" for="proj-skill-<%= p.id %>">Skill ID to attach</label>
+            <input type="number" id="proj-skill-<%= p.id %>" name="skill_id" min="1" placeholder="Skill ID" required>
+            <button type="submit" class="link-button">Attach skill</button>
+          </form>
+        </details>
       </li>
     <% }); %>
   </ul>

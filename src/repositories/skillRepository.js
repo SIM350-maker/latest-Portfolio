@@ -23,14 +23,14 @@ async function findByName(name) {
 
 async function create(data) {
   const { rows } = await query(
-    "INSERT INTO skill (name, description, publication_state) VALUES ($1, $2, 'Draft') RETURNING id",
-    [data.name, data.description || null]
+    "INSERT INTO skill (name, description, category, publication_state) VALUES ($1, $2, $3, 'Draft') RETURNING id",
+    [data.name, data.description || null, data.category || null]
   );
   return rows[0].id;
 }
 
 async function update(id, changes) {
-  const allowed = ['name', 'description'];
+  const allowed = ['name', 'description', 'category'];
   const fields = [];
   const values = [];
   let n = 1;
@@ -102,5 +102,7 @@ module.exports = {
   listAll, listPublished, getById, findByName, create, update, setPublicationState, remove,
   listClaims, listEvidence, attachEvidence,
 };
+
+
 
 
