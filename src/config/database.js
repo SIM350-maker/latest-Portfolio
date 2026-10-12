@@ -7,29 +7,43 @@ const Database = require('better-sqlite3');
 let dbInstance = null;
 
 /**
- * Active driver: 'sqlite' (default, hermetic tests + local dev) or 'postgres'
- * (Neon). Phase 3 of docs/POSTGRES-DATA-ARCHITECTURE.md flips the default;
- * until then postgres requires explicit DB_DRIVER=postgres.
- * Read dynamically — .env may load after this module is first required.
+ * Active driver (Phase 3 cutover):
+ *  - explicit DB_DRIVER=sqlite|postgres always wins;
+ *  - otherwise: postgres when DATABASE_URL is present (Neon is the primary
+ *    data layer), sqlite fallback for fresh local checkouts without config.
+ * Tests force DB_DRIVER=sqlite (hermetic; see tests/helpers.js).
  */
 function getDriver() {
-  return (process.env.DB_DRIVER || 'sqlite').toLowerCase() === 'postgres' ? 'postgres' : 'sqlite';
+  const explicit = (process.env.DB_DRIVER || '').toLowerCase();
+  if (explicit === 'postgres' || explicit === 'sqlite') return explicit;
+  return process.env.DATABASE_URL && process.env.DATABASE_URL.trim() ? 'postgres' : 'sqlite';
 }
 
-/** Parameterized query. $1/$2 placeholders; returns pg-style { rows, rowCount }. */
+/** Parameterized query. $1/$2 placeholders; returns pg-style { rows, rowCount }.
+ * Successful mutations publish a 'data-changed' event (SSE near-real-time). */
 async function query(sql, params = []) {
+  const isMutation = /^\s*(INSERT|UPDATE|DELETE|REPLACE)/i.test(sql);
+  const returnsRows = /^\s*(SELECT|WITH)/i.test(sql) || /\bRETURNING\b/i.test(sql);
+  let result;
   if (getDriver() === 'postgres') {
     const pg = require('../db/postgres');
-    return pg.pgQuery(sql, params);
+    result = await pg.pgQuery(sql, params);
+  } else {
+    const db = connectDB();
+    const text = sql.replace(/\$(\d+)/g, '?');
+    if (returnsRows) {
+      const rows = db.prepare(text).all(...params);
+      result = { rows, rowCount: rows.length };
+    } else {
+      const info = db.prepare(text).run(...params);
+      result = { rows: [], rowCount: info.changes };
+    }
   }
-  const db = connectDB();
-  const text = sql.replace(/\$(\d+)/g, '?');
-  if (/^\s*(SELECT|WITH)/i.test(sql) || /\bRETURNING\b/i.test(sql)) {
-    const rows = db.prepare(text).all(...params);
-    return { rows, rowCount: rows.length };
+  if (isMutation && result.rowCount > 0 && !/_migrations/.test(sql)) {
+    const { publishDataChanged, entityFromSql } = require('../lib/events');
+    publishDataChanged(entityFromSql(sql));
   }
-  const info = db.prepare(text).run(...params);
-  return { rows: [], rowCount: info.changes };
+  return result;
 }
 
 /** First row or null. */

@@ -64,6 +64,36 @@ router.post('/logout', (req, res) => {
 // Everything below requires an authenticated management session.
 router.use(requireAuth);
 
+// ---------------------------------------------------------------- live events
+// Server-sent events: near-real-time DB → UI reflection (data-architecture
+// plan, requirement 4). Every successful mutation publishes 'data-changed'
+// via the shared query layer; open manage sessions receive it and refresh.
+router.get('/events', (req, res) => {
+  res.set({
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache, no-store',
+    Connection: 'keep-alive',
+    'X-Accel-Buffering': 'no',
+  });
+  res.flushHeaders();
+  res.write('retry: 5000\n\n');
+
+  const { onDataChanged } = require('../lib/events');
+  const send = (event) => {
+    try { res.write('data: ' + JSON.stringify(event) + '\n\n'); } catch (_) { /* client gone */ }
+  };
+  const unsubscribe = onDataChanged(send);
+
+  const heartbeat = setInterval(() => {
+    try { res.write(':ping\n\n'); } catch (_) { /* client gone */ }
+  }, 25000);
+
+  req.on('close', () => {
+    clearInterval(heartbeat);
+    unsubscribe();
+  });
+});
+
 // ---------------------------------------------------------------- dashboard
 router.get('/', async (req, res, next) => {
   try {
