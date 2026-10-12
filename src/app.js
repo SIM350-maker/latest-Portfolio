@@ -8,7 +8,7 @@ const morgan = require('morgan');
 const { connectDB } = require('./config/database');
 const { sessionGuard, ABSOLUTE_TIMEOUT_MS } = require('./middleware/auth');
 const { csrfMiddleware } = require('./middleware/csrf');
-const { publicLimiter, manageLimiter } = require('./middleware/rateLimiters');
+const { publicLimiter, manageLimiter, manageGetLimiter } = require('./middleware/rateLimiters');
 const { noStorePrivate } = require('./middleware/noStore');
 const logger = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
@@ -76,9 +76,14 @@ function createApp() {
   // 4. Session lifecycle: 30m idle / 24h absolute (frozen security design).
   app.use(sessionGuard);
 
-  // 5. Rate limiting: 100/min public, 10/min management (frozen section 5.1).
+  // 5. Rate limiting: 100/min public; management mutations & credential
+  //    endpoints 10/min (frozen section 5.1 — the anti-guessing budget);
+  //    management navigation GETs 60/min so normal dashboard browsing works.
   app.use((req, res, next) => {
-    if (req.path.startsWith('/manage')) return manageLimiter(req, res, next);
+    if (req.path.startsWith('/manage')) {
+      if (req.method === 'GET' || req.method === 'HEAD') return manageGetLimiter(req, res, next);
+      return manageLimiter(req, res, next);
+    }
     return publicLimiter(req, res, next);
   });
 

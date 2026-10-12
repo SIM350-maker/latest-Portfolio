@@ -24,4 +24,15 @@ const manageLimiter = rateLimit({
   message: { error: 'Too many requests, slow down' },
 });
 
-module.exports = { publicLimiter, manageLimiter };
+/** Management navigation: GET/HEAD only. Wide enough for normal dashboard
+ * browsing (frozen 10/min budget applies to mutations & credential endpoints,
+ * which is what it was designed to throttle). */
+const manageGetLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: testMode ? 10000 : 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, slow down' },
+});
+
+module.exports = { publicLimiter, manageLimiter, manageGetLimiter };
