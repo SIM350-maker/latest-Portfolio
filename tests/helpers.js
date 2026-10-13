@@ -74,7 +74,8 @@ async function resetTestData() {
     const { query } = require('../src/config/database');
     await query(
       'TRUNCATE profile, project, skill, evidence, claim, experience, education, ' +
-      'project_skill, project_evidence, skill_evidence, claim_evidence, owner_credential RESTART IDENTITY CASCADE'
+      'certifications, cv_references, recommendations, contact_messages, owner_credential, ' +
+      'project_skill, project_evidence, skill_evidence, claim_evidence RESTART IDENTITY CASCADE'
     );
     return;
   }
@@ -82,6 +83,7 @@ async function resetTestData() {
   const db = connectDB();
   for (const table of [
     'project_skill', 'project_evidence', 'skill_evidence', 'claim_evidence', 'owner_credential',
+    'certifications', 'cv_references', 'recommendations', 'contact_messages',
     'experience', 'education', 'claim', 'evidence', 'skill', 'project', 'profile',
   ]) {
     db.prepare('DELETE FROM ' + table).run();
@@ -89,4 +91,5 @@ async function resetTestData() {
 }
 
 module.exports = { configureTestEnv, extractCsrf, loginAgent, postForm, TEST_PASSWORD, resetTestData };
+
 

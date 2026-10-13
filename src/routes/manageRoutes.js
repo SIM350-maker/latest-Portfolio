@@ -11,11 +11,15 @@ const claimRepo = require('../repositories/claimRepository');
 const evidenceRepo = require('../repositories/evidenceRepository');
 
 const experienceRepo = require('../repositories/experienceRepository');
+const certificationRepo = require('../repositories/certificationRepository');
+const referenceRepo = require('../repositories/referenceRepository');
+const recommendationRepo = require('../repositories/recommendationRepository');
+const contactRepo = require('../repositories/contactRepository');
 const educationRepo = require('../repositories/educationRepository');
 const {
   ValidationError, NotFoundError,
   ACCESSIBILITY_STATES, CLAIM_SOURCES,
-  trimmedString, requireText, optionalText, requireEnum, optionalInt, isHttpUrl,
+  trimmedString, requireText, optionalText, requireEnum, optionalInt, isHttpUrl, isEmail,
 } = require('../lib/validation');
 
 const router = express.Router();
@@ -135,7 +139,7 @@ router.get('/', async (req, res, next) => {
       educations: educations.length,
     };
     const recentActivity = await auditRepo.listRecent(8);
-    return res.render('manage/dashboard', { title: 'Dashboard', profile, counts, recentActivity });
+    return res.render('manage/dashboard', { title: 'Dashboard', profile, counts, recentActivity, unhandledMessages: await contactRepo.countUnhandled() });
   } catch (err) { return next(err); }
 });
 
@@ -827,7 +831,194 @@ router.get('/activity', async (req, res, next) => {
   } catch (err) { return next(err); }
 });
 
+
+
+// ---------------------------------------------------------------- certifications
+router.get('/certifications', async (req, res, next) => {
+  try {
+    const certifications = await certificationRepo.listAll();
+    return res.render('manage/certifications/list', { title: 'Certifications', certifications, values: {}, fieldErrors: {} });
+  } catch (err) { return next(err); }
+});
+
+router.post('/certifications', async (req, res, next) => {
+  const errors = {};
+  const values = {
+    title: requireText(req.body.title, 'title', errors, 200),
+    issuer: optionalText(req.body.issuer, 'issuer', errors, 200),
+  };
+  if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, certificationRepo);
+    return res.status(400).render('manage/certifications/list', {
+      title: 'Certifications', certifications: listState.rows, pagination: listState.pagination, values, fieldErrors: errors,
+    });
+  }
+  try {
+    await certificationRepo.create(values);
+    return res.redirect(303, '/manage/certifications');
+  } catch (err) { return next(err); }
+});
+
+router.post('/certifications/:id(\\d+)', async (req, res, next) => {
+  const id = Number(req.params.id);
+  const errors = {};
+  const values = {
+    title: requireText(req.body.title, 'title', errors, 200),
+    issuer: optionalText(req.body.issuer, 'issuer', errors, 200),
+  };
+  if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
+  try {
+    if ((await certificationRepo.update(id, values)) === 0 && !(await certificationRepo.getById(id))) {
+      throw new NotFoundError('Certification not found.');
+    }
+    return res.redirect(303, '/manage/certifications');
+  } catch (err) { return next(err); }
+});
+
+router.post('/certifications/:id(\\d+)/delete', async (req, res, next) => {
+  try {
+    if (!(await certificationRepo.remove(Number(req.params.id)))) throw new NotFoundError('Certification not found.');
+    return res.redirect(303, '/manage/certifications');
+  } catch (err) { return next(err); }
+});
+
+// ---------------------------------------------------------------- references (private: third-party contact data)
+router.get('/references', async (req, res, next) => {
+  try {
+    const references = await referenceRepo.listAll();
+    return res.render('manage/references/list', { title: 'References', references, values: {}, fieldErrors: {} });
+  } catch (err) { return next(err); }
+});
+
+router.post('/references', async (req, res, next) => {
+  const errors = {};
+  const values = {
+    name: requireText(req.body.name, 'name', errors, 200),
+    role: optionalText(req.body.role, 'role', errors, 200),
+    organization: optionalText(req.body.organization, 'organization', errors, 200),
+    email: optionalText(req.body.email, 'email', errors, 200),
+    phone: optionalText(req.body.phone, 'phone', errors, 50),
+  };
+  if (values.email && !isEmail(values.email)) errors.email = 'Must be a valid email address.';
+  if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, referenceRepo);
+    return res.status(400).render('manage/references/list', {
+      title: 'References', references: listState.rows, pagination: listState.pagination, values, fieldErrors: errors,
+    });
+  }
+  try {
+    await referenceRepo.create(values);
+    return res.redirect(303, '/manage/references');
+  } catch (err) { return next(err); }
+});
+
+router.post('/references/:id(\\d+)', async (req, res, next) => {
+  const id = Number(req.params.id);
+  const errors = {};
+  const values = {
+    name: requireText(req.body.name, 'name', errors, 200),
+    role: optionalText(req.body.role, 'role', errors, 200),
+    organization: optionalText(req.body.organization, 'organization', errors, 200),
+    email: optionalText(req.body.email, 'email', errors, 200),
+    phone: optionalText(req.body.phone, 'phone', errors, 50),
+  };
+  if (values.email && !isEmail(values.email)) errors.email = 'Must be a valid email address.';
+  if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
+  try {
+    if ((await referenceRepo.update(id, values)) === 0 && !(await referenceRepo.getById(id))) {
+      throw new NotFoundError('Reference not found.');
+    }
+    return res.redirect(303, '/manage/references');
+  } catch (err) { return next(err); }
+});
+
+router.post('/references/:id(\\d+)/delete', async (req, res, next) => {
+  try {
+    if (!(await referenceRepo.remove(Number(req.params.id)))) throw new NotFoundError('Reference not found.');
+    return res.redirect(303, '/manage/references');
+  } catch (err) { return next(err); }
+});
+
+// ---------------------------------------------------------------- recommendations
+router.get('/recommendations', async (req, res, next) => {
+  try {
+    const recommendations = await recommendationRepo.listAll();
+    return res.render('manage/recommendations/list', { title: 'Recommendations', recommendations, values: {}, fieldErrors: {} });
+  } catch (err) { return next(err); }
+});
+
+router.post('/recommendations', async (req, res, next) => {
+  const errors = {};
+  const values = {
+    title: requireText(req.body.title, 'title', errors, 300),
+    issuer: optionalText(req.body.issuer, 'issuer', errors, 200),
+  };
+  if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, recommendationRepo);
+    return res.status(400).render('manage/recommendations/list', {
+      title: 'Recommendations', recommendations: listState.rows, pagination: listState.pagination, values, fieldErrors: errors,
+    });
+  }
+  try {
+    await recommendationRepo.create(values);
+    return res.redirect(303, '/manage/recommendations');
+  } catch (err) { return next(err); }
+});
+
+router.post('/recommendations/:id(\\d+)', async (req, res, next) => {
+  const id = Number(req.params.id);
+  const errors = {};
+  const values = {
+    title: requireText(req.body.title, 'title', errors, 300),
+    issuer: optionalText(req.body.issuer, 'issuer', errors, 200),
+  };
+  if (Object.keys(errors).length > 0) throw new ValidationError('Validation failed', errors);
+  try {
+    if ((await recommendationRepo.update(id, values)) === 0 && !(await recommendationRepo.getById(id))) {
+      throw new NotFoundError('Recommendation not found.');
+    }
+    return res.redirect(303, '/manage/recommendations');
+  } catch (err) { return next(err); }
+});
+
+router.post('/recommendations/:id(\\d+)/delete', async (req, res, next) => {
+  try {
+    if (!(await recommendationRepo.remove(Number(req.params.id)))) throw new NotFoundError('Recommendation not found.');
+    return res.redirect(303, '/manage/recommendations');
+  } catch (err) { return next(err); }
+});
+
+// ---------------------------------------------------------------- contact messages (module I)
+router.get('/contact', async (req, res, next) => {
+  try {
+    const contactMessages = await contactRepo.listAll();
+    const unhandled = await contactRepo.countUnhandled();
+    return res.render('manage/contact/list', { title: 'Contact messages', contactMessages, unhandled, values: {}, fieldErrors: {} });
+  } catch (err) { return next(err); }
+});
+
+router.post('/contact/:id(\\d+)/handle', async (req, res, next) => {
+  try {
+    if (!(await contactRepo.getById(Number(req.params.id)))) throw new NotFoundError('Message not found.');
+    await contactRepo.markHandled(Number(req.params.id));
+    return res.redirect(303, '/manage/contact');
+  } catch (err) { return next(err); }
+});
+
+router.post('/contact/:id(\\d+)/delete', async (req, res, next) => {
+  try {
+    if (!(await contactRepo.getById(Number(req.params.id)))) throw new NotFoundError('Message not found.');
+    await contactRepo.remove(Number(req.params.id));
+    return res.redirect(303, '/manage/contact');
+  } catch (err) { return next(err); }
+});
+
 module.exports = router;
+
+
+
+
+
 
 
 

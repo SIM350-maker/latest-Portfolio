@@ -1,0 +1,44 @@
+<%- include('../partials/header', { title, isAuthenticated, csrfToken: '', metaDescription, ogPath }) %>
+
+<article class="detail">
+  <h1>Contact</h1>
+
+  <% if (profile && profile.contact_info) { %><p class="meta"><%= profile.contact_info %></p><% } %>
+
+  <% if (submitted) { %>
+    <div class="banner" role="status">Thank you — your message has been received.</div>
+  <% } %>
+
+  <section aria-labelledby="contact-form-heading">
+    <h2 id="contact-form-heading">Send a message</h2>
+    <% if (fieldErrors && Object.keys(fieldErrors).length > 0) { %>
+      <div class="banner banner-error" role="alert">Please fix the errors below.</div>
+    <% } %>
+    <form method="post" action="/contact" novalidate>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <!-- honeypot: hidden from humans, filled by bots -->
+      <div class="form-field visually-hidden" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="form-field">
+        <label for="name">Name <span aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" value="<%= values.name || '' %>" required maxlength="200" aria-describedby="name-error">
+        <% if (fieldErrors.name) { %><p class="field-error" id="name-error"><%= fieldErrors.name %></p><% } %>
+      </div>
+      <div class="form-field">
+        <label for="email">Email <span aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" value="<%= values.email || '' %>" required maxlength="200" aria-describedby="email-error">
+        <% if (fieldErrors.email) { %><p class="field-error" id="email-error"><%= fieldErrors.email %></p><% } %>
+      </div>
+      <div class="form-field">
+        <label for="message">Message <span aria-hidden="true">*</span></label>
+        <textarea id="message" name="message" rows="6" required maxlength="5000" aria-describedby="message-error"><%= values.message || '' %></textarea>
+        <% if (fieldErrors.message) { %><p class="field-error" id="message-error"><%= fieldErrors.message %></p><% } %>
+      </div>
+      <button type="submit" class="button-primary">Send message</button>
+    </form>
+  </section>
+</article>
+
+<%- include('../partials/footer') %>

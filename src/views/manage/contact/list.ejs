@@ -1,0 +1,37 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<div class="manage-toolbar">
+  <h1>Contact messages</h1>
+</div>
+<p class="meta"><%= contactMessages.length %> total · <strong><%= unhandled %></strong> awaiting handling. Submissions arrive from the public <a href="/contact">contact form</a>.</p>
+
+<% if (contactMessages.length === 0) { %>
+  <p>No messages yet.</p>
+<% } else { %>
+  <ul class="manage-list">
+    <% contactMessages.forEach(function (m) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h3><%= m.name %> <<%= m.email %>></h3>
+          <p class="meta"><%= m.created_at %> · <% if (m.handled) { %>handled<% } else { %><strong>awaiting handling</strong><% } %></p>
+          <p><%= m.message %></p>
+        </div>
+        <div class="manage-item-actions">
+          <a href="mailto:<%= m.email %>?subject=Re: your portfolio message">Reply</a>
+          <% if (!m.handled) { %>
+            <form method="post" action="/manage/contact/<%= m.id %>/handle" class="inline-form">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="link-button">Mark handled</button>
+            </form>
+          <% } %>
+          <form method="post" action="/manage/contact/<%= m.id %>/delete" class="inline-form" data-confirm="Delete this message permanently?">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="link-button link-danger">Delete</button>
+          </form>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../../partials/footer') %>

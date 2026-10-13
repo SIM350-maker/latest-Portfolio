@@ -110,11 +110,14 @@ function createApp() {
   app.use(noStorePrivate);
 
   // 6b. Public boundary is GET-only: state-changing methods are accepted
-  //     exclusively under /manage; everywhere else returns 405. This check
-  //     precedes CSRF so the method contract is not masked by token errors.
+  //     exclusively under /manage plus the public contact form (the only
+  //     public write — CSRF + honeypot + rate limiting still apply);
+  //     everywhere else returns 405. This check precedes CSRF so the method
+  //     contract is not masked by token errors.
   app.use((req, res, next) => {
     if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) return next();
     if (req.path.startsWith('/manage')) return next();
+    if (req.path === '/contact') return next();
     return res.status(405).json({ error: 'Method Not Allowed' });
   });
 

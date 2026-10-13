@@ -1,0 +1,58 @@
+<%- include('../partials/header', { title, isAuthenticated, csrfToken: '', metaDescription, ogPath }) %>
+
+<article class="detail">
+  <h1><%= profile.name %></h1>
+  <% if (profile.role) { %><p class="meta"><%= profile.role %></p><% } %>
+  <% if (profile.contact_info) { %><p class="meta"><%= profile.contact_info %></p><% } %>
+  <p class="meta"><a href="/contact">Contact me</a></p>
+
+  <% if (profile.summary) { %>
+    <section><h2>Professional Summary</h2><p><%= profile.summary %></p></section>
+  <% } %>
+
+  <% if (experiences.length > 0) { %>
+    <section><h2>Professional Experience</h2>
+      <% experiences.forEach(function (e) { %>
+        <div class="item">
+          <h3><%= e.title %> — <%= e.company %></h3>
+          <p class="meta"><%= formatRange(e.start_date, e.end_date) %><% if (e.location) { %> · <%= e.location %><% } %></p>
+          <% if (e.description) { %><p><%= e.description %></p><% } %>
+        </div>
+      <% }); %>
+    </section>
+  <% } %>
+
+  <% if (educations.length > 0) { %>
+    <section><h2>Education</h2>
+      <% educations.forEach(function (e) { %>
+        <div class="item">
+          <h3><%= e.degree %> — <%= e.institution %></h3>
+          <p class="meta"><%= formatRange(e.start_date, e.end_date) %><% if (e.grade) { %> · <%= e.grade %><% } %><% if (e.field_of_study) { %> · <%= e.field_of_study %><% } %></p>
+          <% if (e.description) { %><p><%= e.description %></p><% } %>
+        </div>
+      <% }); %>
+    </section>
+  <% } %>
+
+  <% if (certifications.length > 0) { %>
+    <section><h2>Certifications & Training</h2>
+      <ul class="manage-links">
+        <% certifications.forEach(function (c) { %>
+          <li><%= c.title %><% if (c.issuer) { %> — <%= c.issuer %><% } %></li>
+        <% }); %>
+      </ul>
+    </section>
+  <% } %>
+
+  <% if (recommendations.length > 0) { %>
+    <section><h2>Recommendations</h2>
+      <ul class="manage-links">
+        <% recommendations.forEach(function (r) { %>
+          <li><%= r.title %><% if (r.issuer) { %> — <%= r.issuer %><% } %></li>
+        <% }); %>
+      </ul>
+    </section>
+  <% } %>
+</article>
+
+<%- include('../partials/footer') %>

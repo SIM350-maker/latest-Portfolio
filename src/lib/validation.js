@@ -85,6 +85,11 @@ function isHttpUrl(value) {
   }
 }
 
+/** Pragmatic email shape check (route-level); the DB stores it as TEXT. */
+function isEmail(value) {
+  return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 module.exports = {
   ValidationError,
   ConflictError,
@@ -98,4 +103,5 @@ module.exports = {
   requireEnum,
   optionalInt,
   isHttpUrl,
+  isEmail,
 };

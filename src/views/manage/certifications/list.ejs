@@ -1,0 +1,62 @@
+<%- include('../../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<h1>Certifications & Training</h1>
+
+<section aria-labelledby="new-certification-heading">
+  <h2 id="new-certification-heading">Add a certification</h2>
+  <% if (fieldErrors && Object.keys(fieldErrors).length > 0) { %>
+    <div class="banner banner-error" role="alert">Please fix the errors below.</div>
+  <% } %>
+  <form method="post" action="/manage/certifications" novalidate>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <div class="form-field">
+      <label for="title">Title <span aria-hidden="true">*</span></label>
+      <input type="text" id="title" name="title" value="<%= values.title || '' %>" required maxlength="200" aria-describedby="title-error">
+      <% if (fieldErrors.title) { %><p class="field-error" id="title-error"><%= fieldErrors.title %></p><% } %>
+    </div>
+    <div class="form-field">
+      <label for="issuer">Issuer</label>
+      <input type="text" id="issuer" name="issuer" value="<%= values.issuer || '' %>" maxlength="200">
+      <% if (fieldErrors.issuer) { %><p class="field-error" id="issuer-error"><%= fieldErrors.issuer %></p><% } %>
+    </div>
+    <button type="submit" class="button-primary">Add certification</button>
+  </form>
+</section>
+
+<% if (certifications.length === 0) { %>
+  <p>No certifications yet.</p>
+<% } else { %>
+  <ul class="manage-list">
+    <% certifications.forEach(function (c) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h3><%= c.title %></h3>
+          <p class="meta"><% if (c.issuer) { %><%= c.issuer %><% } %></p>
+        </div>
+        <div class="manage-item-actions">
+          <form method="post" action="/manage/certifications/<%= c.id %>/delete" class="inline-form" data-confirm="Delete this certification?">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="link-button link-danger">Delete</button>
+          </form>
+        </div>
+        <details class="edit-disclosure">
+          <summary>Edit</summary>
+          <form method="post" action="/manage/certifications/<%= c.id %>" novalidate>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-field">
+              <label for="cert-title-<%= c.id %>">Title <span aria-hidden="true">*</span></label>
+              <input type="text" id="cert-title-<%= c.id %>" name="title" value="<%= c.title %>" required maxlength="200">
+            </div>
+            <div class="form-field">
+              <label for="cert-issuer-<%= c.id %>">Issuer</label>
+              <input type="text" id="cert-issuer-<%= c.id %>" name="issuer" value="<%= c.issuer || '' %>" maxlength="200">
+            </div>
+            <button type="submit" class="button-secondary">Save changes</button>
+          </form>
+        </details>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<%- include('../../partials/footer') %>

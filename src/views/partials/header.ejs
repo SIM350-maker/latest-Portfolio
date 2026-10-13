@@ -27,7 +27,9 @@
         <li><a href="/projects">Projects</a></li>
         <li><a href="/skills">Skills</a></li>
         <% if (typeof isAuthenticated !== 'undefined' && isAuthenticated) { %>
-          <li><a href="/manage">Manage</a></li>
+          <li><a href="/cv">CV</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/manage">Manage</a></li>
           <li>
             <form method="post" action="/manage/logout" class="inline-form">
               <input type="hidden" name="_csrf" value="<%= typeof csrfToken !== 'undefined' ? csrfToken : '' %>">

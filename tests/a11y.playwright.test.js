@@ -52,7 +52,7 @@ async function expectNoViolations(page, url) {
 }
 
 test('public P0 pages have no accessibility violations', async ({ page }) => {
-  const publicPages = ['/', '/projects', '/skills', '/manage/login'];
+  const publicPages = ['/', '/projects', '/skills', '/cv', '/contact', '/manage/login'];
   for (const url of publicPages) {
     await expectNoViolations(page, url);
   }
@@ -72,6 +72,10 @@ test('authenticated manage pages have no accessibility violations', async ({ pag
     '/manage/education',
     '/manage/cv',
     '/manage/activity',
+    '/manage/certifications',
+    '/manage/references',
+    '/manage/recommendations',
+    '/manage/contact',
   ];
   for (const url of managePages) {
     await expectNoViolations(page, url);
@@ -90,4 +94,6 @@ test('CV print button triggers window.print through the external script (F-01)',
   const printed = await page.evaluate(() => window.__printed);
   expect(printed).toBe(true);
 });
+
+
 
