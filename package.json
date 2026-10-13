@@ -11,7 +11,8 @@
     "dev": "nodemon src/server.js",
     "test": "jest",
     "test:a11y": "playwright test tests/a11y.playwright.test.js",
-    "lint": "eslint src tests"
+    "lint": "eslint src tests",
+    "test:coverage": "jest --coverage"
   },
   "jest": {
     "testEnvironment": "node",
@@ -20,7 +21,34 @@
       "<rootDir>/tests/a11y.playwright.test.js"
     ],
     "globalSetup": "./tests/jest-global-setup.js",
-    "testTimeout": 20000
+    "testTimeout": 20000,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/db/**",
+      "!src/server.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 65,
+        "branches": 55,
+        "lines": 70
+      },
+      "./src/repositories/": {
+        "lines": 78
+      },
+      "./src/routes/": {
+        "lines": 75
+      },
+      "./src/middleware/": {
+        "lines": 78
+      },
+      "./src/config/": {
+        "lines": 72
+      },
+      "./src/lib/": {
+        "lines": 85
+      }
+    }
   },
   "dependencies": {
     "@neon/config": "^1.8.6",
