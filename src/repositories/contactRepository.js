@@ -26,7 +26,7 @@ async function create(data) {
 
 async function markHandled(id) {
   const { rowCount } = await query(
-    'UPDATE contact_messages SET handled = TRUE, handled_at = now() WHERE id = $1 AND handled = FALSE', [id]
+    'UPDATE contact_messages SET handled = TRUE, handled_at = CURRENT_TIMESTAMP WHERE id = $1 AND handled = FALSE', [id]
   );
   return rowCount > 0;
 }

@@ -55,7 +55,7 @@ async function setAccessibility(id, status) {
  */
 async function remove(id) {
   const { rowCount } = await query(
-    'UPDATE evidence SET deleted_at = now() WHERE id = $1 AND ' + LIVE, [id]
+    'UPDATE evidence SET deleted_at = CURRENT_TIMESTAMP WHERE id = $1 AND ' + LIVE, [id]
   );
   return rowCount > 0;
 }
@@ -69,3 +69,4 @@ async function listClaims(evidenceId) {
 }
 
 module.exports = { listAll, listPaged, getById, create, setAccessibility, remove, listClaims };
+

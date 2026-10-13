@@ -48,4 +48,20 @@ async function remove(id) {
   return rowCount > 0;
 }
 
-module.exports = { listAll, getById, create, update, remove };
+/** Paginated + case-insensitive search across title/issuer. */
+async function listPaged({ q = '', limit = 20, offset = 0 } = {}) {
+  const params = [];
+  let where = '';
+  if (q) {
+    params.push('%' + String(q).toLowerCase().replace(/([%_\\])/g, '\\$1') + '%');
+    where = "WHERE lower(title) LIKE $1 ESCAPE '\\' OR lower(COALESCE(issuer, '')) LIKE $1 ESCAPE '\\'";
+  }
+  const total = Number((await one('SELECT COUNT(*) AS n FROM certifications ' + where, params)).n);
+  const rows = await all(
+    'SELECT * FROM certifications ' + where + ' ORDER BY created_at DESC, id DESC LIMIT $' + (params.length + 1) + ' OFFSET $' + (params.length + 2),
+    [...params, limit, offset]
+  );
+  return { rows, total };
+}
+
+module.exports = { listAll, listPaged, getById, create, update, remove };
