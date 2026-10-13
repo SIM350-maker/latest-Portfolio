@@ -51,15 +51,41 @@ function requireAuth(req, res, next) {
   });
 }
 
+/**
+ * Active credential hash: the database value (rotation) supersedes the
+ * environment bootstrap hash (OWNER_BCRYPT_HASH), which remains the
+ * break-glass credential when no rotation has occurred.
+ */
+async function getActiveCredentialHash() {
+  try {
+    const { one } = require('../config/database');
+    const row = await one('SELECT password_hash FROM owner_credential ORDER BY id DESC LIMIT 1');
+    if (row && row.password_hash) return row.password_hash;
+  } catch (_) {
+    // Database unavailable: fall through to the environment bootstrap hash.
+  }
+  return process.env.OWNER_BCRYPT_HASH || '';
+}
+
 /** Verify the management credential (constant-time bcrypt comparison). */
-function verifyCredential(password, bcrypt) {
-  const hash = process.env.OWNER_BCRYPT_HASH || '';
+async function verifyCredential(password) {
+  const hash = await getActiveCredentialHash();
   if (!hash) return false;
   try {
-    return bcrypt.compareSync(String(password || ''), hash);
+    return require('bcryptjs').compareSync(String(password || ''), hash);
   } catch (_) {
     return false;
   }
 }
 
-module.exports = { sessionGuard, requireAuth, verifyCredential, IDLE_TIMEOUT_MS, ABSOLUTE_TIMEOUT_MS };
+/** Current credential provenance for the security page. */
+async function credentialProvenance() {
+  try {
+    const { one } = require('../config/database');
+    const row = await one('SELECT updated_at FROM owner_credential ORDER BY id DESC LIMIT 1');
+    if (row) return { source: 'database (rotated)', rotated_at: row.updated_at };
+  } catch (_) { /* fall through to env */ }
+  return { source: 'environment bootstrap (OWNER_BCRYPT_HASH)', rotated_at: null };
+}
+
+module.exports = { sessionGuard, requireAuth, verifyCredential, getActiveCredentialHash, credentialProvenance, IDLE_TIMEOUT_MS, ABSOLUTE_TIMEOUT_MS };

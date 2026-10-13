@@ -3,7 +3,7 @@
 // UI CRUD coverage: every mutation endpoint must be reachable from the
 // management UI (audit gap fix). Drives the real forms the way the browser does.
 
-const { configureTestEnv, loginAgent, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, postForm, TEST_PASSWORD, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
@@ -16,6 +16,7 @@ const projectRepo = require('../src/repositories/projectRepository');
 const profileRepo = require('../src/repositories/profileRepository');
 const evidenceRepo = require('../src/repositories/evidenceRepository');
 const { connectDB } = require('../src/config/database');
+const { verifyCredential } = require('../src/middleware/auth');
 
 describe('UI CRUD coverage — edit forms reach UPDATE endpoints', () => {
   const app = createApp();
@@ -169,3 +170,74 @@ describe('F-02 — publish endpoints return 404 for nonexistent rows', () => {
     expect((await postForm(agent, csrf, '/manage/claims/999999/unpublish')).status).toBe(404);
   });
 });
+
+describe('F-07 — credential rotation', () => {
+  const app = createApp();
+
+  beforeEach(async () => {
+    await resetTestData();
+  });
+
+  it('security page renders the rotation form with provenance (200)', async () => {
+    const { agent } = await loginAgent(request, app);
+    const page = await agent.get('/manage/security');
+    expect(page.status).toBe(200);
+    expect(page.text).toContain('name="current_password"');
+    expect(page.text).toContain('name="new_password"');
+    expect(page.text).toContain('Active source:');
+  });
+
+  it('rotation rejects an incorrect current password (400)', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    const res = await postForm(agent, csrf, '/manage/security/password', {
+      current_password: 'totally-wrong',
+      new_password: 'rotated-password-2026',
+      confirm_password: 'rotated-password-2026',
+    });
+    expect(res.status).toBe(400);
+    expect(res.text).toContain('Current password is incorrect.');
+  });
+
+  it('rotation rejects short and mismatched passwords (400)', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    const short = await postForm(agent, csrf, '/manage/security/password', {
+      current_password: TEST_PASSWORD, new_password: 'short', confirm_password: 'short',
+    });
+    expect(short.status).toBe(400);
+    expect(short.text).toContain('at least 12 characters');
+    const mismatch = await postForm(agent, csrf, '/manage/security/password', {
+      current_password: TEST_PASSWORD, new_password: 'rotated-password-2026', confirm_password: 'different-2026',
+    });
+    expect(mismatch.status).toBe(400);
+    expect(mismatch.text).toContain('Passwords do not match.');
+  });
+
+  it('rotation persists the new hash, supersedes the old password, and re-issues the session', async () => {
+    const { agent, csrf } = await loginAgent(request, app);
+    const res = await postForm(agent, csrf, '/manage/security/password', {
+      current_password: TEST_PASSWORD,
+      new_password: 'rotated-password-2026',
+      confirm_password: 'rotated-password-2026',
+    });
+    expect(res.status).toBe(303);
+
+    // DB credential supersedes the environment bootstrap hash:
+    expect(await verifyCredential('rotated-password-2026')).toBe(true);
+    expect(await verifyCredential(TEST_PASSWORD)).toBe(false);
+
+    // fresh login with the rotated credential works
+    const freshAgent = request.agent(app);
+    const page = await freshAgent.get('/manage/login');
+    const token = /name="_csrf"\s+value="([^"]+)"/.exec(page.text)[1];
+    const relogin = await freshAgent.post('/manage/login').type('form').redirects(0)
+      .send({ _csrf: token, password: 'rotated-password-2026' });
+    expect(relogin.status).toBe(303);
+
+    // cleanup: restore env-bootstrap credential state for other suites
+    const { query } = require('../src/config/database');
+    await query('DELETE FROM owner_credential');
+  });
+});
+
+
+

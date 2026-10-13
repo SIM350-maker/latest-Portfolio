@@ -3,7 +3,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 
-const { requireAuth, verifyCredential } = require('../middleware/auth');
+const { requireAuth, verifyCredential, credentialProvenance } = require('../middleware/auth');
 const profileRepo = require('../repositories/profileRepository');
 const projectRepo = require('../repositories/projectRepository');
 const skillRepo = require('../repositories/skillRepository');
@@ -37,9 +37,13 @@ router.get('/login', (req, res) => {
   return res.render('manage/login', { title: 'Sign in', error: null });
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res, next) => {
   const password = trimmedString(req.body.password);
-  if (!password || !verifyCredential(password, bcrypt)) {
+  let valid = false;
+  try {
+    valid = Boolean(password) && (await verifyCredential(password));
+  } catch (err) { return next(err); }
+  if (!valid) {
     return res.status(401).render('manage/login', { title: 'Sign in', error: 'Invalid credentials.' });
   }
   // Session fixation protection: rotate the session identifier at
@@ -698,5 +702,78 @@ router.get('/cv/download', async (req, res, next) => {
   } catch (err) { return next(err); }
 });
 
+// ---------------------------------------------------------------- security (F-07)
+// Credential rotation: the database hash supersedes the environment bootstrap
+// hash (OWNER_BCRYPT_HASH remains the break-glass credential when no rotation
+// has occurred). Rotation requires the current password, enforces a 12-char
+// minimum, and re-issues the session on success.
+const MIN_PASSWORD_LENGTH = 12;
+
+router.get('/security', async (req, res, next) => {
+  try {
+    const provenance = await credentialProvenance();
+    return res.render('manage/security', {
+      title: 'Security',
+      provenance,
+      rotated: req.query.rotated === '1',
+      fieldErrors: {},
+    });
+  } catch (err) { return next(err); }
+});
+
+router.post('/security/password', async (req, res, next) => {
+  const errors = {};
+  const current = trimmedString(req.body.current_password);
+  const next1 = String(req.body.new_password || '');
+  const confirm = String(req.body.confirm_password || '');
+
+  let currentValid = false;
+  try {
+    currentValid = Boolean(current) && (await verifyCredential(current));
+  } catch (err) { return next(err); }
+  if (!currentValid) errors.current_password = 'Current password is incorrect.';
+  if (next1.length < MIN_PASSWORD_LENGTH) {
+    errors.new_password = 'New password must be at least ' + MIN_PASSWORD_LENGTH + ' characters.';
+  }
+  if (next1 !== confirm) {
+    errors.confirm_password = 'Passwords do not match.';
+  }
+  if (!errors.new_password && !errors.current_password) {
+    try {
+      if (await verifyCredential(next1)) {
+        errors.new_password = 'New password must differ from the current password.';
+      }
+    } catch (err) { return next(err); }
+  }
+  if (Object.keys(errors).length > 0) {
+    const provenance = await credentialProvenance();
+    return res.status(400).render('manage/security', {
+      title: 'Security', provenance, rotated: false, fieldErrors: errors,
+    });
+  }
+
+  try {
+    const hash = bcrypt.hashSync(next1, 12);
+    const db = require('../config/database');
+    const hasDbCredential = await db.one('SELECT id FROM owner_credential LIMIT 1');
+    if (hasDbCredential) {
+      await db.query('UPDATE owner_credential SET password_hash = $1 WHERE id = $2', [hash, hasDbCredential.id]);
+    } else {
+      await db.query('INSERT INTO owner_credential (password_hash) VALUES ($1)', [hash]);
+    }
+    // Re-issue the session after a credential change (defence against session theft).
+    const oldToken = req.session.csrfToken;
+    return req.session.regenerate((err) => {
+      if (err) return next(err);
+      req.session.authenticated = true;
+      req.session.csrfToken = oldToken;
+      req.session.createdAt = Date.now();
+      req.session.lastSeen = Date.now();
+      return res.redirect(303, '/manage/security?rotated=1');
+    });
+  } catch (err) { return next(err); }
+});
+
 module.exports = router;
+
 
