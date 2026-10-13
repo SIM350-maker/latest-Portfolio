@@ -20,6 +20,7 @@ function errorHandler(err, req, res, next) {
   };
   if (status >= 500) {
     console.error('Unhandled error:', JSON.stringify(logContext));
+    console.error(err && err.stack ? err.stack : err); // server-side only; never rendered
     if (isOperationalError(err)) {
       console.error('Database error code:', err.code);
     }

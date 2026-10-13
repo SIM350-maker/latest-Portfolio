@@ -27,4 +27,22 @@ function formatRange(start, end) {
   return formatMonth(start) + ' – ' + (end ? formatMonth(end) : 'present');
 }
 
-module.exports = { formatMonth, formatRange };
+/**
+ * Human summary of an audit_log entry. new_data is a JSONB object on
+ * PostgreSQL and a JSON string on SQLite — parse defensively and surface the
+ * most identifying field available.
+ */
+function auditSummary(entry) {
+  let data = entry.new_data;
+  if (typeof data === 'string') {
+    try { data = JSON.parse(data); } catch (_) { data = null; }
+  }
+  if (data && typeof data === 'object') {
+    const label = data.name || data.title || data.statement || data.institution
+      || data.company || data.description || data.file_path;
+    if (label) return String(label).slice(0, 120);
+  }
+  return 'row #' + entry.row_id;
+}
+
+module.exports = { formatMonth, formatRange, auditSummary };

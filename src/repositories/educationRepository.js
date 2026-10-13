@@ -7,6 +7,22 @@ async function listAll() {
   return all('SELECT * FROM education ORDER BY start_date DESC, id DESC');
 }
 
+/** Paginated + case-insensitive search across institution/degree/field_of_study/description. */
+async function listPaged({ q = '', limit = 20, offset = 0 } = {}) {
+  const params = [];
+  let where = '';
+  if (q) {
+    params.push('%' + String(q).toLowerCase().replace(/([%_\\])/g, '\\$1') + '%');
+    where = "WHERE lower(institution) LIKE $1 ESCAPE '\\' OR lower(degree) LIKE $1 ESCAPE '\\' OR lower(COALESCE(field_of_study, '')) LIKE $1 ESCAPE '\\' OR lower(COALESCE(description, '')) LIKE $1 ESCAPE '\\'";
+  }
+  const total = Number((await one('SELECT COUNT(*) AS n FROM education ' + where, params)).n);
+  const rows = await all(
+    'SELECT * FROM education ' + where + ' ORDER BY start_date DESC, id DESC LIMIT $' + (params.length + 1) + ' OFFSET $' + (params.length + 2),
+    [...params, limit, offset]
+  );
+  return { rows, total };
+}
+
 async function getById(id) {
   return one('SELECT * FROM education WHERE id = $1', [id]) || null;
 }
@@ -18,10 +34,7 @@ async function create(data) {
   }
   const { rows } = await query(
     'INSERT INTO education (profile_id, institution, degree, field_of_study, start_date, end_date, grade, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id',
-    [
-      profile.id, data.institution, data.degree, data.field_of_study || null,
-      data.start_date, data.end_date || null, data.grade || null, data.description || null,
-    ]
+    [profile.id, data.institution, data.degree, data.field_of_study || null, data.start_date, data.end_date || null, data.grade || null, data.description || null]
   );
   return rows[0].id;
 }
@@ -51,5 +64,4 @@ async function remove(id) {
   return rowCount > 0;
 }
 
-module.exports = { listAll, getById, create, update, remove };
-
+module.exports = { listAll, listPaged, getById, create, update, remove };

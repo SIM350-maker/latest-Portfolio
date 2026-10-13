@@ -8,7 +8,17 @@
 <% if (projects.length === 0) { %>
   <p>No projects yet. <a href="/manage/projects/new">Create the first one.</a></p>
 <% } else { %>
-  <ul class="manage-list">
+  
+<section aria-labelledby="search-heading">
+  <h2 id="search-heading">Search projects</h2>
+  <form method="get" action="/manage/projects" class="search-form">
+    <label class="visually-hidden" for="q">Search</label>
+    <input type="search" id="q" name="q" value="<%= typeof pagination !== 'undefined' && pagination.q ? pagination.q : '' %>" placeholder="title, description, technologies, role">
+    <button type="submit" class="button-secondary">Search</button>
+    <% if (typeof pagination !== 'undefined' && pagination.q) { %><a href="/manage/projects" class="link-button">Clear</a><% } %>
+  </form>
+</section>
+<ul class="manage-list">
     <% projects.forEach(function (p) { %>
       <li class="manage-item">
         <div class="manage-item-main">
@@ -52,7 +62,11 @@
       </li>
     <% }); %>
   </ul>
+  <%- include('../../partials/pagination', { pagination, basePath: '/manage/projects' }) %>
 <% } %>
 
 <%- include('../../partials/footer') %>
+
+
+
 

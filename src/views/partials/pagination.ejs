@@ -1,0 +1,12 @@
+<% if (!pagination || typeof pagination.total === 'undefined') { %><% return; %><% } %>
+<%
+  // Expects: pagination { page, total, pages, q }, basePath (route root for
+  // page links; search forms build their own URLs).
+  const qs = (n) => basePath + '?page=' + n + (pagination.q ? '&q=' + encodeURIComponent(pagination.q) : '');
+%>
+<nav class="pagination" aria-label="Pagination">
+  <span class="meta"><%= pagination.total %> record<%= pagination.total === 1 ? '' : 's' %><% if (pagination.q) { %> matching "<%= pagination.q %>"<% } %> · page <%= pagination.page %> of <%= pagination.pages %></span>
+  <% if (pagination.page > 1) { %><a href="<%= qs(pagination.page - 1) %>" rel="prev">← Previous</a><% } %>
+  <% if (pagination.page < pagination.pages) { %><a href="<%= qs(pagination.page + 1) %>" rel="next">Next →</a><% } %>
+</nav>
+

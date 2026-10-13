@@ -34,7 +34,17 @@
 <% if (evidence.length === 0) { %>
   <p>No evidence items yet.</p>
 <% } else { %>
-  <ul class="manage-list">
+  
+<section aria-labelledby="search-heading">
+  <h2 id="search-heading">Search evidence</h2>
+  <form method="get" action="/manage/evidence" class="search-form">
+    <label class="visually-hidden" for="q">Search</label>
+    <input type="search" id="q" name="q" value="<%= typeof pagination !== 'undefined' && pagination.q ? pagination.q : '' %>" placeholder="description, reference URL, type">
+    <button type="submit" class="button-secondary">Search</button>
+    <% if (typeof pagination !== 'undefined' && pagination.q) { %><a href="/manage/evidence" class="link-button">Clear</a><% } %>
+  </form>
+</section>
+<ul class="manage-list">
     <% evidence.forEach(function (e) { %>
       <li class="manage-item">
         <div class="manage-item-main">
@@ -64,7 +74,11 @@
       </li>
     <% }); %>
   </ul>
+  <%- include('../../partials/pagination', { pagination, basePath: '/manage/evidence' }) %>
 <% } %>
 
 <%- include('../../partials/footer') %>
+
+
+
 

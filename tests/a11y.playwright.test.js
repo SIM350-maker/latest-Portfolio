@@ -71,6 +71,7 @@ test('authenticated manage pages have no accessibility violations', async ({ pag
     '/manage/experience',
     '/manage/education',
     '/manage/cv',
+    '/manage/activity',
   ];
   for (const url of managePages) {
     await expectNoViolations(page, url);
@@ -89,3 +90,4 @@ test('CV print button triggers window.print through the external script (F-01)',
   const printed = await page.evaluate(() => window.__printed);
   expect(printed).toBe(true);
 });
+

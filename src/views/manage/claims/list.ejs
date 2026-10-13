@@ -45,7 +45,17 @@
 <% if (claims.length === 0) { %>
   <p>No claims yet.</p>
 <% } else { %>
-  <ul class="manage-list">
+  
+<section aria-labelledby="search-heading">
+  <h2 id="search-heading">Search claims</h2>
+  <form method="get" action="/manage/claims" class="search-form">
+    <label class="visually-hidden" for="q">Search</label>
+    <input type="search" id="q" name="q" value="<%= typeof pagination !== 'undefined' && pagination.q ? pagination.q : '' %>" placeholder="statement, justification">
+    <button type="submit" class="button-secondary">Search</button>
+    <% if (typeof pagination !== 'undefined' && pagination.q) { %><a href="/manage/claims" class="link-button">Clear</a><% } %>
+  </form>
+</section>
+<ul class="manage-list">
     <% claims.forEach(function (c) { %>
       <li class="manage-item">
         <div class="manage-item-main">
@@ -107,8 +117,12 @@
       </li>
     <% }); %>
   </ul>
+  <%- include('../../partials/pagination', { pagination, basePath: '/manage/claims' }) %>
 <% } %>
 
 <%- include('../../partials/footer') %>
+
+
+
 
 

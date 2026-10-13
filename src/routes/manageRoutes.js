@@ -20,6 +20,17 @@ const {
 
 const router = express.Router();
 
+const PAGE_SIZE = 20; // manage list pagination (stage 9)
+
+/** Shared list state for validation-error re-renders: keeps the active
+ * search/page context so the user never loses their place. */
+async function pagedListState(req, repo) {
+  const q = trimmedString(req.query.q);
+  const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+  const { rows, total } = await repo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+  return { rows, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q } };
+}
+
 /** Claims decorated with their evidence (bidirectional traceability). */
 async function claimsWithEvidence(claims) {
   return Promise.all(claims.map(async (c) => ({ ...c, evidence: await claimRepo.listEvidence(c.id) })));
@@ -123,7 +134,8 @@ router.get('/', async (req, res, next) => {
       experiences: experiences.length,
       educations: educations.length,
     };
-    return res.render('manage/dashboard', { title: 'Dashboard', profile, counts });
+    const recentActivity = await auditRepo.listRecent(8);
+    return res.render('manage/dashboard', { title: 'Dashboard', profile, counts, recentActivity });
   } catch (err) { return next(err); }
 });
 
@@ -180,8 +192,10 @@ router.post('/profile/unpublish', async (req, res, next) => {
 // ---------------------------------------------------------------- projects
 router.get('/projects', async (req, res, next) => {
   try {
-    const projects = await projectRepo.listAll();
-    return res.render('manage/projects/list', { title: 'Projects', projects });
+    const q = trimmedString(req.query.q);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const { rows, total } = await projectRepo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    return res.render('manage/projects/list', { title: 'Projects', projects: rows, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q } });
   } catch (err) { return next(err); }
 });
 
@@ -294,8 +308,10 @@ router.post('/projects/:id(\\d+)/skills', async (req, res, next) => {
 // ---------------------------------------------------------------- skills
 router.get('/skills', async (req, res, next) => {
   try {
-    const skills = await skillRepo.listAll();
-    return res.render('manage/skills/list', { title: 'Skills', skills, values: {}, fieldErrors: {} });
+    const q = trimmedString(req.query.q);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const { rows, total } = await skillRepo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    return res.render('manage/skills/list', { title: 'Skills', skills: rows, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q }, values: {}, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
@@ -307,8 +323,9 @@ router.post('/skills', async (req, res, next) => {
     category: optionalText(req.body.category, 'category', errors, 100),
   };
   if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, skillRepo);
     return res.status(400).render('manage/skills/list', {
-      title: 'Skills', skills: await skillRepo.listAll(), formOpen: true, values, fieldErrors: errors,
+      title: 'Skills', skills: listState.rows, pagination: listState.pagination, formOpen: true, values, fieldErrors: errors,
     });
   }
   try {
@@ -378,8 +395,10 @@ router.post('/skills/:id(\\d+)/evidence', async (req, res, next) => {
 // ---------------------------------------------------------------- experience
 router.get('/experience', async (req, res, next) => {
   try {
-    const experiences = await experienceRepo.listAll();
-    return res.render('manage/experience/list', { title: 'Experience', experiences, values: {}, fieldErrors: {} });
+    const q = trimmedString(req.query.q);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const { rows, total } = await experienceRepo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    return res.render('manage/experience/list', { title: 'Experience', experiences: rows, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q }, values: {}, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
@@ -395,8 +414,9 @@ router.post('/experience', async (req, res, next) => {
     description: optionalText(req.body.description, 'description', errors, 5000),
   };
   if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, experienceRepo);
     return res.status(400).render('manage/experience/list', {
-      title: 'Experience', experiences: await experienceRepo.listAll(), values, fieldErrors: errors,
+      title: 'Experience', experiences: listState.rows, pagination: listState.pagination, values, fieldErrors: errors,
     });
   }
   try {
@@ -436,8 +456,10 @@ router.post('/experience/:id(\\d+)/delete', async (req, res, next) => {
 // ---------------------------------------------------------------- education
 router.get('/education', async (req, res, next) => {
   try {
-    const educations = await educationRepo.listAll();
-    return res.render('manage/education/list', { title: 'Education', educations, values: {}, fieldErrors: {} });
+    const q = trimmedString(req.query.q);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const { rows, total } = await educationRepo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    return res.render('manage/education/list', { title: 'Education', educations: rows, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q }, values: {}, fieldErrors: {} });
   } catch (err) { return next(err); }
 });
 
@@ -453,8 +475,9 @@ router.post('/education', async (req, res, next) => {
     description: optionalText(req.body.description, 'description', errors, 5000),
   };
   if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, educationRepo);
     return res.status(400).render('manage/education/list', {
-      title: 'Education', educations: await educationRepo.listAll(), values, fieldErrors: errors,
+      title: 'Education', educations: listState.rows, pagination: listState.pagination, values, fieldErrors: errors,
     });
   }
   try {
@@ -494,8 +517,11 @@ router.post('/education/:id(\\d+)/delete', async (req, res, next) => {
 // ---------------------------------------------------------------- claims
 router.get('/claims', async (req, res, next) => {
   try {
-    const claims = await claimsWithEvidence(await claimRepo.listAll());
-    return res.render('manage/claims/list', { title: 'Claims', claims, values: {}, fieldErrors: {}, claimSources: CLAIM_SOURCES });
+    const q = trimmedString(req.query.q);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const { rows, total } = await claimRepo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    const claims = await claimsWithEvidence(rows);
+    return res.render('manage/claims/list', { title: 'Claims', claims, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q }, values: {}, fieldErrors: {}, claimSources: CLAIM_SOURCES });
   } catch (err) { return next(err); }
 });
 
@@ -516,9 +542,12 @@ router.post('/claims', async (req, res, next) => {
     }
   }
   if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, claimRepo);
+    const claims = await claimsWithEvidence(listState.rows);
     return res.status(400).render('manage/claims/list', {
       title: 'Claims',
-      claims: await claimsWithEvidence(await claimRepo.listAll()),
+      claims,
+      pagination: listState.pagination,
       values: { statement: req.body.statement, justification: req.body.justification },
       fieldErrors: errors,
       claimSources: CLAIM_SOURCES,
@@ -536,9 +565,12 @@ router.post('/claims/:id(\\d+)', async (req, res, next) => {
   const statement = requireText(req.body.statement, 'statement', errors, 1000);
   const justification = optionalText(req.body.justification, 'justification', errors, 5000);
   if (Object.keys(errors).length > 0) {
+    const listState = await pagedListState(req, claimRepo);
+    const claims = await claimsWithEvidence(listState.rows);
     return res.status(400).render('manage/claims/list', {
       title: 'Claims',
-      claims: await claimsWithEvidence(await claimRepo.listAll()),
+      claims,
+      pagination: listState.pagination,
       values: { statement: req.body.statement, justification: req.body.justification },
       fieldErrors: errors,
       claimSources: CLAIM_SOURCES,
@@ -592,8 +624,11 @@ router.post('/claims/:id(\\d+)/evidence', async (req, res, next) => {
 // ---------------------------------------------------------------- evidence
 router.get('/evidence', async (req, res, next) => {
   try {
-    const evidence = await evidenceWithClaims(await evidenceRepo.listAll());
-    return res.render('manage/evidence/list', { title: 'Evidence', evidence, values: {}, fieldErrors: {}, accessibilityStates: ACCESSIBILITY_STATES });
+    const q = trimmedString(req.query.q);
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const { rows, total } = await evidenceRepo.listPaged({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    const evidence = await evidenceWithClaims(rows);
+    return res.render('manage/evidence/list', { title: 'Evidence', evidence, pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q }, values: {}, fieldErrors: {}, accessibilityStates: ACCESSIBILITY_STATES });
   } catch (err) { return next(err); }
 });
 
@@ -774,6 +809,30 @@ router.post('/security/password', async (req, res, next) => {
   } catch (err) { return next(err); }
 });
 
+// ---------------------------------------------------------------- activity (stage 9)
+// Operational visibility over the audit trail (F-06). Append-only; written by
+// the database audit triggers with principal attribution.
+const auditRepo = require('../repositories/auditRepository');
+
+router.get('/activity', async (req, res, next) => {
+  try {
+    const page = Math.max(1, Number.parseInt(req.query.page, 10) || 1);
+    const total = await auditRepo.countAll();
+    const entries = await auditRepo.listRecent(PAGE_SIZE);
+    return res.render('manage/activity', {
+      title: 'Activity',
+      entries,
+      pagination: { page, total, pages: Math.max(1, Math.ceil(total / PAGE_SIZE)), q: '' },
+    });
+  } catch (err) { return next(err); }
+});
+
 module.exports = router;
+
+
+
+
+
+
 
 

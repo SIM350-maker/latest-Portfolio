@@ -1,0 +1,25 @@
+<%- include('../partials/header', { title, isAuthenticated: true, csrfToken }) %>
+
+<div class="manage-toolbar">
+  <h1>Activity</h1>
+</div>
+<p class="meta">Append-only audit trail recorded by database triggers. <%= pagination.total %> entr<%= pagination.total === 1 ? 'y' : 'ies' %>.</p>
+
+<% if (entries.length === 0) { %>
+  <p>No audit entries yet. Actions are recorded when content changes.</p>
+<% } else { %>
+  <ul class="manage-list">
+    <% entries.forEach(function (a) { %>
+      <li class="manage-item">
+        <div class="manage-item-main">
+          <h3><%= a.action %> · <%= a.table_name %>: <%= auditSummary(a) %></h3>
+          <p class="meta">by <%= a.changed_by || 'system' %> · <%= a.changed_at %></p>
+        </div>
+      </li>
+    <% }); %>
+  </ul>
+  <%- include('../partials/pagination', { pagination, basePath: '/manage/activity' }) %>
+<% } %>
+
+<%- include('../partials/footer') %>
+

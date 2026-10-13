@@ -1,14 +1,29 @@
 'use strict';
 
-const { query, one, all, isConstraintError } = require('../config/database');
-const { ConflictError } = require('../lib/validation');
+const { query, one, all } = require('../config/database');
 
 async function listAll() {
   return all('SELECT * FROM claim ORDER BY created_at DESC, id DESC');
 }
 
+/** Paginated + case-insensitive search across statement/justification. */
+async function listPaged({ q = '', limit = 20, offset = 0 } = {}) {
+  const params = [];
+  let where = '';
+  if (q) {
+    params.push('%' + String(q).toLowerCase().replace(/([%_\\])/g, '\\$1') + '%');
+    where = "WHERE lower(statement) LIKE $1 ESCAPE '\\' OR lower(COALESCE(justification, '')) LIKE $1 ESCAPE '\\'";
+  }
+  const total = Number((await one('SELECT COUNT(*) AS n FROM claim ' + where, params)).n);
+  const rows = await all(
+    'SELECT * FROM claim ' + where + ' ORDER BY created_at DESC, id DESC LIMIT $' + (params.length + 1) + ' OFFSET $' + (params.length + 2),
+    [...params, limit, offset]
+  );
+  return { rows, total };
+}
+
 async function getById(id) {
-  return one('SELECT * FROM claim WHERE id = $1', [id]);
+  return one('SELECT * FROM claim WHERE id = $1', [id]) || null;
 }
 
 /**
@@ -60,15 +75,8 @@ async function setPublicationState(id, state) {
  * (schema ON DELETE CASCADE); evidence rows themselves survive.
  */
 async function remove(id) {
-  try {
-    const { rowCount } = await query('DELETE FROM claim WHERE id = $1', [id]);
-    return rowCount > 0;
-  } catch (err) {
-    if (isConstraintError(err)) {
-      throw new ConflictError('Claim cannot be deleted while related records exist.');
-    }
-    throw err;
-  }
+  const { rowCount } = await query('DELETE FROM claim WHERE id = $1', [id]);
+  return rowCount > 0;
 }
 
 /** Evidence linked to this claim (bidirectional traceability). */
@@ -89,7 +97,7 @@ async function attachEvidence(claimId, evidenceId) {
 }
 
 module.exports = {
-  listAll, getById, create, update, setPublicationState, remove,
+  listAll, listPaged, getById, create, update, setPublicationState, remove,
   listEvidence, attachEvidence,
 };
 

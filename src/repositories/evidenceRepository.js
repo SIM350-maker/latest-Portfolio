@@ -8,6 +8,22 @@ async function listAll() {
   return all('SELECT * FROM evidence WHERE ' + LIVE + ' ORDER BY created_at DESC, id DESC');
 }
 
+/** Paginated + case-insensitive search across description/file_path/file_type. */
+async function listPaged({ q = '', limit = 20, offset = 0 } = {}) {
+  const params = [];
+  let where = 'WHERE ' + LIVE;
+  if (q) {
+    params.push('%' + String(q).toLowerCase().replace(/([%_\\])/g, '\\$1') + '%');
+    where = 'WHERE ' + LIVE + " AND (lower(COALESCE(description, '')) LIKE $1 ESCAPE '\\' OR lower(COALESCE(file_path, '')) LIKE $1 ESCAPE '\\' OR lower(COALESCE(file_type, '')) LIKE $1 ESCAPE '\\')";
+  }
+  const total = Number((await one('SELECT COUNT(*) AS n FROM evidence ' + where, params)).n);
+  const rows = await all(
+    'SELECT * FROM evidence ' + where + ' ORDER BY created_at DESC, id DESC LIMIT $' + (params.length + 1) + ' OFFSET $' + (params.length + 2),
+    [...params, limit, offset]
+  );
+  return { rows, total };
+}
+
 async function getById(id) {
   return one('SELECT * FROM evidence WHERE id = $1 AND ' + LIVE, [id]) || null;
 }
@@ -52,4 +68,4 @@ async function listClaims(evidenceId) {
   );
 }
 
-module.exports = { listAll, getById, create, setAccessibility, remove, listClaims };
+module.exports = { listAll, listPaged, getById, create, setAccessibility, remove, listClaims };

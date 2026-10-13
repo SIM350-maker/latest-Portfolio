@@ -13,6 +13,22 @@ async function listPublished() {
   return all('SELECT * FROM skill WHERE ' + PUBLIC_FILTER + ' ORDER BY name ASC');
 }
 
+/** Paginated + case-insensitive search across name/description/category. */
+async function listPaged({ q = '', limit = 20, offset = 0 } = {}) {
+  const params = [];
+  let where = '';
+  if (q) {
+    params.push('%' + String(q).toLowerCase().replace(/([%_\\])/g, '\\$1') + '%');
+    where = "WHERE lower(name) LIKE $1 ESCAPE '\\' OR lower(COALESCE(description, '')) LIKE $1 ESCAPE '\\' OR lower(COALESCE(category, '')) LIKE $1 ESCAPE '\\'";
+  }
+  const total = Number((await one('SELECT COUNT(*) AS n FROM skill ' + where, params)).n);
+  const rows = await all(
+    'SELECT * FROM skill ' + where + ' ORDER BY name ASC LIMIT $' + (params.length + 1) + ' OFFSET $' + (params.length + 2),
+    [...params, limit, offset]
+  );
+  return { rows, total };
+}
+
 async function getById(id) {
   return one('SELECT * FROM skill WHERE id = $1', [id]) || null;
 }
@@ -99,11 +115,6 @@ async function attachEvidence(skillId, evidenceId) {
 }
 
 module.exports = {
-  listAll, listPublished, getById, findByName, create, update, setPublicationState, remove,
+  listAll, listPublished, listPaged, getById, findByName, create, update, setPublicationState, remove,
   listClaims, listEvidence, attachEvidence,
 };
-
-
-
-
-

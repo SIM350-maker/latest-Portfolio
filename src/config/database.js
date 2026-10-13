@@ -36,11 +36,15 @@ async function query(sql, params = []) {
   } else {
     const db = connectDB();
     const text = sql.replace(/\$(\d+)/g, '?');
+    // $N placeholders may repeat (e.g. one search term across three columns):
+    // expand the positional array to match each placeholder occurrence.
+    const positions = [...sql.matchAll(/\$(\d+)/g)].map((m) => Number(m[1]) - 1);
+    const sqliteParams = positions.map((i) => norm[i]);
     if (returnsRows) {
-      const rows = db.prepare(text).all(...norm);
+      const rows = db.prepare(text).all(...sqliteParams);
       result = { rows, rowCount: rows.length };
     } else {
-      const info = db.prepare(text).run(...norm);
+      const info = db.prepare(text).run(...sqliteParams);
       result = { rows: [], rowCount: info.changes };
     }
   }

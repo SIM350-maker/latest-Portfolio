@@ -13,8 +13,24 @@ async function listPublished() {
   return all('SELECT * FROM project WHERE ' + PUBLIC_FILTER + ' ORDER BY updated_at DESC, id DESC');
 }
 
+/** Paginated + case-insensitive search across title/description/technologies/roles. */
+async function listPaged({ q = '', limit = 20, offset = 0 } = {}) {
+  const params = [];
+  let where = '';
+  if (q) {
+    params.push('%' + String(q).toLowerCase().replace(/([%_\\])/g, '\\$1') + '%');
+    where = "WHERE lower(title) LIKE $1 ESCAPE '\\' OR lower(COALESCE(description, '')) LIKE $1 ESCAPE '\\' OR lower(COALESCE(technologies, '')) LIKE $1 ESCAPE '\\' OR lower(COALESCE(roles, '')) LIKE $1 ESCAPE '\\'";
+  }
+  const total = Number((await one('SELECT COUNT(*) AS n FROM project ' + where, params)).n);
+  const rows = await all(
+    'SELECT * FROM project ' + where + ' ORDER BY updated_at DESC, id DESC LIMIT $' + (params.length + 1) + ' OFFSET $' + (params.length + 2),
+    [...params, limit, offset]
+  );
+  return { rows, total };
+}
+
 async function getById(id) {
-  return one('SELECT * FROM project WHERE id = $1', [id]) ;
+  return one('SELECT * FROM project WHERE id = $1', [id]) || null;
 }
 
 async function create(data) {
@@ -119,10 +135,6 @@ async function attachSkill(projectId, skillId) {
 }
 
 module.exports = {
-  listAll, listPublished, getById, create, update, setPublicationState, remove,
+  listAll, listPublished, listPaged, getById, create, update, setPublicationState, remove,
   listClaims, listEvidence, attachEvidence, listSkills, attachSkill,
 };
-
-
-
-

@@ -52,6 +52,7 @@ function createApp() {
   const { formatMonth, formatRange } = require('./lib/format');
   app.locals.formatMonth = formatMonth;
   app.locals.formatRange = formatRange;
+  app.locals.auditSummary = require('./lib/format').auditSummary;
   app.set('views', path.resolve(__dirname, 'views'));
 
   // 1. Security headers (helmet defaults include CSP, HSTS, nosniff, frameguard).
@@ -181,3 +182,4 @@ function startServer(port) {
 }
 
 module.exports = { createApp, startServer };
+
