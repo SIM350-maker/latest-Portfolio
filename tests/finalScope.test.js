@@ -15,15 +15,16 @@ const certificationRepo = require('../src/repositories/certificationRepository')
 const recommendationRepo = require('../src/repositories/recommendationRepository');
 const referenceRepo = require('../src/repositories/referenceRepository');
 const contactRepo = require('../src/repositories/contactRepository');
-const { connectDB } = require('../src/config/database');
 
 describe('certifications / references / recommendations — admin CRUD through the UI', () => {
   const app = createApp();
 
   beforeEach(async () => {
-    const db = connectDB();
+    // Driver-neutral cleanup: in the PostgreSQL lane these DELETEs must hit
+    // PostgreSQL, not a throwaway SQLite handle.
+    const { query } = require('../src/config/database');
     for (const t of ['certifications', 'cv_references', 'recommendations']) {
-      db.prepare('DELETE FROM ' + t).run();
+      await query('DELETE FROM ' + t);
     }
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'CV Owner', role: 'Engineer', summary: 'profile' });
@@ -94,9 +95,9 @@ describe('public CV page (FR-007 public rendering)', () => {
   const app = createApp();
 
   beforeEach(async () => {
-    const db = connectDB();
+    const { query } = require('../src/config/database');
     for (const t of ['certifications', 'recommendations', 'experience', 'education']) {
-      db.prepare('DELETE FROM ' + t).run();
+      await query('DELETE FROM ' + t);
     }
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'SIMON IPARA', role: 'Engineer', summary: 'summary text' });
@@ -125,11 +126,11 @@ describe('public CV page (FR-007 public rendering)', () => {
   });
 
   it('404s when the profile is unpublished (publication gate)', async () => {
-    const db = connectDB();
-    db.prepare('UPDATE profile SET publication_state = ?').run('Draft');
+    const { query } = require('../src/config/database');
+    await query('UPDATE profile SET publication_state = $1', ['Draft']);
     const res = await request(app).get('/cv');
     expect(res.status).toBe(404);
-    db.prepare('UPDATE profile SET publication_state = ?').run('Published');
+    await query('UPDATE profile SET publication_state = $1', ['Published']);
   });
 });
 
@@ -137,7 +138,8 @@ describe('contact form lifecycle (module I)', () => {
   const app = createApp();
 
   beforeEach(async () => {
-    connectDB().prepare('DELETE FROM contact_messages').run();
+    const { query } = require('../src/config/database');
+    await query('DELETE FROM contact_messages');
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'CV Owner', role: 'Engineer', summary: 'profile' });
     }
@@ -191,6 +193,7 @@ describe('contact form lifecycle (module I)', () => {
     expect(await contactRepo.getById(id)).toBeNull();
   });
 });
+
 
 
 

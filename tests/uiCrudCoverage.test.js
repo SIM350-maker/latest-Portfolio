@@ -15,17 +15,13 @@ const claimRepo = require('../src/repositories/claimRepository');
 const projectRepo = require('../src/repositories/projectRepository');
 const profileRepo = require('../src/repositories/profileRepository');
 const evidenceRepo = require('../src/repositories/evidenceRepository');
-const { connectDB } = require('../src/config/database');
 const { verifyCredential } = require('../src/middleware/auth');
 
 describe('UI CRUD coverage — edit forms reach UPDATE endpoints', () => {
   const app = createApp();
 
   beforeEach(async () => {
-    const db = connectDB();
-    for (const t of ['project_skill', 'project_evidence', 'skill_evidence', 'claim_evidence', 'experience', 'education', 'claim', 'evidence', 'skill', 'project']) {
-      db.prepare('DELETE FROM ' + t).run();
-    }
+    await resetTestData();
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'UI Owner', role: 'Engineer', summary: 'profile', contact_info: null });
     }
@@ -238,6 +234,7 @@ describe('F-07 — credential rotation', () => {
     await query('DELETE FROM owner_credential');
   });
 });
+
 
 
 

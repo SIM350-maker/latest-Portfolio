@@ -2,23 +2,19 @@
 
 // Stage 9 — pagination, search, and audit activity surface.
 
-const { configureTestEnv, loginAgent, postForm } = require('./helpers');
+const { configureTestEnv, loginAgent, postForm, resetTestData } = require('./helpers');
 configureTestEnv();
 
 const request = require('supertest');
 const { createApp } = require('../src/app');
 const skillRepo = require('../src/repositories/skillRepository');
 const profileRepo = require('../src/repositories/profileRepository');
-const { connectDB } = require('../src/config/database');
 
 describe('Stage 9 — pagination and search', () => {
   const app = createApp();
 
   beforeEach(async () => {
-    const db = connectDB();
-    db.prepare('DELETE FROM project_skill').run();
-    db.prepare('DELETE FROM skill').run();
-    db.prepare('DELETE FROM project').run();
+    await resetTestData();
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'Pager Owner', role: 'Engineer', summary: 'profile', contact_info: null });
     }
@@ -75,9 +71,7 @@ describe('Stage 9 — audit activity surface (F-06)', () => {
   const app = createApp();
 
   beforeEach(async () => {
-    const db = connectDB();
-    db.prepare('DELETE FROM project_skill').run();
-    db.prepare('DELETE FROM skill').run();
+    await resetTestData();
     if (!(await profileRepo.getProfile())) {
       await profileRepo.createProfile({ name: 'Activity Owner', role: 'Engineer', summary: 'profile', contact_info: null });
     }
@@ -106,5 +100,8 @@ describe('Stage 9 — audit activity surface (F-06)', () => {
     expect(dash.text).toContain('/manage/activity');
   });
 });
+
+
+
 
 
