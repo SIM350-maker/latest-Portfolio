@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= typeof title !== 'undefined' && title ? title + ' · Portfolio' : 'Portfolio' %></title>
+  <meta name="description" content="<%= typeof metaDescription !== 'undefined' && metaDescription ? metaDescription : 'Evidence-based engineering portfolio — projects, skills, and verifiable claims.' %>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Portfolio">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' && title ? title : 'Portfolio' %>">
+  <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' && metaDescription ? metaDescription : 'Evidence-based engineering portfolio — projects, skills, and verifiable claims.' %>">
+  <% if (typeof publicBaseUrl !== 'undefined' && publicBaseUrl) { %>
+  <meta property="og:url" content="<%= publicBaseUrl %><%= typeof ogPath !== 'undefined' && ogPath ? ogPath : '' %>">
+  <% } %>
   <link rel="stylesheet" href="/css/styles.css">
   <% if (typeof isAuthenticated !== 'undefined' && isAuthenticated) { %>
   <script src="/js/live.js" defer></script>
@@ -34,3 +42,4 @@
   <% if (typeof preview !== 'undefined' && preview) { %>
     <div class="banner banner-preview" role="status">Preview — this content may not be published yet.</div>
   <% } %>
+

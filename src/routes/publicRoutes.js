@@ -22,14 +22,17 @@ router.get('/', async (req, res, next) => {
     const [projects, skills] = profile
       ? await Promise.all([projectRepo.listPublished(), skillRepo.listPublished()])
       : [[], []];
-    return res.render('index', { ...baseLocals(req), title: 'Home', profile, projects, skills });
+    const metaDescription = profile && profile.summary
+      ? profile.summary.slice(0, 160)
+      : 'Evidence-based engineering portfolio — projects, skills, and verifiable claims.';
+    return res.render('index', { ...baseLocals(req), title: 'Home', profile, projects, skills, metaDescription, ogPath: '/' });
   } catch (err) { return next(err); }
 });
 
 router.get('/projects', async (req, res, next) => {
   try {
     const projects = await projectRepo.listPublished();
-    return res.render('projects/list', { ...baseLocals(req), title: 'Projects', projects });
+    return res.render('projects/list', { ...baseLocals(req), title: 'Projects', projects, metaDescription: 'Projects, technologies, and outcomes — each backed by verifiable evidence.', ogPath: '/projects' });
   } catch (err) { return next(err); }
 });
 
@@ -52,8 +55,9 @@ router.get('/projects/:id(\\d+)', async (req, res, next) => {
     const claimsWithEvidence = await Promise.all(
       claims.map(async (c) => ({ ...c, evidence: await claimRepo.listEvidence(c.id) }))
     );
+    const metaDescription = (project.description || project.title).slice(0, 160);
     return res.render('projects/detail', {
-      ...baseLocals(req), title: project.title, project, claims: claimsWithEvidence, evidence, skills,
+      ...baseLocals(req), title: project.title, project, claims: claimsWithEvidence, evidence, skills, metaDescription, ogPath: '/projects/' + project.id,
     });
   } catch (err) { return next(err); }
 });
@@ -61,7 +65,7 @@ router.get('/projects/:id(\\d+)', async (req, res, next) => {
 router.get('/skills', async (req, res, next) => {
   try {
     const skills = await skillRepo.listPublished();
-    return res.render('skills/list', { ...baseLocals(req), title: 'Skills', skills });
+    return res.render('skills/list', { ...baseLocals(req), title: 'Skills', skills, metaDescription: 'Technical skills and competencies — each linked to supporting evidence.', ogPath: '/skills' });
   } catch (err) { return next(err); }
 });
 
@@ -82,10 +86,12 @@ router.get('/skills/:id(\\d+)', async (req, res, next) => {
     const claimsWithEvidence = await Promise.all(
       claims.map(async (c) => ({ ...c, evidence: await claimRepo.listEvidence(c.id) }))
     );
+    const metaDescription = (skill.description || skill.name).slice(0, 160);
     return res.render('skills/detail', {
-      ...baseLocals(req), title: skill.name, skill, claims: claimsWithEvidence, evidence,
+      ...baseLocals(req), title: skill.name, skill, claims: claimsWithEvidence, evidence, metaDescription, ogPath: '/skills/' + skill.id,
     });
   } catch (err) { return next(err); }
 });
 
 module.exports = router;
+

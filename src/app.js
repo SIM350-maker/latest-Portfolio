@@ -51,6 +51,7 @@ function createApp() {
   // View-layer formatting helpers (EJS resolves app.locals automatically).
   const { formatMonth, formatRange } = require('./lib/format');
   app.locals.formatMonth = formatMonth;
+  app.locals.publicBaseUrl = (process.env.PUBLIC_BASE_URL || '').replace(/\/+$/, '');
   app.locals.formatRange = formatRange;
   app.locals.auditSummary = require('./lib/format').auditSummary;
   app.set('views', path.resolve(__dirname, 'views'));
@@ -182,4 +183,5 @@ function startServer(port) {
 }
 
 module.exports = { createApp, startServer };
+
 
