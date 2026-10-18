@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+  @layer base{
+    html,body{margin:0;padding:0;}
+    body{overscroll-behavior:none;}
+    main>:first-child{margin-top:0!important;}
+    main>:last-child{margin-bottom:0!important;}
+  }
+  ::-webkit-scrollbar{width:5px;height:5px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:#c4c5d8;border-radius:4px;}
+  ::-webkit-scrollbar-thumb:hover{background:#747687;}
+  .sidebar-scroll::-webkit-scrollbar{width:4px;}
+  .sidebar-scroll::-webkit-scrollbar-thumb{background:#d7e3fb;border-radius:4px;}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-light-surface/90 backdrop-blur-xl border-b border-light-border"><div class="h-16 px-space-md md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface">CMS Console</span><span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">/manage</span><span class="hidden sm:inline-flex items-center ml-2 px-1.5 py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1 animate-pulse"></span>PROD-SYNC ACTIVE</span></div></div><div class="flex items-center gap-space-md"><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>Back to Portfolio</span></a><div class="h-5 w-[1px] bg-light-border"></div><div class="flex items-center gap-space-xs relative group cursor-pointer"><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-mono text-caption font-semibold ring-2 ring-transparent group-hover:ring-primary/30 transition-all">SI</div><div class="hidden sm:flex flex-col text-left leading-none"><span class="font-label-mono text-caption font-semibold text-on-surface">simon.ipara</span><span class="text-[10px] font-label-mono text-on-surface-variant">Lead Architect</span></div><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div></div></div></header><div class="flex min-h-screen pt-16">
+<!-- UPGRADED COLLAPSIBLE SIDEBAR NAVIGATION -->
+<aside class="w-72 fixed left-0 top-16 bottom-0 z-40 bg-light-surface border-r border-light-border flex flex-col justify-between" id="cms-sidebar">
+<!-- Scrollable Nav Section -->
+<div class="overflow-y-auto sidebar-scroll px-3 py-4 flex-1 space-y-4">
+<!-- System Search / Filter in Sidebar -->
+<div class="relative px-1">
+<span class="material-symbols-outlined text-[16px] absolute left-3 top-2.5 text-on-surface-variant">search</span>
+<input class="w-full pl-8 pr-2 py-1.5 text-xs font-label-mono bg-surface-container-low border border-light-border rounded-lg text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors" id="navSearchInput" placeholder="Filter navigation..." type="text"/>
+</div>
+<!-- 1. OVERVIEW SECTION -->
+<div class="nav-section-group">
+<button class="nav-toggle w-full flex items-center justify-between px-2 py-1.5 text-xs font-label-mono uppercase tracking-wider text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low transition-colors" data-target="group-overview">
+<span class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-primary">dashboard</span>
+<span>Overview</span>
+</span>
+<span class="material-symbols-outlined text-[16px] nav-caret transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="nav-sublist mt-1 space-y-0.5 pl-2 transition-all duration-200" id="group-overview">
+<a aria-current="page" class="nav-item flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium bg-secondary-container text-primary font-semibold border-l-2 border-primary" href="#">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>Dashboard</span>
+</span>
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+</a>
+<a class="nav-item flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#content-health-section">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">health_and_safety</span>
+<span>Content Health &amp; Integrity</span>
+</span>
+<span class="px-1.5 py-0.2 rounded-full bg-status-restricted/15 text-status-restricted font-label-mono text-[10px] font-semibold">3 Flagged</span>
+</a>
+<a class="nav-item flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" href="#metrics-section">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">analytics</span>
+<span>System Metrics</span>
+</span>
+<span class="font-label-mono text-[10px] text-on-surface-variant">83.3%</span>
+</a>
+</div>
+</div>
+<!-- 2. CONTENT SECTION -->
+<div class="nav-section-group">
+<button class="nav-toggle w-full flex items-center justify-between px-2 py-1.5 text-xs font-label-mono uppercase tracking-wider text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low transition-colors" data-target="group-content">
+<span class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-tertiary">edit_document</span>
+<span>Content</span>
+</span>
+<span class="material-symbols-outlined text-[16px] nav-caret transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="nav-sublist mt-1 space-y-1 pl-2 transition-all duration-200" id="group-content">
+<!-- Submenu: Projects -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-projects">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-primary">terminal</span>
+<span>Projects</span>
+</span>
+<div class="flex items-center gap-1">
+<span class="px-1 py-0.2 text-[10px] rounded bg-surface-container font-label-mono text-on-surface-variant">6</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">expand_more</span>
+</div>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5" id="sub-projects">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">All Projects (6)</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-primary font-semibold hover:bg-surface-container rounded flex items-center justify-between" href="#">
+<span>+ New Project</span>
+<span class="material-symbols-outlined text-[12px]">add</span>
+</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded flex items-center justify-between" href="#">
+<span>Draft Staged</span>
+<span class="px-1 text-[9px] rounded bg-status-draft/20 text-status-draft font-semibold">1</span>
+</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Categories &amp; Tags</a>
+</div>
+</div>
+<!-- Submenu: Skills -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-skills">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-status-public">psychology</span>
+<span>Skills</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">expand_more</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5" id="sub-skills">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Skills Matrix</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Technical Claims</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">+ Add Skill</a>
+</div>
+</div>
+<!-- Submenu: Experience -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-exp">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">history_edu</span>
+<span>Experience</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-exp">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Work History</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Education</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Interactive Timeline</a>
+</div>
+</div>
+<!-- Submenu: Certifications -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-certs">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">verified_user</span>
+<span>Certifications</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-certs">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Credentials (AWS, CKA)</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Courses &amp; Badges</a>
+</div>
+</div>
+<!-- Submenu: Profile & Bio -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-bio">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">badge</span>
+<span>Profile &amp; Bio</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-bio">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Identity &amp; Titles</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Hero Copy &amp; Pitch</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Social &amp; GitHub Links</a>
+</div>
+</div>
+<!-- Submenu: Pages Editor -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-pages">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">web</span>
+<span>Pages Editor</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-pages">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Home ('/')</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">About ('/about')</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Engineering ('/projects')</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Contact ('/contact')</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. EVIDENCE & PROVENANCE -->
+<div class="nav-section-group">
+<button class="nav-toggle w-full flex items-center justify-between px-2 py-1.5 text-xs font-label-mono uppercase tracking-wider text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low transition-colors" data-target="group-evidence">
+<span class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-status-public">policy</span>
+<span>Evidence &amp; Provenance</span>
+</span>
+<span class="material-symbols-outlined text-[16px] nav-caret transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="nav-sublist mt-1 space-y-1 pl-2 transition-all duration-200" id="group-evidence">
+<!-- Evidence Library -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-ev-lib">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-secondary">folder_special</span>
+<span>Evidence Library</span>
+</span>
+<div class="flex items-center gap-1">
+<span class="px-1 text-[10px] rounded bg-surface-container font-label-mono text-on-surface-variant">18</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">expand_more</span>
+</div>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5" id="sub-ev-lib">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">All Records (18)</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-status-public font-semibold hover:bg-surface-container rounded flex items-center justify-between" href="#">
+<span>+ Register Artifact</span>
+<span class="material-symbols-outlined text-[12px]">upload_file</span>
+</a>
+</div>
+</div>
+<!-- Claims Governance -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-ev-gov">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-status-restricted">fact_check</span>
+<span>Claims Governance</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-ev-gov">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded flex items-center justify-between" href="#">
+<span>Audit Flagged</span>
+<span class="px-1 text-[9px] rounded bg-status-restricted/20 text-status-restricted font-bold">2</span>
+</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Verifications Log</a>
+</div>
+</div>
+<!-- Access Hierarchy -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-ev-access">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">lock</span>
+<span>Access Hierarchy</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-ev-access">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Public (14)</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Redacted / NDA (4)</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Restricted Vault</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 4. PUBLISHING & MEDIA -->
+<div class="nav-section-group">
+<button class="nav-toggle w-full flex items-center justify-between px-2 py-1.5 text-xs font-label-mono uppercase tracking-wider text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low transition-colors" data-target="group-publishing">
+<span class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-status-published">publish</span>
+<span>Publishing &amp; Media</span>
+</span>
+<span class="material-symbols-outlined text-[16px] nav-caret transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="nav-sublist mt-1 space-y-1 pl-2 transition-all duration-200" id="group-publishing">
+<!-- Media Assets -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-media">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">photo_library</span>
+<span>Media Assets</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-media">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Uploads Manager</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Image Library &amp; CDN</a>
+</div>
+</div>
+<!-- Navigation & Menus -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-menus">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">menu_open</span>
+<span>Navigation &amp; Menus</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-menus">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Header Structure</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Footer Links</a>
+</div>
+</div>
+<!-- Draft Staging -->
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-staging">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-status-draft">layers</span>
+<span>Draft Staging</span>
+</span>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 text-[9px] rounded-full bg-status-draft/20 text-status-draft font-bold">3 Q</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</div>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-staging">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Review Buffer</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Deployments Pipeline</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. COMMUNICATION -->
+<div class="nav-section-group">
+<button class="nav-toggle w-full flex items-center justify-between px-2 py-1.5 text-xs font-label-mono uppercase tracking-wider text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low transition-colors" data-target="group-comm">
+<span class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-error">forward_to_inbox</span>
+<span>Communication</span>
+</span>
+<span class="material-symbols-outlined text-[16px] nav-caret transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="nav-sublist mt-1 space-y-1 pl-2 transition-all duration-200" id="group-comm">
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-inbox">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-error">mark_email_unread</span>
+<span>Contact Messages</span>
+</span>
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.2 text-[10px] rounded-full bg-error-container text-error font-bold font-label-mono">7</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</div>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-inbox">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">All Inbound (7)</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-error font-semibold hover:bg-surface-container rounded flex items-center justify-between" href="#">
+<span>Unread</span>
+<span class="px-1 text-[9px] rounded bg-error text-on-error font-bold">7</span>
+</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Lead Inquiries (3)</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. SYSTEM & SETTINGS -->
+<div class="nav-section-group">
+<button class="nav-toggle w-full flex items-center justify-between px-2 py-1.5 text-xs font-label-mono uppercase tracking-wider text-on-surface-variant hover:text-on-surface rounded hover:bg-surface-container-low transition-colors" data-target="group-sys">
+<span class="flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">settings</span>
+<span>System &amp; Settings</span>
+</span>
+<span class="material-symbols-outlined text-[16px] nav-caret transform transition-transform duration-200">expand_more</span>
+</button>
+<div class="nav-sublist mt-1 space-y-1 pl-2 transition-all duration-200" id="group-sys">
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-sys-gen">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">tune</span>
+<span>General Settings</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-sys-gen">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">SEO &amp; OpenGraph</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Site Metadata</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">System Defaults</a>
+</div>
+</div>
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-sys-sec">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">security</span>
+<span>Security &amp; Sessions</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-sys-sec">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">GPG Key Provenance</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Access Logs &amp; SSH</a>
+</div>
+</div>
+<div class="nav-subgroup">
+<button class="nav-sub-toggle w-full flex items-center justify-between px-2 py-1 text-xs font-body-sm font-medium text-on-surface hover:text-primary rounded hover:bg-surface-container transition-colors" data-target="sub-sys-audit">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-on-surface-variant">receipt_long</span>
+<span>Activity &amp; Audit Log</span>
+</span>
+<span class="material-symbols-outlined text-[14px] sub-caret transition-transform duration-150">chevron_right</span>
+</button>
+<div class="sub-child pl-4 pr-1 py-1 space-y-0.5 border-l border-light-border ml-3 mt-0.5 hidden" id="sub-sys-audit">
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#ledger-section">Ledger Stream</a>
+<a class="block px-2 py-1 text-[11px] font-label-mono text-on-surface-variant hover:text-primary hover:bg-surface-container rounded" href="#">Export Raw JSON/CSV</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Footer / Diagnostics Info -->
+<div class="px-space-sm py-space-sm border-t border-light-border bg-surface-container-low/50">
+<div class="flex items-center justify-between text-caption font-label-mono text-on-surface-variant px-1 mb-2">
+<span class="inline-flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+<span>DB SYNC OK</span>
+</span>
+<span class="text-[10px]">v2.4.0-rev4</span>
+</div>
+<a class="flex items-center gap-space-xs font-label-mono text-caption text-on-surface-variant hover:text-error transition-colors px-2 py-1 rounded hover:bg-error-container/20 w-full" data-path="home" href="#">
+<span class="material-symbols-outlined text-[16px]">logout</span>
+<span>Exit CMS</span>
+</a>
+</div>
+</aside>
+<!-- MAIN WORKSPACE CONTENT -->
+<main class="flex-1 pl-72 w-full bg-light-background min-h-[calc(100vh-4rem)] p-space-lg"><div class="flex flex-col w-full">
+<!-- Top Telemetry Ribbon -->
+<div class="w-full bg-light-surface rounded-xl shadow-sm p-space-md mb-space-lg flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs font-label-mono text-caption text-light-text-secondary">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-status-public/10 text-status-public font-semibold">
+<span class="w-2 h-2 rounded-full bg-status-public animate-ping"></span>
+        SYSTEM_BASELINE: COLD_INIT
+      </span>
+<span class="text-outline-variant">//</span>
+<span class="text-on-surface font-semibold">ZERO_ANOMALIES_DETECTED</span>
+<span class="text-outline-variant">•</span>
+<span>ENGINE: v2.4.0 Live</span>
+<span class="text-outline-variant">•</span>
+<span>POSTGRESQL: READY</span>
+<span class="text-outline-variant">•</span>
+<span>REDIS_VECTOR: IDLE</span>
+<span class="text-outline-variant">•</span>
+<span class="text-status-public font-medium">BUFFER: CLEAN</span>
+</div>
+<!-- Quick Utilities -->
+<div class="flex items-center gap-space-sm self-end lg:self-auto">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined text-[16px] absolute left-2.5 top-2.5 text-light-text-secondary">search</span>
+<input class="pl-8 pr-3 py-1.5 text-xs font-label-mono bg-light-background rounded-lg text-on-surface placeholder:text-light-text-secondary focus:outline-none focus:ring-1 focus:ring-primary w-52 transition-all" placeholder="Command / Jump (Ctrl+K)" type="text"/>
+<kbd class="absolute right-2 top-2 px-1 text-[10px] font-label-mono bg-light-surface text-light-text-secondary rounded shadow-sm">⌘K</kbd>
+</div>
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-label-mono bg-light-background hover:bg-secondary-container text-on-surface rounded-lg transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined text-[15px] text-primary">visibility</span>
+<span>Live Preview</span>
+</a>
+<button class="p-1.5 bg-light-background hover:bg-secondary-container text-light-text-secondary hover:text-primary rounded-lg transition-colors shadow-sm" id="zeroStateRefreshBtn" onclick="triggerBaselineSync()" title="Re-scan Invariants">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+</div>
+</div>
+<!-- Breadcrumbs & Welcome Identity Panel -->
+<div class="w-full bg-light-surface rounded-xl shadow-sm p-space-xl mb-space-lg relative overflow-hidden">
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-gradient-to-br from-primary/5 via-secondary-container/20 to-transparent pointer-events-none"></div>
+<!-- Breadcrumb Hierarchy -->
+<div class="flex items-center gap-2 font-label-mono text-caption text-light-text-secondary mb-space-sm">
+<span>CMS Workspace</span>
+<span class="text-outline-variant">/</span>
+<span>Dashboard</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-semibold">Baseline Ingestion Epoch</span>
+</div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="max-w-2xl">
+<div class="flex items-center gap-space-sm mb-2">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-mono text-[11px] font-bold tracking-wider uppercase">Fresh Environment Provision</span>
+<span class="px-2 py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-[11px] font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+            PostgreSQL 16.2 / Redis Vector: CONNECTED
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-light-text-primary mb-2">
+          Welcome, Simon — Workspace Initialized
+        </h1>
+<p class="font-body-md text-body-md text-light-text-secondary">
+          Core micro-architecture and cryptographic hash pipelines are primed. 0 anomalies detected across public records. The workspace is active and awaiting initial technical content ingestion.
+        </p>
+</div>
+<!-- Quick Action Group -->
+<div class="flex flex-wrap items-center gap-2.5">
+<button class="inline-flex items-center gap-1.5 px-4 py-2 bg-primary hover:bg-tertiary text-on-primary rounded-lg font-label-mono text-body-sm font-semibold transition-all shadow-sm" onclick="openModal('modal-new-project')">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ New Project</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-light-background hover:bg-secondary-container text-on-surface rounded-lg font-label-mono text-body-sm font-medium transition-colors shadow-sm" onclick="openModal('modal-add-evidence')">
+<span class="material-symbols-outlined text-[18px] text-status-public">policy</span>
+<span>Add Evidence Record</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-light-background hover:bg-secondary-container text-on-surface rounded-lg font-label-mono text-body-sm font-medium transition-colors shadow-sm" onclick="openModal('modal-create-claim')">
+<span class="material-symbols-outlined text-[18px] text-tertiary">fact_check</span>
+<span>Create Claim</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 bg-light-background hover:bg-secondary-container text-on-surface rounded-lg font-label-mono text-body-sm font-medium transition-colors shadow-sm" onclick="openModal('modal-edit-profile')">
+<span class="material-symbols-outlined text-[18px] text-light-text-secondary">badge</span>
+<span>Edit Profile</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 4 KPI Metrics Row — Cold Start / Baseline Values -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg" id="metrics-section">
+<!-- KPI 1 -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-md flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase tracking-wider">Engineering Portfolio</span>
+<span class="material-symbols-outlined text-[20px] text-primary">terminal</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-hero-lg text-hero-lg text-light-text-primary tracking-tight" id="kpiPubCount">00</span>
+<span class="font-label-mono text-caption text-light-text-secondary">Active Scope</span>
+</div>
+<p class="font-label-mono text-[11px] text-light-text-secondary">
+          0 Published <span class="text-outline-variant">•</span> 0 Staged
+        </p>
+</div>
+<div class="mt-3 pt-2 bg-light-background rounded px-2 py-1 flex items-center justify-between">
+<span class="font-label-mono text-[10px] text-light-text-secondary">Production Ratio</span>
+<span class="font-label-mono text-[10px] font-semibold text-status-public">100% Validated</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-md flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase tracking-wider">Claims Provenance</span>
+<span class="material-symbols-outlined text-[20px] text-status-public">fact_check</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-hero-lg text-hero-lg text-light-text-primary tracking-tight">00</span>
+<span class="font-label-mono text-caption text-light-text-secondary">Assertion Units</span>
+</div>
+<p class="font-label-mono text-[11px] text-light-text-secondary">
+          0 Supported <span class="text-outline-variant">•</span> 0 Audit Needed
+        </p>
+</div>
+<div class="mt-3 pt-2 bg-light-background rounded px-2 py-1 flex items-center justify-between">
+<span class="font-label-mono text-[10px] text-light-text-secondary">Cryptographic Backing</span>
+<span class="font-label-mono text-[10px] font-semibold text-status-public">Baseline Clean</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-md flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase tracking-wider">Evidence Artifacts</span>
+<span class="material-symbols-outlined text-[20px] text-tertiary">folder_special</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-hero-lg text-hero-lg text-light-text-primary tracking-tight">00</span>
+<span class="font-label-mono text-caption text-light-text-secondary">Linked Anchors</span>
+</div>
+<p class="font-label-mono text-[11px] text-light-text-secondary">
+          0 Public <span class="text-outline-variant">•</span> 0 Redacted/NDA
+        </p>
+</div>
+<div class="mt-3 pt-2 bg-light-background rounded px-2 py-1 flex items-center justify-between">
+<span class="font-label-mono text-[10px] text-light-text-secondary">Hash Redundancy</span>
+<span class="font-label-mono text-[10px] font-semibold text-light-text-secondary">Ready to Seed</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-md flex flex-col justify-between hover:-translate-y-0.5 transition-transform">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase tracking-wider">Client Inbound</span>
+<span class="material-symbols-outlined text-[20px] text-status-draft">forward_to_inbox</span>
+</div>
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-hero-lg text-hero-lg text-light-text-primary tracking-tight">00</span>
+<span class="font-label-mono text-caption text-light-text-secondary">Unread Signals</span>
+</div>
+<p class="font-label-mono text-[11px] text-light-text-secondary">
+          0 Enterprise Leads <span class="text-outline-variant">•</span> 0 Inquiries
+        </p>
+</div>
+<div class="mt-3 pt-2 bg-light-background rounded px-2 py-1 flex items-center justify-between">
+<span class="font-label-mono text-[10px] text-light-text-secondary">Median Response</span>
+<span class="font-label-mono text-[10px] font-semibold text-light-text-secondary">-- (Standby)</span>
+</div>
+</div>
+</div>
+<!-- Main Asymmetric Workspace Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Content Health, Topology, Activity Ledger (~65%) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Content Health & Integrity Audit Card (Cold State: 0 Anomalies) -->
+<section class="bg-light-surface rounded-xl shadow-sm p-space-xl" id="content-health-section">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-md mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[22px] text-status-public">verified</span>
+<h2 class="font-headline-sm text-headline-sm text-light-text-primary">Content Health &amp; Integrity Invariants</h2>
+</div>
+<span class="self-start sm:self-auto px-2.5 py-1 rounded-full bg-status-public/10 text-status-public font-label-mono text-[11px] font-bold tracking-wide">
+            0 UNRESOLVED ANOMALIES // ALL INVARIANTS SATISFIED
+          </span>
+</div>
+<!-- Clean State Shield Graphic & Message -->
+<div class="bg-light-background rounded-xl p-space-xl flex flex-col md:flex-row items-center gap-space-lg text-center md:text-left">
+<div class="w-20 h-20 rounded-2xl bg-status-public/10 text-status-public flex items-center justify-center shrink-0 shadow-sm">
+<svg class="w-10 h-10 text-status-public" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+<h3 class="font-headline-sm text-headline-sm text-light-text-primary">All Content Invariants Verified &amp; Sound</h3>
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+</div>
+<p class="font-body-md text-body-md text-light-text-secondary max-w-xl">
+              Automated heuristics scanned all entity relationships, route bindings, and cryptographic proofs. No missing live demo URLs, orphaned claims, or stale staging drafts were detected in this snapshot epoch.
+            </p>
+<div class="mt-space-sm flex flex-wrap items-center justify-center md:justify-start gap-space-sm text-caption font-label-mono text-light-text-secondary">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-public">check_circle</span>
+                Route Matrix: Clean
+              </span>
+<span>•</span>
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-public">check_circle</span>
+                Citation Integrity: 100%
+              </span>
+<span>•</span>
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-public">check_circle</span>
+                Zero Missing Anchors
+              </span>
+</div>
+</div>
+</div>
+<div class="mt-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm text-caption font-label-mono text-light-text-secondary pt-space-sm">
+<div class="flex items-center gap-1.5" id="auditPassText">
+<span class="material-symbols-outlined text-[15px] text-status-public">schedule</span>
+<span>Last complete ledger integrity pass: 2 minutes ago</span>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-light-background hover:bg-secondary-container text-primary font-semibold rounded-lg transition-all shadow-sm" id="runReAuditBtn" onclick="runManualReAudit()">
+<span class="material-symbols-outlined text-[15px]">security_update_good</span>
+<span>Run On-Demand Integrity Audit</span>
+</button>
+</div>
+</section>
+<!-- Content Topology & Citation Density (Empty Baseline Visualization) -->
+<section class="bg-light-surface rounded-xl shadow-sm p-space-xl">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-light-text-primary">Content Topology &amp; Citation Density</h2>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Bi-directional linkage between portfolio claims, live proof artifacts, and architectural briefs.</p>
+</div>
+<div class="hidden sm:flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-mono text-[10px]">Graph Mode: Sparse</span>
+</div>
+</div>
+<!-- Empty State Graph Visualization -->
+<div class="bg-light-background rounded-xl p-space-lg flex flex-col items-center justify-center min-h-[220px] relative overflow-hidden">
+<!-- Subtle Topological Grid SVG Pattern -->
+<svg class="absolute inset-0 w-full h-full opacity-30 text-outline-variant" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="32" id="gridPattern" patternunits="userSpaceOnUse" width="32">
+<path d="M 32 0 L 0 0 0 32" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+<circle cx="0" cy="0" fill="currentColor" r="1.5"></circle>
+</pattern>
+</defs>
+<rect fill="url(#gridPattern)" height="100%" width="100%"></rect>
+</svg>
+<!-- SVG Topology Graph Mock Node Visualization -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<svg class="w-36 h-20 mb-2 text-outline-variant" fill="none" viewbox="0 0 200 100">
+<!-- Animated dash lines to show listening status -->
+<line class="opacity-40 animate-pulse" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1.5" x1="30" x2="100" y1="50" y2="50"></line>
+<line class="opacity-40 animate-pulse" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1.5" x1="100" x2="170" y1="50" y2="50"></line>
+<!-- Nodes -->
+<circle cx="30" cy="50" fill="#E2E7EF" r="12"></circle>
+<circle class="opacity-90" cx="100" cy="50" fill="#315EFB" r="16"></circle>
+<circle cx="170" cy="50" fill="#E2E7EF" r="12"></circle>
+<text fill="#FFFFFF" font-family="JetBrains Mono" font-size="10" font-weight="bold" text-anchor="middle" x="100" y="54">ROOT</text>
+<text fill="#596579" font-family="JetBrains Mono" font-size="8" text-anchor="middle" x="30" y="53">PROJ</text>
+<text fill="#596579" font-family="JetBrains Mono" font-size="8" text-anchor="middle" x="170" y="53">EVID</text>
+</svg>
+<span class="font-label-mono text-caption text-light-text-primary font-semibold mb-1">Topology Graph Awaiting Ingestion Nodes</span>
+<p class="font-body-sm text-body-sm text-light-text-secondary max-w-sm">
+              As you publish engineering projects and link cryptographic evidence hashes, this graph maps reference density and claim verifiability.
+            </p>
+</div>
+</div>
+<div class="mt-space-md grid grid-cols-3 gap-2 text-center font-label-mono text-caption">
+<div class="bg-light-background rounded-lg p-2.5">
+<span class="text-light-text-secondary block text-[10px] uppercase">Node Degree</span>
+<span class="font-headline-sm text-body-lg font-bold text-light-text-primary">0.00</span>
+</div>
+<div class="bg-light-background rounded-lg p-2.5">
+<span class="text-light-text-secondary block text-[10px] uppercase">Clustering Coeff.</span>
+<span class="font-headline-sm text-body-lg font-bold text-light-text-primary">0.0%</span>
+</div>
+<div class="bg-light-background rounded-lg p-2.5">
+<span class="text-light-text-secondary block text-[10px] uppercase">Edge Density</span>
+<span class="font-headline-sm text-body-lg font-bold text-light-text-primary">0 / 0</span>
+</div>
+</div>
+</section>
+<!-- Recent Content Activity Ledger (Empty Cold Start State) -->
+<section class="bg-light-surface rounded-xl shadow-sm p-space-xl" id="ledger-section">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-light-text-secondary">receipt_long</span>
+<h2 class="font-headline-sm text-headline-sm text-light-text-primary">Activity &amp; Modification Ledger</h2>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Immutable audit log recorded with author identity and cryptographic SHA256 checksums.</p>
+</div>
+<!-- Ledger Controls -->
+<div class="flex items-center gap-2">
+<select class="text-xs font-label-mono bg-light-background text-on-surface rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary" id="ledgerActionFilter" onchange="filterLedgerTable()">
+<option value="all">Filter: All Actions (0)</option>
+<option value="PUBLISHED">Published</option>
+<option value="CREATED">Created</option>
+<option value="UPDATED">Updated</option>
+</select>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 bg-light-background hover:bg-secondary-container text-light-text-secondary hover:text-on-surface rounded-lg font-label-mono text-caption transition-colors shadow-sm" onclick="exportLedgerCsv()">
+<span class="material-symbols-outlined text-[15px]">file_download</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<!-- Empty Ledger Block -->
+<div class="bg-light-background rounded-xl p-space-xl flex flex-col items-center justify-center text-center">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-light-text-secondary mb-space-sm">
+<span class="material-symbols-outlined text-[28px]">hourglass_empty</span>
+</div>
+<h4 class="font-headline-sm text-body-lg text-light-text-primary font-bold mb-1">
+            Immutable Event Stream Initialized
+          </h4>
+<p class="font-body-sm text-body-sm text-light-text-secondary max-w-md mb-space-md">
+            Zero mutation events recorded in the current epoch. The PostgreSQL CDC pipeline is actively listening on write sockets.
+          </p>
+<!-- Step-by-Step System Readiness Signals -->
+<div class="w-full max-w-lg bg-light-surface rounded-lg p-space-md shadow-sm text-left font-label-mono text-caption space-y-2">
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+<span>CDC Replication Socket `cdc_wal_stream`</span>
+</span>
+<span class="text-status-public font-semibold">SYNCHRONIZED</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+<span>GPG Signature Keyholder Ring</span>
+</span>
+<span class="text-status-public font-semibold">INITIALIZED [simon.ipara]</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+<span>Audit Partition Table `events_2025_q1`</span>
+</span>
+<span class="text-light-text-secondary">ALLOCATED (0 ROWS)</span>
+</div>
+</div>
+</div>
+<!-- Table Showing Counter Footer -->
+<div class="mt-space-md flex items-center justify-between text-caption font-label-mono text-light-text-secondary pt-space-xs">
+<span>Showing <strong id="tableShowingCount">0 - 0</strong> of 0 events</span>
+<span class="text-[11px]">Storage Engine: Write-Ahead Ledger Mode</span>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Staging Drawer & Guided First-Time Workflows (~35%) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Staging Drawer (Cold State: 0 Queued) -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-status-draft">layers</span>
+<h3 class="font-headline-sm text-headline-sm text-light-text-primary">Staging Drawer</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-mono text-caption font-bold" id="stagedDrawerCountBadge">
+            0 QUEUED
+          </span>
+</div>
+<!-- Clean Staging Buffer Container -->
+<div class="bg-light-background rounded-xl p-space-lg text-center flex flex-col items-center justify-center mb-space-md" id="stagedDrawerList">
+<div class="w-12 h-12 rounded-xl bg-status-public/10 text-status-public flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[26px]">cloud_done</span>
+</div>
+<h4 class="font-headline-sm text-body-md font-bold text-light-text-primary mb-1">
+            Production Buffer Synchronized
+          </h4>
+<p class="font-body-sm text-body-sm text-light-text-secondary">
+            All branches, hotfixes, and draft evidence revisions are completely in sync with edge production. Zero uncommitted changes waiting to deploy.
+          </p>
+</div>
+<!-- Promotion Button Disabled State -->
+<button class="w-full py-2.5 px-4 rounded-lg bg-surface-container text-light-text-secondary font-label-mono text-caption font-semibold flex items-center justify-center gap-2 cursor-not-allowed opacity-80" disabled="" id="promoteProductionBtn">
+<span class="material-symbols-outlined text-[16px]">lock_reset</span>
+<span id="promoteBtnLabel">Promote Staging to Production (0)</span>
+</button>
+<span class="block text-center font-label-mono text-[10px] text-light-text-secondary mt-2">
+          Edge CDN status: Cloudflare Pages in Sync
+        </span>
+</div>
+<!-- Quick Setup & Recommended Initial Workflows -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-lg">
+<div class="flex items-center gap-2 mb-space-md">
+<span class="material-symbols-outlined text-[20px] text-primary">rocket_launch</span>
+<h3 class="font-headline-sm text-headline-sm text-light-text-primary">Initial Ingestion Playbook</h3>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mb-space-md">
+          Recommended sequence to populate the engineering catalog with cryptographic rigor:
+        </p>
+<!-- Steps List -->
+<div class="space-y-space-md">
+<!-- Step 1 -->
+<div class="p-space-md rounded-xl bg-light-background hover:bg-secondary-container/40 transition-colors flex items-start gap-space-sm group cursor-pointer" onclick="openModal('modal-new-project')">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-mono text-caption font-bold shrink-0">
+              01
+            </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-body-md font-bold text-light-text-primary group-hover:text-primary transition-colors">
+                  Initialize Architecture Project
+                </h4>
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-caption text-light-text-secondary mt-1">
+                Define the primary slug (e.g. <code class="font-code-inline text-[11px] bg-light-surface px-1 py-0.5 rounded">/projects/consensus-engine</code>) and architecture specs.
+              </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="p-space-md rounded-xl bg-light-background hover:bg-secondary-container/40 transition-colors flex items-start gap-space-sm group cursor-pointer" onclick="openModal('modal-create-claim')">
+<div class="w-7 h-7 rounded-full bg-light-surface text-light-text-primary shadow-sm flex items-center justify-center font-label-mono text-caption font-bold shrink-0">
+              02
+            </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-body-md font-bold text-light-text-primary group-hover:text-primary transition-colors">
+                  Register Quantitative Claim
+                </h4>
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-caption text-light-text-secondary mt-1">
+                Assert technical benchmarks (e.g. <code class="font-code-inline text-[11px] bg-light-surface px-1 py-0.5 rounded">&gt;45k req/sec at P99 &lt;14ms</code>) into the assertion registry.
+              </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="p-space-md rounded-xl bg-light-background hover:bg-secondary-container/40 transition-colors flex items-start gap-space-sm group cursor-pointer" onclick="openModal('modal-add-evidence')">
+<div class="w-7 h-7 rounded-full bg-light-surface text-light-text-primary shadow-sm flex items-center justify-center font-label-mono text-caption font-bold shrink-0">
+              03
+            </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-body-md font-bold text-light-text-primary group-hover:text-primary transition-colors">
+                  Anchor SHA256 Evidence
+                </h4>
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-caption text-light-text-secondary mt-1">
+                Upload Vitest run reports, Datadog flamegraphs, or GPG-signed architectural decisions.
+              </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="p-space-md rounded-xl bg-light-background hover:bg-secondary-container/40 transition-colors flex items-start gap-space-sm group cursor-pointer" onclick="openModal('modal-edit-profile')">
+<div class="w-7 h-7 rounded-full bg-light-surface text-light-text-primary shadow-sm flex items-center justify-center font-label-mono text-caption font-bold shrink-0">
+              04
+            </div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-body-md font-bold text-light-text-primary group-hover:text-primary transition-colors">
+                  Verify Principal Signature
+                </h4>
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-caption text-light-text-secondary mt-1">
+                Confirm your GPG identity key fingerprint to validate all upcoming deployment attestations.
+              </p>
+</div>
+</div>
+</div>
+<!-- Documentation Quick Link -->
+<div class="mt-space-lg pt-space-sm flex items-center justify-between text-caption font-label-mono text-light-text-secondary">
+<a class="inline-flex items-center gap-1 text-primary hover:underline" href="#">
+<span>Engineering CMS Specs (v2.4)</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+<span>Schema: v2.4.0-rev4</span>
+</div>
+</div>
+<!-- Infrastructure Health Card -->
+<div class="bg-light-surface rounded-xl shadow-sm p-space-md flex flex-col gap-2 font-label-mono text-caption">
+<span class="text-light-text-secondary uppercase tracking-wider text-[10px]">Infrastructure Telemetry</span>
+<div class="flex items-center justify-between">
+<span class="text-on-surface">PostgreSQL WAL Queue</span>
+<span class="text-status-public font-semibold">0 bytes</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface">Redis Vector Cache</span>
+<span class="text-light-text-secondary">0 / 4,096 items</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface">Edge CDN Purge Latency</span>
+<span class="text-status-public font-semibold">42 ms</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function triggerBaselineSync() {
+    const btn = document.getElementById('zeroStateRefreshBtn');
+    if (btn) {
+      const icon = btn.querySelector('.material-symbols-outlined');
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+        alert("Integrity verification completed: 0 anomalies, 0 orphaned routes, all database invariants satisfied.");
+      }, 750);
+    }
+  }
+</script></main>
+</div>
+<!-- ================= INTERACTIVE MODALS / DIALOGS ================= -->
+<!-- 1. Modal: New Project -->
+<div class="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center p-4" id="modal-new-project">
+<div class="bg-light-surface w-full max-w-lg rounded-xl shadow-xl border border-light-border overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-light-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">add_box</span>
+<h3 class="font-headline-sm text-sm font-bold text-on-surface">Create New Engineering Project</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closeModal('modal-new-project')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="p-6 space-y-4" onsubmit="handleNewProjectSubmit(event)">
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">PROJECT TITLE</label>
+<input class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="newProjectTitle" placeholder="e.g. Distributed Consensus Engine" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">SLUG PATH</label>
+<input class="w-full text-xs font-label-mono px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="newProjectSlug" placeholder="/projects/consensus-engine" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">PRIMARY DOMAIN</label>
+<select class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="newProjectCategory">
+<option>Distributed Systems</option>
+<option>IoT &amp; Telemetry</option>
+<option>Fintech Infrastructure</option>
+<option>DevSecOps &amp; Cloud</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">SUMMARY ARCHITECTURE STATEMENT</label>
+<textarea class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="newProjectSummary" placeholder="Key architectural problem solved, tech stack utilized, and benchmarks achieved..." required="" rows="3"></textarea>
+</div>
+<div class="flex items-center justify-between pt-2">
+<label class="flex items-center gap-2 cursor-pointer text-xs font-label-mono text-on-surface">
+<input checked="" class="rounded text-primary border-light-border" id="newProjectStaged" type="checkbox"/>
+<span>Stage as draft branch (feat/consensus-engine)</span>
+</label>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-surface-container text-on-surface" onclick="closeModal('modal-new-project')" type="button">Cancel</button>
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-primary text-on-primary font-semibold hover:bg-tertiary" type="submit">Create Project</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- 2. Modal: Add Evidence Record -->
+<div class="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center p-4" id="modal-add-evidence">
+<div class="bg-light-surface w-full max-w-lg rounded-xl shadow-xl border border-light-border overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-light-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-public text-[20px]">policy</span>
+<h3 class="font-headline-sm text-sm font-bold text-on-surface">Register Evidence Artifact</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closeModal('modal-add-evidence')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="p-6 space-y-4" onsubmit="handleAddEvidenceSubmit(event)">
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">ARTIFACT TITLE</label>
+<input class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface focus:outline-none" id="evTitle" placeholder="e.g. Grafana P99 Benchmark Logs" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">ACCESS TIER</label>
+<select class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="evTier">
+<option>Public Verified</option>
+<option>Redacted / NDA</option>
+<option>Restricted Keyholder</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">HASH CHECKSUM (SHA256)</label>
+<input class="w-full text-xs font-label-mono px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="evHash" placeholder="e3b0c44298fc1c149afbf4c..." type="text"/>
+</div>
+</div>
+<div class="border-2 border-dashed border-light-border rounded-lg p-6 text-center hover:bg-surface-container-low transition-colors cursor-pointer" onclick="document.getElementById('mockFileInput').click()">
+<input class="hidden" id="mockFileInput" onchange="alert('File selected: ' + this.files[0].name)" type="file"/>
+<span class="material-symbols-outlined text-3xl text-on-surface-variant mb-1">upload_file</span>
+<p class="text-xs font-body-sm text-on-surface font-medium">Click to select benchmark raw artifact or telemetry capture</p>
+<p class="text-[11px] font-label-mono text-on-surface-variant mt-0.5">PDF, JSON, CSV, or TAR.GZ (Max 50MB)</p>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-surface-container text-on-surface" onclick="closeModal('modal-add-evidence')" type="button">Cancel</button>
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-status-public text-on-primary font-semibold hover:opacity-90" type="submit">Register Artifact</button>
+</div>
+</form>
+</div>
+</div>
+<!-- 3. Modal: Create Claim -->
+<div class="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center p-4" id="modal-create-claim">
+<div class="bg-light-surface w-full max-w-lg rounded-xl shadow-xl border border-light-border overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-light-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">fact_check</span>
+<h3 class="font-headline-sm text-sm font-bold text-on-surface">Create Technical Claim</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closeModal('modal-create-claim')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="p-6 space-y-4" onsubmit="handleCreateClaimSubmit(event)">
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">CLAIM ID</label>
+<input class="w-full text-xs font-label-mono px-3 py-2 border border-light-border rounded-lg bg-surface-container text-on-surface-variant" readonly="" type="text" value="#CLM-15"/>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">TECHNICAL ASSERTION TEXT</label>
+<input class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface focus:outline-none" id="claimAssertionText" placeholder="e.g. Scaled event stream processing to 45,000 req/sec" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">ASSOCIATED PROJECT</label>
+<select class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="claimTargetProject">
+<option>Healthcare MIS</option>
+<option>PayEngine Micro-Gateway</option>
+<option>PadTrack IoT Engine</option>
+<option>DevSecOps Pipeline</option>
+</select>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-surface-container text-on-surface" onclick="closeModal('modal-create-claim')" type="button">Cancel</button>
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-tertiary text-on-primary font-semibold hover:opacity-90" type="submit">Save Assertion</button>
+</div>
+</form>
+</div>
+</div>
+<!-- 4. Modal: Edit Profile -->
+<div class="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden items-center justify-center p-4" id="modal-edit-profile">
+<div class="bg-light-surface w-full max-w-lg rounded-xl shadow-xl border border-light-border overflow-hidden">
+<div class="px-6 py-4 bg-surface-container-low border-b border-light-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<h3 class="font-headline-sm text-sm font-bold text-on-surface">Edit Principal Identity &amp; Bio</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closeModal('modal-edit-profile')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="p-6 space-y-4" onsubmit="handleEditProfileSubmit(event)">
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">FULL NAME</label>
+<input class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="profName" required="" type="text" value="Simon Ipara"/>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">HANDLE / SLUG</label>
+<input class="w-full text-xs font-label-mono px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="profHandle" required="" type="text" value="simon.ipara"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">HEADLINE TITLE</label>
+<input class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" id="profHeadline" required="" type="text" value="Principal Systems Architect &amp; Distributed Engineer"/>
+</div>
+<div>
+<label class="block text-xs font-label-mono text-on-surface-variant mb-1">STATEMENT STATEMENT</label>
+<textarea class="w-full text-xs font-body-sm px-3 py-2 border border-light-border rounded-lg bg-surface-container-low text-on-surface" rows="3">Specializing in high-throughput data pipes, distributed consensus protocols, and provable telemetry integrity.</textarea>
+</div>
+<div class="flex justify-end gap-2 pt-2">
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-surface-container text-on-surface" onclick="closeModal('modal-edit-profile')" type="button">Cancel</button>
+<button class="px-3 py-1.5 text-xs font-label-mono rounded bg-primary text-on-primary font-semibold hover:bg-tertiary" type="submit">Save Profile Changes</button>
+</div>
+</form>
+</div>
+</div>
+<!-- CLIENT-SIDE SCRIPTS & INTERACTIVITY LOGIC -->
+<script>
+  // 1. Collapsible Sidebar Dropdowns (Parent Sections)
+  document.querySelectorAll('.nav-toggle').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = button.getAttribute('data-target');
+      const targetList = document.getElementById(targetId);
+      const caret = button.querySelector('.nav-caret');
+
+      if (targetList) {
+        const isHidden = targetList.classList.contains('hidden');
+        if (isHidden) {
+          targetList.classList.remove('hidden');
+          caret.classList.add('rotate-0');
+          caret.classList.remove('-rotate-90');
+          caret.textContent = 'expand_more';
+        } else {
+          targetList.classList.add('hidden');
+          caret.classList.remove('rotate-0');
+          caret.classList.add('-rotate-90');
+          caret.textContent = 'chevron_right';
+        }
+      }
+    });
+  });
+
+  // 2. Nested Submenu Dropdowns in Sidebar
+  document.querySelectorAll('.nav-sub-toggle').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = button.getAttribute('data-target');
+      const child = document.getElementById(targetId);
+      const caret = button.querySelector('.sub-caret');
+
+      if (child) {
+        const isHidden = child.classList.contains('hidden');
+        if (isHidden) {
+          child.classList.remove('hidden');
+          if (caret) caret.textContent = 'expand_more';
+        } else {
+          child.classList.add('hidden');
+          if (caret) caret.textContent = 'chevron_right';
+        }
+      }
+    });
+  });
+
+  // 3. Navigation Filter Search in Sidebar
+  const navSearchInput = document.getElementById('navSearchInput');
+  if (navSearchInput) {
+    navSearchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('.nav-section-group').forEach(group => {
+        let matchCount = 0;
+        const text = group.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          group.style.display = '';
+          // Ensure sublist is open if search term matches
+          if (q) {
+            const list = group.querySelector('.nav-sublist');
+            if (list) list.classList.remove('hidden');
+            const subchildren = group.querySelectorAll('.sub-child');
+            subchildren.forEach(c => c.classList.remove('hidden'));
+          }
+        } else {
+          group.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  // 4. Modal Open/Close Controls
+  function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('hidden');
+      el.classList.add('flex');
+    }
+  }
+
+  function closeModal(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('flex');
+      el.classList.add('hidden');
+    }
+  }
+
+  // Close modals on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[id^="modal-"]').forEach(modal => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      });
+    }
+  });
+
+  // 5. Dismiss or Resolve Audit Items
+  function dismissAudit(id) {
+    const row = document.getElementById(`audit-item-${id}`);
+    if (row) {
+      row.style.opacity = '0';
+      row.style.transform = 'translateX(20px)';
+      setTimeout(() => {
+        row.remove();
+        updateAuditCounters();
+      }, 250);
+    }
+  }
+
+  function updateAuditCounters() {
+    const remaining = document.querySelectorAll('#auditList .audit-item').length;
+    const badge = document.getElementById('auditBadgeCountText');
+    const headerAlert = document.getElementById('auditAlertCount');
+    const diagBadge = document.getElementById('diagBadgeCount');
+    if (badge) badge.textContent = `${remaining} UNRESOLVED ANOMALIES`;
+    if (headerAlert) headerAlert.textContent = `${remaining} integrity artifacts pending formal audit review.`;
+    if (diagBadge) diagBadge.textContent = remaining;
+  }
+
+  function toggleUrlInput(id) {
+    const box = document.getElementById(`urlInputContainer-${id}`);
+    if (box) box.classList.toggle('hidden');
+  }
+
+  function saveUrl(id) {
+    const val = document.getElementById(`inputUrlVal-${id}`).value;
+    alert(`URL registered for Project: ${val}. Running DNS and TLS handshake... Verified!`);
+    dismissAudit(id);
+  }
+
+  function openProofModal(claimId) {
+    openModal('modal-add-evidence');
+    document.getElementById('evTitle').value = `Proof Artifact for ${claimId} Datadog Metrics`;
+  }
+
+  function publishDraftItem(id, title) {
+    alert(`Published "${title}" to production ledger.`);
+    dismissAudit(id);
+    // Update KPI
+    const kpiPub = document.getElementById('kpiPubCount');
+    const kpiDraft = document.getElementById('kpiDraftCount');
+    if (kpiPub && kpiDraft) {
+      kpiPub.textContent = parseInt(kpiPub.textContent) + 1;
+      kpiDraft.textContent = Math.max(0, parseInt(kpiDraft.textContent) - 1);
+    }
+  }
+
+  // 6. Manual Re-Audit Action
+  function runManualReAudit() {
+    const btn = document.getElementById('runReAuditBtn');
+    const icon = btn.querySelector('.material-symbols-outlined');
+    icon.classList.add('animate-spin');
+    setTimeout(() => {
+      icon.classList.remove('animate-spin');
+      const passText = document.getElementById('auditPassText');
+      if (passText) {
+        passText.innerHTML = `<span class="material-symbols-outlined text-[14px] text-status-public">check_circle</span> Last complete ledger integrity pass: Just now`;
+      }
+      alert('Integrity check completed. Cryptographic hash trees reconciled.');
+    }, 1000);
+  }
+
+  // 7. Filter Audit List by Severity
+  function filterAuditList() {
+    const val = document.getElementById('auditSeverityFilter').value;
+    document.querySelectorAll('#auditList .audit-item').forEach(item => {
+      const sev = item.getAttribute('data-severity');
+      if (val === 'all' || sev === val) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // 8. Filter Activity Ledger
+  function filterLedgerTable() {
+    const val = document.getElementById('ledgerActionFilter').value;
+    const rows = document.querySelectorAll('#ledgerTableBody tr');
+    let visible = 0;
+    rows.forEach(r => {
+      const act = r.getAttribute('data-action');
+      if (val === 'all' || act === val) {
+        r.style.display = '';
+        visible++;
+      } else {
+        r.style.display = 'none';
+      }
+    });
+    document.getElementById('tableShowingCount').textContent = `1 - ${visible}`;
+  }
+
+  function exportLedgerCsv() {
+    const csvContent = "data:text/csv;charset=utf-8,Timestamp,Entity,Action,Author,Status\n2025-02-24 14:18:02,Healthcare MIS,PUBLISHED,simon.ipara,PUBLIC_VERIFIED\n2025-02-24 11:05:44,Cypress Suite,CREATED,simon.ipara,SHA256_VALIDATED\n2025-02-23 19:42:18,Bio Header,UPDATED,simon.ipara,LOCAL_DRAFT";
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "ledger_export_simon_ipara.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function inspectRow(name, status, ts) {
+    alert(`LEDGER INSPECTION\nEntity: ${name}\nStatus: ${status}\nTimestamp: ${ts}\nCryptographic Sig: 0x9f4a...88b2 verified by Simon Ipara GPG.`);
+  }
+
+  // 9. Staging Promotion Action
+  function promoteAllToProd() {
+    const btn = document.getElementById('promoteProductionBtn');
+    const label = document.getElementById('promoteBtnLabel');
+    btn.disabled = true;
+    label.textContent = "Compiling Static Artifacts & Purging Edge CDN...";
+    setTimeout(() => {
+      label.textContent = "Production Promoted (3 items live)";
+      btn.classList.remove('bg-primary');
+      btn.classList.add('bg-status-public');
+      document.getElementById('stagedDrawerCountBadge').textContent = '0 QUEUED';
+      document.getElementById('stagedDrawerList').innerHTML = `<div class="p-4 rounded-lg bg-surface-container-low text-center font-label-mono text-caption text-status-public">All staged changes deployed cleanly to production CDN edge.</div>`;
+    }, 1400);
+  }
+
+  function editStagedItem(name) {
+    alert(`Opening direct visual editor for: "${name}"`);
+  }
+
+  function toggleDensityMode() {
+    alert("Switching between citation density and timeline commits view.");
+  }
+
+  // 10. Forms Submissions
+  function handleNewProjectSubmit(e) {
+    e.preventDefault();
+    const title = document.getElementById('newProjectTitle').value;
+    alert(`Project '${title}' initialized in staged environment!`);
+    closeModal('modal-new-project');
+  }
+
+  function handleAddEvidenceSubmit(e) {
+    e.preventDefault();
+    const title = document.getElementById('evTitle').value;
+    alert(`Evidence artifact '${title}' recorded with SHA256 integrity hash!`);
+    closeModal('modal-add-evidence');
+  }
+
+  function handleCreateClaimSubmit(e) {
+    e.preventDefault();
+    const txt = document.getElementById('claimAssertionText').value;
+    alert(`Technical assertion recorded: "${txt}"`);
+    closeModal('modal-create-claim');
+  }
+
+  function handleEditProfileSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('profName').value;
+    alert(`Profile updated for ${name}.`);
+    closeModal('modal-edit-profile');
+  }
+
+  // Micro-interaction for sync button animation
+  const syncBtn = document.getElementById('syncLedgerBtn');
+  if (syncBtn) {
+    syncBtn.addEventListener('click', () => {
+      const icon = syncBtn.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.classList.add('animate-spin');
+        setTimeout(() => {
+          icon.classList.remove('animate-spin');
+          alert('Full cache sync and schema reconciliation complete.');
+        }, 900);
+      }
+    });
+  }
+
+  // Keyboard shortcut Ctrl+K / Cmd+K
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      const sidebarSearch = document.getElementById('navSearchInput');
+      if (sidebarSearch) {
+        sidebarSearch.focus();
+        sidebarSearch.select();
+      }
+    }
+  });
+</script>
+</body></html>

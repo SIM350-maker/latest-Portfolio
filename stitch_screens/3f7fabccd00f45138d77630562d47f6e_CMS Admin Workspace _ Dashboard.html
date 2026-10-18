@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-light-surface/90 backdrop-blur-xl border-b border-light-border"><div class="h-16 px-space-md md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface">CMS Console</span><span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">/manage</span></div></div><div class="flex items-center gap-space-md"><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>Back to Portfolio</span></a><div class="h-5 w-[1px] bg-light-border"></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-mono text-caption font-semibold">SI</div><span class="hidden sm:inline font-label-mono text-caption text-on-surface">simon.ipara</span></div></div></div></header><div class="flex min-h-screen pt-16"><aside class="w-64 fixed left-0 top-16 bottom-0 z-40 bg-light-surface border-r border-light-border flex flex-col justify-between py-space-md px-space-sm"><div class="space-y-space-md"><div class="px-space-sm"><p class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider">Content Management</p></div><nav class="space-y-space-xs" data-active-classes="bg-secondary-container text-primary font-semibold border-l-2 border-primary"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-colors bg-secondary-container text-primary font-semibold border-l-2 border-primary" data-path="cms-workspace" href="#">Workspace</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="projects" href="#">Projects Content</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="evidence" href="#">Evidence Artifacts</a></nav></div><div class="px-space-sm pt-space-md border-t border-light-border"><a class="flex items-center gap-space-xs font-label-mono text-caption text-on-surface-variant hover:text-error transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Exit CMS</span></a></div></aside><main class="flex-1 pl-64 w-full bg-light-background min-h-[calc(100vh-4rem)] p-space-lg"><div class="flex flex-col w-full">
+<!-- Sub-header / Top Navigation Utility -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<nav class="flex items-center gap-space-xs font-label-mono text-caption text-on-surface-variant">
+<span class="hover:text-primary cursor-pointer transition-colors">CMS Workspace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Dashboard</span>
+</nav>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1.5 animate-pulse"></span>
+        v2.4.0 Engine Live
+      </span>
+</div>
+<div class="flex items-center gap-space-sm">
+<!-- Global Quick Search Trigger -->
+<button class="flex items-center gap-space-md px-space-md py-1.5 rounded-lg bg-light-surface text-light-text-secondary hover:text-on-surface shadow-sm hover:shadow transition-all text-left group w-64 md:w-72">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary">search</span>
+<span class="font-body-sm text-body-sm flex-1">Quick search index...</span>
+<kbd class="font-label-mono text-caption px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant text-[10px]">Ctrl+K</kbd>
+</button>
+<!-- Live Site Preview Shortcut -->
+<a class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm transition-colors shadow-sm" href="#">
+<span>Live Preview</span>
+<span class="material-symbols-outlined text-[16px] text-primary">open_in_new</span>
+</a>
+<!-- Quick Sync Action -->
+<button class="p-2 rounded-lg bg-light-surface hover:bg-surface-container text-on-surface-variant hover:text-on-surface shadow-sm transition-colors" id="syncLedgerBtn" title="Trigger Automated Content Reconciliation">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+</div>
+</div>
+<!-- Operational Status Alert Bar -->
+<div class="relative overflow-hidden rounded-xl bg-light-surface shadow-sm p-space-md mb-space-lg">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-start md:items-center gap-space-md">
+<div class="w-9 h-9 rounded-lg bg-primary-container/10 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Welcome back, Simon</h1>
+<span class="font-label-mono text-caption px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-semibold">ENGINEERING_CONSOLE</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mt-0.5">
+            Core architecture nodes nominal. Evidence validation pipelines functional. <span class="text-status-restricted font-semibold">3 integrity artifacts pending formal audit review.</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-status-restricted/10 text-status-restricted hover:bg-status-restricted/20 font-label-mono text-caption font-semibold transition-colors">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+          Review Diagnostics (3)
+        </button>
+<span class="text-caption font-label-mono text-on-surface-variant">Last checkpoint: 4m ago</span>
+</div>
+</div>
+</div>
+<!-- Quick Actions Bar -->
+<div class="flex flex-wrap items-center gap-space-sm mb-space-xl">
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary-container hover:bg-tertiary font-body-sm text-body-sm font-semibold shadow-sm transition-all hover:translate-y-[-1px]">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>New Project</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-light-surface hover:bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold shadow-sm transition-all hover:translate-y-[-1px]">
+<span class="material-symbols-outlined text-[18px] text-status-public">policy</span>
+<span>Add Evidence Record</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-light-surface hover:bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold shadow-sm transition-all hover:translate-y-[-1px]">
+<span class="material-symbols-outlined text-[18px] text-tertiary">fact_check</span>
+<span>Create Claim</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-light-surface hover:bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold shadow-sm transition-all hover:translate-y-[-1px]">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">badge</span>
+<span>Edit Profile</span>
+</button>
+<div class="ml-auto hidden xl:flex items-center gap-space-xs font-label-mono text-caption text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+<span>PostgreSQL 16.2 / Redis Vector Sync: CONNECTED</span>
+</div>
+</div>
+<!-- Metric KPI Cards (4 Columns Bento) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- KPI 1: Projects -->
+<div class="relative p-space-lg rounded-xl bg-light-surface shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Engineering Portfolio</span>
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-hero-lg text-headline-lg text-on-surface font-bold">06</span>
+<span class="font-label-mono text-caption text-status-published font-semibold">Active Repo Scope</span>
+</div>
+<div class="flex items-center gap-space-sm pt-space-sm border-t-0 bg-surface-container-low px-space-sm py-1.5 rounded-lg mt-space-sm">
+<span class="inline-flex items-center font-label-mono text-caption text-status-public font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1"></span>5 Published
+        </span>
+<span class="text-light-text-secondary text-[11px]">•</span>
+<span class="inline-flex items-center font-label-mono text-caption text-status-draft font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-draft mr-1"></span>1 Staged Draft
+        </span>
+</div>
+<div class="mt-space-sm flex items-center justify-between font-label-mono text-caption text-on-surface-variant">
+<span>Production Ratio</span>
+<span class="text-primary font-semibold">83.3%</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 83.3%"></div>
+</div>
+</div>
+<!-- KPI 2: Claims Tracked -->
+<div class="relative p-space-lg rounded-xl bg-light-surface shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Claims Provenance</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-hero-lg text-headline-lg text-on-surface font-bold">14</span>
+<span class="font-label-mono text-caption text-tertiary font-semibold">Assertion Units</span>
+</div>
+<div class="flex items-center gap-space-sm pt-space-sm bg-surface-container-low px-space-sm py-1.5 rounded-lg mt-space-sm">
+<span class="inline-flex items-center font-label-mono text-caption text-status-public font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1"></span>12 Supported
+        </span>
+<span class="text-light-text-secondary text-[11px]">•</span>
+<span class="inline-flex items-center font-label-mono text-caption text-status-restricted font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted mr-1"></span>2 Audit Needed
+        </span>
+</div>
+<div class="mt-space-sm flex items-center justify-between font-label-mono text-caption text-on-surface-variant">
+<span>Cryptographic Backing</span>
+<span class="text-status-public font-semibold">85.7%</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden mt-1">
+<div class="bg-status-public h-full rounded-full" style="width: 85.7%"></div>
+</div>
+</div>
+<!-- KPI 3: Evidence Records -->
+<div class="relative p-space-lg rounded-xl bg-light-surface shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Evidence Artifacts</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">folder_special</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-hero-lg text-headline-lg text-on-surface font-bold">18</span>
+<span class="font-label-mono text-caption text-secondary font-semibold">Linked Anchors</span>
+</div>
+<div class="flex items-center gap-space-sm pt-space-sm bg-surface-container-low px-space-sm py-1.5 rounded-lg mt-space-sm">
+<span class="inline-flex items-center font-label-mono text-caption text-status-public font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1"></span>14 Public
+        </span>
+<span class="text-light-text-secondary text-[11px]">•</span>
+<span class="inline-flex items-center font-label-mono text-caption text-status-redacted font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-status-redacted mr-1"></span>4 Redacted/NDA
+        </span>
+</div>
+<div class="mt-space-sm flex items-center justify-between font-label-mono text-caption text-on-surface-variant">
+<span>Public Availability</span>
+<span class="text-secondary font-semibold">77.8%</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden mt-1">
+<div class="bg-primary-container h-full rounded-full" style="width: 77.8%"></div>
+</div>
+</div>
+<!-- KPI 4: Contact Inquiries -->
+<div class="relative p-space-lg rounded-xl bg-light-surface shadow-sm hover:shadow-md transition-shadow group">
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Client Inbound</span>
+<div class="w-8 h-8 rounded-lg bg-error-container text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">forward_to_inbox</span>
+</div>
+</div>
+<div class="flex items-baseline gap-space-sm mb-space-xs">
+<span class="font-hero-lg text-headline-lg text-on-surface font-bold">07</span>
+<span class="font-label-mono text-caption text-error font-semibold">Unread Signals</span>
+</div>
+<div class="flex items-center gap-space-sm pt-space-sm bg-surface-container-low px-space-sm py-1.5 rounded-lg mt-space-sm">
+<span class="inline-flex items-center font-label-mono text-caption text-error font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1"></span>3 Enterprise Leads
+        </span>
+<span class="text-light-text-secondary text-[11px]">•</span>
+<span class="inline-flex items-center font-label-mono text-caption text-light-text-secondary font-medium">
+          4 Inquiries
+        </span>
+</div>
+<div class="mt-space-sm flex items-center justify-between font-label-mono text-caption text-on-surface-variant">
+<span>Median Response</span>
+<span class="text-on-surface font-semibold">&lt; 2.4 Hours</span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden mt-1">
+<div class="bg-error h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<!-- Primary Work Surface: Split Grid (Integrity Audit & Quick Staging Drawer) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-xl">
+<!-- Left Column (8 cols): Content Health & Integrity Audit Card -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<div class="p-space-lg rounded-xl bg-light-surface shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-status-restricted text-[22px]">health_and_safety</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Content Health &amp; Integrity Audit</h2>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Automated heuristics flag unverified technical assertions and missing artifacts.</p>
+</div>
+</div>
+<span class="self-start sm:self-auto font-label-mono text-caption px-space-xs py-1 rounded bg-status-restricted/10 text-status-restricted font-semibold">
+            3 UNRESOLVED ANOMALIES
+          </span>
+</div>
+<!-- Audit Items List -->
+<div class="space-y-space-sm mt-space-sm">
+<!-- Audit Item 1 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-status-restricted text-[20px] mt-0.5">warning</span>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Project 'PadTrack' missing live demo URL</span>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">ENTITY:PROJECT</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mt-0.5">
+                  Published case study requires verified staging endpoint or read-only production demo proxy before next indexing crawl.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center shrink-0">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-mono text-caption font-semibold hover:bg-tertiary transition-colors shadow-sm">
+                Add URL
+              </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-light-surface transition-colors" title="Dismiss Flag">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Audit Item 2 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-status-unavailable text-[20px] mt-0.5">link_off</span>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-body-md text-body-md font-semibold text-on-surface">Claim #CLM-08 lacks linked cryptographic proof</span>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">ENTITY:CLAIM</span>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded bg-status-restricted/15 text-status-restricted font-medium">NEEDS_REVIEW</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mt-0.5">
+                  Assertion "Reduced P99 telemetry latency from 420ms to 84ms" lacks corresponding Datadog/Grafana benchmark artifact anchor.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center shrink-0">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary text-on-primary font-label-mono text-caption font-semibold hover:bg-tertiary transition-colors shadow-sm">
+                Link Proof
+              </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-light-surface transition-colors" title="Dismiss Flag">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<!-- Audit Item 3 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors gap-space-sm">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-status-draft text-[20px] mt-0.5">pending_actions</span>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-body-md text-body-md font-semibold text-on-surface">1 Draft project uncommitted to public ledger</span>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">ENTITY:STAGE</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mt-0.5">
+                  "Autonomous Drone Fleet Telemetry Engine" draft has had uncommitted edits for 72 hours.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs self-end sm:self-center shrink-0">
+<button class="px-space-sm py-1.5 rounded-lg bg-status-draft text-on-primary font-label-mono text-caption font-semibold hover:opacity-90 transition-opacity shadow-sm">
+                Publish Now
+              </button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-light-surface transition-colors" title="Dismiss Flag">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between font-label-mono text-caption text-light-text-secondary">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-public">check_circle</span>
+            Last complete ledger integrity pass: 22 minutes ago
+          </span>
+<button class="text-primary hover:underline font-semibold inline-flex items-center gap-0.5">
+            Run Manual Re-Audit
+            <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Architectural Distribution Mini-Graph / Content Topology Visual -->
+<div class="p-space-lg rounded-xl bg-light-surface shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Content Topology &amp; Citation Density</h3>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Distribution of verifiable evidence assets mapped across key engineering projects.</p>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">Live Cross-Reference Matrix</span>
+</div>
+<!-- Inline SVG Visualization Chart (Strictly under 2KB) -->
+<div class="w-full bg-surface-container-low p-space-md rounded-lg">
+<svg class="w-full h-24 overflow-visible" fill="none" viewbox="0 0 700 80" xmlns="http://www.w3.org/2000/svg">
+<!-- Grid Lines -->
+<line class="text-surface-container-high" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="700" y1="20" y2="20"></line>
+<line class="text-surface-container-high" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="700" y1="50" y2="50"></line>
+<!-- Bars for Top 5 Projects -->
+<!-- Project 1: Healthcare MIS -->
+<rect class="fill-primary" height="60" opacity="0.9" rx="4" width="80" x="30" y="10"></rect>
+<text class="fill-current text-light-text-secondary text-[10px] font-mono" text-anchor="middle" x="70" y="78">Healthcare MIS (6)</text>
+<!-- Project 2: Micro-Payment Gateway -->
+<rect class="fill-primary" height="45" opacity="0.7" rx="4" width="80" x="170" y="25"></rect>
+<text class="fill-current text-light-text-secondary text-[10px] font-mono" text-anchor="middle" x="210" y="78">PayEngine (4)</text>
+<!-- Project 3: PadTrack IoT -->
+<rect class="fill-primary" height="30" opacity="0.5" rx="4" width="80" x="310" y="40"></rect>
+<text class="fill-current text-light-text-secondary text-[10px] font-mono" text-anchor="middle" x="350" y="78">PadTrack (3)</text>
+<!-- Project 4: DevSecOps Pipeline -->
+<rect class="fill-primary" height="38" opacity="0.6" rx="4" width="80" x="450" y="32"></rect>
+<text class="fill-current text-light-text-secondary text-[10px] font-mono" text-anchor="middle" x="490" y="78">DevSecOps (4)</text>
+<!-- Project 5: Drone Telemetry (Draft) -->
+<rect class="fill-status-draft" height="10" opacity="0.8" rx="4" width="80" x="590" y="60"></rect>
+<text class="fill-current text-light-text-secondary text-[10px] font-mono" text-anchor="middle" x="630" y="78">Drone Fleet (1)</text>
+<!-- Evidence Baseline Curve -->
+<path d="M 70 10 Q 210 25 350 40 T 630 60" fill="none" opacity="0.4" stroke="#315EFB" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Right Column (4 cols): Quick Drafts & Staging Queue Drawer -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<div class="p-space-lg rounded-xl bg-light-surface shadow-sm h-full flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Staging Drawer</h3>
+</div>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded bg-surface-container font-semibold text-on-surface-variant">3 QUEUED</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mb-space-md">
+            Unpublished branches, hotfixes, and draft evidence revisions ready for promotion.
+          </p>
+<div class="space-y-space-sm">
+<!-- Staged Item 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-all group">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-mono text-caption text-status-draft font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-draft"></span>
+                  PROJECT DRAFT
+                </span>
+<span class="font-label-mono text-caption text-light-text-secondary text-[11px]">Modified 3h ago</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                Drone Fleet Telemetry Engine
+              </h4>
+<p class="font-body-sm text-body-sm text-light-text-secondary line-clamp-2 mt-0.5">
+                High-throughput MQTT broker case study with Rust ingestion microservice specs.
+              </p>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant">branch: <code class="text-on-surface">feat/drone-mesh</code></span>
+<a class="font-label-mono text-caption text-primary hover:underline font-semibold flex items-center gap-0.5" href="#">
+                  Direct Edit <span class="material-symbols-outlined text-[14px]">edit</span>
+</a>
+</div>
+</div>
+<!-- Staged Item 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-all group">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-mono text-caption text-status-restricted font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+                  EVIDENCE ATTACHMENT
+                </span>
+<span class="font-label-mono text-caption text-light-text-secondary text-[11px]">Modified Yesterday</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                SOC2 Type II Clean Assertion Pack
+              </h4>
+<p class="font-body-sm text-body-sm text-light-text-secondary line-clamp-2 mt-0.5">
+                Redacted cryptographic checksums for payment architecture compliance milestone.
+              </p>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant">access: <span class="text-status-redacted font-semibold">REDACTED_PUBLIC</span></span>
+<a class="font-label-mono text-caption text-primary hover:underline font-semibold flex items-center gap-0.5" href="#">
+                  Direct Edit <span class="material-symbols-outlined text-[14px]">edit</span>
+</a>
+</div>
+</div>
+<!-- Staged Item 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-all group">
+<div class="flex items-center justify-between mb-1">
+<span class="font-label-mono text-caption text-status-published font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-published"></span>
+                  PROFILE REVISION
+                </span>
+<span class="font-label-mono text-caption text-light-text-secondary text-[11px]">Modified 2d ago</span>
+</div>
+<h4 class="font-body-md text-body-md font-semibold text-on-surface group-hover:text-primary transition-colors">
+                Principal Systems Bio &amp; Skill Matrix
+              </h4>
+<p class="font-body-sm text-body-sm text-light-text-secondary line-clamp-2 mt-0.5">
+                Added Kubernetes CKA credential metadata and revised distributed systems blurb.
+              </p>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant">status: <span class="text-status-public font-semibold">STAGED_OK</span></span>
+<a class="font-label-mono text-caption text-primary hover:underline font-semibold flex items-center gap-0.5" href="#">
+                  Direct Edit <span class="material-symbols-outlined text-[14px]">edit</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Push to Edge CDN Promotion Trigger -->
+<div class="mt-space-lg pt-space-md border-t-0 bg-surface-container-high/40 p-space-md rounded-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-headline-sm text-body-md font-bold text-on-surface">Publish All Staged</span>
+<span class="material-symbols-outlined text-primary text-[18px]">publish</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary mb-space-sm">
+            Applies pending commits, generates static edge builds, and purges Cloudflare CDN cache.
+          </p>
+<button class="w-full py-2 rounded-lg bg-primary hover:bg-tertiary text-on-primary font-body-sm text-body-sm font-semibold transition-colors shadow-sm flex items-center justify-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+            Promote Staging to Production
+          </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Content Activity Ledger Table -->
+<div class="w-full p-space-lg rounded-xl bg-light-surface shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Content Activity Ledger</h2>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Immutable event stream of profile, project, and cryptographic claim operations.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-caption font-medium transition-colors">
+          Filter: All Actions
+        </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-caption font-medium transition-colors">
+          Export CSV
+        </button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-light-text-secondary font-label-mono text-caption uppercase tracking-wider">
+<th class="py-space-sm px-space-md font-semibold">Timestamp (UTC)</th>
+<th class="py-space-sm px-space-md font-semibold">Content Entity</th>
+<th class="py-space-sm px-space-md font-semibold">Action Executed</th>
+<th class="py-space-sm px-space-md font-semibold">Author Identity</th>
+<th class="py-space-sm px-space-md font-semibold">Integrity Status</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Inspect</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 font-body-sm text-body-sm">
+<!-- Row 1: Healthcare MIS -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-mono text-caption text-light-text-secondary whitespace-nowrap">
+              2025-02-24 14:18:02
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">inventory_2</span>
+<div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Healthcare MIS Case Study</span>
+<span class="block font-label-mono text-caption text-light-text-secondary">slug: /projects/healthcare-mis</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono text-caption px-2 py-0.5 rounded bg-status-published/10 text-status-published font-semibold">
+<span class="material-symbols-outlined text-[13px]">publish</span> PUBLISHED
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-mono text-caption text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">SI</span>
+<span>simon.ipara (Lead)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1.5"></span>
+                PUBLIC_VERIFIED
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Audit Details">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Cypress Test Suite Artifact -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-mono text-caption text-light-text-secondary whitespace-nowrap">
+              2025-02-24 11:05:44
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[18px]">science</span>
+<div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Cypress E2E Automation Suite</span>
+<span class="block font-label-mono text-caption text-light-text-secondary">ref: artifact-cyp-9481</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono text-caption px-2 py-0.5 rounded bg-primary-fixed text-primary font-semibold">
+<span class="material-symbols-outlined text-[13px]">add_circle</span> CREATED
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-mono text-caption text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">SI</span>
+<span>simon.ipara (Lead)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public mr-1.5"></span>
+                SHA256_VALIDATED
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Audit Details">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: Profile Headline Update -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-mono text-caption text-light-text-secondary whitespace-nowrap">
+              2025-02-23 19:42:18
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">account_box</span>
+<div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Bio &amp; Meta Header Statement</span>
+<span class="block font-label-mono text-caption text-light-text-secondary">entity: profile-main-v2</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono text-caption px-2 py-0.5 rounded bg-surface-container-high text-on-secondary-container font-semibold">
+<span class="material-symbols-outlined text-[13px]">update</span> UPDATED
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-mono text-caption text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">SI</span>
+<span>simon.ipara (Lead)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant mr-1.5"></span>
+                LOCAL_DRAFT
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Audit Details">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Claim Assertion CLM-08 Updated -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md font-label-mono text-caption text-light-text-secondary whitespace-nowrap">
+              2025-02-23 16:11:09
+            </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-status-restricted text-[18px]">verified</span>
+<div>
+<span class="font-body-md text-body-md font-semibold text-on-surface">Latency Benchmark Assertion</span>
+<span class="block font-label-mono text-caption text-light-text-secondary">claim_id: #CLM-08</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 font-label-mono text-caption px-2 py-0.5 rounded bg-surface-container-high text-on-secondary-container font-semibold">
+<span class="material-symbols-outlined text-[13px]">edit_note</span> MODIFIED
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-mono text-caption text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">SI</span>
+<span>simon.ipara (Lead)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-lg bg-status-restricted/10 text-status-restricted font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted mr-1.5"></span>
+                AUDIT_FLAGGED
+              </span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-primary transition-colors" title="View Audit Details">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination / Audit Ledger Footer -->
+<div class="mt-space-md pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-mono text-caption text-light-text-secondary">
+<div>
+        Showing <span class="font-semibold text-on-surface">1 - 4</span> of <span class="font-semibold text-on-surface">142</span> cryptographic ledger events
+      </div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors disabled:opacity-40" disabled="">
+          Previous
+        </button>
+<button class="px-space-sm py-1 rounded bg-primary text-on-primary font-semibold">1</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors">2</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors">3</button>
+<span class="px-1 text-light-text-secondary">...</span>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors">36</button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors">
+          Next
+        </button>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Behaviors -->
+<script>
+    // Micro-interaction for sync button animation
+    const syncBtn = document.getElementById('syncLedgerBtn');
+    if (syncBtn) {
+      syncBtn.addEventListener('click', () => {
+        const icon = syncBtn.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.add('animate-spin');
+          setTimeout(() => {
+            icon.classList.remove('animate-spin');
+          }, 1200);
+        }
+      });
+    }
+
+    // Keyboard shortcut handler for quick search trigger (Ctrl+K / Cmd+K)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        const searchInput = document.querySelector('button kbd');
+        if (searchInput) {
+          searchInput.parentElement.click();
+        }
+      }
+    });
+  </script>
+</div></main></div></body></html>

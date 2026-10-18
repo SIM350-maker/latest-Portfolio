@@ -1,52 +1,41 @@
-# Dependencies
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Environment variables
-.env
-.env.*
-!.env.example
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Logs
-logs
-*.log
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+.pnpm-debug.log*
 
-# Build outputs
-dist/
-build/
+# env files (can opt-in for committing if needed)
+.env*
 
-# Coverage
-coverage/
-.nyc_output/
+# vercel
+.vercel
 
-# Miscellaneous
-.DS_Store
-Thumbs.db
-
-# Test files
-*.sqlite
-*.sqlite3
-*.db
-*.db-shm
-*.db-wal
-data/
-
-# Uploads (if any)
-public/uploads/
-.neon
-
-# Test artifacts & derived evidence
-test-results/
-playwright-report/
-scripts/cv-populate/cv-extracted.txt
-scripts/cv-populate/schema-discovery.json
-sse-cookies.txt
-cookies*.txt
-
-# CV document (distributed separately, not part of the codebase)
-*.pdf
-
-scripts/dba/debug-*.js
+# typescript
+*.tsbuildinfo
+next-env.d.ts

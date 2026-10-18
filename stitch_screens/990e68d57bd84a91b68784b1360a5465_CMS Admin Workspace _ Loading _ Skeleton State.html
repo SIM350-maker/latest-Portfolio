@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-light-surface/90 backdrop-blur-xl border-b border-light-border"><div class="h-16 px-space-md md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface">CMS Console</span><span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">/manage</span></div></div><div class="flex items-center gap-space-md"><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>Back to Portfolio</span></a><div class="h-5 w-[1px] bg-light-border"></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-mono text-caption font-semibold">SI</div><span class="hidden sm:inline font-label-mono text-caption text-on-surface">simon.ipara</span></div></div></div></header><div class="flex min-h-screen pt-16"><aside class="w-64 fixed left-0 top-16 bottom-0 z-40 bg-light-surface border-r border-light-border flex flex-col justify-between py-space-md px-space-sm"><div class="space-y-space-md"><div class="px-space-sm"><p class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider">Content Management</p></div><nav class="space-y-space-xs" data-active-classes="bg-secondary-container text-primary font-semibold border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="cms-workspace" href="#">Workspace</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="projects" href="#">Projects Content</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="evidence" href="#">Evidence Artifacts</a></nav></div><div class="px-space-sm pt-space-md border-t border-light-border"><a class="flex items-center gap-space-xs font-label-mono text-caption text-on-surface-variant hover:text-error transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Exit CMS</span></a></div></aside><main class="flex-1 pl-64 w-full bg-light-background min-h-[calc(100vh-4rem)] p-space-lg"><div class="flex flex-col w-full">
+<style>
+    @keyframes pulseShimmer {
+      0% { opacity: 0.45; }
+      50% { opacity: 0.95; }
+      100% { opacity: 0.45; }
+    }
+    @keyframes linearShimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .skeleton-pulse {
+      animation: pulseShimmer 1.75s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .shimmer-track {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-track::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.65) 50%, rgba(255, 255, 255, 0) 100%);
+      animation: linearShimmer 2.2s infinite ease-in-out;
+    }
+  </style>
+<!-- Top Context Bar -->
+<div class="w-full flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-md mb-space-md bg-light-surface rounded-xl p-space-md shadow-sm">
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary">
+<span class="text-primary font-semibold">CMS Workspace</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface">Dashboard Hydration</span>
+</div>
+<div class="inline-flex items-center gap-space-xs px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-label-mono text-caption font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary skeleton-pulse"></span>
+<span class="tracking-wider">DB_POOL_SYNC (2/5 POOLS READY)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<!-- Search Bar Skeleton -->
+<div class="relative w-full md:w-64 h-9 bg-surface-container-low rounded-lg shimmer-track flex items-center px-space-sm">
+<div class="w-4 h-4 rounded bg-surface-container-high mr-space-xs"></div>
+<div class="h-3 w-32 bg-surface-container-high rounded"></div>
+</div>
+<!-- Live Status Pill Skeleton -->
+<div class="h-9 px-space-md bg-surface-container rounded-lg flex items-center gap-space-xs shrink-0 shimmer-track">
+<div class="w-2 h-2 rounded-full bg-status-restricted skeleton-pulse"></div>
+<div class="h-3 w-20 bg-surface-container-highest rounded"></div>
+</div>
+</div>
+</div>
+<!-- Workspace Hydration Diagnostic Banner -->
+<div class="w-full bg-light-surface rounded-xl p-space-lg shadow-sm mb-space-lg relative overflow-hidden">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg relative z-10">
+<div class="space-y-space-sm max-w-2xl">
+<div class="flex items-center gap-space-sm">
+<div class="h-4 w-28 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+<div class="h-5 w-24 bg-surface-container-highest rounded-full shimmer-track"></div>
+</div>
+<!-- Title Shimmer -->
+<div class="h-8 w-80 md:w-96 bg-surface-container-highest rounded-lg shimmer-track"></div>
+<!-- Descriptive Paragraph Shimmer -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="h-3.5 w-full bg-surface-container-low rounded shimmer-track"></div>
+<div class="h-3.5 w-4/5 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<!-- Action Buttons Skeleton Pill Matrix -->
+<div class="flex flex-wrap items-center gap-space-xs lg:justify-end">
+<div class="h-9 w-32 bg-primary/20 rounded-lg shimmer-track"></div>
+<div class="h-9 w-40 bg-surface-container-high rounded-lg shimmer-track"></div>
+<div class="h-9 w-32 bg-surface-container-high rounded-lg shimmer-track"></div>
+<div class="h-9 w-28 bg-surface-container-high rounded-lg shimmer-track"></div>
+</div>
+</div>
+<!-- Telemetry Strip -->
+<div class="mt-space-lg pt-space-sm flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest/60 rounded-lg p-space-sm text-caption font-label-mono text-light-text-secondary">
+<div class="flex items-center gap-space-sm">
+<span class="text-on-surface-variant font-medium">REPLICA: US-EAST-PRIMARY-01</span>
+<span class="text-outline-variant">•</span>
+<span class="text-status-restricted">STATE: HYDRATING_WORKSPACE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span>LATENCY:</span>
+<div class="w-10 h-3 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span>MEM:</span>
+<div class="w-12 h-3 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 4 Metric KPI Skeleton Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Metric 1: Verified Projects -->
+<div class="bg-light-surface rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between h-36">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-24 bg-surface-container-high rounded shimmer-track"></div>
+<div class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center">
+<div class="w-4 h-4 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</div>
+<div class="space-y-space-xs my-auto">
+<div class="h-8 w-16 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="flex items-center gap-space-xs">
+<div class="h-3 w-16 bg-status-public/20 rounded shimmer-track"></div>
+<div class="h-3 w-28 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<!-- Progress Bar Skeleton -->
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary/30 h-full w-2/3 rounded-full skeleton-pulse"></div>
+</div>
+</div>
+<!-- Metric 2: Artifacts & Evidence -->
+<div class="bg-light-surface rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between h-36">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-32 bg-surface-container-high rounded shimmer-track"></div>
+<div class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center">
+<div class="w-4 h-4 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</div>
+<div class="space-y-space-xs my-auto">
+<div class="h-8 w-14 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="flex items-center gap-space-xs">
+<div class="h-3 w-12 bg-status-public/20 rounded shimmer-track"></div>
+<div class="h-3 w-24 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-public/30 h-full w-4/5 rounded-full skeleton-pulse"></div>
+</div>
+</div>
+<!-- Metric 3: Integrity Index -->
+<div class="bg-light-surface rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between h-36">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-28 bg-surface-container-high rounded shimmer-track"></div>
+<div class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center">
+<div class="w-4 h-4 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</div>
+<div class="space-y-space-xs my-auto">
+<div class="h-8 w-20 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="flex items-center gap-space-xs">
+<div class="h-3 w-20 bg-status-restricted/20 rounded shimmer-track"></div>
+<div class="h-3 w-20 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-restricted/30 h-full w-11/12 rounded-full skeleton-pulse"></div>
+</div>
+</div>
+<!-- Metric 4: Staged Revisions -->
+<div class="bg-light-surface rounded-xl p-space-md shadow-sm relative overflow-hidden flex flex-col justify-between h-36">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-24 bg-surface-container-high rounded shimmer-track"></div>
+<div class="w-7 h-7 rounded bg-surface-container-low flex items-center justify-center">
+<div class="w-4 h-4 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</div>
+<div class="space-y-space-xs my-auto">
+<div class="h-8 w-12 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="flex items-center gap-space-xs">
+<div class="h-3 w-16 bg-status-draft/20 rounded shimmer-track"></div>
+<div class="h-3 w-24 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-status-draft/30 h-full w-1/3 rounded-full skeleton-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Main Grid: 2 Columns (7 cols left, 5 cols right on large screens) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Left Column: Integrity Audit & Topology -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- 1. Content Health & Integrity Audit Card -->
+<div class="bg-light-surface rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Content Health &amp; Integrity Audit</span>
+<div class="h-5 w-16 bg-surface-container-high rounded-full shimmer-track"></div>
+</div>
+<div class="h-3.5 w-64 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-light-text-secondary skeleton-pulse">refresh</span>
+</div>
+</div>
+<!-- 3 Anomaly Rows -->
+<div class="space-y-space-sm pt-space-xs">
+<!-- Row 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded bg-status-restricted/15 flex items-center justify-center shrink-0">
+<div class="w-4 h-4 rounded bg-status-restricted/40 skeleton-pulse"></div>
+</div>
+<div class="space-y-space-xs min-w-0">
+<div class="flex items-center gap-space-xs">
+<div class="h-4 w-48 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-3 w-16 bg-surface-container-high rounded font-label-mono"></div>
+</div>
+<div class="h-3 w-72 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<div class="h-7 w-20 bg-surface-container-high rounded shimmer-track shrink-0"></div>
+</div>
+<!-- Row 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded bg-status-unavailable/15 flex items-center justify-center shrink-0">
+<div class="w-4 h-4 rounded bg-status-unavailable/40 skeleton-pulse"></div>
+</div>
+<div class="space-y-space-xs min-w-0">
+<div class="flex items-center gap-space-xs">
+<div class="h-4 w-40 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-3 w-20 bg-surface-container-high rounded font-label-mono"></div>
+</div>
+<div class="h-3 w-64 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<div class="h-7 w-20 bg-surface-container-high rounded shimmer-track shrink-0"></div>
+</div>
+<!-- Row 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex items-center justify-between gap-space-sm">
+<div class="flex items-start gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded bg-primary/15 flex items-center justify-center shrink-0">
+<div class="w-4 h-4 rounded bg-primary/40 skeleton-pulse"></div>
+</div>
+<div class="space-y-space-xs min-w-0">
+<div class="flex items-center gap-space-xs">
+<div class="h-4 w-56 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-3 w-14 bg-surface-container-high rounded font-label-mono"></div>
+</div>
+<div class="h-3 w-80 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+</div>
+<div class="h-7 w-20 bg-surface-container-high rounded shimmer-track shrink-0"></div>
+</div>
+</div>
+</div>
+<!-- 2. Content Topology & Citation Density Card -->
+<div class="bg-light-surface rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between mb-space-md">
+<div class="space-y-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Content Topology &amp; Citation Density</span>
+<div class="h-3.5 w-52 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="h-6 w-14 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+<div class="h-6 w-14 bg-surface-container-low rounded font-label-mono"></div>
+</div>
+</div>
+<!-- Shimmering Bar Chart Placeholder -->
+<div class="relative w-full h-48 bg-surface-container-lowest rounded-lg p-space-md flex flex-col justify-end">
+<!-- Subtle Dashed Gridlines -->
+<div class="absolute inset-x-space-md top-6 h-0 border-b border-dashed border-outline-variant/30"></div>
+<div class="absolute inset-x-space-md top-20 h-0 border-b border-dashed border-outline-variant/30"></div>
+<div class="absolute inset-x-space-md top-32 h-0 border-b border-dashed border-outline-variant/30"></div>
+<!-- Synthetic Columns -->
+<div class="relative z-10 grid grid-cols-8 items-end gap-space-sm h-36 px-space-xs">
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/25 rounded-t shimmer-track" style="height: 48%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/30 rounded-t shimmer-track" style="height: 72%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/20 rounded-t shimmer-track" style="height: 35%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/45 rounded-t shimmer-track" style="height: 88%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/35 rounded-t shimmer-track" style="height: 60%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/25 rounded-t shimmer-track" style="height: 42%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/50 rounded-t shimmer-track" style="height: 94%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col items-center gap-space-xs h-full justify-end">
+<div class="w-full bg-primary/30 rounded-t shimmer-track" style="height: 65%;"></div>
+<div class="h-2 w-6 bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+<div class="mt-space-sm flex items-center justify-between text-caption font-label-mono text-light-text-secondary px-space-xs">
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary/50"></span> Case Studies
+            </span>
+<span class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-public/50"></span> Architecture Docs
+            </span>
+</div>
+<div class="h-3 w-32 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Staging Drawer & Action Card -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- 1. Staging Drawer Card -->
+<div class="bg-light-surface rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Staging Drawer</span>
+<span class="px-space-xs py-0.5 rounded-full bg-primary/10 text-primary font-label-mono text-caption font-semibold">3 PENDING</span>
+</div>
+<div class="h-6 w-20 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="space-y-space-sm">
+<!-- Queue Item 1: Project Draft -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-draft"></span>
+<span class="font-label-mono text-caption uppercase text-light-text-secondary">Project Spec</span>
+</div>
+<div class="h-3 w-16 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="h-4 w-4/5 bg-surface-container-highest rounded shimmer-track mt-space-xs"></div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="h-5 w-14 bg-surface-container-high rounded shimmer-track"></div>
+<div class="h-5 w-16 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="h-4 w-12 bg-primary/20 rounded shimmer-track"></div>
+</div>
+</div>
+<!-- Queue Item 2: Evidence Attachment -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-restricted"></span>
+<span class="font-label-mono text-caption uppercase text-light-text-secondary">Evidence Proof</span>
+</div>
+<div class="h-3 w-20 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="h-4 w-3/4 bg-surface-container-highest rounded shimmer-track mt-space-xs"></div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="h-5 w-20 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="h-4 w-12 bg-primary/20 rounded shimmer-track"></div>
+</div>
+</div>
+<!-- Queue Item 3: Profile Revision -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+<span class="font-label-mono text-caption uppercase text-light-text-secondary">Biography Claim</span>
+</div>
+<div class="h-3 w-14 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="h-4 w-2/3 bg-surface-container-highest rounded shimmer-track mt-space-xs"></div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="h-5 w-16 bg-surface-container-high rounded shimmer-track"></div>
+<div class="h-5 w-12 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+<div class="h-4 w-12 bg-primary/20 rounded shimmer-track"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Publish All Staged Action Promo Card -->
+<div class="bg-gradient-to-br from-primary-container/10 via-surface-container-low to-light-surface rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="space-y-space-xs mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">cloud_sync</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Publish Release Batch</span>
+</div>
+<div class="h-3.5 w-full bg-surface-container-high rounded shimmer-track"></div>
+<div class="h-3.5 w-5/6 bg-surface-container-low rounded shimmer-track"></div>
+</div>
+<div class="pt-space-sm space-y-space-sm">
+<div class="h-10 w-full bg-primary/80 rounded-lg shimmer-track flex items-center justify-center">
+<div class="h-4 w-36 bg-light-surface/60 rounded"></div>
+</div>
+<div class="flex items-center justify-center gap-space-xs font-label-mono text-caption text-light-text-secondary">
+<span class="material-symbols-outlined text-[14px]">lock_reset</span>
+<span>Cryptographic integrity stamp pending hydration</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Recent Content Activity Ledger Table Skeleton -->
+<div class="w-full bg-light-surface rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-md">
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Recent Content Activity Ledger</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">SYS_AUDIT_LOG</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Cryptographic timeline tracking commits, integrity revisions, and status migrations.</p>
+</div>
+<!-- Skeleton Filter Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-space-xs md:pb-0">
+<div class="h-8 w-20 bg-primary/20 rounded-lg shimmer-track shrink-0"></div>
+<div class="h-8 w-24 bg-surface-container-high rounded-lg shimmer-track shrink-0"></div>
+<div class="h-8 w-24 bg-surface-container-high rounded-lg shimmer-track shrink-0"></div>
+<div class="h-8 w-20 bg-surface-container-high rounded-lg shimmer-track shrink-0"></div>
+</div>
+</div>
+<!-- Table Skeleton Wrapper -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-light-text-secondary font-label-mono text-caption">
+<th class="py-space-sm px-space-md rounded-l">OPERATOR</th>
+<th class="py-space-sm px-space-md">TARGET ENTITY</th>
+<th class="py-space-sm px-space-md">INTEGRITY STATE</th>
+<th class="py-space-sm px-space-md">REVISION HASH</th>
+<th class="py-space-sm px-space-md">TIMESTAMP</th>
+<th class="py-space-sm px-space-md rounded-r text-right">ACTION</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 space-y-space-xs">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-surface-container-high shimmer-track shrink-0"></div>
+<div class="h-3.5 w-24 bg-surface-container-highest rounded shimmer-track"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="space-y-space-xs">
+<div class="h-3.5 w-48 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-2.5 w-24 bg-surface-container-low rounded"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-6 w-20 bg-status-public/20 rounded-full shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-28 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-20 bg-surface-container-low rounded shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex gap-space-xs">
+<div class="w-6 h-6 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-surface-container-high shimmer-track shrink-0"></div>
+<div class="h-3.5 w-20 bg-surface-container-highest rounded shimmer-track"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="space-y-space-xs">
+<div class="h-3.5 w-40 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-2.5 w-28 bg-surface-container-low rounded"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-6 w-24 bg-status-restricted/20 rounded-full shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-28 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-24 bg-surface-container-low rounded shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex gap-space-xs">
+<div class="w-6 h-6 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-surface-container-high shimmer-track shrink-0"></div>
+<div class="h-3.5 w-24 bg-surface-container-highest rounded shimmer-track"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="space-y-space-xs">
+<div class="h-3.5 w-52 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-2.5 w-20 bg-surface-container-low rounded"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-6 w-20 bg-status-draft/20 rounded-full shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-28 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-16 bg-surface-container-low rounded shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex gap-space-xs">
+<div class="w-6 h-6 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-surface-container-high shimmer-track shrink-0"></div>
+<div class="h-3.5 w-16 bg-surface-container-highest rounded shimmer-track"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="space-y-space-xs">
+<div class="h-3.5 w-36 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-2.5 w-32 bg-surface-container-low rounded"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-6 w-20 bg-status-redacted/20 rounded-full shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-28 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-20 bg-surface-container-low rounded shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex gap-space-xs">
+<div class="w-6 h-6 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-surface-container-high shimmer-track shrink-0"></div>
+<div class="h-3.5 w-24 bg-surface-container-highest rounded shimmer-track"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="space-y-space-xs">
+<div class="h-3.5 w-44 bg-surface-container-highest rounded shimmer-track"></div>
+<div class="h-2.5 w-20 bg-surface-container-low rounded"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-6 w-20 bg-status-public/20 rounded-full shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-28 bg-surface-container-high rounded font-label-mono shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="h-3.5 w-24 bg-surface-container-low rounded shimmer-track"></div>
+</td>
+<td class="py-space-md px-space-md text-right">
+<div class="inline-flex gap-space-xs">
+<div class="w-6 h-6 rounded bg-surface-container-high shimmer-track"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Skeleton -->
+<div class="flex items-center justify-between pt-space-md mt-space-md bg-surface-container-lowest/50 rounded-lg p-space-sm">
+<div class="h-3.5 w-44 bg-surface-container-high rounded shimmer-track"></div>
+<div class="flex items-center gap-space-xs">
+<div class="h-8 w-8 bg-surface-container-high rounded shimmer-track"></div>
+<div class="h-8 w-8 bg-primary/20 rounded shimmer-track"></div>
+<div class="h-8 w-8 bg-surface-container-high rounded shimmer-track"></div>
+<div class="h-8 w-8 bg-surface-container-high rounded shimmer-track"></div>
+</div>
+</div>
+</div>
+<script>
+    // Micro-interaction: Subtle status ticker cycle simulation during workspace skeleton hydration
+    (function initHydrationTicker() {
+      const statuses = [
+        "DB_POOL_SYNC (2/5 POOLS READY)",
+        "WARMING_REDIS_EVIDENCE_CACHE (4/5)",
+        "INDEXING_GRAPH_CITATIONS (98%)"
+      ];
+      let idx = 0;
+      const indicator = document.querySelector(".tracking-wider");
+      if (indicator) {
+        setInterval(() => {
+          idx = (idx + 1) % statuses.length;
+          indicator.textContent = statuses[idx];
+        }, 3200);
+      }
+    })();
+  </script>
+</div></main></div></body></html>

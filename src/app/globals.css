@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --background: #f9f9ff;
+    --foreground: #121b2e;
+    --surface: #f9f9ff;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f1f3ff;
+    --surface-container: #e9edff;
+    --surface-container-high: #e1e8ff;
+    --surface-container-highest: #d9e2fc;
+    --surface-dim: #d1daf4;
+    --surface-bright: #f9f9ff;
+    --on-surface: #121b2e;
+    --on-surface-variant: #434656;
+    --primary: #0042df;
+    --primary-container: #315efb;
+    --on-primary: #ffffff;
+    --on-primary-container: #f1f1ff;
+    --secondary: #535f73;
+    --secondary-container: #d7e3fb;
+    --on-secondary: #ffffff;
+    --on-secondary-container: #596579;
+    --tertiary: #2448c7;
+    --tertiary-container: #4363e1;
+    --on-tertiary: #ffffff;
+    --outline: #747687;
+    --outline-variant: #c4c5d8;
+    --border: #E2E7EF;
+    --status-public: #10B981;
+    --status-restricted: #F59E0B;
+    --status-redacted: #64748B;
+    --status-unavailable: #EF4444;
+    --status-draft: #8B5CF6;
+    --status-published: #3B82F6;
+    --status-archived: #6B7280;
+  }
+
+  .dark {
+    --background: #0E1420;
+    --foreground: #F2F5FA;
+    --surface: #0E1420;
+    --surface-container-lowest: #151E2D;
+    --surface-container-low: #182233;
+    --surface-container: #1B2637;
+    --surface-container-high: #223048;
+    --surface-container-highest: #2A3B57;
+    --surface-dim: #0A0F18;
+    --surface-bright: #1B2637;
+    --on-surface: #F2F5FA;
+    --on-surface-variant: #AAB6C8;
+    --primary: #4D76FD;
+    --primary-container: #315efb;
+    --on-primary: #ffffff;
+    --on-primary-container: #f1f1ff;
+    --secondary: #AAB6C8;
+    --secondary-container: #1E2B3E;
+    --on-secondary: #0E1420;
+    --on-secondary-container: #C8D4E6;
+    --tertiary: #5D82FF;
+    --tertiary-container: #2A3C6B;
+    --on-tertiary: #ffffff;
+    --outline: #4A5870;
+    --outline-variant: #2A374A;
+    --border: #2A374A;
+  }
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-border: var(--border);
+  --color-status-public: var(--status-public);
+  --color-status-restricted: var(--status-restricted);
+  --color-status-redacted: var(--status-redacted);
+  --color-status-unavailable: var(--status-unavailable);
+  --color-status-draft: var(--status-draft);
+  --color-status-published: var(--status-published);
+  --color-status-archived: var(--status-archived);
+
+  --font-inter: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--on-surface);
+  font-family: var(--font-inter);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Material symbols font helper */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

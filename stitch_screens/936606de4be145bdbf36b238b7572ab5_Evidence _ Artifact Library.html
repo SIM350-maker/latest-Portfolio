@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-unavailable":"#EF4444","light-surface":"#FFFFFF","secondary-container":"#d7e3fb","secondary-fixed-dim":"#bbc7de","on-primary-fixed":"#001354","surface-variant":"#d9e2fc","inverse-surface":"#273044","surface-container":"#e9edff","on-tertiary-container":"#f1f0ff","surface-container-highest":"#d9e2fc","dark-surface-raised":"#1B2637","on-error":"#ffffff","on-tertiary-fixed":"#001355","on-secondary-container":"#596579","on-tertiary":"#ffffff","tertiary-container":"#4363e1","tertiary-fixed":"#dde1ff","light-text-primary":"#172033","surface-tint":"#154ceb","surface-container-lowest":"#ffffff","inverse-primary":"#b8c4ff","primary-fixed":"#dde1ff","dark-surface":"#151E2D","light-border":"#E2E7EF","outline":"#747687","on-error-container":"#93000a","error":"#ba1a1a","on-secondary-fixed-variant":"#3b475a","on-surface-variant":"#434656","dark-text-primary":"#F2F5FA","primary-fixed-dim":"#b8c4ff","status-public":"#10B981","on-background":"#121b2e","secondary":"#535f73","light-background":"#F8F9FB","inverse-on-surface":"#edf0ff","status-redacted":"#64748B","on-secondary":"#ffffff","dark-text-secondary":"#AAB6C8","outline-variant":"#c4c5d8","tertiary":"#2448c7","primary-container":"#315efb","dark-accent":"#4D76FD","surface-bright":"#f9f9ff","error-container":"#ffdad6","light-text-secondary":"#596579","on-primary":"#ffffff","surface":"#f9f9ff","background":"#f9f9ff","on-tertiary-fixed-variant":"#0737b8","on-primary-fixed-variant":"#0036bb","tertiary-fixed-dim":"#b8c3ff","dark-background":"#0E1420","status-restricted":"#F59E0B","on-primary-container":"#f1f1ff","surface-dim":"#d1daf4","on-secondary-fixed":"#101c2d","on-surface":"#121b2e","status-published":"#3B82F6","surface-container-low":"#f1f3ff","surface-container-high":"#e1e8ff","status-archived":"#6B7280","secondary-fixed":"#d7e3fb","status-draft":"#8B5CF6","primary":"#0042df","dark-border":"#2A374A"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1.5rem","space-3xl":"4rem","space-lg":"1.5rem","space-2xl":"3rem","margin":"2rem","space-xl":"2rem","gutter-sm":"1rem","space-md":"1rem"},"fontFamily":{"caption":["Inter"],"hero-lg":["Inter"],"headline-md":["Inter"],"body-md":["Inter"],"label-mono":["JetBrains Mono"],"code-block":["JetBrains Mono"],"code-inline":["JetBrains Mono"],"body-sm":["Inter"],"hero-lg-mobile":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"body-lg":["Inter"],"headline-lg-mobile":["Inter"]},"fontSize":{"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><a class="flex flex-col" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Simon Ipara</span><span class="font-label-mono text-caption text-on-surface-variant">Software Engineer</span></a></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-medium"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="projects" href="#">Projects</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="skills" href="#">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="engineering" href="#">Engineering</a><a aria-current="page" class="transition-colors text-primary font-medium" data-path="evidence" href="#">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="experience" href="#">Experience</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-md"><button aria-label="Theme indicator" class="h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">light_mode</span><span class="font-label-mono text-caption">LIGHT</span></button><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" data-path="contact" href="#">Get in touch</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><button aria-label="Open menu" class="xl:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<!-- Subtle Architectural Atmospheric Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-24 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="absolute top-48 left-[-5%] w-80 h-80 rounded-full bg-surface-container-highest/60 blur-2xl pointer-events-none"></div>
+<div class="max-w-[1200px] w-full mx-auto px-margin-mobile md:px-margin py-space-xl md:py-space-2xl">
+<!-- Top Context Indicator & Cryptographic Audit Breadcrumb -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-mono text-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+            SYS-AUDIT // IMMUTABLE RECORD
+          </span>
+<span class="text-on-surface-variant/40 font-label-mono text-caption">/</span>
+<span class="font-label-mono text-caption text-on-surface-variant">ARTIFACT_INDEX_v2.4.0</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="font-label-mono text-caption tracking-wider uppercase">Provenance: SHA-256 Validated</span>
+</div>
+</div>
+<!-- Main Section Header -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-end mb-space-2xl">
+<div class="lg:col-span-8 space-y-space-sm">
+<p class="font-label-mono text-caption uppercase text-primary tracking-widest">Verification &amp; Assurance</p>
+<h1 class="font-hero-lg-mobile md:font-hero-lg text-hero-lg-mobile md:text-hero-lg tracking-tight text-on-surface">
+            Evidence &amp; Artifact Library
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl pt-space-xs leading-relaxed">
+            Observability into engineering artifacts, test suites, architecture decision records (ADRs), and live demonstrators. Public records are inspectable; restricted items are marked with explicit boundaries.
+          </p>
+</div>
+<!-- Telemetry Summary Widget -->
+<div class="lg:col-span-4 flex flex-col justify-end">
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-mono text-caption">
+<span>ACTIVE ARTIFACTS</span>
+<span class="text-on-surface font-semibold">05 OF 18 AUDITED</span>
+</div>
+<!-- Progress Spark Track -->
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden flex">
+<div class="bg-status-public h-full" style="width: 60%" title="Public: 3/5 shown"></div>
+<div class="bg-status-restricted h-full" style="width: 20%" title="Restricted/Redacted: 1/5"></div>
+<div class="bg-status-published h-full" style="width: 20%" title="Verified: 1/5"></div>
+</div>
+<div class="flex items-center justify-between font-label-mono text-caption text-on-surface-variant pt-space-xs">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-public inline-block"></span> 80% Public</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-restricted inline-block"></span> 20% Redacted</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-unavailable inline-block"></span> 0% Non-verifiable</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Metric & Verification Grid (Inline SVG Sparklines & Metrics) -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-2xl">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase">E2E Test Pass Rate</span>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">100%</span>
+<span class="text-status-public font-label-mono text-caption font-semibold flex items-center">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> 418/418
+            </span>
+</div>
+<!-- Mini SVG Sparkline -->
+<svg class="w-full h-6 text-primary mt-space-xs" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 24">
+<path d="M0,18 L15,18 L25,12 L40,16 L55,8 L70,12 L85,4 L100,4" stroke="currentColor" stroke-linecap="round"></path>
+</svg>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase">ADRs Recorded</span>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">14</span>
+<span class="text-on-surface-variant font-label-mono text-caption">All Active</span>
+</div>
+<svg class="w-full h-6 text-tertiary mt-space-xs" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 24">
+<path d="M0,20 L20,16 L40,14 L60,9 L80,6 L100,4" stroke="currentColor" stroke-linecap="round"></path>
+</svg>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase">Linked Claims</span>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">09</span>
+<span class="text-primary font-label-mono text-caption font-semibold">Anchored</span>
+</div>
+<svg class="w-full h-6 text-status-published mt-space-xs" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 24">
+<path d="M0,14 L20,10 L35,18 L50,8 L65,12 L80,4 L100,6" stroke="currentColor" stroke-linecap="round"></path>
+</svg>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase">Zero Knowledge PoC</span>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">Verified</span>
+<span class="text-status-public font-label-mono text-caption font-semibold">Blake2b + ZK</span>
+</div>
+<svg class="w-full h-6 text-status-public mt-space-xs" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 24">
+<circle cx="20" cy="12" fill="currentColor" r="3"></circle>
+<circle cx="50" cy="12" fill="currentColor" r="3"></circle>
+<circle cx="80" cy="12" fill="currentColor" r="3"></circle>
+<line stroke="currentColor" x1="23" x2="47" y1="12" y2="12"></line>
+<line stroke="currentColor" x1="53" x2="77" y1="12" y2="12"></line>
+</svg>
+</div>
+</div>
+<!-- Filter & Search Toolbar Container -->
+<section aria-label="Evidence Query Engine" class="bg-surface-container-low rounded-xl p-space-md md:p-space-lg shadow-sm mb-space-2xl space-y-space-md">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search Bar -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full h-10 pl-10 pr-space-md bg-surface-container-lowest text-on-surface rounded-lg font-body-sm text-body-sm shadow-sm placeholder:text-on-surface-variant/60 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="artifactSearch" placeholder="Search artifacts by name, SHA hash, or claim ID (e.g., ADR-004, Cypress, ZK)..." type="text"/>
+<span class="hidden md:inline-flex absolute right-3 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">⌘K</span>
+</div>
+<!-- Dropdowns Container -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-space-sm">
+<!-- Project Filter Dropdown -->
+<div class="relative flex-1 sm:flex-initial min-w-[190px]">
+<label class="sr-only" for="projectFilter">Filter by Project</label>
+<select class="w-full h-10 px-space-md bg-surface-container-lowest text-on-surface rounded-lg font-body-sm text-body-sm shadow-sm appearance-none pr-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40" id="projectFilter">
+<option value="all">All Projects (5)</option>
+<option value="healthcare">Healthcare MIS</option>
+<option value="taskmanager">Professional Task Manager</option>
+<option value="padtrack">PadTrack</option>
+<option value="evoting">E-voting Application</option>
+<option value="portfolio">Personal Portfolio</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+<!-- Access Classification Filter -->
+<div class="relative flex-1 sm:flex-initial min-w-[190px]">
+<label class="sr-only" for="accessFilter">Access Classification</label>
+<select class="w-full h-10 px-space-md bg-surface-container-lowest text-on-surface rounded-lg font-body-sm text-body-sm shadow-sm appearance-none pr-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40" id="accessFilter">
+<option value="all">All Classifications</option>
+<option value="public">Public (Inspectable)</option>
+<option value="redacted">Redacted / Sanitized</option>
+<option value="unavailable">Unavailable (Internal)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">tune</span>
+</div>
+</div>
+</div>
+<!-- Filter Category Pills -->
+<div class="flex items-center gap-space-xs overflow-x-auto pb-1 pt-1 no-scrollbar">
+<span class="font-label-mono text-caption uppercase text-on-surface-variant mr-space-xs whitespace-nowrap">Type:</span>
+<button class="type-pill px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-medium shadow-sm transition-colors whitespace-nowrap" data-filter="all" type="button">
+            All Records (5)
+          </button>
+<button class="type-pill px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-body-sm text-body-sm shadow-sm transition-colors whitespace-nowrap" data-filter="Architecture Note" type="button">
+            Architecture Note (1)
+          </button>
+<button class="type-pill px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-body-sm text-body-sm shadow-sm transition-colors whitespace-nowrap" data-filter="Test Report" type="button">
+            Test Report (1)
+          </button>
+<button class="type-pill px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-body-sm text-body-sm shadow-sm transition-colors whitespace-nowrap" data-filter="Technical Doc" type="button">
+            Technical Doc (1)
+          </button>
+<button class="type-pill px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-body-sm text-body-sm shadow-sm transition-colors whitespace-nowrap" data-filter="Code Sample" type="button">
+            Code Sample (1)
+          </button>
+<button class="type-pill px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-body-sm text-body-sm shadow-sm transition-colors whitespace-nowrap" data-filter="Benchmark" type="button">
+            Benchmark (1)
+          </button>
+</div>
+</section>
+<!-- Grid of Evidence Artifacts -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="evidenceGrid">
+<!-- Artifact Card 1: Healthcare MIS ADR -->
+<article class="artifact-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group" data-access="public" data-project="healthcare" data-title="PostgreSQL Schema Migration &amp; Audit Log Strategy" data-type="Architecture Note">
+<div class="space-y-space-md">
+<!-- Metadata Ribbon -->
+<div class="flex items-center justify-between gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                PUBLIC ACCESS
+              </span>
+<span class="font-label-mono text-caption text-on-surface-variant tracking-wider">ADR-004-MIG</span>
+</div>
+<!-- Card Headline & Context -->
+<div>
+<div class="flex items-center gap-space-xs text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span class="font-label-mono text-caption font-semibold uppercase">Architecture Note</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                PostgreSQL Schema Migration &amp; Audit Log Strategy
+              </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+              Zero-downtime Blue/Green relational database migration pattern utilizing pg_audit, row-level temporal triggers, and rollback idempotency across distributed state stores.
+            </p>
+<!-- Visual Artifact Preview Miniature -->
+<div class="bg-surface-container rounded-lg p-space-sm font-code-inline text-code-inline text-on-surface-variant space-y-1">
+<div class="flex items-center justify-between font-label-mono text-caption text-on-surface-variant/70">
+<span>DDL EXECUTION GRAPH</span>
+<span>STATE: REPRODUCIBLE</span>
+</div>
+<div class="font-label-mono text-caption text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<span>migration_v4_up.sql (148 lines)</span>
+</div>
+</div>
+<!-- Project Affiliation & Connected Claims -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">System:</span>
+<span class="text-on-surface font-medium">Healthcare MIS</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked Claims:</span>
+<button class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container hover:bg-secondary-container text-primary font-label-mono text-caption transition-colors" onclick="openClaimGraph('ADR-004-MIG', 'PostgreSQL Schema Migration', ['Claim 1: Zero-Loss Data Guarantee', 'Claim 4: Sub-200ms ACID Commits'])" type="button">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span>2 Claims Anchored</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom Action Deck -->
+<div class="mt-space-lg pt-space-md flex items-center justify-between gap-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<span class="font-label-mono text-caption text-on-surface-variant">FORMAT: MARKDOWN + SQL</span>
+<button class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" onclick="inspectArtifact('ADR-004-MIG', 'PostgreSQL Schema Migration &amp; Audit Log Strategy', 'Healthcare MIS', 'Public', 'Architecture Decision Record for Zero-Downtime Migration', 'The relational database tier requires continuous ingestion while rolling schema alterations across 38 microservices. Implements temporal table versioning, CDC streams via Kafka, and strict foreign-key integrity verifications.', 'https://github.com/SIM350-maker/healthcare-mis-core', ['Claim 1: Zero-Loss Data Guarantee', 'Claim 4: Sub-200ms ACID Commits'])" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+              Inspect
+            </button>
+</div>
+</article>
+<!-- Artifact Card 2: Cypress E2E Suite -->
+<article class="artifact-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group" data-access="public" data-project="taskmanager" data-title="End-to-End Cypress Integration &amp; Accessibility Test Suite" data-type="Test Report">
+<div class="space-y-space-md">
+<!-- Metadata Ribbon -->
+<div class="flex items-center justify-between gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                PUBLIC ACCESS
+              </span>
+<span class="font-label-mono text-caption text-on-surface-variant tracking-wider">CYP-E2E-99</span>
+</div>
+<!-- Headline -->
+<div>
+<div class="flex items-center gap-space-xs text-status-published mb-1">
+<span class="material-symbols-outlined text-[18px]">flaky</span>
+<span class="font-label-mono text-caption font-semibold uppercase">Test Report</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                End-to-End Cypress Integration &amp; Accessibility Test Suite
+              </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+              Automated deterministic integration runs, WCAG 2.1 AA accessibility assertions (via axe-core), drag-drop kanban simulation, and token renewal regression tests.
+            </p>
+<!-- Test Metrics Graph -->
+<div class="bg-surface-container rounded-lg p-space-sm font-label-mono text-caption space-y-1.5">
+<div class="flex justify-between items-center text-on-surface">
+<span>AXE-CORE AUDIT: 0 VIOLATIONS</span>
+<span class="text-status-public font-bold">PASS 100%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden flex">
+<div class="bg-status-public h-full" style="width: 100%"></div>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Duration: 4m 12s</span>
+<span>Specs: 42 Files</span>
+</div>
+</div>
+<!-- Affiliation -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">System:</span>
+<span class="text-on-surface font-medium">Professional Task Manager</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked Claims:</span>
+<button class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container hover:bg-secondary-container text-primary font-label-mono text-caption transition-colors" onclick="openClaimGraph('CYP-E2E-99', 'Cypress Integration Test Suite', ['Claim 2: 100% WCAG 2.1 AA Compliance', 'Claim 5: Deterministic CI Pipeline', 'Claim 6: Sub-5min E2E Coverage'])" type="button">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span>3 Claims Anchored</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-space-lg pt-space-md flex items-center justify-between gap-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<span class="font-label-mono text-caption text-on-surface-variant">FORMAT: MOCHA / ALLURE</span>
+<button class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" onclick="inspectArtifact('CYP-E2E-99', 'End-to-End Cypress Integration &amp; Accessibility Test Suite', 'Professional Task Manager', 'Public', 'Automated QA &amp; Compliance Evidence', 'Full headless browser run logs including 418 test assertions spanning cross-role authorization, board state hydration, offline queue resilience, and keyboard navigation traps.', 'https://github.com/SIM350-maker/task-manager-e2e', ['Claim 2: 100% WCAG 2.1 AA Compliance', 'Claim 5: Deterministic CI Pipeline', 'Claim 6: Sub-5min E2E Coverage'])" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+              Inspect
+            </button>
+</div>
+</article>
+<!-- Artifact Card 3: PadTrack Offline Sync Protocol -->
+<article class="artifact-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group" data-access="redacted" data-project="padtrack" data-title="PadTrack Offline Sync &amp; Conflict Resolution Protocol" data-type="Technical Doc">
+<div class="space-y-space-md">
+<!-- Metadata Ribbon -->
+<div class="flex items-center justify-between gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-status-restricted/10 text-status-restricted font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+                REDACTED SUMMARY
+              </span>
+<span class="font-label-mono text-caption text-on-surface-variant tracking-wider">DOC-CRDT-01</span>
+</div>
+<!-- Headline -->
+<div>
+<div class="flex items-center gap-space-xs text-status-restricted mb-1">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="font-label-mono text-caption font-semibold uppercase">Technical Doc</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                PadTrack Offline Sync &amp; Conflict Resolution Protocol
+              </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+              Mathematical specification of delta-state Conflict-free Replicated Data Types (CRDT) for field workers synchronizing batch inventories over high-latency 2G GSM cellular bridges.
+            </p>
+<!-- Redaction Notice Box -->
+<div class="bg-surface-container rounded-lg p-space-sm font-label-mono text-caption space-y-1">
+<div class="flex items-center gap-1.5 text-status-restricted font-semibold">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>PROPRIETARY BOUNDARY</span>
+</div>
+<p class="text-on-surface-variant text-[11px] leading-tight">
+                Cryptographic hardware tokens and proprietary GSM transport headers are obscured per enterprise confidentiality requirements.
+              </p>
+</div>
+<!-- Affiliation -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">System:</span>
+<span class="text-on-surface font-medium">PadTrack Enterprise</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked Claims:</span>
+<button class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container hover:bg-secondary-container text-primary font-label-mono text-caption transition-colors" onclick="openClaimGraph('DOC-CRDT-01', 'PadTrack Offline Sync Protocol', ['Claim 7: Zero-Collision Offline Convergence'])" type="button">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span>1 Claim Anchored</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-space-lg pt-space-md flex items-center justify-between gap-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<span class="font-label-mono text-caption text-on-surface-variant">SPEC: IETF RFC FORMAT</span>
+<button class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-semibold transition-colors shadow-sm" onclick="inspectArtifact('DOC-CRDT-01', 'PadTrack Offline Sync &amp; Conflict Resolution Protocol', 'PadTrack', 'Redacted Summary', 'CRDT Delta-Mutation Spec', 'A sanitized excerpt of the Lamport timestamp state-vector algorithm used to reconcile store updates without central server authority locks.', '#', ['Claim 7: Zero-Collision Offline Convergence'])" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+              Inspect Redacted
+            </button>
+</div>
+</article>
+<!-- Artifact Card 4: Ballot Hashing & Zero-Knowledge PoC -->
+<article class="artifact-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group" data-access="public" data-project="evoting" data-title="Ballot Hashing &amp; Zero-Knowledge Verification Proof of Concept" data-type="Code Sample">
+<div class="space-y-space-md">
+<!-- Metadata Ribbon -->
+<div class="flex items-center justify-between gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                PUBLIC REPO
+              </span>
+<span class="font-label-mono text-caption text-on-surface-variant tracking-wider">POC-ZKP-HASH</span>
+</div>
+<!-- Headline -->
+<div>
+<div class="flex items-center gap-space-xs text-primary mb-1">
+<span class="material-symbols-outlined text-[18px]">code</span>
+<span class="font-label-mono text-caption font-semibold uppercase">Code Sample</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                Ballot Hashing &amp; Zero-Knowledge Verification Proof of Concept
+              </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+              Independent verifiable ballot receipts using homomorphic commitments and client-side SHA-256 Merkle leaf inclusion proofs to allow voter audit without deanonymization.
+            </p>
+<!-- Visual Code Snippet Graphic -->
+<div class="bg-surface-container rounded-lg p-space-sm font-label-mono text-caption space-y-1">
+<div class="text-on-surface-variant/80">// Rust verification proof snippet</div>
+<div class="text-primary truncate">let proof = Groth16::verify(&amp;vk, &amp;public_input);</div>
+<div class="text-status-public flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">done_all</span>
+<span>Assertions: MerkleTree::validate_root() == TRUE</span>
+</div>
+</div>
+<!-- Affiliation -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">System:</span>
+<span class="text-on-surface font-medium">E-voting Application</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked Claims:</span>
+<button class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container hover:bg-secondary-container text-primary font-label-mono text-caption transition-colors" onclick="openClaimGraph('POC-ZKP-HASH', 'Ballot Hashing Proof of Concept', ['Claim 8: Ballot Anonymity Guarantee', 'Claim 9: Verifiable Merkle Audit Trail'])" type="button">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span>2 Claims Anchored</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-space-lg pt-space-md flex items-center justify-between gap-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<span class="font-label-mono text-caption text-on-surface-variant">LANGUAGE: RUST / WASM</span>
+<button class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" onclick="inspectArtifact('POC-ZKP-HASH', 'Ballot Hashing &amp; Zero-Knowledge Verification Proof of Concept', 'E-voting Application', 'Public', 'Cryptographic Proof Implementation', 'The core cryptographic mechanism allowing voters to mathematically verify their ballot is in the public tally without exposing their individual candidate selection. Includes full cargo test bench.', 'https://github.com/SIM350-maker/evoting-zk-hasher', ['Claim 8: Ballot Anonymity Guarantee', 'Claim 9: Verifiable Merkle Audit Trail'])" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+              Inspect
+            </button>
+</div>
+</article>
+<!-- Artifact Card 5: Benchmark Report -->
+<article class="artifact-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group" data-access="public" data-project="portfolio" data-title="State Management &amp; Performance Profiling Benchmark" data-type="Benchmark">
+<div class="space-y-space-md">
+<!-- Metadata Ribbon -->
+<div class="flex items-center justify-between gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                PUBLIC DATASET
+              </span>
+<span class="font-label-mono text-caption text-on-surface-variant tracking-wider">BENCH-V8-PERF</span>
+</div>
+<!-- Headline -->
+<div>
+<div class="flex items-center gap-space-xs text-primary-container mb-1">
+<span class="material-symbols-outlined text-[18px]">speed</span>
+<span class="font-label-mono text-caption font-semibold uppercase">Benchmark</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                State Management &amp; Performance Profiling Benchmark
+              </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+              Empirical flame graph telemetry, DOM reconciliation overhead comparisons, memory allocations, and V8 garbage collection cycle metrics under 10,000 real-time synthetic mutations.
+            </p>
+<!-- Visual Bar Comparison -->
+<div class="bg-surface-container rounded-lg p-space-sm space-y-1.5 font-label-mono text-caption">
+<div class="flex justify-between items-center text-on-surface">
+<span>RE-RENDER LATENCY</span>
+<span class="text-status-public font-bold">1.2ms (p99)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-12 text-[10px] text-on-surface-variant">Candidate:</span>
+<div class="flex-1 bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 14%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">1.2ms</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-12 text-[10px] text-on-surface-variant">Baseline:</span>
+<div class="flex-1 bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-on-surface-variant/40 h-full" style="width: 78%"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">8.4ms</span>
+</div>
+</div>
+<!-- Affiliation -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">System:</span>
+<span class="text-on-surface font-medium">Personal Portfolio</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked Claims:</span>
+<button class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-surface-container hover:bg-secondary-container text-primary font-label-mono text-caption transition-colors" onclick="openClaimGraph('BENCH-V8-PERF', 'State Management Benchmark', ['Claim 3: Sub-2ms Reactive State Dispatch'])" type="button">
+<span class="material-symbols-outlined text-[14px]">link</span>
+<span>1 Claim Anchored</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-space-lg pt-space-md flex items-center justify-between gap-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<span class="font-label-mono text-caption text-on-surface-variant">ENGINE: CHROME V8 ENGINE</span>
+<button class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" onclick="inspectArtifact('BENCH-V8-PERF', 'State Management &amp; Performance Profiling Benchmark', 'Personal Portfolio', 'Public', 'High-Stress Performance Matrix', 'Micro-benchmarks evaluating reactive signals vs traditional reducers. Profiling performed using Puppeteer Core over 50 iterations with normalized CPU throttling.', 'https://github.com/SIM350-maker/state-signals-bench', ['Claim 3: Sub-2ms Reactive State Dispatch'])" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+              Inspect
+            </button>
+</div>
+</article>
+<!-- Redacted Architecture Specimen 6 (System Policy Example) -->
+<article class="artifact-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between group opacity-90" data-access="unavailable" data-project="healthcare" data-title="HIPAA Audit Vault &amp; Key Escrow Cryptographic Protocol" data-type="Technical Doc">
+<div class="space-y-space-md">
+<!-- Metadata Ribbon -->
+<div class="flex items-center justify-between gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-0.5 rounded-lg bg-status-unavailable/10 text-status-unavailable font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-unavailable"></span>
+                UNAVAILABLE (INTERNAL)
+              </span>
+<span class="font-label-mono text-caption text-on-surface-variant tracking-wider">SEC-KMS-009</span>
+</div>
+<!-- Headline -->
+<div>
+<div class="flex items-center gap-space-xs text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-mono text-caption font-semibold uppercase">Security Protocol</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors leading-snug">
+                HIPAA Audit Vault &amp; Key Escrow Cryptographic Protocol
+              </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+              Dual-party split key authorization schema utilizing HSM-backed AWS KMS keys for automated compliance archiving and tamper-evident event streaming.
+            </p>
+<div class="bg-surface-container rounded-lg p-space-sm font-label-mono text-caption space-y-1">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>ACCESS RESTRICTED BY NDA</span>
+</div>
+<p class="text-on-surface-variant/70 text-[11px]">
+                Access restricted to authorized institutional auditors. Abstract metadata and hash assertions available upon request.
+              </p>
+</div>
+<!-- Affiliation -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">System:</span>
+<span class="text-on-surface font-medium">Healthcare MIS Core</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Linked Claims:</span>
+<span class="text-on-surface-variant font-label-mono text-caption">Direct Verification Only</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-space-lg pt-space-md flex items-center justify-between gap-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<span class="font-label-mono text-caption text-on-surface-variant">STATUS: LOCKED</span>
+<button class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-body-sm text-body-sm font-medium transition-colors" onclick="alert('This artifact is restricted to protected enterprise audit reviews. Please request signed authorization via the contact portal.')" type="button">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+              Restricted
+            </button>
+</div>
+</article>
+</div>
+<!-- Institutional Integrity & Boundaries Notice Banner -->
+<section aria-label="Legal and Integrity Disclaimers" class="mt-space-3xl bg-surface-container-low rounded-xl p-space-lg md:p-space-xl shadow-sm relative overflow-hidden">
+<div class="absolute right-0 top-0 w-64 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-8 space-y-space-sm">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">policy</span>
+<span class="font-label-mono text-caption font-semibold tracking-wider uppercase">Confidentiality &amp; Privacy Protocol</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">
+              Strict Provenance Without Compromise
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed max-w-3xl">
+              All demonstrated artifacts in this library represent verified production work or targeted research proofs. 
+              <span class="font-semibold text-on-surface">Private customer records, proprietary enterprise credentials, database secrets, and client-restricted operational endpoints are strictly purged and never published.</span> 
+              Where architecture diagrams or code samples reflect proprietary systems, synthetic schemas and sanitized mocks are deployed to preserve institutional trust.
+            </p>
+</div>
+<div class="md:col-span-4 flex flex-col sm:flex-row md:flex-col gap-space-sm justify-end">
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm font-label-mono text-caption space-y-1">
+<span class="text-on-surface-variant block uppercase">Verification Standard</span>
+<span class="text-on-surface font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-status-public">verified</span>
+                ISO/IEC 27001 Aligned Sanitization
+              </span>
+</div>
+<a class="inline-flex items-center justify-center gap-space-xs h-10 px-space-md rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-highest transition-colors font-body-sm text-body-sm font-semibold" data-path="contact" href="#">
+<span class="material-symbols-outlined text-[18px]">key</span>
+              Request Access to Restricted Specs
+            </a>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Interactive Modal 1: Artifact Inspector Modal -->
+<div aria-labelledby="modalTitle" aria-modal="true" class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-space-md hidden transition-opacity" id="inspectorModal" role="dialog">
+<div class="bg-surface-container-lowest w-full max-w-2xl rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[921px]">
+<!-- Modal Header -->
+<div class="p-space-lg bg-surface-container flex items-start justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-space-sm mb-1">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-bold" id="modalAccessBadge">PUBLIC</span>
+<span class="font-label-mono text-caption text-on-surface-variant" id="modalId">ADR-004-MIG</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface" id="modalTitle">Artifact Title</h3>
+<p class="font-body-sm text-body-sm text-primary font-medium mt-0.5" id="modalProject">Project Name</p>
+</div>
+<button aria-label="Close modal" class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" onclick="closeInspectorModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-space-lg overflow-y-auto space-y-space-md">
+<div>
+<h4 class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider mb-1">Artifact Abstract</h4>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed" id="modalCategoryDesc">Detailed summary...</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-xs">
+<h4 class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider">Cryptographic Signature &amp; Evidence Hash</h4>
+<div class="font-label-mono text-caption text-on-surface break-all bg-surface-container-lowest p-space-sm rounded">
+            sha256: 7e2f5b89a81cd2b7e098a50619cbb87f42cf5dbef844a4b8df7907f35b2e35a1
+          </div>
+<span class="font-label-mono text-caption text-status-public flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">task_alt</span> Verified uncompromised from original git commit tree
+          </span>
+</div>
+<div>
+<h4 class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider mb-2">Connected Technical Claims</h4>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface" id="modalClaimsList">
+<!-- Dynamically populated -->
+</ul>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between gap-space-sm">
+<span class="font-label-mono text-caption text-on-surface-variant">PROD READY RECORD</span>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-sm text-body-sm font-medium transition-colors" onclick="closeInspectorModal()" type="button">
+            Dismiss
+          </button>
+<a class="inline-flex items-center gap-1 px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" href="#" id="modalExternalLink" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+            Open Source / Repo
+          </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Modal 2: Relationship & Claim Graph Explorer -->
+<div aria-labelledby="claimModalTitle" aria-modal="true" class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-space-md hidden transition-opacity" id="claimModal" role="dialog">
+<div class="bg-surface-container-lowest w-full max-w-xl rounded-xl shadow-xl overflow-hidden flex flex-col">
+<div class="p-space-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="claimModalTitle">Evidence Relationship Graph</h3>
+</div>
+<button class="p-space-xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" onclick="closeClaimGraph()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-space-lg space-y-space-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          This artifact serves as verifiable proof for the following architectural and performance claims made across the portfolio:
+        </p>
+<!-- Visual Connected Tree -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm">
+<div class="flex items-center gap-2 text-on-surface font-label-mono text-caption font-bold pb-2 border-b-0">
+<span class="material-symbols-outlined text-primary text-[18px]">token</span>
+<span id="claimParentLabel">ROOT_ARTIFACT</span>
+</div>
+<div class="pl-space-md space-y-2" id="claimTreeContainer">
+<!-- Injected dynamically -->
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container font-label-mono text-caption text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-status-public text-[18px]">verified</span>
+<span>Each linked claim is covered by automated CI regressions or signed benchmark telemetry.</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-low flex justify-end">
+<button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" onclick="closeClaimGraph()" type="button">
+          Understood
+        </button>
+</div>
+</div>
+</div>
+<script>
+    // Search & Filter Logic
+    (function initEvidenceFilters() {
+      const searchInput = document.getElementById('artifactSearch');
+      const projectFilter = document.getElementById('projectFilter');
+      const accessFilter = document.getElementById('accessFilter');
+      const typePills = document.querySelectorAll('.type-pill');
+      const cards = document.querySelectorAll('.artifact-card');
+
+      let currentTypeFilter = 'all';
+
+      function applyFilters() {
+        const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+        const selectedProject = projectFilter ? projectFilter.value : 'all';
+        const selectedAccess = accessFilter ? accessFilter.value : 'all';
+
+        cards.forEach(card => {
+          const type = card.getAttribute('data-type') || '';
+          const project = card.getAttribute('data-project') || '';
+          const access = card.getAttribute('data-access') || '';
+          const title = (card.getAttribute('data-title') || '').toLowerCase();
+          const cardText = card.textContent.toLowerCase();
+
+          const matchesType = (currentTypeFilter === 'all') || (type === currentTypeFilter);
+          const matchesProject = (selectedProject === 'all') || (project === selectedProject);
+          const matchesAccess = (selectedAccess === 'all') || (access === selectedAccess);
+          const matchesSearch = !query || title.includes(query) || cardText.includes(query);
+
+          if (matchesType && matchesProject && matchesAccess && matchesSearch) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      }
+
+      if (searchInput) searchInput.addEventListener('input', applyFilters);
+      if (projectFilter) projectFilter.addEventListener('change', applyFilters);
+      if (accessFilter) accessFilter.addEventListener('change', applyFilters);
+
+      typePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          typePills.forEach(p => {
+            p.classList.remove('bg-primary', 'text-on-primary');
+            p.classList.add('bg-surface-container-lowest', 'text-on-surface-variant');
+          });
+          pill.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant');
+          pill.classList.add('bg-primary', 'text-on-primary');
+
+          currentTypeFilter = pill.getAttribute('data-filter') || 'all';
+          applyFilters();
+        });
+      });
+    })();
+
+    // Modal Details Inspector Trigger
+    function inspectArtifact(id, title, project, access, subtitle, desc, linkUrl, claims) {
+      const modal = document.getElementById('inspectorModal');
+      document.getElementById('modalId').textContent = id;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalProject').textContent = project + ' // ' + subtitle;
+      document.getElementById('modalCategoryDesc').textContent = desc;
+
+      const badge = document.getElementById('modalAccessBadge');
+      badge.textContent = access.toUpperCase();
+      if (access.toLowerCase().includes('public')) {
+        badge.className = 'inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-status-public/10 text-status-public font-label-mono text-caption font-bold';
+      } else {
+        badge.className = 'inline-flex items-center gap-1 px-space-sm py-0.5 rounded-lg bg-status-restricted/10 text-status-restricted font-label-mono text-caption font-bold';
+      }
+
+      const listContainer = document.getElementById('modalClaimsList');
+      listContainer.innerHTML = '';
+      (claims || []).forEach(claim => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center gap-2 p-1.5 rounded bg-surface-container-low font-label-mono text-caption';
+        li.innerHTML = '<span class="material-symbols-outlined text-[16px] text-primary">link</span>' + claim;
+        listContainer.appendChild(li);
+      });
+
+      const extLink = document.getElementById('modalExternalLink');
+      if (linkUrl && linkUrl !== '#') {
+        extLink.href = linkUrl;
+        extLink.classList.remove('hidden');
+      } else {
+        extLink.classList.add('hidden');
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeInspectorModal() {
+      document.getElementById('inspectorModal').classList.add('hidden');
+    }
+
+    // Modal Claims Graph Trigger
+    function openClaimGraph(artId, artTitle, claims) {
+      const modal = document.getElementById('claimModal');
+      document.getElementById('claimParentLabel').textContent = artId + ' // ' + artTitle;
+      const container = document.getElementById('claimTreeContainer');
+      container.innerHTML = '';
+
+      (claims || []).forEach(claim => {
+        const item = document.createElement('div');
+        item.className = 'flex items-center gap-2 text-on-surface font-body-sm text-body-sm p-2 rounded-lg bg-surface-container';
+        item.innerHTML = '<span class="material-symbols-outlined text-primary text-[18px]">verified</span><span>' + claim + '</span>';
+        container.appendChild(item);
+      });
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeClaimGraph() {
+      document.getElementById('claimModal').classList.add('hidden');
+    }
+
+    // Dismiss on click backdrop
+    window.addEventListener('click', (e) => {
+      const inspectM = document.getElementById('inspectorModal');
+      const claimM = document.getElementById('claimModal');
+      if (e.target === inspectM) inspectM.classList.add('hidden');
+      if (e.target === claimM) claimM.classList.add('hidden');
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"><div class="md:col-span-2 space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Simon Ipara Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Full-stack software engineer specializing in high-throughput distributed systems, strict type safety, and verifiable evidence-backed architecture.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-mono text-caption"><span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>Nairobi, Kenya (EAT / UTC+3)</span></div></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Connectivity</h3><ul class="space-y-space-sm"><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-label-mono text-caption">GitHub: SIM350-maker</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">share</span><span class="font-label-mono text-caption">LinkedIn: simonipara</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">mail</span><span class="font-label-mono text-caption">simonipara428@gmail.com</span></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">System Access</h3><ul class="space-y-space-sm"><li><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-primary hover:text-tertiary transition-colors" data-path="login" href="#"><span class="material-symbols-outlined text-[16px]">lock</span>Admin CMS Portal</a></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Provenance: Verifiable Hash</span></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Status: Production v2.4.0</span></li></ul></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant"><p class="font-caption text-caption">© 2025 Simon Ipara. All systems verified and operational.</p><div class="flex items-center gap-space-md"><span class="font-caption text-caption">Evidence Integrity: 100% Cryptographic Audit</span></div></div></div></footer></body></html>

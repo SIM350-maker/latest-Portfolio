@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-fixed-dim":"#bbc7de","dark-surface-raised":"#1B2637","outline":"#747687","status-public":"#10B981","surface-tint":"#154ceb","outline-variant":"#c4c5d8","secondary":"#535f73","primary":"#0042df","light-background":"#F8F9FB","on-surface":"#121b2e","status-draft":"#8B5CF6","on-secondary-fixed":"#101c2d","on-tertiary-container":"#f1f0ff","surface-bright":"#f9f9ff","on-primary":"#ffffff","surface-container-low":"#f1f3ff","inverse-primary":"#b8c4ff","on-error-container":"#93000a","status-restricted":"#F59E0B","on-tertiary":"#ffffff","on-secondary":"#ffffff","surface-variant":"#d9e2fc","error-container":"#ffdad6","secondary-fixed":"#d7e3fb","surface-container":"#e9edff","tertiary-fixed-dim":"#b8c3ff","inverse-on-surface":"#edf0ff","on-primary-container":"#f1f1ff","light-text-primary":"#172033","tertiary-fixed":"#dde1ff","dark-accent":"#4D76FD","dark-surface":"#151E2D","on-background":"#121b2e","status-unavailable":"#EF4444","on-error":"#ffffff","dark-border":"#2A374A","surface-container-lowest":"#ffffff","status-redacted":"#64748B","primary-fixed":"#dde1ff","secondary-container":"#d7e3fb","status-published":"#3B82F6","status-archived":"#6B7280","surface-dim":"#d1daf4","on-tertiary-fixed":"#001355","primary-container":"#315efb","light-text-secondary":"#596579","dark-text-secondary":"#AAB6C8","tertiary-container":"#4363e1","on-primary-fixed-variant":"#0036bb","on-surface-variant":"#434656","light-border":"#E2E7EF","on-secondary-container":"#596579","on-secondary-fixed-variant":"#3b475a","surface-container-high":"#e1e8ff","on-primary-fixed":"#001354","surface":"#f9f9ff","error":"#ba1a1a","background":"#f9f9ff","surface-container-highest":"#d9e2fc","dark-background":"#0E1420","dark-text-primary":"#F2F5FA","light-surface":"#FFFFFF","tertiary":"#2448c7","inverse-surface":"#273044","primary-fixed-dim":"#b8c4ff","on-tertiary-fixed-variant":"#0737b8"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"space-xs":"0.25rem","space-xl":"2rem","gutter":"1.5rem","space-3xl":"4rem","margin-mobile":"1rem","space-sm":"0.5rem","space-2xl":"3rem","space-lg":"1.5rem","gutter-sm":"1rem","space-md":"1rem","margin":"2rem"},fontFamily:{"headline-lg":["Inter"],"headline-md":["Inter"],"headline-lg-mobile":["Inter"],"hero-lg":["Inter"],"body-sm":["Inter"],"headline-sm":["Inter"],"body-lg":["Inter"],"body-md":["Inter"],caption:["Inter"],"label-mono":["JetBrains Mono"],"code-block":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"code-inline":["JetBrains Mono"]},fontSize:{"headline-lg":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"600"}],"hero-lg":["56px",{lineHeight:"64px",letterSpacing:"-0.025em",fontWeight:"700"}],"body-sm":["13px",{lineHeight:"20px",fontWeight:"400"}],"headline-sm":["18px",{lineHeight:"26px",letterSpacing:"-0.005em",fontWeight:"600"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],"body-md":["15px",{lineHeight:"24px",fontWeight:"400"}],caption:["12px",{lineHeight:"16px",fontWeight:"500"}],"label-mono":["12px",{lineHeight:"16px",letterSpacing:"0.04em",fontWeight:"500"}],"code-block":["14px",{lineHeight:"22px",fontWeight:"400"}],"hero-lg-mobile":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"code-inline":["13px",{lineHeight:"18px",fontWeight:"500"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm flex-shrink-0"><div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">S</div><div class="flex flex-col"><a class="font-headline-sm text-headline-sm text-on-surface tracking-tight hover:text-primary transition-colors" data-path="home" href="#">Simon Ipara</a><span class="font-label-mono text-label-mono text-light-text-secondary">STAFF ENGINEER</span></div></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-semibold"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="home" href="#">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="about" href="#">About</a><a aria-current="page" class="transition-colors py-space-xs text-primary font-semibold" data-path="projects" href="#">Projects</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="skills" href="#">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="engineering" href="#">Engineering</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="evidence" href="#">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="experience" href="#">Experience</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors py-space-xs" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Toggle visual theme" class="w-9 h-9 rounded-lg flex items-center justify-center bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">light_mode</span></button><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md bg-primary-container text-on-primary hover:bg-tertiary transition-colors rounded-lg font-body-sm text-body-sm font-medium" data-path="contact" href="#">Get in Touch</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="max-w-[1200px] w-full mx-auto px-margin-mobile lg:px-margin py-space-xl flex flex-col gap-space-2xl">
+<!-- Top Context & Header -->
+<div class="flex flex-col gap-space-sm">
+<!-- Technical Eyebrow / Breadcrumb Stream -->
+<div class="flex flex-wrap items-center gap-space-xs font-label-mono text-label-mono text-light-text-secondary tracking-wider uppercase">
+<span class="text-on-surface font-semibold">INDEX</span>
+<span class="text-outline-variant font-normal">/</span>
+<span>ENGINEERING ARTIFACTS LEDGER V2.4</span>
+<span class="text-outline-variant font-normal">/</span>
+<span class="inline-flex items-center gap-1.5 px-space-xs py-0.5 rounded bg-status-restricted/10 text-status-restricted font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted animate-ping"></span>
+          SYNC INTERRUPTED
+        </span>
+<span class="text-outline-variant font-normal">/</span>
+<span class="text-status-unavailable font-medium">CONNECTION TO VERIFICATION NODE TIMED OUT</span>
+</div>
+<!-- Title & Rigor Rationale -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pt-space-xs">
+<div class="flex flex-col gap-1 max-w-3xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Projects &amp; Case Studies</h1>
+<p class="font-body-md text-body-md text-light-text-secondary">
+            Production-grade systems, distributed microservices, and audited client implementations backed by concrete commit hashes, latency metrics, and architectural rationale.
+          </p>
+</div>
+<div class="flex items-center gap-space-sm font-label-mono text-label-mono text-light-text-secondary flex-shrink-0 self-start md:self-auto bg-surface-container-low px-space-md py-space-xs rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-status-unavailable">cloud_off</span>
+<span>RPC: us-east-va:8545 [UNRESPONSIVE]</span>
+</div>
+</div>
+</div>
+<!-- Top 4 Degraded Telemetry Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-mono text-label-mono uppercase text-light-text-secondary">Deployed Codebase</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-mono text-[11px]">CACHED</span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">184.2k</span>
+<span class="font-caption text-caption text-light-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-restricted">history</span>
+            Cached from epoch 1740884210
+          </span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full overflow-hidden mt-space-xs">
+<div class="bg-status-restricted w-3/4 h-full rounded-full"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-mono text-label-mono uppercase text-light-text-secondary">Audit Integrity</span>
+<span class="px-1.5 py-0.5 rounded bg-status-restricted/15 text-status-restricted font-label-mono text-[11px] font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+            STALE
+          </span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<span class="font-headline-md text-headline-md text-status-restricted font-semibold tracking-tight">Warning</span>
+<span class="font-caption text-caption text-light-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-restricted">sync_problem</span>
+            Re-verification required
+          </span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full overflow-hidden mt-space-xs">
+<div class="bg-status-restricted w-1/3 h-full rounded-full"></div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-mono text-label-mono uppercase text-light-text-secondary">Avg P99 Latency</span>
+<span class="px-1.5 py-0.5 rounded bg-status-unavailable/15 text-status-unavailable font-label-mono text-[11px] font-semibold">DROPPED</span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<span class="font-headline-md text-headline-md text-light-text-secondary font-semibold tracking-tight">Unknown</span>
+<span class="font-caption text-caption text-status-unavailable flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">link_off</span>
+            Node unreachable (12s timeout)
+          </span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full overflow-hidden mt-space-xs">
+<div class="bg-status-unavailable w-full h-full rounded-full opacity-40"></div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden group">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-mono text-label-mono uppercase text-light-text-secondary">Production Uptime</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface font-label-mono text-[11px]">SLA SPEC</span>
+</div>
+<div class="flex flex-col gap-1 my-space-xs">
+<span class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">99.98%</span>
+<span class="font-caption text-caption text-light-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified</span>
+            Static SLA target threshold
+          </span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full overflow-hidden mt-space-xs">
+<div class="bg-status-public w-[99%] h-full rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Main Architectural Incident / Synchronization Interruption Canvas -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-2xl shadow-sm flex flex-col gap-space-xl relative overflow-hidden">
+<!-- Subtle Visual Scrim Gradient -->
+<div class="absolute -right-24 -top-24 w-96 h-96 bg-gradient-to-br from-error-container/40 via-surface-container-low/20 to-transparent rounded-full pointer-events-none blur-3xl"></div>
+<!-- Header Section of the Error Card -->
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg z-10">
+<div class="flex items-start gap-space-md">
+<!-- Monospaced Structural Alert Glyph -->
+<div class="w-14 h-14 rounded-xl bg-error-container flex items-center justify-center flex-shrink-0 text-error shadow-sm">
+<span class="material-symbols-outlined text-[32px]">shield_lock</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-mono text-label-mono text-on-error-container bg-error-container px-2 py-0.5 rounded font-semibold tracking-wide">
+                ERR_LEDGER_SYNC_TIMEOUT
+              </span>
+<span class="font-label-mono text-label-mono text-light-text-secondary">
+                504 Gateway Timeout • us-east-va:8545
+              </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-1">
+              Cryptographic Index Synchronization Interrupted
+            </h2>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-space-sm rounded-lg self-stretch sm:self-auto justify-between sm:justify-start">
+<div class="flex flex-col">
+<span class="font-label-mono text-[11px] text-light-text-secondary uppercase">Shard Lock Failure</span>
+<span class="font-label-mono text-label-mono text-on-surface font-semibold">partition: shard-03</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px] ml-space-sm">dns</span>
+</div>
+</div>
+<!-- Technical Rationale Paragraph -->
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl z-10">
+        Unable to stream verifiable Merkle proof validation records from the primary engineering ledger. The query to the PostgreSQL trigram index and commit provenance endpoint timed out after 12,000ms. Local cache is currently unavailable for unverified clients to prevent split-brain artifact validation.
+      </p>
+<!-- Diagnostic Terminal Component with Simulated Provenance Trace -->
+<div class="flex flex-col bg-dark-background text-dark-text-primary rounded-xl overflow-hidden shadow-md z-10">
+<!-- Terminal Titlebar -->
+<div class="flex items-center justify-between px-space-md py-space-sm bg-dark-surface">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-status-unavailable inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-status-restricted inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-status-public inline-block"></span>
+<span class="font-label-mono text-label-mono text-dark-text-secondary ml-space-xs">ledger-daemon-trace.log — 80×24</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-mono text-[11px] text-dark-text-secondary uppercase">PID: 40921</span>
+<button class="text-dark-text-secondary hover:text-dark-text-primary transition-colors flex items-center gap-1 font-label-mono text-[11px]" id="copy-trace-btn" title="Copy trace to clipboard">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>COPY LOG</span>
+</button>
+</div>
+</div>
+<!-- Terminal Output Area -->
+<div class="p-space-md font-code-block text-code-block overflow-x-auto flex flex-col gap-1.5 leading-relaxed bg-dark-background/95">
+<div class="flex items-baseline gap-space-xs text-dark-text-secondary">
+<span class="text-dark-accent select-none font-semibold">&gt;</span>
+<span class="text-dark-text-primary">INIT: Establishing TLS 1.3 handshake with ledger RPC daemon [cluster-id: core-alpha-va]</span>
+</div>
+<div class="flex items-baseline gap-space-xs text-dark-text-secondary">
+<span class="text-dark-accent select-none font-semibold">&gt;</span>
+<span class="text-status-public">200 OK: Node handshake accepted. Protocol version: v2.4.9-immutable</span>
+</div>
+<div class="flex items-baseline gap-space-xs">
+<span class="text-dark-accent select-none font-semibold">&gt;</span>
+<span class="text-dark-text-primary font-semibold">GET /api/v2/ledger/projects?mode=verifiable_full</span>
+</div>
+<div class="flex items-baseline gap-space-xs text-status-restricted">
+<span class="text-dark-accent select-none font-semibold">&gt;</span>
+<span>[WARN] Read contention encountered on index table 'artifacts_merkle_roots'. Awaiting lock release...</span>
+</div>
+<div class="flex items-baseline gap-space-xs text-status-unavailable font-medium">
+<span class="text-dark-accent select-none font-semibold">&gt;</span>
+<span>[FATAL] RPC_TIMEOUT: Failed to acquire read lock on ledger partition shard-03 within 12s</span>
+</div>
+<div class="flex items-baseline gap-space-xs text-on-error-container bg-error-container/20 px-2 py-0.5 rounded-sm">
+<span class="text-status-unavailable select-none font-semibold">&gt;</span>
+<span class="text-error-container font-mono">Fallback to static offline snapshot: DISABLED by security invariant #SEC-81</span>
+</div>
+<div class="flex items-baseline gap-space-xs text-dark-text-secondary pt-1">
+<span class="text-dark-accent select-none font-semibold">&gt;</span>
+<span class="text-outline-variant animate-pulse font-mono">█ awaiting client reconciliation or manual operator dispatch...</span>
+</div>
+</div>
+</div>
+<!-- Action Panel & Retry Engine -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md pt-space-xs z-10">
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Primary Retry Button -->
+<button class="inline-flex items-center justify-center gap-space-xs px-space-lg h-11 bg-primary text-on-primary hover:bg-tertiary transition-all rounded-lg font-body-sm text-body-sm font-semibold shadow-sm active:translate-y-px" id="retry-sync-btn" type="button">
+<span class="material-symbols-outlined text-[18px]" id="retry-icon">sync</span>
+<span id="retry-text">Retry Ledger Synchronization</span>
+</button>
+<!-- Secondary Offline Summary Button -->
+<button class="inline-flex items-center justify-center gap-space-xs px-space-md h-11 bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors rounded-lg font-body-sm text-body-sm font-medium" id="offline-cache-btn" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">inventory_2</span>
+<span>View Offline Cached Summary</span>
+</button>
+<!-- Tertiary Node Health Inspector -->
+<button class="inline-flex items-center justify-center gap-space-xs px-space-md h-11 bg-transparent hover:bg-surface-container text-on-surface-variant transition-colors rounded-lg font-body-sm text-body-sm font-medium" id="node-health-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">monitor_heart</span>
+<span>Inspect Node Health</span>
+</button>
+</div>
+<!-- Live Sync Latency Counter / Telemetry readout -->
+<div class="flex items-center gap-space-sm font-label-mono text-label-mono text-light-text-secondary">
+<span class="w-2 h-2 rounded-full bg-status-unavailable"></span>
+<span>RETRY BACKOFF: 00:<span id="backoff-timer">14</span>s</span>
+</div>
+</div>
+<!-- Cached Snapshot Preview Rail (Collapsible fallback area) -->
+<div class="hidden flex-col gap-space-md pt-space-md bg-surface-container-low p-space-md rounded-xl" id="offline-preview-panel">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-status-restricted">warning</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Offline Snapshot Preview (Unverified)</span>
+</div>
+<span class="font-label-mono text-[11px] text-light-text-secondary">SNAPSHOT HASH: 0x8a92f03c41b8</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface">Kinesis-Mesh</span>
+<span class="font-label-mono text-[11px] text-status-restricted">UNCHECKED</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Real-time edge event streaming backbone for sovereign data enclaves.</p>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface">VectorDB-Zero</span>
+<span class="font-label-mono text-[11px] text-status-restricted">UNCHECKED</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Embedded rust-native vector space search engine with memory isolation.</p>
+</div>
+<div class="p-space-sm bg-surface-container-lowest rounded-lg flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-on-surface">Telemetry-Core</span>
+<span class="font-label-mono text-[11px] text-status-restricted">UNCHECKED</span>
+</div>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Autonomous distributed collector daemon with eBPF kernel telemetry.</p>
+</div>
+</div>
+</div>
+<!-- Structural Divider & Protocol Footer Helper Note -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md pt-space-md bg-surface-container-lowest">
+<p class="font-caption text-caption text-light-text-secondary max-w-2xl leading-normal">
+          If problem persists, check status on GitHub Actions build runs or access Simon Ipara via direct email dispatch (<a class="text-primary hover:underline font-mono" href="mailto:simonipara428@gmail.com">simonipara428@gmail.com</a>).
+        </p>
+<div class="flex items-center gap-space-sm font-label-mono text-[11px] text-light-text-secondary">
+<span>SEC-POLICY-HASH: 81-IMMUTABLE</span>
+<span>•</span>
+<span>RPC TIMEOUT THRESHOLD: 12000MS</span>
+</div>
+</div>
+</div>
+<!-- Supplementary Architectural Context Banner: High Integrity Guarantee -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface-container-low p-space-md rounded-xl flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px] mt-0.5">verified_user</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-headline-sm text-headline-sm text-on-surface">Cryptographic Provenance</span>
+<p class="font-body-sm text-body-sm text-light-text-secondary">All projects strictly require Merkle verification. Fallback rendering without cryptographic consensus is rejected by security invariants.</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px] mt-0.5">hub</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-headline-sm text-headline-sm text-on-surface">Partition Isolation</span>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Shard 03 isolates case studies relating to infrastructure orchestration, preventing state contamination from other ledger blocks.</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px] mt-0.5">lock_clock</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-headline-sm text-headline-sm text-on-surface">Automatic Failover Policy</span>
+<p class="font-body-sm text-body-sm text-light-text-secondary">Secondary replica quorum negotiation triggers automatically after 30 seconds of persistent partition failure.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple interactive backoff simulation and panel toggle
+  (function() {
+    let timeLeft = 14;
+    const timerElem = document.getElementById('backoff-timer');
+    const retryBtn = document.getElementById('retry-sync-btn');
+    const retryIcon = document.getElementById('retry-icon');
+    const retryText = document.getElementById('retry-text');
+    const offlineBtn = document.getElementById('offline-cache-btn');
+    const offlinePanel = document.getElementById('offline-preview-panel');
+    const copyBtn = document.getElementById('copy-trace-btn');
+
+    // Countdown interval
+    const interval = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        if (timerElem) timerElem.textContent = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+      } else {
+        timeLeft = 30;
+      }
+    }, 1000);
+
+    // Retry button trigger
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => {
+        retryIcon.classList.add('animate-spin');
+        retryText.textContent = 'Negotiating RPC Handshake...';
+        retryBtn.disabled = true;
+        
+        setTimeout(() => {
+          retryIcon.classList.remove('animate-spin');
+          retryText.textContent = 'Retry Ledger Synchronization';
+          retryBtn.disabled = false;
+          timeLeft = 25;
+        }, 2200);
+      });
+    }
+
+    // Toggle offline preview
+    if (offlineBtn && offlinePanel) {
+      offlineBtn.addEventListener('click', () => {
+        const isHidden = offlinePanel.classList.contains('hidden');
+        if (isHidden) {
+          offlinePanel.classList.remove('hidden');
+          offlinePanel.classList.add('flex');
+          offlineBtn.classList.add('bg-surface-container-high');
+        } else {
+          offlinePanel.classList.add('hidden');
+          offlinePanel.classList.remove('flex');
+          offlineBtn.classList.remove('bg-surface-container-high');
+        }
+      });
+    }
+
+    // Copy trace snippet
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const trace = `> GET /api/v2/ledger/projects?mode=verifiable_full\n> [FATAL] RPC_TIMEOUT: Failed to acquire read lock on ledger partition shard-03 within 12s\n> Fallback to static offline snapshot: DISABLED by security invariant #SEC-81`;
+        navigator.clipboard.writeText(trace).then(() => {
+          const originalText = copyBtn.innerHTML;
+          copyBtn.innerHTML = '<span class="material-symbols-outlined text-[14px] text-status-public">done</span><span class="text-status-public">COPIED</span>';
+          setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+          }, 1800);
+        });
+      });
+    }
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin-mobile lg:px-margin pt-space-2xl pb-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-space-2xl"><div class="md:span-5 lg:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">S</div><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-light-text-secondary max-w-sm">Staff Full-Stack &amp; Systems Architect specializing in distributed systems, high-integrity telemetry, and zero-compromise engineering infrastructure.</p><div class="flex items-center gap-space-xs pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-surface-container text-status-public font-label-mono text-label-mono"><span class="w-1.5 h-1.5 rounded-full bg-status-public animate-pulse"></span>LIVE SYSTEM: NOMINAL</span></div></div><div class="md:col-span-3 lg:col-span-3 flex flex-col gap-space-xs"><span class="font-label-mono text-label-mono uppercase tracking-wider text-light-text-secondary mb-space-xs">Navigation Map</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="home" href="#">Home Platform</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="about" href="#">About &amp; Biography</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="projects" href="#">Technical Case Studies</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="skills" href="#">Skills Matrix</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="engineering" href="#">Engineering Specs</a></div><div class="md:col-span-2 lg:col-span-2 flex flex-col gap-space-xs"><span class="font-label-mono text-label-mono uppercase tracking-wider text-light-text-secondary mb-space-xs">Verification</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="evidence" href="#">Audit &amp; Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="experience" href="#">Career Trajectory</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" data-path="contact" href="#">Direct Inquiries</a><span class="font-body-sm text-body-sm text-light-text-secondary py-0.5">PGP Key: 0x4DF1A9</span></div><div class="md:col-span-2 lg:col-span-2 flex flex-col gap-space-xs"><span class="font-label-mono text-label-mono uppercase tracking-wider text-light-text-secondary mb-space-xs">Connectivity</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" href="#">GitHub Profile</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" href="#">LinkedIn Network</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" href="#">RFC Repository</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors py-0.5" href="#">RSS / Atom Feed</a></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm font-label-mono text-label-mono text-light-text-secondary"><span class="w-2 h-2 rounded-full bg-status-public"></span><span>CLUSTER: us-east-prod-1</span><span class="text-outline-variant">|</span><span>REV: 9f48a1c</span><span class="text-outline-variant">|</span><span>LATENCY: 18ms</span></div><p class="font-caption text-caption text-light-text-secondary">© 2025 Simon Ipara. Architected with strict structural provenance.</p></div></div></footer></body></html>

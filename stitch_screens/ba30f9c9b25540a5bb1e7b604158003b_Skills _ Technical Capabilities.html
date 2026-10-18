@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-light-border/70 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><a class="flex flex-col group" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">Simon Ipara</span><span class="font-label-mono text-caption text-on-surface-variant">Full-Stack Engineer</span></a></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-semibold border-b-2 border-primary pb-0.5"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="home" href="#">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="about" href="#">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="projects" href="#">Projects</a><a aria-current="page" class="transition-all text-primary font-semibold border-b-2 border-primary pb-0.5" data-path="skills" href="#">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="engineering" href="#">Engineering</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="evidence" href="#">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="experience" href="#">Experience</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm md:gap-space-md"><a class="hidden sm:inline-flex items-center gap-space-xs h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-mono text-caption" data-path="cms-workspace" href="#" title="Admin CMS Workspace"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span><span>Manage</span></a><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" data-path="contact" href="#">Get in touch</a><a class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" data-path="cms-workspace" href="#" title="Open CMS Workspace"><span class="material-symbols-outlined text-on-surface text-[18px]">person</span></a><button aria-label="Open menu" class="xl:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<section class="relative w-full py-space-xl md:py-space-2xl bg-surface-container-low overflow-hidden">
+<div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 left-1/4 w-80 h-80 rounded-full bg-tertiary-container/10 blur-2xl pointer-events-none"></div>
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin relative z-10">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-gutter">
+<div class="max-w-2xl space-y-space-sm">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-lg bg-surface text-primary shadow-sm font-label-mono text-caption">
+<span class="w-2 h-2 rounded-full bg-status-public animate-pulse"></span>
+            PRODUCTION-TESTED MATRIX · STRICT PROVENANCE
+          </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Skills &amp; Technical Capabilities</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Categorized inventory of production technologies, architecture patterns, and verification tooling. Every capability is mapped to verifiable project implementations.
+          </p>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm w-full lg:w-auto">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-11 pl-10 pr-4 rounded-lg bg-surface text-on-surface text-body-sm shadow-sm placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="skillSearchInput" placeholder="Search tech, pattern, or project..." type="text"/>
+</div>
+<div class="flex items-center justify-between sm:justify-start gap-space-xs px-3 py-2 bg-surface rounded-lg shadow-sm font-label-mono text-caption text-on-surface-variant">
+<span class="font-semibold text-primary" id="visibleCounter">24</span>
+<span>CAPABILITIES INDEXED</span>
+</div>
+</div>
+</div>
+<div class="mt-space-lg flex items-center gap-space-xs overflow-x-auto pb-2 scrollbar-none" id="filterTabsContainer">
+<button class="filter-tab active-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-primary text-on-primary shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="all">
+<span class="material-symbols-outlined text-[16px]">view_comfy</span> All Capabilities
+        </button>
+<button class="filter-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-surface hover:bg-surface-container text-on-surface-variant shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="languages">
+<span class="material-symbols-outlined text-[16px]">code</span> Languages
+        </button>
+<button class="filter-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-surface hover:bg-surface-container text-on-surface-variant shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="frontend">
+<span class="material-symbols-outlined text-[16px]">desktop_windows</span> Frontend &amp; UI
+        </button>
+<button class="filter-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-surface hover:bg-surface-container text-on-surface-variant shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="backend">
+<span class="material-symbols-outlined text-[16px]">dns</span> Backend &amp; APIs
+        </button>
+<button class="filter-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-surface hover:bg-surface-container text-on-surface-variant shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="databases">
+<span class="material-symbols-outlined text-[16px]">database</span> Databases &amp; Storage
+        </button>
+<button class="filter-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-surface hover:bg-surface-container text-on-surface-variant shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="testing">
+<span class="material-symbols-outlined text-[16px]">verified</span> Testing &amp; Verification
+        </button>
+<button class="filter-tab px-space-md py-2 rounded-lg font-label-mono text-caption uppercase tracking-wider transition-all bg-surface hover:bg-surface-container text-on-surface-variant shadow-sm flex items-center gap-1.5 whitespace-nowrap" data-filter="architecture">
+<span class="material-symbols-outlined text-[16px]">hub</span> Architecture &amp; Practices
+        </button>
+</div>
+</div>
+</section>
+<section class="max-w-[1200px] w-full mx-auto px-margin-mobile md:px-margin py-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-space-xl">
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface text-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline-sm text-headline-sm text-on-surface">Zero Fluff Guarantee</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            No subjective percentage gauges or arbitrary rating bars. Skills denote audited artifacts in repository commit histories.
+          </p>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface text-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">fact_check</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline-sm text-headline-sm text-on-surface">Audited Evidence</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Every badge connects directly to production code paths, cryptographic verification suites, or public test logs.
+          </p>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface text-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">sync_alt</span>
+</div>
+<div class="space-y-1">
+<div class="font-headline-sm text-headline-sm text-on-surface">Distributed Delivery</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Built across high-concurrency systems, healthcare data confidentiality standards, and deterministic protocol design.
+          </p>
+</div>
+</div>
+</div>
+<div class="space-y-space-2xl" id="skillsContainer">
+<div class="skill-category-block" data-category="languages">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">terminal</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Languages</h2>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">CORE PROGRAMMING &amp; RUNTIMES</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="typescript strict typing zod generics healthcare mis task manager">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">TypeScript</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">L1 CORE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Strict type safety, branded types, custom generic utilities, comprehensive schema validation with Zod, and full type inference across API boundaries.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Strict Null Checks</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Zod Validation</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Mapped Types</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="javascript esnext v8 internals async event loop padtrack">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">JavaScript</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">ESNEXT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                ESNext specifications, asynchronous microtask dispatching, V8 garbage collection profiles, prototype inheritance mechanics, and memory profiling.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">V8 Profiling</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Event Loop</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Streams API</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="python data workflows scripts etl data verification e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Python</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">DATA &amp; AUTOMATION</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Automated ETL workflows, data processing scripts, cryptographic verification routines, and high-throughput statistical log analysis.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">ETL Pipelines</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">AsyncIO</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Pandas</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="sql complex queries indexing migrations isolation postgresql healthcare mis padtrack">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">SQL</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">ANALYTICS &amp; ACID</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Complex sub-queries, CTEs, window functions, compound B-tree/GIN index tuning, zero-downtime schema migrations, and concurrency isolation analysis.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">EXPLAIN ANALYZE</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Partial Indexing</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">DDL Locks</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="rust wasm webassembly exploratory proof of concept cryptography e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Rust &amp; WebAssembly</span>
+<span class="px-space-sm py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">EXPLORATORY</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Proof of concept modules for zero-overhead cryptographic hash routines and deterministic client-side vote verification via WASM runtime bindings.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">wasm-bindgen</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Zero-Copy Memory</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">SHA-256 SIMD</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="skill-category-block" data-category="frontend">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">web</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Frontend &amp; UI Architecture</h2>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">SERVER/CLIENT RUNTIME &amp; ACCESSIBILITY</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="next.js react server components rsc app router ssr ssg healthcare mis task manager">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Next.js 14/15</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">HYBRID RUNTIME</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Full exploitation of App Router architectures, nested routing trees, React Server Components (RSC) for zero-bundle data access, and selective streaming rendering.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">App Router</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Suspense Streaming</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Route Handlers</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="react state machines optimistic ui custom hooks padtrack task manager">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">React Core</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">CLIENT ARCHITECTURE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Finite state machine patterns, rollback-safe optimistic UI updates, custom lifecycle hooks, concurrent rendering prioritization, and strict purity.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Optimistic Mutation</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">useTransition</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Compound Components</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="tailwind css design tokens headless ui design system healthcare mis padtrack">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Tailwind CSS</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">SYSTEMS &amp; TOKENS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Bespoke design token architectures, customized CSS variable pipelines, unstyled accessible Headless UI primitive integration, and dark mode parity.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Semantic Tokens</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Tailwind JIT</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Arbitrary Scopes</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="html5 semantic dom wcag 2.2 aa accessibility aria screen reader task manager e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Semantic DOM &amp; A11y</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">WCAG 2.2 AA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Audited WCAG 2.2 Level AA compliance, robust ARIA attributes, semantic landmark hierarchies, native focus entrapment, and screen-reader tree validation.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Axe-core Checks</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">ARIA Live Regions</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Focus Trapping</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="skill-category-block" data-category="backend">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">dataset</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Backend &amp; APIs</h2>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">DISTRIBUTED DISPATCH &amp; PROTOCOLS</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="node.js express event loop clustering middleware healthcare mis task manager">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Node.js &amp; Express</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">SERVICE RUNTIME</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                High-throughput asynchronous service layers, modular pipeline middleware, non-blocking disk I/O, process management, and CPU core clustering.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Cluster Mode</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Custom Middleware</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Backpressure</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="rest apis openapi spec swagger contracts validation padtrack healthcare mis">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">REST &amp; OpenAPI Spec</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">CONTRACT COMPLIANCE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Contract-first API definitions, automated OpenAPI (Swagger) v3 schema compilation, runtime request/response validation, and deterministic HTTP status semantics.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">OpenAPI 3.1</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">RFC-7807 Errors</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Contract Mocking</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="sse server-sent events real-time streaming pipelines pubsub task manager e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Server-Sent Events (SSE)</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">STREAMING PIPELINES</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Unidirectional real-time delivery over HTTP/2, automated heartbeats, network reconnection buffering, and pub/sub push dispatching with lightweight client footprints.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">HTTP/2 Multiplex</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Event Replay</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Backpressure Flow</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="websockets duplex channels real-time sync socket.io padtrack">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">WebSockets Protocol</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">DUPLEX SYNC</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Full-duplex persistent client-server conduits, sub-protocol handshakes, binary message framing, and state reconciliation for multi-user collaboration.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Binary Frames</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Heartbeat Guards</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Room Sharding</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="rbac role based access control auth jwt sessions security tokens healthcare mis e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">RBAC &amp; Authentication</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">SECURITY CORE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Granular Role-Based Access Control, cryptographically signed HTTP-only JWTs, sliding session revocation, and immutable audit trailing for compliance.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">RS256 Signing</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Revocation Lists</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Permission Matrices</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="skill-category-block" data-category="databases">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">storage</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Databases &amp; Storage</h2>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">RELATIONAL &amp; IN-MEMORY PERSISTENCE</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="postgresql ddl design indexing isolation levels audit triggers healthcare mis e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">PostgreSQL</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">PRIMARY DATASTORE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Relational schema normalization, compound and partial B-Tree indices, transaction isolation tuning (Read Committed to Serializable), and PL/pgSQL triggers.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Serializable ACID</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Audit Triggers</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Partitioning</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="prisma orm migrations type safety client relations task manager padtrack">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Prisma ORM</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">DATA ACCESS LAYER</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Fully typed database client generation, automated migration diff generation, nested transactional queries, and query logging hooks.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Prisma Migrate</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Interactive Tx</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Type Safety</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="redis in-memory caching pub sub queues distributed locks task manager healthcare mis">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Redis</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">CACHE &amp; BUS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Sub-millisecond key-value caching, Pub/Sub event distribution, rate-limiting tokens, atomic counters, and Redis cluster failover awareness.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Distributed Locks</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Pub/Sub Pipes</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Sliding TTLs</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="skill-category-block" data-category="testing">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Testing &amp; Verification</h2>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">DETERMINISTIC ASSURANCE &amp; BENCHMARKING</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="cypress e2e workflows axe-core a11y testing automated healthcare mis task manager">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Cypress</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">END-TO-END QA</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                End-to-end integration journeys, automated network intercept assertions, visual regression checks, and cypress-axe automated accessibility scanning.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">cypress-axe</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Intercept Stubs</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Matrix Runs</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="vitest jest unit testing deterministic mock fixtures test suites padtrack e-voting protocol">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Vitest &amp; Jest</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">UNIT INTEGRATION</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Fast multi-threaded unit test execution, snapshot assertion integrity, deterministic mock factories, and boundary logic stress suites.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Thread Pools</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Mock Factories</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Coverage Reports</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="k6 load benchmarking stress test virtual users latency padtrack healthcare mis">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">K6 Performance Benchmarking</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">LOAD VERIFICATION</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Scripted load tests with thousands of virtual users, percentile latency tracking (p95/p99), and system breaking point stress simulations.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">p99 &lt; 200ms Target</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Ramp Up Waves</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Threshold Checks</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="skill-category-block" data-category="architecture">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">architecture</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Architecture &amp; Practices</h2>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">DESIGN PATTERNS &amp; AUDITABILITY</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="domain-driven design ddd bounded contexts aggregates entities healthcare mis">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Domain-Driven Design (DDD)</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">ENTERPRISE PATTERN</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Separation of concerns using Bounded Contexts, explicit Aggregate Roots, immutable Value Objects, and domain services insulated from DB schemas.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Bounded Contexts</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Ubiquitous Language</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Repository Pattern</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="event-driven architecture message queues asynchronous brokers task manager padtrack">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Event-Driven Architecture</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">DECOUPLED PIPELINES</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Decoupled pub/sub architectures, idempotent consumers, dead-letter queues, event versioning schemas, and guaranteed at-least-once delivery semantics.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Idempotent Keys</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">DLQ Strategies</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Schema Registry</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Task Manager
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> PadTrack
+                </a>
+</div>
+</div>
+</div>
+<div class="skill-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col justify-between" data-search="immutable logging strict provenance audits cryptography e-voting protocol healthcare mis">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Strict Provenance &amp; Auditing</span>
+<span class="px-space-sm py-0.5 rounded bg-surface-container-high text-on-primary-fixed-variant font-label-mono text-caption">TAMPER EVIDENT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Append-only ledger logging, cryptographic hash chaining for mutation records, zero-trust verification pipelines, and regulatory compliance storage.
+              </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Cryptographic Trees</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Append-Only Logs</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-code-inline text-caption">Audit Replays</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md">
+<div class="font-label-mono text-caption uppercase text-on-surface-variant mb-1.5">Proven in Projects</div>
+<div class="flex flex-wrap gap-1.5">
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> E-Voting Protocol
+                </a>
+<a class="inline-flex items-center gap-1 text-primary hover:text-tertiary bg-surface-container-low px-2 py-1 rounded text-caption font-label-mono hover:bg-surface-container transition-colors" data-path="projects" href="#">
+<span class="material-symbols-outlined text-[14px]">link</span> Healthcare MIS
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden py-space-3xl text-center space-y-space-md" id="noResultsBlock">
+<div class="w-16 h-16 mx-auto rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[32px]">filter_list_off</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No technical capabilities matched your query</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Try searching for generic categories like "databases", "typescript", "real-time", or project names like "Healthcare MIS".</p>
+</div>
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" id="resetSearchBtn">
+        Clear Filters
+      </button>
+</div>
+</section>
+<section class="w-full bg-surface-container-low py-space-2xl border-t border-light-border/40">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex flex-col md:flex-row items-center justify-between gap-space-lg">
+<div class="space-y-1 text-center md:text-left">
+<span class="font-label-mono text-caption text-primary uppercase">Direct Project Implementation</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Review verifiable project case studies</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Examine code patterns, benchmarks, and production rollouts for these skills.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<a class="px-space-md py-2.5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary shadow-sm transition-colors flex items-center gap-2" data-path="projects" href="#">
+<span>Explore Projects</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="px-space-md py-2.5 rounded-lg bg-surface text-on-surface font-body-sm text-body-sm font-semibold hover:bg-surface-container shadow-sm transition-colors flex items-center gap-2" data-path="evidence" href="#">
+<span>Evidence Vault</span>
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</a>
+</div>
+</div>
+</section>
+<script>
+    (function initSkillsMatrix() {
+      const searchInput = document.getElementById('skillSearchInput');
+      const tabs = document.querySelectorAll('.filter-tab');
+      const categoryBlocks = document.querySelectorAll('.skill-category-block');
+      const cards = document.querySelectorAll('.skill-card');
+      const visibleCounter = document.getElementById('visibleCounter');
+      const noResults = document.getElementById('noResultsBlock');
+      const resetBtn = document.getElementById('resetSearchBtn');
+
+      let currentCategory = 'all';
+
+      function filterCapabilities() {
+        const query = (searchInput.value || '').toLowerCase().trim();
+        let totalVisible = 0;
+
+        categoryBlocks.forEach(block => {
+          const cat = block.getAttribute('data-category');
+          const matchesCategory = (currentCategory === 'all' || currentCategory === cat);
+
+          let blockHasVisibleCard = false;
+          const blockCards = block.querySelectorAll('.skill-card');
+
+          blockCards.forEach(card => {
+            const cardSearchData = (card.getAttribute('data-search') || '').toLowerCase();
+            const textContent = card.innerText.toLowerCase();
+            const matchesQuery = !query || cardSearchData.includes(query) || textContent.includes(query);
+
+            if (matchesCategory && matchesQuery) {
+              card.classList.remove('hidden');
+              blockHasVisibleCard = true;
+              totalVisible++;
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+
+          if (blockHasVisibleCard) {
+            block.classList.remove('hidden');
+          } else {
+            block.classList.add('hidden');
+          }
+        });
+
+        visibleCounter.textContent = totalVisible;
+
+        if (totalVisible === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('bg-primary', 'text-on-primary', 'active-tab');
+            t.classList.add('bg-surface', 'text-on-surface-variant');
+          });
+          tab.classList.add('bg-primary', 'text-on-primary', 'active-tab');
+          tab.classList.remove('bg-surface', 'text-on-surface-variant');
+
+          currentCategory = tab.getAttribute('data-filter');
+          filterCapabilities();
+        });
+      });
+
+      searchInput.addEventListener('input', filterCapabilities);
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          currentCategory = 'all';
+          tabs.forEach(t => {
+            if (t.getAttribute('data-filter') === 'all') {
+              t.classList.add('bg-primary', 'text-on-primary', 'active-tab');
+              t.classList.remove('bg-surface', 'text-on-surface-variant');
+            } else {
+              t.classList.remove('bg-primary', 'text-on-primary', 'active-tab');
+              t.classList.add('bg-surface', 'text-on-surface-variant');
+            }
+          });
+          filterCapabilities();
+        });
+      }
+
+      filterCapabilities();
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl border-t border-light-border/80"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"><div class="md:col-span-1 space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Simon Ipara Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Full-stack software engineer specializing in high-throughput distributed systems, strict type safety, and verifiable evidence-backed architecture.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-mono text-caption"><span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>Nairobi, Kenya (EAT / UTC+3)</span></div></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Portfolio Navigation</h3><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="grid grid-cols-2 gap-space-xs"><div><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="home" href="#">Home</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="about" href="#">About</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="projects" href="#">Projects</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="skills" href="#">Skills</a></div><div><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="engineering" href="#">Engineering</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="evidence" href="#">Evidence</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="experience" href="#">Experience</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="contact" href="#">Contact</a></div></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Connectivity</h3><ul class="space-y-space-sm"><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-label-mono text-caption">GitHub: SIM350-maker</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">share</span><span class="font-label-mono text-caption">LinkedIn: simonipara</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">mail</span><span class="font-label-mono text-caption">simonipara428@gmail.com</span></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">System Access</h3><ul class="space-y-space-sm"><li><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-primary hover:text-tertiary transition-colors" data-path="cms-workspace" href="#"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>Admin CMS Workspace (/manage)</a></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Provenance: Verifiable Hash</span></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Status: Production v2.4.0</span></li></ul></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant border-t border-light-border/60"><p class="font-caption text-caption">© 2025 Simon Ipara. All systems verified and operational.</p><div class="flex items-center gap-space-md"><span class="font-caption text-caption">Evidence Integrity: 100% Cryptographic Audit</span></div></div></div></footer></body></html>

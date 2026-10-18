@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-light-surface/90 backdrop-blur-xl border-b border-light-border"><div class="h-16 px-space-md md:px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface">CMS Console</span><span class="px-space-xs py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">/manage</span></div></div><div class="flex items-center gap-space-md"><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[18px]">arrow_back</span><span>Back to Portfolio</span></a><div class="h-5 w-[1px] bg-light-border"></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-mono text-caption font-semibold">SI</div><span class="hidden sm:inline font-label-mono text-caption text-on-surface">simon.ipara</span></div></div></div></header><div class="flex min-h-screen pt-16"><aside class="w-64 fixed left-0 top-16 bottom-0 z-40 bg-light-surface border-r border-light-border flex flex-col justify-between py-space-md px-space-sm"><div class="space-y-space-md"><div class="px-space-sm"><p class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider">Content Management</p></div><nav class="space-y-space-xs" data-active-classes="bg-secondary-container text-primary font-semibold border-l-2 border-primary"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="cms-workspace" href="#">Workspace</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="projects" href="#">Projects Content</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-body-sm text-body-sm" data-path="evidence" href="#">Evidence Artifacts</a></nav></div><div class="px-space-sm pt-space-md border-t border-light-border"><a class="flex items-center gap-space-xs font-label-mono text-caption text-on-surface-variant hover:text-error transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[16px]">logout</span><span>Exit CMS</span></a></div></aside><main class="flex-1 pl-64 w-full bg-light-background min-h-[calc(100vh-4rem)] p-space-lg"><div class="flex flex-col w-full">
+<!-- Telemetry Strip (Critical State) -->
+<div class="w-full bg-inverse-surface text-inverse-on-surface px-space-md py-space-xs font-label-mono text-label-mono flex flex-wrap items-center justify-between gap-space-sm shadow-sm">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 text-status-restricted font-semibold">
+<span class="w-2 h-2 rounded-full bg-status-restricted animate-ping"></span>
+        SYSTEM_DEGRADED // CDC_REPLICA_TIMEOUT (ERROR 504)
+      </span>
+<span class="text-outline">/</span>
+<span class="text-surface-variant">RETRY_ATTEMPTS: <span class="text-status-restricted">3/5</span></span>
+<span class="text-outline">/</span>
+<span class="text-surface-variant">ENGINE: v2.4.0</span>
+<span class="text-outline">/</span>
+<span class="text-surface-variant">POSTGRESQL: <span class="text-status-unavailable font-semibold">RECONNECTING</span></span>
+</div>
+<div class="flex items-center gap-space-sm text-surface-variant">
+<span>LAST_VALID_MERKLE:</span>
+<span class="font-code-inline text-code-inline text-dark-accent bg-dark-background/60 px-1.5 py-0.5 rounded">0x9b41...d82e</span>
+<span class="material-symbols-outlined text-sm text-status-restricted">lock</span>
+</div>
+</div>
+<!-- Incident Critical Alert Banner -->
+<div class="w-full bg-surface-container-lowest border-l-4 border-status-restricted shadow-md px-space-md py-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md mt-space-sm rounded-r-lg">
+<div class="flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-status-restricted/10 text-status-restricted mt-0.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">sync_problem</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-light-text-primary flex items-center gap-2">
+<span>Database Replica Sync Timeout</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-mono uppercase tracking-wider bg-status-restricted/15 text-status-restricted font-bold">Safe Fallback Active</span>
+</p>
+<p class="font-body-sm text-body-sm text-light-text-secondary mt-0.5">
+          Unable to stream change log from <code class="font-code-inline text-code-inline text-on-surface bg-surface-container px-1 rounded">eu-central-1</code> direct node. Write buffer in safe fallback mode. Uncommitted drafts remain cached in IndexedDB.
+        </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="h-9 px-space-md rounded bg-primary text-on-primary hover:bg-tertiary transition-colors flex items-center gap-1.5 font-label-mono text-label-mono font-medium shadow-sm" id="bannerRetryBtn">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span>Retry Connection Now</span>
+</button>
+<a class="h-9 px-space-sm rounded bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface font-label-mono text-label-mono flex items-center gap-1" href="#stdoutConsole">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span>Inspect Diagnostic Logs</span>
+</a>
+</div>
+</div>
+<!-- Top Action Bar & Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mt-space-lg mb-space-md">
+<div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant">Cluster Telemetry &amp; Orchestration</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-caption font-label-mono bg-status-restricted/10 text-status-restricted font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+          SYSTEM RECOVERY IN-FLIGHT
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-light-text-primary tracking-tight">Workspace Dashboard</h1>
+</div>
+<!-- Toolbar controls -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="h-9 px-space-md rounded bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed flex items-center gap-1 font-label-mono text-label-mono" disabled="" title="Disabled due to CDC replication lock">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>New Project (Disabled)</span>
+</button>
+<button class="h-9 px-space-md rounded bg-surface-container-high text-on-surface-variant/40 cursor-not-allowed flex items-center gap-1 font-label-mono text-label-mono" disabled="" title="Disabled due to CDC replication lock">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Add Evidence Record (Disabled)</span>
+</button>
+<button class="h-9 px-space-md rounded bg-secondary text-on-secondary hover:bg-secondary-fixed-dim hover:text-on-secondary-fixed transition-colors flex items-center gap-1 font-label-mono text-label-mono shadow-sm" id="reconnectSocketBtn">
+<span class="material-symbols-outlined text-[16px]">lan</span>
+<span>Reconnect Socket</span>
+</button>
+<button class="h-9 px-space-md rounded bg-secondary-container text-on-secondary-container hover:bg-surface-container-high transition-colors flex items-center gap-1 font-label-mono text-label-mono font-medium">
+<span class="material-symbols-outlined text-[16px]">offline_bolt</span>
+<span>Offline Mode Drafts (2)</span>
+</button>
+</div>
+</div>
+<!-- Primary Metric Grid (Degraded Accent Visuals) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-restricted"></div>
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-mono text-label-mono uppercase tracking-wider">Engineering Portfolio</span>
+<span class="material-symbols-outlined text-[18px] text-status-restricted">cloud_sync</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-light-text-primary tracking-tight">06 <span class="font-body-sm text-body-sm text-light-text-secondary">Cached Scope</span></div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<span class="font-caption text-caption text-light-text-secondary">Offline Cache Syncing Pending</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-mono bg-status-restricted/15 text-status-restricted font-semibold">QUEUED</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-restricted"></div>
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-mono text-label-mono uppercase tracking-wider">Claims Provenance</span>
+<span class="material-symbols-outlined text-[18px] text-status-restricted">policy</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-light-text-primary tracking-tight">14 <span class="font-body-sm text-body-sm text-light-text-secondary">Assertion Units</span></div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<span class="font-caption text-caption text-light-text-secondary">Merkle Root Verification Paused</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-mono bg-status-restricted/15 text-status-restricted font-semibold">FROZEN</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-public"></div>
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-mono text-label-mono uppercase tracking-wider">Evidence Artifacts</span>
+<span class="material-symbols-outlined text-[18px] text-status-public">fact_check</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-light-text-primary tracking-tight">18 <span class="font-body-sm text-body-sm text-light-text-secondary">Linked Anchors</span></div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<span class="font-caption text-caption text-light-text-secondary">3 Read-Only Mirrors Connected</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-mono bg-status-public/15 text-status-public font-semibold">ACTIVE</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 right-0 h-1 bg-status-unavailable"></div>
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-mono text-label-mono uppercase tracking-wider">Inbound Client Signals</span>
+<span class="material-symbols-outlined text-[18px] text-status-unavailable">sensors_off</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-light-text-primary tracking-tight">07 <span class="font-body-sm text-body-sm text-light-text-secondary">Signals Buffered</span></div>
+<div class="mt-space-sm pt-space-xs flex items-center justify-between bg-surface-container-low px-2 py-1 rounded">
+<span class="font-caption text-caption text-light-text-secondary">Webhook Ingestion Delayed (4m)</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-mono bg-status-unavailable/15 text-status-unavailable font-semibold">HOLD</span>
+</div>
+</div>
+</div>
+<!-- Center Diagnostic Grid (2 Columns: Main Incident Diagnostic & Side Telemetry) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Left Main: Technical Failure Recovery Module (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-md border-l-4 border-status-restricted">
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-low p-space-sm rounded">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-status-restricted text-[24px]">troubleshoot</span>
+<span class="font-headline-sm text-headline-sm text-light-text-primary">
+              PostgreSQL Replication Stream Interrupted — Fallback Cache Active
+            </span>
+</div>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded bg-status-unavailable/10 text-status-unavailable font-bold">
+            TIMEOUT: 15000ms
+          </span>
+</div>
+<!-- Failure Details Card with Technical Specifications -->
+<div class="space-y-space-sm mb-space-md">
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-unavailable text-[18px]">link_off</span>
+<span class="font-body-sm text-body-sm font-semibold text-light-text-primary">Failed Handshake</span>
+</div>
+<code class="font-code-block text-code-block text-light-text-secondary select-all bg-surface px-2 py-0.5 rounded">wss://replica.eu-central-1.internal/walstream/v1</code>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-restricted text-[18px]">timer_off</span>
+<span class="font-body-sm text-body-sm font-semibold text-light-text-primary">Socket State</span>
+</div>
+<span class="font-body-sm text-body-sm text-light-text-secondary">TCP Retransmit Timeout after 15,000ms (SYN_SENT)</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col md:flex-row md:items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">security</span>
+<span class="font-body-sm text-body-sm font-semibold text-light-text-primary">Data Safety Invariant</span>
+</div>
+<span class="font-body-sm text-body-sm text-status-public font-medium">Merkle root locked to prevent split-brain ledger corruption.</span>
+</div>
+</div>
+<!-- Recovery Operations Toolbar -->
+<div class="pt-space-md flex flex-wrap items-center justify-between gap-space-md bg-surface-container-lowest">
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="h-9 px-space-md rounded bg-primary text-on-primary hover:bg-tertiary transition-colors flex items-center gap-2 font-label-mono text-label-mono font-medium shadow-sm" id="forceReconnectBtn">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span>Force Reconnect &amp; Flush Write Buffer</span>
+</button>
+<button class="h-9 px-space-md rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors flex items-center gap-2 font-label-mono text-label-mono font-medium" id="exportSnapshotBtn">
+<span class="material-symbols-outlined text-[16px]">download</span>
+<span>Export Local Emergency Snapshot (.json)</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="maintenanceMirrorToggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-2 font-body-sm text-body-sm text-light-text-primary font-medium select-none">Read-Only Maintenance Mirror</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Realtime Live Diagnostic Console (stdout) -->
+<div class="rounded-xl bg-dark-background text-dark-text-primary p-space-md shadow-xl flex flex-col font-code-block text-code-block" id="stdoutConsole">
+<div class="flex items-center justify-between pb-space-xs mb-space-xs bg-dark-surface px-space-sm py-1.5 rounded">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-status-unavailable inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-status-restricted inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-status-public inline-block"></span>
+<span class="ml-2 font-label-mono text-caption text-dark-text-secondary uppercase">CDC WAL Stream Log (stdout/stderr)</span>
+</div>
+<div class="flex items-center gap-2 text-caption font-label-mono text-dark-text-secondary">
+<span class="animate-pulse text-status-restricted font-bold">● LIVE POLLING (1000ms)</span>
+<button class="hover:text-dark-text-primary transition-colors text-[11px] underline" id="clearLogBtn">Clear</button>
+</div>
+</div>
+<div class="h-48 overflow-y-auto space-y-1.5 px-space-sm py-space-xs font-label-mono text-[13px] leading-relaxed" id="logOutputArea">
+<div class="text-status-restricted"><span class="text-dark-text-secondary">[14:28:01]</span> WARN: WAL stream heartbeat missed (interval: 5000ms)</div>
+<div class="text-status-unavailable"><span class="text-dark-text-secondary">[14:28:06]</span> ERR: Socket connection timeout to host 10.0.4.12:5432</div>
+<div class="text-dark-accent"><span class="text-dark-text-secondary">[14:28:11]</span> RETRY: Attempt 3 of 5 dispatching SYN packet...</div>
+<div class="text-status-restricted"><span class="text-dark-text-secondary">[14:28:15]</span> HOLD: Applying write-lock to /manage/projects and /manage/claims to protect provenance invariants.</div>
+<div class="text-dark-text-secondary"><span class="text-dark-text-secondary">[14:28:19]</span> INFO: IndexedDB fallback allocation verified: 142.4 KB across 3 uncommitted transactions.</div>
+<div id="dynamicLogSlot"></div>
+</div>
+</div>
+</div>
+<!-- Right Side: Staging Drawer & Telemetry Column (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<!-- Staging Drawer / Pending Syncs -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col">
+<div class="flex items-center justify-between pb-space-xs mb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-status-restricted">pause_circle</span>
+<span class="font-headline-sm text-headline-sm text-light-text-primary">Staging Drawer</span>
+</div>
+<span class="px-2 py-0.5 rounded text-caption font-label-mono bg-status-restricted/15 text-status-restricted font-bold uppercase">REPLICA SYNC PAUSED</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded-lg mb-space-sm">
+<div class="flex items-center justify-between mb-1">
+<span class="font-body-sm text-body-sm font-semibold text-light-text-primary">3 Pending In-Flight Edits</span>
+<span class="font-label-mono text-caption text-status-restricted">IndexedDB Safe-Store</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-status-restricted h-full w-3/5"></div>
+</div>
+</div>
+<!-- Pending Items List -->
+<div class="space-y-space-xs mb-space-md">
+<div class="p-space-xs rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary">draft</span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium text-light-text-primary">Distributed Architecture Refactor</span>
+<span class="font-caption text-caption text-light-text-secondary">Project Spec • Modified 3m ago</span>
+</div>
+</div>
+<span class="font-label-mono text-[11px] text-status-restricted">UNCOMMITTED</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary">verified_user</span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium text-light-text-primary">Assertion #42: Benchmarking Claims</span>
+<span class="font-caption text-caption text-light-text-secondary">Claims Entry • Modified 8m ago</span>
+</div>
+</div>
+<span class="font-label-mono text-[11px] text-status-restricted">UNCOMMITTED</span>
+</div>
+<div class="p-space-xs rounded bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-light-text-secondary">attach_file</span>
+<div class="flex flex-col">
+<span class="font-body-sm text-body-sm font-medium text-light-text-primary">Artifact: Flamegraph_Profiling.svg</span>
+<span class="font-caption text-caption text-light-text-secondary">Evidence • Buffered</span>
+</div>
+</div>
+<span class="font-label-mono text-[11px] text-status-restricted">UNCOMMITTED</span>
+</div>
+</div>
+<button class="w-full h-8 px-space-sm rounded bg-surface-container hover:bg-error-container hover:text-on-error-container text-light-text-secondary font-label-mono text-caption transition-colors flex items-center justify-center gap-1" id="discardDraftsBtn">
+<span class="material-symbols-outlined text-[14px]">delete_sweep</span>
+<span>Clear Local IndexedDB Transactions</span>
+</button>
+</div>
+<!-- Live Infrastructure Telemetry Side Panel -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col">
+<div class="flex items-center justify-between pb-space-xs mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-light-text-primary">Cluster Telemetry</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">dns</span>
+</div>
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<span class="font-body-sm text-body-sm text-light-text-secondary">DB Connection</span>
+<span class="inline-flex items-center gap-1 font-label-mono text-caption text-status-unavailable font-bold">
+<span class="w-2 h-2 rounded-full bg-status-unavailable animate-pulse"></span>
+              DEGRADED (504)
+            </span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<span class="font-body-sm text-body-sm text-light-text-secondary">Edge CDN</span>
+<span class="inline-flex items-center gap-1 font-label-mono text-caption text-status-public font-bold">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+              Operational (12ms)
+            </span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<span class="font-body-sm text-body-sm text-light-text-secondary">Cache Buffer</span>
+<span class="font-label-mono text-caption text-light-text-primary font-semibold">
+              142 KB (IndexedDB)
+            </span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<span class="font-body-sm text-body-sm text-light-text-secondary">Merkle Consensus</span>
+<span class="font-label-mono text-caption text-status-restricted font-semibold">
+              0x9b41... (FROZEN)
+            </span>
+</div>
+</div>
+<!-- Sync Latency SVG Chart -->
+<div class="mt-space-md p-space-sm bg-surface-container-low rounded">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">CDC Handshake Latency (ms)</span>
+<span class="font-label-mono text-[11px] text-status-unavailable font-bold">TIMEOUT &gt; 15s</span>
+</div>
+<svg class="w-full h-16 text-status-unavailable" fill="none" viewbox="0 0 280 60">
+<path d="M0 45 L40 42 L80 44 L120 40 L160 48 L200 20 L240 5 L280 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M0 45 L40 42 L80 44 L120 40 L160 48 L200 20 L240 5 L280 5 L280 60 L0 60 Z" fill="currentColor" fill-opacity="0.12"></path>
+<line stroke="#F59E0B" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="280" y1="20" y2="20"></line>
+</svg>
+<div class="flex justify-between items-center text-[10px] font-label-mono text-light-text-secondary mt-1">
+<span>T-15m</span>
+<span>T-10m</span>
+<span>T-5m</span>
+<span class="text-status-unavailable font-bold">Now (Lost)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Toast Simulation -->
+<div class="fixed bottom-6 right-6 hidden bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-lg shadow-xl font-body-sm text-body-sm z-50 flex items-center gap-space-sm" id="toastNotification">
+<span class="material-symbols-outlined text-status-restricted text-[20px]" id="toastIcon">info</span>
+<span id="toastMessage">Re-attempting connection to PostgreSQL replica stream...</span>
+</div>
+<script>
+    (function initRecoveryDashboard() {
+      const bannerRetryBtn = document.getElementById('bannerRetryBtn');
+      const reconnectSocketBtn = document.getElementById('reconnectSocketBtn');
+      const forceReconnectBtn = document.getElementById('forceReconnectBtn');
+      const exportSnapshotBtn = document.getElementById('exportSnapshotBtn');
+      const discardDraftsBtn = document.getElementById('discardDraftsBtn');
+      const logArea = document.getElementById('logOutputArea');
+      const dynamicSlot = document.getElementById('dynamicLogSlot');
+      const clearLogBtn = document.getElementById('clearLogBtn');
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+
+      function showToast(msg, icon = 'sync') {
+        if (!toast) return;
+        toastMsg.textContent = msg;
+        document.getElementById('toastIcon').textContent = icon;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 4000);
+      }
+
+      function appendLog(level, message, colorClass) {
+        if (!dynamicSlot) return;
+        const now = new Date();
+        const timeStr = [now.getHours(), now.getMinutes(), now.getSeconds()]
+          .map(n => String(n).padStart(2, '0'))
+          .join(':');
+        const entry = document.createElement('div');
+        entry.className = colorClass;
+        entry.innerHTML = `<span class="text-dark-text-secondary">[${timeStr}]</span> ${level}: ${message}`;
+        dynamicSlot.appendChild(entry);
+        logArea.scrollTop = logArea.scrollHeight;
+      }
+
+      function triggerReconnectAttempt() {
+        showToast('Initiating emergency TCP handshake to replica node...', 'refresh');
+        appendLog('DISPATCH', 'Executing socket reopen towards wss://replica.eu-central-1.internal/walstream/v1', 'text-dark-accent');
+        
+        setTimeout(() => {
+          appendLog('SYN_SENT', 'TCP SYN sent to 10.0.4.12:5432 (seq=129034812)', 'text-dark-text-secondary');
+        }, 900);
+
+        setTimeout(() => {
+          appendLog('TIMEOUT', 'Handshake peer did not respond within 3000ms. Keep-alive probe failed.', 'text-status-unavailable');
+          showToast('Connection attempt failed: 504 Gateway Timeout.', 'error');
+        }, 3200);
+      }
+
+      if (bannerRetryBtn) bannerRetryBtn.addEventListener('click', triggerReconnectAttempt);
+      if (reconnectSocketBtn) reconnectSocketBtn.addEventListener('click', triggerReconnectAttempt);
+      if (forceReconnectBtn) forceReconnectBtn.addEventListener('click', () => {
+        showToast('Flushing local journal queue & initiating socket sync...', 'bolt');
+        appendLog('FLUSH', 'Invoking IndexedDB journal write barrier lock...', 'text-status-restricted');
+        setTimeout(() => {
+          appendLog('WARN', 'Buffer write lock active. Attempting socket reconnect...', 'text-status-restricted');
+          triggerReconnectAttempt();
+        }, 600);
+      });
+
+      if (exportSnapshotBtn) {
+        exportSnapshotBtn.addEventListener('click', () => {
+          const snapshot = {
+            system: "CMS Admin Workspace",
+            timestamp: new Date().toISOString(),
+            status: "CDC_REPLICA_TIMEOUT_SAFE_FALLBACK",
+            merkle_root: "0x9b41a38dfc7890e1d82e",
+            buffered_records: 3,
+            drafts: [
+              { type: "project", id: "p-8102", title: "Distributed Architecture Refactor" },
+              { type: "claim", id: "c-1092", title: "Assertion #42: Benchmarking Claims" },
+              { type: "artifact", id: "a-0382", file: "Flamegraph_Profiling.svg" }
+            ]
+          };
+          const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `cms-emergency-snapshot-${Date.now()}.json`;
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast('Emergency snapshot downloaded (.json)', 'file_download');
+          appendLog('SNAPSHOT', 'Dumped 3 uncommitted transactions to client filesystem.', 'text-status-public');
+        });
+      }
+
+      if (discardDraftsBtn) {
+        discardDraftsBtn.addEventListener('click', () => {
+          if (confirm('Are you sure you want to discard uncommitted IndexedDB transactions? This cannot be undone.')) {
+            showToast('Local transactions purged.', 'delete');
+            appendLog('PURGE', 'Local storage cache wiped. Workspace returned to clean state.', 'text-status-restricted');
+          }
+        });
+      }
+
+      if (clearLogBtn) {
+        clearLogBtn.addEventListener('click', () => {
+          dynamicSlot.innerHTML = '';
+        });
+      }
+    })();
+  </script>
+</div></main></div></body></html>

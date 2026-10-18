@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"status-public":"#10B981","primary-fixed":"#dde1ff","dark-border":"#2A374A","on-primary-fixed-variant":"#0036bb","inverse-surface":"#273044","dark-text-secondary":"#AAB6C8","on-surface-variant":"#434656","on-surface":"#121b2e","tertiary-fixed-dim":"#b8c3ff","surface-container":"#e9edff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","inverse-primary":"#b8c4ff","primary-fixed-dim":"#b8c4ff","surface-bright":"#f9f9ff","dark-accent":"#4D76FD","status-redacted":"#64748B","surface-container-lowest":"#ffffff","on-secondary-container":"#596579","on-primary-fixed":"#001354","surface-tint":"#154ceb","surface-container-highest":"#d9e2fc","light-text-secondary":"#596579","surface-dim":"#d1daf4","outline":"#747687","on-error":"#ffffff","on-secondary-fixed-variant":"#3b475a","on-error-container":"#93000a","tertiary-container":"#4363e1","surface-variant":"#d9e2fc","secondary":"#535f73","surface-container-low":"#f1f3ff","dark-surface-raised":"#1B2637","primary":"#0042df","tertiary":"#2448c7","status-draft":"#8B5CF6","on-background":"#121b2e","secondary-fixed":"#d7e3fb","tertiary-fixed":"#dde1ff","background":"#f9f9ff","on-secondary":"#ffffff","on-tertiary-container":"#f1f0ff","on-secondary-fixed":"#101c2d","primary-container":"#315efb","on-tertiary":"#ffffff","light-text-primary":"#172033","light-surface":"#FFFFFF","inverse-on-surface":"#edf0ff","status-restricted":"#F59E0B","on-tertiary-fixed":"#001355","outline-variant":"#c4c5d8","light-border":"#E2E7EF","secondary-container":"#d7e3fb","on-tertiary-fixed-variant":"#0737b8","status-archived":"#6B7280","dark-text-primary":"#F2F5FA","surface":"#f9f9ff","dark-background":"#0E1420","on-primary":"#ffffff","secondary-fixed-dim":"#bbc7de","on-primary-container":"#f1f1ff","status-unavailable":"#EF4444","status-published":"#3B82F6","error-container":"#ffdad6","light-background":"#F8F9FB","error":"#ba1a1a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-2xl":"3rem","space-xl":"2rem","gutter-sm":"1rem","space-md":"1rem","space-sm":"0.5rem","margin-mobile":"1rem","margin":"2rem","space-3xl":"4rem","space-xs":"0.25rem","gutter":"1.5rem","space-lg":"1.5rem"},"fontFamily":{"hero-lg":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"code-inline":["JetBrains Mono"],"body-md":["Inter"],"headline-lg-mobile":["Inter"],"caption":["Inter"],"code-block":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"label-mono":["JetBrains Mono"],"headline-lg":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"]},"fontSize":{"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">terminal</span></div><div class="flex flex-col"><span class="font-headline-sm text-body-md font-semibold text-on-surface tracking-tight">SIMON IPARA</span><span class="font-label-mono text-caption text-light-text-secondary uppercase">Engineering CMS</span></div></div><span class="font-label-mono text-caption px-space-xs py-0.5 rounded-lg bg-surface-container text-primary font-medium">v2.4</span></div><nav class="flex flex-col gap-space-lg px-space-md py-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Overview</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Content</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="projects" href="#"><span class="material-symbols-outlined text-[18px]">folder_code</span><span class="font-body-sm text-body-sm">Projects</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="skills" href="#"><span class="material-symbols-outlined text-[18px]">psychology</span><span class="font-body-sm text-body-sm">Skills</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="experience" href="#"><span class="material-symbols-outlined text-[18px]">work_history</span><span class="font-body-sm text-body-sm">Experience</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-body-sm text-body-sm">Profile</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Evidence &amp; Provenance</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="evidence-and-artifacts" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-sm text-body-sm">Evidence &amp; Artifacts</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="claims" href="#"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-body-sm text-body-sm">Claims</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Publishing &amp; Media</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="media-library" href="#"><span class="material-symbols-outlined text-[18px]">perm_media</span><span class="font-body-sm text-body-sm">Media Library</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="navigation" href="#"><span class="material-symbols-outlined text-[18px]">alt_route</span><span class="font-body-sm text-body-sm">Navigation</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">System</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="activity-log" href="#"><span class="material-symbols-outlined text-[18px]">history</span><span class="font-body-sm text-body-sm">Activity Log</span></a></div></nav></div><div class="p-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)] flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-status-public"></span><span class="font-label-mono text-caption text-light-text-secondary">SYSTEM READY</span></div><span class="font-label-mono text-caption text-on-surface-variant font-medium">PROD-SYNC</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span><span>manage</span><span>/</span><span class="text-on-surface font-medium">workspace</span></div></div><div class="flex-1 max-w-md mx-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-light-text-secondary">search</span><input class="w-full h-9 pl-9 pr-12 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-light-text-secondary focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" placeholder="Search entities, records, claims... (Ctrl+K)" readonly="" type="text"/><div class="absolute right-2 px-1.5 py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-mono text-caption">⌘K</div></div></div><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-colors font-label-mono text-caption font-medium" href="#"><span class="material-symbols-outlined text-[16px]">open_in_new</span><span>Live Portfolio</span></a><div class="h-5 w-px bg-surface-container"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-headline-sm text-body-sm font-semibold text-on-surface">simon.ipara</span><span class="font-label-mono text-caption text-light-text-secondary">Staff Engineer</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background px-space-lg py-space-lg min-h-screen"><div class="flex flex-col w-full relative">
+<!-- Underlay: Inactive Parent CMS View (Screen 69: Evidence & Artifacts Manager Registry) -->
+<div class="w-full filter blur-[1px] opacity-40 pointer-events-none select-none transition-all">
+<!-- Header of Parent Workspace -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary uppercase">
+<span>Provenance Registry</span>
+<span>/</span>
+<span class="text-primary font-medium">Artifacts Vault</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Evidence &amp; Artifacts</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage attestation records, SHA-256 payload proofs, and access boundaries across engineering claims.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="h-9 px-space-md bg-surface-container rounded-lg font-label-mono text-caption text-on-surface font-medium">Export Registry (JSON)</button>
+<button class="h-9 px-space-md bg-primary-container text-on-primary-container rounded-lg font-label-mono text-caption font-semibold flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Register Evidence</span>
+</button>
+</div>
+</div>
+<!-- Metrics Strip -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md mb-space-lg">
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-xs">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Total Artifacts</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">42</span>
+<span class="font-label-mono text-caption text-status-public">+4 this sprint</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-xs">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Cryptographic Integrity</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold text-status-public">100%</span>
+<span class="font-label-mono text-caption text-light-text-secondary">Merkle verified</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-xs">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Restricted Tier</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold text-status-restricted">18</span>
+<span class="font-label-mono text-caption text-light-text-secondary">Air-gapped</span>
+</div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-xl shadow-sm flex flex-col gap-space-xs">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Active Claims Bound</span>
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">67</span>
+<span class="font-label-mono text-caption text-primary">Across 6 projects</span>
+</div>
+</div>
+</div>
+<!-- Ghost Data Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-md">
+<div class="h-10 bg-surface-container-low rounded-lg mb-space-sm"></div>
+<div class="h-12 bg-surface-container-lowest rounded-lg mb-space-xs"></div>
+<div class="h-12 bg-surface-container-low rounded-lg mb-space-xs"></div>
+<div class="h-12 bg-surface-container-lowest rounded-lg mb-space-xs"></div>
+<div class="h-12 bg-surface-container-low rounded-lg"></div>
+</div>
+</div>
+<!-- Modal Backdrop with Ambient Occlusion Blur -->
+<div aria-labelledby="modal-headline" aria-modal="true" class="fixed inset-0 top-16 left-64 bg-inverse-surface/45 backdrop-blur-sm z-50 flex items-start justify-center p-space-md md:p-space-xl overflow-y-auto" id="modal-container" role="dialog">
+<!-- Modal Card (Maximized for Technical Data Density) -->
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-xl shadow-2xl my-auto relative overflow-hidden flex flex-col">
+<!-- Top Color Hash Identification Banner -->
+<div class="h-1 w-full bg-primary-container"></div>
+<!-- Modal Header -->
+<div class="px-space-xl pt-space-lg pb-space-md bg-surface-container-lowest flex items-start justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="px-space-xs py-0.5 rounded-lg bg-surface-container text-primary font-label-mono text-caption font-semibold uppercase tracking-wider">
+              Zero-Trust Provenance Pipeline // Step 01 of 02
+            </span>
+<span class="font-label-mono text-caption text-light-text-secondary">RFC-6962 Compatible</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight" id="modal-headline">
+            Register Cryptographic Evidence Artifact
+          </h2>
+<p class="font-body-sm text-body-sm text-light-text-secondary">
+            Bind an immutable, machine-verifiable proof hash or audit trail to portfolio architectural claims.
+          </p>
+</div>
+<!-- Dismiss Actions -->
+<div class="flex items-center gap-space-sm">
+<span class="hidden md:inline-flex font-label-mono text-caption text-light-text-secondary px-space-xs py-1 rounded bg-surface-container-low">Esc to dismiss</span>
+<button aria-label="Close registration dialog" class="w-8 h-8 rounded-lg flex items-center justify-center text-light-text-secondary hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Modal Content Body / Form Sections -->
+<form class="px-space-xl py-space-md flex flex-col gap-space-lg overflow-y-auto max-h-[calc(85vh-160px)]">
+<!-- SECTION 1: Artifact Title & Identifier Slug -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-start">
+<div class="md:col-span-8 flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface flex items-center gap-space-xs" for="artifact-title">
+<span>Artifact Title</span>
+<span class="text-error">*</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm bg-surface-container-low rounded-lg text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm" id="artifact-title" placeholder="e.g. Automated E2E Load Trace Report" type="text" value="Vitest 100% Branch Coverage &amp; Mutation Test Trace"/>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface flex items-center justify-between" for="artifact-slug">
+<span>Identifier Slug</span>
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Unique Key</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm bg-surface-container rounded-lg text-on-surface font-code-inline text-code-inline font-medium focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" id="artifact-slug" readonly="" type="text" value="vitest-coverage-trace-v2"/>
+<span class="material-symbols-outlined absolute right-2 text-[16px] text-light-text-secondary">lock</span>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Evidence Type & Format Selection -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<div class="md:col-span-7 flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="evidence-type">Evidence Type &amp; Canonical Format</label>
+<div class="relative">
+<select class="w-full h-9 px-space-sm pr-space-xl bg-surface-container-low rounded-lg text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm cursor-pointer" id="evidence-type">
+<option selected="">Test Suite Report (Vitest / Mochawesome)</option>
+<option>Architecture Decision Record (ADR / Markdown)</option>
+<option>Benchmark Log (Datadog / JSON)</option>
+<option>Source Code Sample (Rust / Cargo)</option>
+<option>Cryptographic Proof / ZKP Hash</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[18px] text-light-text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface">Attestation Engine</label>
+<div class="h-9 px-space-sm bg-surface-container-low rounded-lg flex items-center justify-between text-light-text-secondary font-label-mono text-caption">
+<span class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-status-public"></span>
+<span class="text-on-surface font-medium">Stryker-Mutator v8.2</span>
+</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container text-primary font-semibold">VERIFIED</span>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Strict Zero-Trust Access Classification (Section 7.9 Spec) -->
+<div class="flex flex-col gap-space-sm bg-surface-container-low/60 p-space-md rounded-xl">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">security</span>
+<span class="font-body-sm text-body-sm font-bold text-on-surface">Strict Cryptographic Access Classification</span>
+<span class="px-space-xs py-0.5 bg-error-container text-on-error-container font-label-mono text-caption rounded font-semibold uppercase">Mandatory Rule</span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary">PORTFOLIO-STITCH §7.9</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Zero-Trust access policies govern how payloads, source snippets, and architecture diagrams are compiled into static client bundles.
+          </p>
+<!-- 4-Tier Interactive Radio Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm mt-space-xs">
+<!-- Tier 1: Public -->
+<label class="flex flex-col p-space-md bg-surface-container-lowest rounded-lg cursor-pointer hover:bg-surface-container transition-all shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<input class="w-4 h-4 text-primary focus:ring-primary accent-primary" name="access_tier" type="radio" value="public"/>
+<span class="font-label-mono text-caption font-bold text-on-surface">TIER 01: PUBLIC</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-caption font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span> PUBLIC
+                </span>
+</div>
+<p class="font-caption text-caption text-light-text-secondary ml-6">
+                Safe for public audit, live production metrics, and unmasked code repositories. Edge CDN cacheable.
+              </p>
+</label>
+<!-- Tier 2: Redacted Summary -->
+<label class="flex flex-col p-space-md bg-surface-container-lowest rounded-lg cursor-pointer hover:bg-surface-container transition-all shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<input class="w-4 h-4 text-primary focus:ring-primary accent-primary" name="access_tier" type="radio" value="redacted"/>
+<span class="font-label-mono text-caption font-bold text-on-surface">TIER 02: REDACTED</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-status-redacted/15 text-status-redacted font-label-mono text-caption font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-redacted"></span> SCRUBBED
+                </span>
+</div>
+<p class="font-caption text-caption text-light-text-secondary ml-6">
+                Public-safe derivative created by scrubbing enterprise client names, credentials, and internal VPC topology.
+              </p>
+</label>
+<!-- Tier 3: RESTRICTED / PRIVATE (Active & Selected State) -->
+<label class="flex flex-col p-space-md bg-surface-container-highest/80 rounded-lg cursor-pointer shadow-md transition-all">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary accent-primary" name="access_tier" type="radio" value="restricted"/>
+<span class="font-label-mono text-caption font-bold text-primary">TIER 03: RESTRICTED / PRIVATE</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-status-restricted/20 text-status-restricted font-label-mono text-caption font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span> CONFIDENTIAL
+                </span>
+</div>
+<p class="font-caption text-caption text-on-surface ml-6 font-medium">
+                Confidential maintainer vault, HIPAA/SOC2 schematics, and sensitive enterprise benchmark traces.
+              </p>
+</label>
+<!-- Tier 4: Unavailable / Quarantined -->
+<label class="flex flex-col p-space-md bg-surface-container-lowest rounded-lg cursor-pointer hover:bg-surface-container transition-all opacity-85 shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<input class="w-4 h-4 text-primary focus:ring-primary accent-primary" name="access_tier" type="radio" value="unavailable"/>
+<span class="font-label-mono text-caption font-bold text-on-surface">TIER 04: UNAVAILABLE</span>
+</div>
+<span class="px-space-xs py-0.5 rounded bg-status-unavailable/10 text-status-unavailable font-label-mono text-caption font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-unavailable"></span> QUARANTINED
+                </span>
+</div>
+<p class="font-caption text-caption text-light-text-secondary ml-6">
+                Pending artifact generation, stale Merkle verification, or broken signature checksum.
+              </p>
+</label>
+</div>
+<!-- Dynamic Warning Callout for Restricted Selection -->
+<div class="mt-space-xs p-space-sm bg-surface-container rounded-lg flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-mono text-caption font-bold text-primary">Strict Zero-Trust Safeguard Activated</span>
+<span class="font-body-sm text-caption text-on-surface">
+                Artifacts marked <strong class="font-semibold text-primary">Restricted or Private</strong> are cryptographically isolated from the public Next.js bundle and static CDN edge workers. Zero bytes of sensitive data or schema definitions will leak to unauthenticated client inspectors.
+              </span>
+</div>
+</div>
+</div>
+<!-- SECTION 4: Association & Claim Binding Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+<!-- Linked Case Study -->
+<div class="md:col-span-6 flex flex-col gap-space-xs">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface" for="bound-project">Linked Case Study / System</label>
+<div class="relative">
+<select class="w-full h-9 px-space-sm pr-space-xl bg-surface-container-low rounded-lg text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm" id="bound-project">
+<option selected="">Healthcare Management Information System (Next.js / PostgreSQL)</option>
+<option>Distributed Event Pipeline &amp; CDC Engine (Kafka / Go)</option>
+<option>Multi-Region High-Frequency Order Engine (Rust / Actix)</option>
+<option>Algorithmic Real-Time Settlement Engine (FinTech)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[18px] text-light-text-secondary pointer-events-none">folder</span>
+</div>
+</div>
+<!-- Bound Claims -->
+<div class="md:col-span-6 flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-semibold text-on-surface">Bound Claims / Provenance Matrix</label>
+<span class="font-label-mono text-caption text-primary hover:underline cursor-pointer">+ Link Claim</span>
+</div>
+<div class="min-h-9 p-1.5 bg-surface-container-low rounded-lg flex flex-wrap items-center gap-1.5 shadow-sm">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-mono text-caption">
+<span class="font-bold text-primary">#CLM-08</span>
+<span class="truncate max-w-[150px]">Zero Downtime Migration</span>
+<button class="hover:text-error ml-0.5" type="button"><span class="material-symbols-outlined text-[14px]">cancel</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-mono text-caption">
+<span class="font-bold text-primary">#CLM-06</span>
+<span class="truncate max-w-[150px]">HIPAA Rule Compliance</span>
+<button class="hover:text-error ml-0.5" type="button"><span class="material-symbols-outlined text-[14px]">cancel</span></button>
+</span>
+</div>
+</div>
+</div>
+<!-- SECTION 5: Cryptographic Provenance & Payload Anchor -->
+<div class="flex flex-col gap-space-sm p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider font-semibold">
+              Cryptographic Payload &amp; Public Demonstrability
+            </span>
+<span class="font-label-mono text-caption text-status-public flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> SHA-256 Validated
+            </span>
+</div>
+<!-- Checksum -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-caption text-caption text-light-text-secondary flex items-center justify-between" for="sha-hash">
+<span>SHA-256 Payload Hash (Hex Digest)</span>
+<span class="font-label-mono text-caption text-on-surface-variant font-medium">Auto-computed from pipeline</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 pl-space-sm pr-20 bg-surface-container-low rounded-lg font-code-inline text-code-inline text-on-surface font-medium focus:outline-none focus:ring-1 focus:ring-primary shadow-sm truncate" id="sha-hash" readonly="" type="text" value="sha256:4e9a66710bbf881a7008cf226ebda449752b75a9d287bbce01ad4047a0b5df67"/>
+<button class="absolute right-2 px-space-xs py-1 rounded bg-surface-container hover:bg-surface-container-high text-primary font-label-mono text-caption transition-colors" type="button">
+                Recompute
+              </button>
+</div>
+</div>
+<!-- Public Anchor Link -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-caption text-caption text-light-text-secondary" for="anchor-url">Demonstration Anchor URL / Target Repository</label>
+<span class="font-label-mono text-caption text-status-restricted flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px]">warning</span> Unverified Anchor Domain
+              </span>
+</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-[18px] text-light-text-secondary">link</span>
+<input class="w-full h-9 pl-9 pr-space-sm bg-surface-container-low rounded-lg text-on-surface font-code-inline text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm" id="anchor-url" type="url" value="https://github.com/SIM350-maker/healthcare-mis/tree/main/tests/vitest-audit"/>
+</div>
+</div>
+</div>
+</form>
+<!-- Modal Action Footer -->
+<div class="px-space-xl py-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Left: Status Notification -->
+<div class="flex items-center gap-space-xs text-light-text-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary">info</span>
+<span class="font-label-mono text-caption">Target: Merkle Tree Root <strong class="text-on-surface">#0x7FA4...9C</strong></span>
+</div>
+<!-- Right: Action Buttons -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="h-9 px-space-md rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">
+            Cancel / Revert Buffer
+          </button>
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-body-sm text-body-sm font-medium transition-colors" type="button">
+            Save as Draft Proof
+          </button>
+<button class="h-9 px-space-lg rounded-lg bg-primary hover:bg-tertiary text-on-primary font-body-sm text-body-sm font-semibold flex items-center gap-space-xs shadow-md transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Commit &amp; Anchor to Merkle Tree</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

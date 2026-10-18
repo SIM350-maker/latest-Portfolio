@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-light-border/70 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><a class="flex flex-col group" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">Simon Ipara</span><span class="font-label-mono text-caption text-on-surface-variant">Full-Stack Engineer</span></a></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-semibold border-b-2 border-primary pb-0.5"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="home" href="#">Home</a><a aria-current="page" class="transition-all text-primary font-semibold border-b-2 border-primary pb-0.5" data-path="about" href="#">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="projects" href="#">Projects</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="skills" href="#">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="engineering" href="#">Engineering</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="evidence" href="#">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="experience" href="#">Experience</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm md:gap-space-md"><a class="hidden sm:inline-flex items-center gap-space-xs h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-mono text-caption" data-path="cms-workspace" href="#" title="Admin CMS Workspace"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span><span>Manage</span></a><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" data-path="contact" href="#">Get in touch</a><a class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" data-path="cms-workspace" href="#" title="Open CMS Workspace"><span class="material-symbols-outlined text-on-surface text-[18px]">person</span></a><button aria-label="Open menu" class="xl:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<!-- Top Breadcrumb & Status Bar -->
+<section class="w-full bg-surface-container-low border-b border-light-border/70">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-3 flex flex-wrap items-center justify-between gap-3">
+<nav aria-label="Breadcrumb" class="flex items-center gap-2">
+<a class="font-label-mono text-caption text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1" data-path="home" href="#">
+<span class="material-symbols-outlined text-[14px]">home</span>
+<span>root</span>
+</a>
+<span class="text-outline-variant font-label-mono text-caption">/</span>
+<span class="font-label-mono text-caption text-primary font-semibold">about</span>
+</nav>
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-[11px] font-medium tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public animate-pulse"></span>
+          ACTIVE_IN_PRODUCTION
+        </span>
+<span class="text-outline-variant font-label-mono text-caption">|</span>
+<span class="font-label-mono text-caption text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">place</span> Nairobi, KE (UTC+3)
+        </span>
+</div>
+</div>
+</section>
+<!-- Hero Editorial Deck -->
+<section class="w-full bg-surface py-12 md:py-16">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<div class="lg:col-span-8 space-y-6">
+<div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">terminal</span>
+<span>Profile // Dossier-01</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight text-balance">
+            Building dependable systems with clear mental models and strict evidence.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-3xl">
+            I am <strong class="text-on-surface font-semibold">Simon Ipara</strong>, a Full Stack Developer &amp; Systems Engineer based in Nairobi, Kenya. I engineer high-throughput data backends, resilient distributed synchronization engines, and tightly typed web interfaces tailored for mission-critical operations.
+          </p>
+<div class="pt-2 flex flex-wrap items-center gap-4">
+<a class="inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" data-path="projects" href="#">
+<span>Inspect Case Studies</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 h-10 px-5 rounded-lg bg-surface-container-lowest text-on-surface border border-light-border font-body-sm text-body-sm font-semibold hover:bg-surface-container-low transition-colors shadow-sm" data-path="engineering" href="#">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+<span>Engineering Standards</span>
+</a>
+<a class="inline-flex items-center gap-1.5 font-label-mono text-caption text-primary hover:text-tertiary font-medium px-2 py-1" data-path="evidence" href="#">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>100% Provenance Backed</span>
+</a>
+</div>
+</div>
+<!-- Metric Telemetry Box -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl p-6 border border-light-border shadow-sm space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-light-border">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase">Telemetry Baseline</span>
+<span class="font-label-mono text-[11px] text-status-public bg-status-public/10 px-2 py-0.5 rounded">VERIFIED</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 rounded-lg bg-surface-container-low">
+<div class="font-headline-md text-headline-md text-on-surface font-bold">99.98%</div>
+<div class="font-caption text-caption text-on-surface-variant">Uptime across deployed API services</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low">
+<div class="font-headline-md text-headline-md text-primary font-bold">&lt;14ms</div>
+<div class="font-caption text-caption text-on-surface-variant">p95 gateway response latency</div>
+</div>
+</div>
+<!-- Micro Sparkline SVG -->
+<div class="pt-2">
+<div class="flex justify-between font-label-mono text-[11px] text-on-surface-variant mb-1">
+<span>Throughput Consistency</span>
+<span>6.4k req/sec</span>
+</div>
+<svg class="w-full h-12 text-primary" fill="none" viewbox="0 0 300 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 36 L25 32 L50 35 L75 22 L100 24 L125 14 L150 18 L175 8 L200 12 L225 6 L250 10 L275 4 L300 8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M0 36 L25 32 L50 35 L75 22 L100 24 L125 14 L150 18 L175 8 L200 12 L225 6 L250 10 L275 4 L300 8 L300 48 L0 48 Z" fill="currentColor" fill-opacity="0.08"></path>
+</svg>
+</div>
+<div class="font-label-mono text-caption text-on-surface-variant flex items-center justify-between pt-1 border-t border-light-border/60">
+<span>Audit Hash:</span>
+<span class="text-on-surface font-mono">0x9a8f...4e1c</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Narrative & Background -->
+<section class="w-full py-16 bg-surface-container-lowest border-y border-light-border/70">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="lg:col-span-4 space-y-4">
+<div class="font-label-mono text-caption uppercase text-primary tracking-wider">01 // Origin &amp; Vector</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+            Engineering Without Mysticism
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Technical debt is rarely an accident; it is the compounding interest of uninspected assumptions. My career is structured around constructing software whose failure modes are fully characterized and observable.
+          </p>
+<div class="p-4 rounded-lg bg-surface border border-light-border space-y-2">
+<span class="font-label-mono text-[11px] uppercase text-on-surface font-semibold block">Primary Technical Mandate</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Every production subsystem must possess deterministic behavior, measurable latency boundaries, and self-documenting codebases.
+            </p>
+</div>
+</div>
+<div class="lg:col-span-8 space-y-6 text-on-surface-variant font-body-md text-body-md leading-relaxed">
+<p>
+            My engineering path began in environments characterized by intermittent network connectivity and resource-constrained infrastructure across East Africa. Early on, fragile synchronous architectures failed under real-world conditions. These constraints instilled an unyielding discipline: building systems that treat offline conditions, volatile latency, and unexpected schema drift as first-class operational realities.
+          </p>
+<p>
+            Over the past several years, I have engineered data distribution channels, offline-first client-server reconciliation engines using conflict-free replicated data types (CRDTs), and transactional relational models with PostgreSQL. My philosophy rejects resume-driven complexity. Instead, I advocate for strict static type-safety, comprehensive integration suites, and lean dependency trees.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+<div class="p-4 rounded-lg bg-surface border border-light-border">
+<span class="material-symbols-outlined text-primary text-[20px] mb-2 block">schema</span>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-1">Strict Schemas</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Validated domain models at network boundaries with zero untyped JSON pass-throughs.</p>
+</div>
+<div class="p-4 rounded-lg bg-surface border border-light-border">
+<span class="material-symbols-outlined text-primary text-[20px] mb-2 block">sync_saved_locally</span>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-1">Local-First Sync</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">State mutations execute locally immediately, reconciling deterministically in the background.</p>
+</div>
+<div class="p-4 rounded-lg bg-surface border border-light-border">
+<span class="material-symbols-outlined text-primary text-[20px] mb-2 block">query_stats</span>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-1">Empirical Telemetry</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Distributed traces and structured metrics over guesswork or anecdotal bug reports.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Working Principles -->
+<section class="w-full py-16 bg-surface">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<div class="font-label-mono text-caption uppercase text-primary tracking-wider">02 // Operational Standard</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight mt-1">
+            Core Working Principles
+          </h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">
+          Three axioms govern every line of code committed, pull request reviewed, and architecture proposal drafted.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Principle 1 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest border border-light-border shadow-sm flex flex-col justify-between hover:border-primary/50 transition-all">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-mono text-caption text-primary font-bold">AXIOM 01</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">security</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3">Systematic De-risking</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Verify edge cases through automated integration tests before writing code. If an error branch cannot be simulated and programmatically asserted in continuous integration, it does not belong in production.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-light-border font-label-mono text-[11px] text-on-surface-variant flex items-center justify-between">
+<span>Execution Protocol</span>
+<span class="text-on-surface font-semibold">TDD + Property Tests</span>
+</div>
+</div>
+<!-- Principle 2 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest border border-light-border shadow-sm flex flex-col justify-between hover:border-primary/50 transition-all">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-mono text-caption text-primary font-bold">AXIOM 02</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">architecture</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3">Domain-Driven Simplicity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Shape schemas to mirror real workflows rather than framework dogmas. Avoid speculative abstractions and artificial layers; write explicit, cohesive boundaries that domain experts easily understand.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-light-border font-label-mono text-[11px] text-on-surface-variant flex items-center justify-between">
+<span>Data Philosophy</span>
+<span class="text-on-surface font-semibold">Normalized &amp; Type-Safe</span>
+</div>
+</div>
+<!-- Principle 3 -->
+<div class="p-6 rounded-xl bg-surface-container-lowest border border-light-border shadow-sm flex flex-col justify-between hover:border-primary/50 transition-all">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-mono text-caption text-primary font-bold">AXIOM 03</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3">Evidence Integrity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Back claims with reproducible telemetry, commit logs, and verifiable artifacts. Performance improvements are recorded with before-and-after benchmarks, not vague qualitative impressions.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-light-border font-label-mono text-[11px] text-on-surface-variant flex items-center justify-between">
+<span>Verification Mode</span>
+<span class="text-status-public font-semibold">Continuous Telemetry</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Focus Areas & Engineering Interests -->
+<section class="w-full py-16 bg-surface-container-low border-y border-light-border/70">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="font-label-mono text-caption uppercase text-primary tracking-wider mb-2">03 // Specializations</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight mb-8">
+        Focus Areas &amp; Engineering Interests
+      </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-5 bg-surface-container-lowest rounded-xl border border-light-border">
+<div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[18px]">dns</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-2">High-Throughput Gateways</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+            Reverse proxies, rate-limiting algorithms (leaky bucket), and concurrent request pipelining in Go and Node.js.
+          </p>
+<span class="inline-block font-label-mono text-[11px] text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">Node • Go • Redis</span>
+</div>
+<div class="p-5 bg-surface-container-lowest rounded-xl border border-light-border">
+<div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-2">Offline-First Sync &amp; CRDTs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+            Deterministic state convergence across disconnected clients via Yjs, Automerge, and vector clocks.
+          </p>
+<span class="inline-block font-label-mono text-[11px] text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">Yjs • WebSockets • SQLite</span>
+</div>
+<div class="p-5 bg-surface-container-lowest rounded-xl border border-light-border">
+<div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[18px]">storage</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-2">PostgreSQL Data Modeling</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+            Complex constraint modeling, row-level security (RLS), partition schemes, and query index optimization.
+          </p>
+<span class="inline-block font-label-mono text-[11px] text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">PostgreSQL • Prisma • RLS</span>
+</div>
+<div class="p-5 bg-surface-container-lowest rounded-xl border border-light-border">
+<div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[18px]">code_blocks</span>
+</div>
+<h3 class="font-headline-sm text-[16px] text-on-surface font-semibold mb-2">Full-Stack Ergonomics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">
+            End-to-end typed contracts bridging database models to frontend UI components via tRPC and TypeScript.
+          </p>
+<span class="inline-block font-label-mono text-[11px] text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">TypeScript • React • Tailwind</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Matrix: Philosophy, Milestones, Daily Stack -->
+<section class="w-full py-16 bg-surface">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="font-label-mono text-caption uppercase text-primary tracking-wider mb-2">04 // Operational Details</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight mb-8">
+        System Specifications &amp; Background
+      </h2>
+<!-- Tab Switcher Navigation -->
+<div class="flex items-center gap-2 border-b border-light-border pb-3 mb-8 overflow-x-auto">
+<button class="tab-trigger inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container text-primary font-body-sm text-body-sm font-semibold transition-all" id="tab-btn-philosophy" onclick="switchAboutTab('philosophy')">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span>Engineering Philosophy</span>
+</button>
+<button class="tab-trigger inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-body-sm text-body-sm font-medium transition-all" id="tab-btn-milestones" onclick="switchAboutTab('milestones')">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span>Selected Milestones</span>
+</button>
+<button class="tab-trigger inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-transparent text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-body-sm text-body-sm font-medium transition-all" id="tab-btn-stack" onclick="switchAboutTab('stack')">
+<span class="material-symbols-outlined text-[18px]">build</span>
+<span>Tools &amp; Daily Stack</span>
+</button>
+</div>
+<!-- Tab Content 1: Philosophy -->
+<div class="tab-pane block space-y-6" id="tab-content-philosophy">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="p-6 rounded-xl bg-surface-container-lowest border border-light-border">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+              Elimination of Technical Debt
+            </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Technical debt is mitigated at inception, not during a scheduled rewrite sprint that never happens. By establishing clear invariants, strict type definitions, and modular blast radii, refactoring remains trivial even years into a codebase's lifecycle.
+            </p>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest border border-light-border">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">developer_mode</span>
+              Pragmatic Craftsmanship
+            </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Software exists to solve bounded human problems. I pick battle-tested boring technologies where stability is vital (PostgreSQL, Linux, Redis) and reserve innovation tokens for areas providing 10x leverage (CRDTs, automated schema generators).
+            </p>
+</div>
+</div>
+</div>
+<!-- Tab Content 2: Milestones -->
+<div class="tab-pane hidden space-y-4" id="tab-content-milestones">
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-light-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-caption text-primary font-bold">2024 — PRESENT</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-mono bg-status-public/10 text-status-public">ACTIVE</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-semibold">Architecting Distributed Synchronization Pipelines</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Built zero-conflict collaborative engines capable of operating in low-bandwidth regions with multi-master reconciliation.</p>
+</div>
+<div class="font-label-mono text-caption text-on-surface-variant text-right shrink-0">
+            TypeScript • CRDTs • WebSockets
+          </div>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-light-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-caption text-on-surface font-medium">2023</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-mono bg-secondary-container text-on-secondary-container">COMPLETED</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-semibold">High-Scale Financial Data Integration Engine</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Designed double-entry ledger database architecture maintaining zero reconciliation discrepancy over 5M+ ledger events.</p>
+</div>
+<div class="font-label-mono text-caption text-on-surface-variant text-right shrink-0">
+            PostgreSQL • Go • Redis
+          </div>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-light-border flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-caption text-on-surface font-medium">2022</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-label-mono bg-secondary-container text-on-secondary-container">VERIFIED</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-semibold">Enterprise Content &amp; Evidence Management System</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Authored cryptographic audit trails and role-based permissions matrix for cross-organizational reporting compliance.</p>
+</div>
+<div class="font-label-mono text-caption text-on-surface-variant text-right shrink-0">
+            Node.js • React • Docker
+          </div>
+</div>
+</div>
+<!-- Tab Content 3: Daily Stack -->
+<div class="tab-pane hidden space-y-6" id="tab-content-stack">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-light-border space-y-3">
+<span class="font-label-mono text-caption uppercase text-primary font-semibold block">Languages &amp; Runtimes</span>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between"><span>TypeScript / JavaScript</span> <span class="font-label-mono text-[11px]">Daily</span></li>
+<li class="flex items-center justify-between"><span>Go (Golang)</span> <span class="font-label-mono text-[11px]">Systems</span></li>
+<li class="flex items-center justify-between"><span>SQL (Postgres Dialect)</span> <span class="font-label-mono text-[11px]">Advanced</span></li>
+<li class="flex items-center justify-between"><span>Node.js / Bun</span> <span class="font-label-mono text-[11px]">Runtimes</span></li>
+</ul>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-light-border space-y-3">
+<span class="font-label-mono text-caption uppercase text-primary font-semibold block">Databases &amp; Infrastructure</span>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between"><span>PostgreSQL + RLS</span> <span class="font-label-mono text-[11px]">Primary</span></li>
+<li class="flex items-center justify-between"><span>Redis / KeyDB</span> <span class="font-label-mono text-[11px]">Caching/PubSub</span></li>
+<li class="flex items-center justify-between"><span>Docker / Containerd</span> <span class="font-label-mono text-[11px]">Deployments</span></li>
+<li class="flex items-center justify-between"><span>Linux / Systemd</span> <span class="font-label-mono text-[11px]">Host Ops</span></li>
+</ul>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-lowest border border-light-border space-y-3">
+<span class="font-label-mono text-caption uppercase text-primary font-semibold block">Frontend &amp; Protocol</span>
+<ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-center justify-between"><span>React / Next.js</span> <span class="font-label-mono text-[11px]">UI Layer</span></li>
+<li class="flex items-center justify-between"><span>Tailwind CSS</span> <span class="font-label-mono text-[11px]">Design Tokens</span></li>
+<li class="flex items-center justify-between"><span>REST / WebSockets</span> <span class="font-label-mono text-[11px]">Protocols</span></li>
+<li class="flex items-center justify-between"><span>Playwright &amp; Vitest</span> <span class="font-label-mono text-[11px]">Verification</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Evidence Block -->
+<section class="w-full py-12 bg-surface-container-lowest border-t border-light-border">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row items-center justify-between p-8 rounded-xl bg-surface border border-light-border gap-6">
+<div class="space-y-2 max-w-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">folder_special</span>
+<span class="font-label-mono text-caption text-on-surface uppercase font-bold">Verifiable Artifacts</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Examine Evidence Dossiers &amp; Commits</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Every technical claim made in this profile is corroborated with publicly available repositories, benchmark results, and system traces.
+          </p>
+</div>
+<div class="flex flex-wrap items-center gap-3 shrink-0">
+<a class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-surface-container-lowest text-on-surface border border-light-border hover:bg-surface-container transition-colors font-body-sm text-body-sm font-semibold" data-path="evidence" href="#">
+<span>Evidence Ledger</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-body-sm text-body-sm font-semibold" data-path="skills" href="#">
+<span>Skills Breakdown</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact CTA Block -->
+<section class="w-full py-16 bg-surface">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin text-center">
+<div class="max-w-2xl mx-auto space-y-4">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption uppercase">
+<span class="material-symbols-outlined text-[14px]">send</span>
+<span>Initiate Communication</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">
+          Let’s discuss architectures, engineering challenges, or future systems.
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Available for senior engineering roles, technical advisory, and high-stakes architecture reviews.
+        </p>
+<div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+<a class="inline-flex items-center gap-2 h-11 px-6 rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors shadow-sm" data-path="contact" href="#">
+<span>Get In Touch</span>
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+<a class="inline-flex items-center gap-2 h-11 px-5 rounded-lg bg-surface-container-lowest text-on-surface border border-light-border font-label-mono text-caption hover:bg-surface-container-low transition-colors" href="mailto:simonipara428@gmail.com">
+<span>simonipara428@gmail.com</span>
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  function switchAboutTab(tabId) {
+    const tabs = ['philosophy', 'milestones', 'stack'];
+    
+    tabs.forEach(tab => {
+      const pane = document.getElementById('tab-content-' + tab);
+      const btn = document.getElementById('tab-btn-' + tab);
+      
+      if (tab === tabId) {
+        if (pane) pane.classList.remove('hidden');
+        if (pane) pane.classList.add('block');
+        if (btn) {
+          btn.classList.add('bg-surface-container', 'text-primary', 'font-semibold');
+          btn.classList.remove('bg-transparent', 'text-on-surface-variant');
+        }
+      } else {
+        if (pane) pane.classList.add('hidden');
+        if (pane) pane.classList.remove('block');
+        if (btn) {
+          btn.classList.remove('bg-surface-container', 'text-primary', 'font-semibold');
+          btn.classList.add('bg-transparent', 'text-on-surface-variant');
+        }
+      }
+    });
+  }
+</script></main><footer class="w-full bg-surface-container-lowest mt-space-3xl border-t border-light-border/80"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"><div class="md:col-span-1 space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Simon Ipara Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Full-stack software engineer specializing in high-throughput distributed systems, strict type safety, and verifiable evidence-backed architecture.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-mono text-caption"><span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>Nairobi, Kenya (EAT / UTC+3)</span></div></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Portfolio Navigation</h3><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="grid grid-cols-2 gap-space-xs"><div><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="home" href="#">Home</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="about" href="#">About</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="projects" href="#">Projects</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="skills" href="#">Skills</a></div><div><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="engineering" href="#">Engineering</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="evidence" href="#">Evidence</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="experience" href="#">Experience</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="contact" href="#">Contact</a></div></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Connectivity</h3><ul class="space-y-space-sm"><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-label-mono text-caption">GitHub: SIM350-maker</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">share</span><span class="font-label-mono text-caption">LinkedIn: simonipara</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">mail</span><span class="font-label-mono text-caption">simonipara428@gmail.com</span></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">System Access</h3><ul class="space-y-space-sm"><li><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-primary hover:text-tertiary transition-colors" data-path="cms-workspace" href="#"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>Admin CMS Workspace (/manage)</a></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Provenance: Verifiable Hash</span></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Status: Production v2.4.0</span></li></ul></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant border-t border-light-border/60"><p class="font-caption text-caption">© 2025 Simon Ipara. All systems verified and operational.</p><div class="flex items-center gap-space-md"><span class="font-caption text-caption">Evidence Integrity: 100% Cryptographic Audit</span></div></div></div></footer></body></html>

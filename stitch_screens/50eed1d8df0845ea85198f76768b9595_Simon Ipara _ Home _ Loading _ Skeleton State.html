@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-unavailable":"#EF4444","light-surface":"#FFFFFF","secondary-container":"#d7e3fb","secondary-fixed-dim":"#bbc7de","on-primary-fixed":"#001354","surface-variant":"#d9e2fc","inverse-surface":"#273044","surface-container":"#e9edff","on-tertiary-container":"#f1f0ff","surface-container-highest":"#d9e2fc","dark-surface-raised":"#1B2637","on-error":"#ffffff","on-tertiary-fixed":"#001355","on-secondary-container":"#596579","on-tertiary":"#ffffff","tertiary-container":"#4363e1","tertiary-fixed":"#dde1ff","light-text-primary":"#172033","surface-tint":"#154ceb","surface-container-lowest":"#ffffff","inverse-primary":"#b8c4ff","primary-fixed":"#dde1ff","dark-surface":"#151E2D","light-border":"#E2E7EF","outline":"#747687","on-error-container":"#93000a","error":"#ba1a1a","on-secondary-fixed-variant":"#3b475a","on-surface-variant":"#434656","dark-text-primary":"#F2F5FA","primary-fixed-dim":"#b8c4ff","status-public":"#10B981","on-background":"#121b2e","secondary":"#535f73","light-background":"#F8F9FB","inverse-on-surface":"#edf0ff","status-redacted":"#64748B","on-secondary":"#ffffff","dark-text-secondary":"#AAB6C8","outline-variant":"#c4c5d8","tertiary":"#2448c7","primary-container":"#315efb","dark-accent":"#4D76FD","surface-bright":"#f9f9ff","error-container":"#ffdad6","light-text-secondary":"#596579","on-primary":"#ffffff","surface":"#f9f9ff","background":"#f9f9ff","on-tertiary-fixed-variant":"#0737b8","on-primary-fixed-variant":"#0036bb","tertiary-fixed-dim":"#b8c3ff","dark-background":"#0E1420","status-restricted":"#F59E0B","on-primary-container":"#f1f1ff","surface-dim":"#d1daf4","on-secondary-fixed":"#101c2d","on-surface":"#121b2e","status-published":"#3B82F6","surface-container-low":"#f1f3ff","surface-container-high":"#e1e8ff","status-archived":"#6B7280","secondary-fixed":"#d7e3fb","status-draft":"#8B5CF6","primary":"#0042df","dark-border":"#2A374A"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1.5rem","space-3xl":"4rem","space-lg":"1.5rem","space-2xl":"3rem","margin":"2rem","space-xl":"2rem","gutter-sm":"1rem","space-md":"1rem"},"fontFamily":{"caption":["Inter"],"hero-lg":["Inter"],"headline-md":["Inter"],"body-md":["Inter"],"label-mono":["JetBrains Mono"],"code-block":["JetBrains Mono"],"code-inline":["JetBrains Mono"],"body-sm":["Inter"],"hero-lg-mobile":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"body-lg":["Inter"],"headline-lg-mobile":["Inter"]},"fontSize":{"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><a class="flex flex-col" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Simon Ipara</span><span class="font-label-mono text-caption text-on-surface-variant">Software Engineer</span></a></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-medium"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#home">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#about">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="projects" href="#projects">Projects</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="skills" href="#skills">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="engineering" href="#engineering">Engineering</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="evidence" href="#evidence">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="experience" href="#experience">Experience</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#contact">Contact</a></nav><div class="flex items-center gap-space-md"><button aria-label="Theme indicator" class="h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">light_mode</span><span class="font-label-mono text-caption">LIGHT</span></button><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" data-path="contact" href="#contact">Get in touch</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><button aria-label="Open menu" class="xl:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<style>
+    @keyframes technicalShimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .skeleton-wave {
+      position: relative;
+      overflow: hidden;
+      background-color: #e9edff;
+    }
+    .skeleton-wave::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.65) 45%,
+        rgba(255, 255, 255, 0.65) 55%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: technicalShimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      content: '';
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.4; }
+    }
+    .status-ping-active {
+      animation: pulseGlow 1.4s ease-in-out infinite;
+    }
+  </style>
+<!-- Live System Hydration Telemetry Bar -->
+<section class="w-full bg-surface-container-low shadow-sm">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-xs flex items-center justify-between gap-gutter flex-wrap">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-status-restricted status-ping-active"></span>
+<span class="font-label-mono text-caption text-light-text-primary tracking-tight font-semibold">
+          HYDRATION_IN_FLIGHT // INITIALIZING SYSTEM DOSSIER (SSR → HYDRATED)
+        </span>
+</div>
+<div class="hidden lg:flex items-center gap-space-md font-label-mono text-caption text-light-text-secondary">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          NEXT_RUNTIME: NODEJS_EDGE
+        </span>
+<span>•</span>
+<span class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[14px] animate-spin">sync</span>
+          STREAMING CHUNKS: <strong class="text-light-text-primary">4/7 COMPLETE</strong>
+</span>
+<span>•</span>
+<span class="text-status-public flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+          CRYPTO_VERIFY: IN_PROGRESS
+        </span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-24 h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="w-3/5 h-full bg-primary rounded-full transition-all duration-300"></div>
+</div>
+<span class="font-label-mono text-caption text-primary font-bold">57%</span>
+</div>
+</div>
+</section>
+<!-- Main Hero Layout Skeleton -->
+<section class="w-full py-space-xl md:py-space-3xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Hero Column (8 Columns) -->
+<div class="lg:col-span-8 flex flex-col items-start">
+<!-- Monospace Location Pill Placeholder -->
+<div class="h-6 w-72 rounded-full skeleton-wave mb-space-md"></div>
+<!-- Hero Headline Placeholder (3 Lines with Editorial Scale) -->
+<div class="w-full space-y-3 mb-space-lg">
+<div class="h-12 md:h-14 w-11/12 rounded-lg skeleton-wave"></div>
+<div class="h-12 md:h-14 w-full rounded-lg skeleton-wave"></div>
+<div class="h-12 md:h-14 w-4/5 rounded-lg skeleton-wave"></div>
+</div>
+<!-- Subtext Placeholder (2 Lines) -->
+<div class="w-full max-w-2xl space-y-2 mb-space-xl">
+<div class="h-5 w-full rounded skeleton-wave"></div>
+<div class="h-5 w-3/4 rounded skeleton-wave"></div>
+</div>
+<!-- Interactive Action Buttons Skeletons -->
+<div class="flex flex-wrap items-center gap-space-md mb-space-2xl">
+<div class="h-10 w-44 rounded-lg skeleton-wave"></div>
+<div class="h-10 w-48 rounded-lg skeleton-wave"></div>
+<div class="h-10 w-10 rounded-lg skeleton-wave"></div>
+</div>
+<!-- Tech Stack Pill Group Placeholder -->
+<div class="w-full pt-space-md">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-outline-variant"></span>
+<div class="h-3 w-32 rounded skeleton-wave"></div>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<div class="h-7 w-20 rounded-md skeleton-wave"></div>
+<div class="h-7 w-24 rounded-md skeleton-wave"></div>
+<div class="h-7 w-28 rounded-md skeleton-wave"></div>
+<div class="h-7 w-20 rounded-md skeleton-wave"></div>
+<div class="h-7 w-32 rounded-md skeleton-wave"></div>
+<div class="h-7 w-24 rounded-md skeleton-wave"></div>
+<div class="h-7 w-16 rounded-md skeleton-wave"></div>
+</div>
+</div>
+</div>
+<!-- Right Hero System Health & Dossier Metric Card (4 Columns) -->
+<div class="lg:col-span-4 w-full">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md mb-space-md">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-status-restricted animate-ping"></span>
+<span class="font-label-mono text-caption text-light-text-secondary uppercase tracking-wider font-semibold">STATE: HYDRATING</span>
+</div>
+<div class="h-4 w-16 rounded skeleton-wave"></div>
+</div>
+<!-- Latency / Throughput Graph Mock Skeleton (Inline SVG Shimmer) -->
+<div class="relative w-full h-32 bg-surface-container-low rounded-lg p-3 mb-space-md overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between text-light-text-secondary">
+<span class="font-label-mono text-caption text-[10px]">EVENT_STREAM_SIM</span>
+<span class="font-label-mono text-caption text-[10px] text-primary">p99: ~34ms</span>
+</div>
+<!-- SVG Waveform -->
+<svg class="w-full h-16 text-primary/30" preserveaspectratio="none" viewbox="0 0 100 25">
+<path d="M0,20 Q15,5 30,16 T60,8 T85,18 T100,6" fill="none" stroke="currentColor" stroke-dasharray="2 2" stroke-width="1.5"></path>
+<path d="M0,22 Q20,12 40,19 T70,11 T90,20 T100,10" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+<div class="flex items-center justify-between font-label-mono text-[10px] text-light-text-secondary">
+<span>00:00:01</span>
+<span>SYNC: OK</span>
+</div>
+</div>
+<!-- Metric Blocks Grid -->
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<div class="bg-surface-container-low rounded-lg p-3">
+<div class="h-3 w-16 rounded skeleton-wave mb-2"></div>
+<div class="h-6 w-24 rounded skeleton-wave mb-1"></div>
+<div class="h-2.5 w-14 rounded skeleton-wave"></div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-3">
+<div class="h-3 w-16 rounded skeleton-wave mb-2"></div>
+<div class="h-6 w-20 rounded skeleton-wave mb-1"></div>
+<div class="h-2.5 w-12 rounded skeleton-wave"></div>
+</div>
+</div>
+<!-- Hash Fingerprint Block -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="space-y-1">
+<div class="h-2.5 w-24 rounded skeleton-wave"></div>
+<div class="h-3 w-40 rounded skeleton-wave"></div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">fingerprint</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Principles Strip Skeleton (4 Columns) -->
+<section class="w-full py-space-xl bg-surface-container-low">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex items-center justify-between mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-mono text-caption text-primary uppercase font-bold tracking-wider">// CORE PILLARS</span>
+<div class="h-4 w-40 rounded skeleton-wave"></div>
+</div>
+<div class="h-4 w-28 rounded skeleton-wave hidden md:block"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Pillar Card Skeleton 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<div class="w-10 h-10 rounded-lg skeleton-wave"></div>
+<div class="h-5 w-3/4 rounded skeleton-wave"></div>
+<div class="space-y-1.5 pt-1">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-5/6 rounded skeleton-wave"></div>
+</div>
+<div class="h-3 w-20 rounded skeleton-wave pt-2"></div>
+</div>
+<!-- Pillar Card Skeleton 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<div class="w-10 h-10 rounded-lg skeleton-wave"></div>
+<div class="h-5 w-2/3 rounded skeleton-wave"></div>
+<div class="space-y-1.5 pt-1">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-4/5 rounded skeleton-wave"></div>
+</div>
+<div class="h-3 w-24 rounded skeleton-wave pt-2"></div>
+</div>
+<!-- Pillar Card Skeleton 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<div class="w-10 h-10 rounded-lg skeleton-wave"></div>
+<div class="h-5 w-3/4 rounded skeleton-wave"></div>
+<div class="space-y-1.5 pt-1">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-11/12 rounded skeleton-wave"></div>
+</div>
+<div class="h-3 w-20 rounded skeleton-wave pt-2"></div>
+</div>
+<!-- Pillar Card Skeleton 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-3">
+<div class="w-10 h-10 rounded-lg skeleton-wave"></div>
+<div class="h-5 w-5/6 rounded skeleton-wave"></div>
+<div class="space-y-1.5 pt-1">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-3/4 rounded skeleton-wave"></div>
+</div>
+<div class="h-3 w-28 rounded skeleton-wave pt-2"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Projects Section Skeleton (3 Columns) -->
+<section class="w-full py-space-2xl md:py-space-3xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div class="space-y-2">
+<div class="h-4 w-36 rounded skeleton-wave"></div>
+<div class="h-9 w-72 rounded-lg skeleton-wave"></div>
+</div>
+<div class="h-6 w-40 rounded skeleton-wave"></div>
+</div>
+<!-- 3 Project Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Project Card Skeleton 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col justify-between">
+<div>
+<!-- 16:9 Aspect Media Container -->
+<div class="w-full aspect-video skeleton-wave relative">
+<div class="absolute top-3 left-3 flex gap-2">
+<div class="h-5 w-16 rounded bg-surface/80"></div>
+<div class="h-5 w-12 rounded bg-surface/80"></div>
+</div>
+</div>
+<!-- Card Body -->
+<div class="p-space-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-24 rounded skeleton-wave"></div>
+<div class="h-3.5 w-12 rounded skeleton-wave"></div>
+</div>
+<div class="h-6 w-4/5 rounded skeleton-wave"></div>
+<div class="space-y-1.5">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-3/4 rounded skeleton-wave"></div>
+</div>
+<!-- Tech Chips -->
+<div class="flex flex-wrap gap-1.5 pt-2">
+<div class="h-6 w-16 rounded-md skeleton-wave"></div>
+<div class="h-6 w-20 rounded-md skeleton-wave"></div>
+<div class="h-6 w-14 rounded-md skeleton-wave"></div>
+</div>
+</div>
+</div>
+<!-- Card Footer Link -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="h-4 w-28 rounded skeleton-wave"></div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- Project Card Skeleton 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col justify-between">
+<div>
+<!-- 16:9 Aspect Media Container -->
+<div class="w-full aspect-video skeleton-wave relative">
+<div class="absolute top-3 left-3 flex gap-2">
+<div class="h-5 w-20 rounded bg-surface/80"></div>
+<div class="h-5 w-12 rounded bg-surface/80"></div>
+</div>
+</div>
+<!-- Card Body -->
+<div class="p-space-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-28 rounded skeleton-wave"></div>
+<div class="h-3.5 w-12 rounded skeleton-wave"></div>
+</div>
+<div class="h-6 w-11/12 rounded skeleton-wave"></div>
+<div class="space-y-1.5">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-5/6 rounded skeleton-wave"></div>
+</div>
+<!-- Tech Chips -->
+<div class="flex flex-wrap gap-1.5 pt-2">
+<div class="h-6 w-18 rounded-md skeleton-wave"></div>
+<div class="h-6 w-16 rounded-md skeleton-wave"></div>
+<div class="h-6 w-24 rounded-md skeleton-wave"></div>
+</div>
+</div>
+</div>
+<!-- Card Footer Link -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="h-4 w-32 rounded skeleton-wave"></div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- Project Card Skeleton 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col justify-between">
+<div>
+<!-- 16:9 Aspect Media Container -->
+<div class="w-full aspect-video skeleton-wave relative">
+<div class="absolute top-3 left-3 flex gap-2">
+<div class="h-5 w-16 rounded bg-surface/80"></div>
+<div class="h-5 w-14 rounded bg-surface/80"></div>
+</div>
+</div>
+<!-- Card Body -->
+<div class="p-space-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="h-3.5 w-20 rounded skeleton-wave"></div>
+<div class="h-3.5 w-12 rounded skeleton-wave"></div>
+</div>
+<div class="h-6 w-3/4 rounded skeleton-wave"></div>
+<div class="space-y-1.5">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-2/3 rounded skeleton-wave"></div>
+</div>
+<!-- Tech Chips -->
+<div class="flex flex-wrap gap-1.5 pt-2">
+<div class="h-6 w-20 rounded-md skeleton-wave"></div>
+<div class="h-6 w-14 rounded-md skeleton-wave"></div>
+<div class="h-6 w-18 rounded-md skeleton-wave"></div>
+</div>
+</div>
+</div>
+<!-- Card Footer Link -->
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="h-4 w-28 rounded skeleton-wave"></div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Engineering Principles Preview Skeleton -->
+<section class="w-full py-space-2xl bg-surface-container-low">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div class="space-y-2">
+<div class="h-4 w-40 rounded skeleton-wave"></div>
+<div class="h-8 w-80 rounded-lg skeleton-wave"></div>
+</div>
+<div class="h-6 w-48 rounded skeleton-wave"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Principle 01 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-sm relative">
+<span class="font-label-mono text-headline-sm text-primary/40 font-bold">[01]</span>
+<div class="h-6 w-4/5 rounded skeleton-wave mt-1"></div>
+<div class="space-y-1.5 pt-2">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-11/12 rounded skeleton-wave"></div>
+<div class="h-3.5 w-4/5 rounded skeleton-wave"></div>
+</div>
+<div class="pt-space-sm">
+<div class="h-3 w-32 rounded skeleton-wave"></div>
+</div>
+</div>
+<!-- Principle 02 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-sm relative">
+<span class="font-label-mono text-headline-sm text-primary/40 font-bold">[02]</span>
+<div class="h-6 w-3/4 rounded skeleton-wave mt-1"></div>
+<div class="space-y-1.5 pt-2">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-2/3 rounded skeleton-wave"></div>
+</div>
+<div class="pt-space-sm">
+<div class="h-3 w-36 rounded skeleton-wave"></div>
+</div>
+</div>
+<!-- Principle 03 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-sm relative">
+<span class="font-label-mono text-headline-sm text-primary/40 font-bold">[03]</span>
+<div class="h-6 w-5/6 rounded skeleton-wave mt-1"></div>
+<div class="space-y-1.5 pt-2">
+<div class="h-3.5 w-full rounded skeleton-wave"></div>
+<div class="h-3.5 w-5/6 rounded skeleton-wave"></div>
+<div class="h-3.5 w-3/4 rounded skeleton-wave"></div>
+</div>
+<div class="pt-space-sm">
+<div class="h-3 w-28 rounded skeleton-wave"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Evidence Library Preview & Diagnostic Terminal Skeleton Split -->
+<section class="w-full py-space-2xl md:py-space-3xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Evidence Library Rows (7 Columns) -->
+<div class="lg:col-span-7 space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="space-y-1">
+<div class="h-4 w-32 rounded skeleton-wave"></div>
+<div class="h-7 w-64 rounded skeleton-wave"></div>
+</div>
+<div class="flex gap-1.5">
+<div class="h-7 w-16 rounded-md skeleton-wave"></div>
+<div class="h-7 w-16 rounded-md skeleton-wave"></div>
+</div>
+</div>
+<!-- Evidence Artifact Skeleton 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg skeleton-wave shrink-0"></div>
+<div class="space-y-1.5 min-w-0">
+<div class="h-4 w-52 rounded skeleton-wave"></div>
+<div class="h-3 w-32 rounded skeleton-wave"></div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="h-5 w-16 rounded skeleton-wave"></div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">verified</span>
+</div>
+</div>
+<!-- Evidence Artifact Skeleton 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg skeleton-wave shrink-0"></div>
+<div class="space-y-1.5 min-w-0">
+<div class="h-4 w-64 rounded skeleton-wave"></div>
+<div class="h-3 w-40 rounded skeleton-wave"></div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="h-5 w-20 rounded skeleton-wave"></div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">verified</span>
+</div>
+</div>
+<!-- Evidence Artifact Skeleton 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-9 h-9 rounded-lg skeleton-wave shrink-0"></div>
+<div class="space-y-1.5 min-w-0">
+<div class="h-4 w-48 rounded skeleton-wave"></div>
+<div class="h-3 w-36 rounded skeleton-wave"></div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="h-5 w-16 rounded skeleton-wave"></div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">lock</span>
+</div>
+</div>
+<!-- View Library Shimmer link -->
+<div class="pt-space-xs">
+<div class="h-4 w-44 rounded skeleton-wave"></div>
+</div>
+</div>
+<!-- Terminal & Diagnostic Preview Skeleton (5 Columns) -->
+<div class="lg:col-span-5 w-full">
+<div class="bg-dark-surface rounded-xl overflow-hidden shadow-xl text-dark-text-primary">
+<!-- Terminal Title Bar -->
+<div class="px-space-md py-space-xs bg-dark-background flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error inline-block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-status-restricted inline-block"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-status-public inline-block"></span>
+</div>
+<span class="font-label-mono text-[11px] text-dark-text-secondary">simon@edge-worker: ~/runtime</span>
+<div class="w-4"></div>
+</div>
+<!-- Terminal Screen Body with Scanline Code Shimmers -->
+<div class="p-space-md space-y-3 font-label-mono text-caption">
+<div class="flex items-center gap-2">
+<span class="text-status-public">$</span>
+<span class="text-dark-text-secondary">init_dossier --env=production --verify=strict</span>
+</div>
+<div class="space-y-2 pt-1 opacity-80">
+<div class="flex items-center justify-between">
+<span class="text-dark-accent">[FETCH] registry.ipara.dev/chunks/spec.json</span>
+<span class="text-status-public">200 OK</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-dark-accent">[AUDIT] ed25519 signature payload</span>
+<span class="text-status-public">VALIDATED</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-dark-accent">[STREAM] SSR state hydration tree</span>
+<span class="text-status-restricted animate-pulse">STREAMING...</span>
+</div>
+</div>
+<!-- Terminal Shimmer Placeholder lines -->
+<div class="pt-2 space-y-2">
+<div class="h-3 w-11/12 rounded bg-dark-surface-raised skeleton-wave"></div>
+<div class="h-3 w-4/5 rounded bg-dark-surface-raised skeleton-wave"></div>
+<div class="h-3 w-2/3 rounded bg-dark-surface-raised skeleton-wave"></div>
+</div>
+<!-- Live Prompt Cursor -->
+<div class="flex items-center gap-2 pt-2">
+<span class="text-status-public">&gt;</span>
+<span class="inline-block w-2 h-4 bg-primary animate-pulse"></span>
+</div>
+</div>
+<!-- Terminal Status Strip -->
+<div class="px-space-md py-1.5 bg-dark-surface-raised flex items-center justify-between font-label-mono text-[10px] text-dark-text-secondary">
+<span>LATENCY: 12ms</span>
+<span>TLS 1.3 / ECH</span>
+<span>SHA-256: 8f02..1c9e</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact CTA Section Skeleton -->
+<section class="w-full py-space-3xl bg-surface-container-high shadow-inner">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="bg-surface-container-lowest rounded-2xl p-space-xl md:p-space-2xl shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-xl">
+<div class="max-w-xl space-y-space-sm">
+<div class="h-4 w-32 rounded skeleton-wave"></div>
+<div class="h-8 md:h-10 w-full max-w-md rounded-lg skeleton-wave"></div>
+<div class="h-4 w-3/4 rounded skeleton-wave"></div>
+<div class="flex items-center gap-space-sm pt-2">
+<div class="h-3 w-28 rounded skeleton-wave"></div>
+<span class="text-outline-variant">•</span>
+<div class="h-3 w-36 rounded skeleton-wave"></div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md shrink-0 w-full md:w-auto">
+<div class="h-11 w-48 rounded-lg skeleton-wave"></div>
+<div class="h-11 w-36 rounded-lg skeleton-wave"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Simulation Script to demonstrate complete state transitions -->
+<script>
+    (function hydrateSimulation() {
+      const liveCounter = document.querySelector('.status-ping-active');
+      if (liveCounter) {
+        let tick = 57;
+        const interval = setInterval(() => {
+          tick += Math.floor(Math.random() * 8) + 2;
+          if (tick >= 100) {
+            tick = 100;
+            clearInterval(interval);
+          }
+          const badgePercent = document.querySelector('.text-primary.font-bold');
+          const progressBar = document.querySelector('.bg-primary.rounded-full');
+          if (badgePercent) badgePercent.textContent = tick + '%';
+          if (progressBar) progressBar.style.width = tick + '%';
+        }, 320);
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"><div class="md:col-span-2 space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Simon Ipara Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Full-stack software engineer specializing in high-throughput distributed systems, strict type safety, and verifiable evidence-backed architecture.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-mono text-caption"><span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>Nairobi, Kenya (EAT / UTC+3)</span></div></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Connectivity</h3><ul class="space-y-space-sm"><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-label-mono text-caption">GitHub: SIM350-maker</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">share</span><span class="font-label-mono text-caption">LinkedIn: simonipara</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">mail</span><span class="font-label-mono text-caption">simonipara428@gmail.com</span></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">System Access</h3><ul class="space-y-space-sm"><li class=""><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-primary hover:text-tertiary transition-colors" data-path="login" href="#manage"><span class="material-symbols-outlined text-[16px]">lock</span>Admin CMS Portal</a></li><li class=""><span class="font-label-mono text-caption text-on-surface-variant block">Provenance: Verifiable Hash</span></li><li class=""><span class="font-label-mono text-caption text-on-surface-variant block">Status: Production v2.4.0</span></li></ul></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant"><p class="font-caption text-caption">© 2025 Simon Ipara. All systems verified and operational.</p><div class="flex items-center gap-space-md"><span class="font-caption text-caption">Evidence Integrity: 100% Cryptographic Audit</span></div></div></div></footer>
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end" id="prototype-route-switcher"><button aria-expanded="false" class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-full bg-primary text-on-primary font-label-mono text-caption font-semibold shadow-xl hover:bg-tertiary transition-all duration-300 border border-primary-fixed-dim/20" id="prototype-switcher-toggle"><span class="w-2 h-2 rounded-full bg-status-public animate-pulse"></span><span class="material-symbols-outlined text-[18px]">route</span><span class="">Prototype Route Switcher</span><span class="material-symbols-outlined text-[16px] transition-transform" id="switcher-chevron">expand_less</span></button><div class="hidden mt-2 w-80 p-space-sm bg-surface-container-lowest/90 backdrop-blur-xl border border-outline-variant/30 rounded-xl shadow-xl flex flex-col gap-1" id="prototype-route-menu"><div class="px-2 py-1 flex items-center justify-between border-b border-outline-variant/20 mb-1"><span class="font-label-mono text-caption text-on-surface-variant uppercase tracking-wider font-semibold">Screen Navigator (10 Routes)</span><span class="text-caption font-label-mono text-primary font-bold" id="current-route-badge">#home</span></div><div class="grid grid-cols-2 gap-1 max-h-72 overflow-y-auto"><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-primary bg-surface-container-low flex items-center gap-1.5" data-route="#home"><span class="material-symbols-outlined text-[16px]">home</span>Home</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#about"><span class="material-symbols-outlined text-[16px]">person</span>About</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#projects"><span class="material-symbols-outlined text-[16px]">folder</span>Projects</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#case-study"><span class="material-symbols-outlined text-[16px]">article</span>Case Study</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#skills"><span class="material-symbols-outlined text-[16px]">terminal</span>Skills</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#engineering"><span class="material-symbols-outlined text-[16px]">memory</span>Engineering</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#evidence"><span class="material-symbols-outlined text-[16px]">verified</span>Evidence</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#experience"><span class="material-symbols-outlined text-[16px]">work</span>Experience</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#contact"><span class="material-symbols-outlined text-[16px]">mail</span>Contact</button><button class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5" data-route="#manage"><span class="material-symbols-outlined text-[16px]">dashboard</span>CMS Portal</button></div></div></div><script>(function initPrototypeRouting() { const toggle = document.getElementById('prototype-switcher-toggle'); const menu = document.getElementById('prototype-route-menu'); const chevron = document.getElementById('switcher-chevron'); const badge = document.getElementById('current-route-badge'); if (toggle && menu) { toggle.addEventListener('click', (e) => { e.stopPropagation(); const isHidden = menu.classList.contains('hidden'); menu.classList.toggle('hidden', !isHidden); if (chevron) chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)'; }); document.addEventListener('click', (e) => { if (!menu.contains(e.target) && !toggle.contains(e.target)) { menu.classList.add('hidden'); if (chevron) chevron.style.transform = 'rotate(0deg)'; } }); } function syncActiveRoute(route) { if (!route) route = '#home'; if (badge) badge.textContent = route; const navLinks = document.querySelectorAll('header nav a'); navLinks.forEach(link => { const href = link.getAttribute('href'); const isMatch = href === route || (route === '#home' && (href === '#home' || href === '#')); if (isMatch) { link.classList.add('text-primary', 'font-medium'); link.classList.remove('text-on-surface-variant'); link.setAttribute('aria-current', 'page'); } else { link.classList.remove('text-primary', 'font-medium'); link.classList.add('text-on-surface-variant'); link.removeAttribute('aria-current'); } }); const switcherBtns = document.querySelectorAll('.proto-nav-btn'); switcherBtns.forEach(btn => { const target = btn.getAttribute('data-route'); if (target === route) { btn.classList.add('text-primary', 'bg-surface-container-low', 'font-bold'); btn.classList.remove('text-on-surface-variant'); } else { btn.classList.remove('text-primary', 'bg-surface-container-low', 'font-bold'); btn.classList.add('text-on-surface-variant'); } }); } document.querySelectorAll('.proto-nav-btn').forEach(btn => { btn.addEventListener('click', () => { const target = btn.getAttribute('data-route'); window.location.hash = target; syncActiveRoute(target); if (menu) { menu.classList.add('hidden'); if (chevron) chevron.style.transform = 'rotate(0deg)'; } }); }); window.addEventListener('hashchange', () => { syncActiveRoute(window.location.hash || '#home'); }); document.querySelectorAll('a[href^="#"]').forEach(link => { link.addEventListener('click', (e) => { const hash = link.getAttribute('href'); if (hash && hash !== '#') { syncActiveRoute(hash); } }); }); syncActiveRoute(window.location.hash || '#home'); })();</script></body></html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"status-public":"#10B981","primary-fixed":"#dde1ff","dark-border":"#2A374A","on-primary-fixed-variant":"#0036bb","inverse-surface":"#273044","dark-text-secondary":"#AAB6C8","on-surface-variant":"#434656","on-surface":"#121b2e","tertiary-fixed-dim":"#b8c3ff","surface-container":"#e9edff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","inverse-primary":"#b8c4ff","primary-fixed-dim":"#b8c4ff","surface-bright":"#f9f9ff","dark-accent":"#4D76FD","status-redacted":"#64748B","surface-container-lowest":"#ffffff","on-secondary-container":"#596579","on-primary-fixed":"#001354","surface-tint":"#154ceb","surface-container-highest":"#d9e2fc","light-text-secondary":"#596579","surface-dim":"#d1daf4","outline":"#747687","on-error":"#ffffff","on-secondary-fixed-variant":"#3b475a","on-error-container":"#93000a","tertiary-container":"#4363e1","surface-variant":"#d9e2fc","secondary":"#535f73","surface-container-low":"#f1f3ff","dark-surface-raised":"#1B2637","primary":"#0042df","tertiary":"#2448c7","status-draft":"#8B5CF6","on-background":"#121b2e","secondary-fixed":"#d7e3fb","tertiary-fixed":"#dde1ff","background":"#f9f9ff","on-secondary":"#ffffff","on-tertiary-container":"#f1f0ff","on-secondary-fixed":"#101c2d","primary-container":"#315efb","on-tertiary":"#ffffff","light-text-primary":"#172033","light-surface":"#FFFFFF","inverse-on-surface":"#edf0ff","status-restricted":"#F59E0B","on-tertiary-fixed":"#001355","outline-variant":"#c4c5d8","light-border":"#E2E7EF","secondary-container":"#d7e3fb","on-tertiary-fixed-variant":"#0737b8","status-archived":"#6B7280","dark-text-primary":"#F2F5FA","surface":"#f9f9ff","dark-background":"#0E1420","on-primary":"#ffffff","secondary-fixed-dim":"#bbc7de","on-primary-container":"#f1f1ff","status-unavailable":"#EF4444","status-published":"#3B82F6","error-container":"#ffdad6","light-background":"#F8F9FB","error":"#ba1a1a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-2xl":"3rem","space-xl":"2rem","gutter-sm":"1rem","space-md":"1rem","space-sm":"0.5rem","margin-mobile":"1rem","margin":"2rem","space-3xl":"4rem","space-xs":"0.25rem","gutter":"1.5rem","space-lg":"1.5rem"},"fontFamily":{"hero-lg":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"code-inline":["JetBrains Mono"],"body-md":["Inter"],"headline-lg-mobile":["Inter"],"caption":["Inter"],"code-block":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"label-mono":["JetBrains Mono"],"headline-lg":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"]},"fontSize":{"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script><style>html,body{min-height:1024px}</style></head><body class="bg-background font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">terminal</span></div><div class="flex flex-col"><span class="font-headline-sm text-body-md font-semibold text-on-surface tracking-tight">SIMON IPARA</span><span class="font-label-mono text-caption text-light-text-secondary uppercase">Engineering CMS</span></div></div><span class="font-label-mono text-caption px-space-xs py-0.5 rounded-lg bg-surface-container text-primary font-medium">v2.4</span></div><nav class="flex flex-col gap-space-lg px-space-md py-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Overview</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Content</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="projects" href="#"><span class="material-symbols-outlined text-[18px]">folder_code</span><span class="font-body-sm text-body-sm">Projects</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="skills" href="#"><span class="material-symbols-outlined text-[18px]">psychology</span><span class="font-body-sm text-body-sm">Skills</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="experience" href="#"><span class="material-symbols-outlined text-[18px]">work_history</span><span class="font-body-sm text-body-sm">Experience</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-body-sm text-body-sm">Profile</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Evidence &amp; Provenance</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="evidence-and-artifacts" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-sm text-body-sm">Evidence &amp; Artifacts</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="claims" href="#"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-body-sm text-body-sm">Claims</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Publishing &amp; Media</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="media-library" href="#"><span class="material-symbols-outlined text-[18px]">perm_media</span><span class="font-body-sm text-body-sm">Media Library</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="navigation" href="#"><span class="material-symbols-outlined text-[18px]">alt_route</span><span class="font-body-sm text-body-sm">Navigation</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">System</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="activity-log" href="#"><span class="material-symbols-outlined text-[18px]">history</span><span class="font-body-sm text-body-sm">Activity Log</span></a></div></nav></div><div class="p-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)] flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-status-public"></span><span class="font-label-mono text-caption text-light-text-secondary">SYSTEM READY</span></div><span class="font-label-mono text-caption text-on-surface-variant font-medium">PROD-SYNC</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span><span>manage</span><span>/</span><span class="text-on-surface font-medium">workspace</span></div></div><div class="flex-1 max-w-md mx-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-light-text-secondary">search</span><input class="w-full h-9 pl-9 pr-12 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-light-text-secondary focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" placeholder="Search entities, records, claims... (Ctrl+K)" readonly="" type="text"/><div class="absolute right-2 px-1.5 py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-mono text-caption">⌘K</div></div></div><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-colors font-label-mono text-caption font-medium" href="#"><span class="material-symbols-outlined text-[16px]">open_in_new</span><span>Live Portfolio</span></a><div class="h-5 w-px bg-surface-container"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-headline-sm text-body-sm font-semibold text-on-surface">simon.ipara</span><span class="font-label-mono text-caption text-light-text-secondary">Staff Engineer</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background px-space-lg py-space-lg min-h-screen"><div class="flex flex-col w-full relative">
+<!-- Top Critical Status Warning Strip -->
+<div class="mb-space-lg rounded-xl bg-error-container p-space-md shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse shrink-0"></span>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+<span class="font-label-mono text-caption text-on-error-container uppercase font-semibold">
+            UNSAVED DRAFT BUFFER (3 MODIFICATIONS DETECTED)
+          </span>
+<span class="font-label-mono text-caption text-error font-medium">•</span>
+<span class="font-label-mono text-caption text-on-error-container">
+            REVISION STAMP: <code class="font-code-inline text-code-inline px-1 py-0.5 rounded bg-surface-container-lowest/80 text-error font-semibold">DRAFT_REV_08</code>
+</span>
+<span class="font-label-mono text-caption text-error font-medium">•</span>
+<span class="font-label-mono text-caption text-error font-medium">
+            AUTO-SAVE PAUSED DUE TO VALIDATION ERRORS
+          </span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-1.5 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container text-body-sm font-body-sm font-medium transition-all shadow-sm" id="trigger-revert" type="button">
+          Revert Buffer
+        </button>
+<button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary hover:bg-tertiary text-body-sm font-body-sm font-medium transition-all flex items-center gap-space-xs shadow-sm" type="button">
+<span>Commit All Changes</span>
+<span class="px-1.5 py-0.5 rounded-full bg-error text-on-error font-label-mono text-caption font-semibold">2 Errors</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div>
+<div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary uppercase mb-1">
+<span>Identity Protocol</span>
+<span>/</span>
+<span class="text-primary font-semibold">Rev_08_Dirty</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Profile, Navigation &amp; System Settings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl mt-1">
+        Manage professional identity, public navigation links, contact preferences, and deployment configuration across client clusters.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<div class="relative group">
+<button class="px-space-md py-2 rounded-lg bg-surface-container text-outline cursor-not-allowed font-body-sm text-body-sm flex items-center gap-space-xs" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility_off</span>
+<span>Preview Public Site</span>
+</button>
+<div class="absolute right-0 -top-9 hidden group-hover:flex items-center px-2 py-1 rounded bg-inverse-surface text-inverse-on-surface font-label-mono text-caption whitespace-nowrap shadow-md pointer-events-none">
+          Fix validation errors first
+        </div>
+</div>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface hover:bg-surface-container text-body-sm font-body-sm font-medium transition-all shadow-sm" id="header-discard" type="button">
+        Discard Changes
+      </button>
+<button class="px-space-md py-2 rounded-lg bg-error text-on-error hover:bg-error/90 text-body-sm font-body-sm font-medium transition-all flex items-center gap-space-xs shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">error</span>
+<span>Resolve &amp; Save (2)</span>
+</button>
+</div>
+</div>
+<!-- Key Metrics Row (Dirty / Alert State) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Metric 1: Integrity Score with Alert -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Integrity Score</span>
+<span class="px-1.5 py-0.5 rounded bg-status-restricted/15 text-status-restricted font-label-mono text-caption font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+          82% ATTENTION
+        </span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-hero-lg text-headline-lg font-bold text-on-surface">82%</span>
+<span class="font-body-sm text-body-sm text-error font-medium">-18% Validation Debt</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-status-restricted h-1.5 rounded-full" style="width: 82%;"></div>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary mt-2">ATTENTION_REQUIRED // 2 Claims Incomplete</span>
+</div>
+<!-- Metric 2: Active Routes -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Active Routes</span>
+<span class="px-1.5 py-0.5 rounded bg-status-draft/15 text-status-draft font-label-mono text-caption font-semibold">1 PENDING</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-hero-lg text-headline-lg font-bold text-on-surface">8</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Live Endpoints</span>
+</div>
+<div class="flex items-center gap-1 text-light-text-secondary font-label-mono text-caption">
+<span class="material-symbols-outlined text-[15px] text-status-draft">pending_actions</span>
+<span>Route Spec [PATCH] Queued</span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary mt-2">Target: /v2/systems/core</span>
+</div>
+<!-- Metric 3: Public Status -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Public Status</span>
+<span class="px-1.5 py-0.5 rounded bg-status-public/15 text-status-public font-label-mono text-caption font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+          ONLINE
+        </span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Available</span>
+<span class="font-body-sm text-body-sm text-status-restricted font-medium">(Draft Staged)</span>
+</div>
+<div class="flex items-center gap-1 text-status-restricted font-label-mono text-caption">
+<span class="material-symbols-outlined text-[15px]">sync_problem</span>
+<span>Live site serves Rev_07</span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary mt-2">CDN Edge: Cloudflare (Stale Sync)</span>
+</div>
+<!-- Metric 4: Sync Cluster -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">Sync Cluster</span>
+<span class="px-1.5 py-0.5 rounded bg-error/15 text-error font-label-mono text-caption font-semibold">DESYNC</span>
+</div>
+<div class="my-space-sm flex items-baseline gap-space-xs">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">v2.4.0</span>
+<span class="font-body-sm text-body-sm text-light-text-secondary">Node-US-East</span>
+</div>
+<div class="flex items-center gap-1 text-error font-label-mono text-caption">
+<span class="material-symbols-outlined text-[15px]">report</span>
+<span>Staged Buffer Out of Sync</span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary mt-2">Last verified: 14m ago</span>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="flex items-center gap-space-xs mb-space-lg overflow-x-auto pb-1">
+<button class="px-space-md py-2 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-body-sm font-semibold flex items-center gap-space-xs shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Professional Identity &amp; Bio</span>
+<span class="w-2 h-2 rounded-full bg-error ml-1"></span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-headline-sm text-body-sm font-medium transition-colors flex items-center gap-space-xs shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+<span>Public Routes &amp; Nav</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-headline-sm text-body-sm font-medium transition-colors flex items-center gap-space-xs shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Provenance &amp; Cryptography</span>
+</button>
+<button class="px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-headline-sm text-body-sm font-medium transition-colors flex items-center gap-space-xs shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">dns</span>
+<span>Cluster Deployment</span>
+</button>
+</div>
+<!-- Workspace Grid: Form Editor (8 cols) & Live Preview (4 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Form with Validation Errors (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Section 1: Core Bio & Identity -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">person_pin</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Core Identification Attributes</h2>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary uppercase">SCHEMA: v2.PROFILE</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Full Legal Technical Name (Valid) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-medium text-on-surface">Full Legal / Technical Name</label>
+<span class="font-label-mono text-caption text-status-public flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Valid
+              </span>
+</div>
+<div class="relative">
+<input class="w-full h-10 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-2 focus:ring-primary shadow-sm" type="text" value="Simon Ipara"/>
+<span class="material-symbols-outlined text-status-public absolute right-2.5 top-2.5 text-[18px]">verified</span>
+</div>
+<span class="font-caption text-caption text-light-text-secondary">Official attribution string rendered across case studies and GPG manifests.</span>
+</div>
+<!-- Professional Title / Headline (ERROR: Character Budget Exceeded) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-medium text-error flex items-center gap-1">
+<span>Headline Specification</span>
+<span class="px-1.5 py-0.2 rounded bg-error-container text-on-error-container font-label-mono text-caption font-semibold">OVERSIZED</span>
+</label>
+<span class="font-label-mono text-caption text-error font-semibold">78 / 60 chars</span>
+</div>
+<div class="relative">
+<input class="w-full h-10 px-space-sm pr-9 rounded-lg bg-error-container/20 text-on-surface font-body-sm text-body-sm focus:outline-none ring-2 ring-error shadow-sm" type="text" value="Staff Infrastructure Engineer &amp; Distributed Systems Technical Architect (Global Tier)"/>
+<span class="material-symbols-outlined text-error absolute right-2.5 top-2.5 text-[18px]">warning</span>
+</div>
+<!-- Error Banner -->
+<div class="p-2 rounded bg-error-container text-on-error-container font-caption text-caption flex items-start gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error shrink-0">error</span>
+<span>Field exceeds maximum character budget (78/60 chars). Please condense headline for search snippet compatibility and OpenGraph metadata length constraints.</span>
+</div>
+</div>
+</div>
+<!-- Hero Value Proposition (Dirty State) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<label class="font-body-sm text-body-sm font-medium text-on-surface">Hero Value Proposition</label>
+<span class="px-2 py-0.5 rounded bg-status-restricted/15 text-status-restricted font-label-mono text-caption font-semibold">
+                DIRTY • MODIFIED 2m AGO
+              </span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary">42 words / 284 chars</span>
+</div>
+<div class="relative">
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-2 focus:ring-primary shadow-sm" rows="3">Architecting fault-tolerant distributed consensus engines and provable cryptographic evidence networks. Focused on zero-trust provenance pipelines, deterministic build replayability, and sub-millisecond edge orchestration across multi-region hybrid compute matrices.</textarea>
+</div>
+<span class="font-caption text-caption text-light-text-secondary">Rendered prominently on portfolio landing view and syndicated through RSS/Atom engineering logs.</span>
+</div>
+</div>
+<!-- Section 2: Contact & Provenance Endpoints -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">alternate_email</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Contact &amp; Provenance Endpoints</h2>
+</div>
+<span class="font-label-mono text-caption text-error font-medium">1 CRITICAL SYNTAX ERROR</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Direct Mail (ERROR: RFC Syntax) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-medium text-error">Direct Mail</label>
+<span class="font-label-mono text-caption text-error font-semibold">MALFORMED</span>
+</div>
+<div class="relative">
+<input class="w-full h-10 px-space-sm pr-9 rounded-lg bg-error-container/20 text-on-surface font-body-sm text-body-sm focus:outline-none ring-2 ring-error shadow-sm" type="text" value="simonipara428@"/>
+<span class="material-symbols-outlined text-error absolute right-2.5 top-2.5 text-[18px]">cancel</span>
+</div>
+<div class="p-1.5 rounded bg-error-container text-on-error-container font-caption text-caption flex items-start gap-1">
+<span class="material-symbols-outlined text-[15px] text-error shrink-0">error</span>
+<span>Invalid RFC-5322 email syntax. Missing domain extension.</span>
+</div>
+</div>
+<!-- GitHub Handle (Valid) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-medium text-on-surface">GitHub Handle</label>
+<span class="font-label-mono text-caption text-status-public flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Valid
+              </span>
+</div>
+<div class="relative">
+<input class="w-full h-10 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-2 focus:ring-primary shadow-sm" type="text" value="SIM350-maker"/>
+<span class="material-symbols-outlined text-status-public absolute right-2.5 top-2.5 text-[18px]">check</span>
+</div>
+<span class="font-caption text-caption text-light-text-secondary">Syncs public gists and project evidence.</span>
+</div>
+<!-- LinkedIn Handle (Valid) -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<label class="font-body-sm text-body-sm font-medium text-on-surface">LinkedIn Handle</label>
+<span class="font-label-mono text-caption text-status-public flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                Valid
+              </span>
+</div>
+<div class="relative">
+<input class="w-full h-10 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-2 focus:ring-primary shadow-sm" type="text" value="simonipara"/>
+<span class="material-symbols-outlined text-status-public absolute right-2.5 top-2.5 text-[18px]">check</span>
+</div>
+<span class="font-caption text-caption text-light-text-secondary">Used for executive back-channel verification.</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Core Engineering Axioms with Provenance Linkage -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">science</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Core Engineering Axioms &amp; Claims</h2>
+</div>
+<span class="font-label-mono text-caption text-status-restricted font-semibold">1 EVIDENCE LINKAGE UNSET</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Axiom 01 (Good) -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="font-label-mono text-caption text-primary font-bold px-1.5 py-0.5 rounded bg-surface-container">01</span>
+<div>
+<p class="font-body-sm text-body-sm font-medium text-on-surface">Deterministic Replayability over Runtime Heuristics</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-mono text-caption text-status-public flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">link</span>
+                    EV-RECORD: #claim_consensus_89
+                  </span>
+<span class="font-label-mono text-caption text-light-text-secondary">• GPG-Signed</span>
+</div>
+</div>
+</div>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<!-- Axiom 02 (Good) -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="font-label-mono text-caption text-primary font-bold px-1.5 py-0.5 rounded bg-surface-container">02</span>
+<div>
+<p class="font-body-sm text-body-sm font-medium text-on-surface">Zero-Trust Boundaries Between Sub-Orchestration Cells</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-mono text-caption text-status-public flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">link</span>
+                    EV-RECORD: #artifact_pki_mesh_02
+                  </span>
+<span class="font-label-mono text-caption text-light-text-secondary">• Multi-sig Attested</span>
+</div>
+</div>
+</div>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container" type="button">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<!-- Axiom 03 (ERROR: Missing evidence record) -->
+<div class="p-space-sm rounded-lg bg-error-container/20 flex flex-col gap-2">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="font-label-mono text-caption text-error font-bold px-1.5 py-0.5 rounded bg-error-container">03</span>
+<div>
+<p class="font-body-sm text-body-sm font-semibold text-on-surface">Sub-Millisecond P99 Ingress Latency Across Edge Nodes</p>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">Staged revision added today. Unlinked claim draft.</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-error text-on-error font-label-mono text-caption font-semibold shrink-0">UNVERIFIED CLAIM</span>
+</div>
+<div class="p-2 rounded bg-error-container text-on-error-container font-caption text-caption flex items-start gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-error shrink-0">warning</span>
+<span>Missing linked evidence record. Public claims without backing evidence are flagged. Link a benchmark log or artifact from <code class="font-code-inline text-code-inline underline cursor-pointer">/manage/evidence-and-artifacts</code>.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Avatar, Live Preview & Staged Delta (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Avatar & Bio Media with Crop Alert -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface">Avatar &amp; Identity Key</span>
+<span class="px-1.5 py-0.5 rounded bg-status-restricted/15 text-status-restricted font-label-mono text-caption font-semibold">DIRTY CROP</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="relative w-20 h-20 rounded-xl overflow-hidden shadow-sm shrink-0">
+<img class="w-full h-full object-cover" data-alt="High contrast professional studio portrait photograph of Simon Ipara, an African software architect in a sharp minimalist black turtleneck against a warm slate studio backdrop, lit by crisp directional rim lighting." src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[20px]">crop</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 min-w-0">
+<span class="font-body-sm text-body-sm font-semibold text-on-surface truncate">simon-ipara-headshot.png</span>
+<span class="font-label-mono text-caption text-light-text-secondary">2.4MB • 2048x2048 (Staged crop 1:1)</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="px-1.5 py-0.5 rounded bg-status-restricted/20 text-status-restricted font-label-mono text-caption font-medium">
+                PENDING_RECHECK
+              </span>
+<span class="font-caption text-caption text-light-text-secondary">GPG Unsigned</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="w-full py-1.5 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-body-sm text-body-sm font-medium transition-colors" type="button">
+            Adjust Crop Coordinates
+          </button>
+<button class="py-1.5 px-3 rounded-lg bg-surface-container-low text-error hover:bg-error-container font-body-sm text-body-sm font-medium transition-colors" type="button">
+            Reset
+          </button>
+</div>
+</div>
+<!-- Live Component Preview (Staged State) -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-status-restricted animate-ping"></span>
+<span class="font-label-mono text-caption text-on-surface font-semibold uppercase">PREVIEWING STAGED REVISION</span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary">PORTFOLIO HERO</span>
+</div>
+<!-- Rendered Card Simulation -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-sm shadow-inner">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-caption font-label-mono">
+                SI
+              </div>
+<div>
+<div class="font-headline-sm text-body-sm font-bold text-on-surface leading-tight">Simon Ipara</div>
+<div class="font-caption text-caption text-light-text-secondary font-label-mono">REV_08_STAGED</div>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-primary font-label-mono text-caption font-semibold">STAFF ENG</span>
+</div>
+<div class="p-2 rounded bg-surface-container-lowest shadow-sm">
+<span class="font-caption text-caption text-error font-mono font-medium block line-clamp-2">
+              Staff Infrastructure Engineer &amp; Distributed Systems Technical Architect (Global Tier)
+            </span>
+</div>
+<p class="font-body-sm text-caption text-on-surface-variant line-clamp-3">
+            Architecting fault-tolerant distributed consensus engines and provable cryptographic evidence networks...
+          </p>
+<div class="flex flex-wrap gap-1 pt-1">
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">Distributed Raft</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">GPG Provenance</span>
+<span class="px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-mono text-caption">Missing Evidence</span>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-high flex items-center justify-between">
+<span class="font-label-mono text-caption text-light-text-secondary">Public Deployment Sync</span>
+<span class="font-label-mono text-caption text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">block</span>
+            BLOCKED BY 2 ERRORS
+          </span>
+</div>
+</div>
+<!-- Revision Delta Inspector -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface">Buffer Delta Log</span>
+<div class="flex flex-col gap-2 font-label-mono text-caption">
+<div class="flex items-center justify-between p-1.5 rounded bg-surface-container-low">
+<span class="text-on-surface">profile.headline</span>
+<span class="text-error font-semibold">+18 chars [ERR]</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded bg-surface-container-low">
+<span class="text-on-surface">contact.email</span>
+<span class="text-error font-semibold">SYNTAX [ERR]</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded bg-surface-container-low">
+<span class="text-on-surface">axioms.items[2]</span>
+<span class="text-status-restricted font-semibold">UNLINKED [WARN]</span>
+</div>
+<div class="flex items-center justify-between p-1.5 rounded bg-surface-container-low">
+<span class="text-on-surface">profile.avatarCrop</span>
+<span class="text-status-draft font-semibold">DIRTY [MOD]</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Unsaved Changes & Validation Error Alert Confirmation Modal Backdrop -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-surface/40 backdrop-blur-sm transition-opacity" id="confirmation-modal">
+<!-- Modal Card -->
+<div class="w-full max-w-xl rounded-xl bg-surface-container-lowest shadow-2xl p-space-lg flex flex-col gap-space-md animate-in fade-in zoom-in duration-200">
+<!-- Modal Header -->
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-error-container text-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex flex-col min-w-0 flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-error uppercase font-semibold">UNSAVED DRAFT CONFLICT</span>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded" id="modal-close" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<h3 class="font-headline-md text-headline-sm font-bold text-on-surface tracking-tight mt-0.5">
+            Discard 3 Unsaved Modifications?
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+            You have uncommitted changes in Professional Headline, Primary Email, and Core Engineering Axiom #3. If you leave without saving or resolving validation errors, your staged revisions will be lost.
+          </p>
+</div>
+</div>
+<!-- Dirty Entities Breakdown -->
+<div class="flex flex-col gap-2 rounded-lg bg-surface-container-low p-space-md">
+<span class="font-label-mono text-caption text-light-text-secondary uppercase font-semibold">
+          Staged Unsaved Delta (Revision: DRAFT_REV_08)
+        </span>
+<div class="flex flex-col gap-1.5">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-lowest shadow-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]">error</span>
+<span class="font-medium text-on-surface">Professional Headline</span>
+</div>
+<span class="font-label-mono text-caption text-error font-medium">Length validation failure (78/60)</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-lowest shadow-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[18px]">error</span>
+<span class="font-medium text-on-surface">Primary Contact Email</span>
+</div>
+<span class="font-label-mono text-caption text-error font-medium">Malformed RFC syntax (Missing domain)</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-2 rounded bg-surface-container-lowest shadow-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-status-restricted text-[18px]">warning</span>
+<span class="font-medium text-on-surface">Core Axiom #03</span>
+</div>
+<span class="font-label-mono text-caption text-status-restricted font-medium">Missing evidence linkage</span>
+</div>
+</div>
+</div>
+<!-- System Diagnostic Note -->
+<div class="flex items-center gap-2 px-space-sm py-1.5 rounded bg-surface-container text-light-text-secondary font-label-mono text-caption">
+<span class="material-symbols-outlined text-[15px] text-primary">info</span>
+<span>Reverting restores local state to Head Manifest: <code>REV_07_PROD (SHA: 4a9f2e)</code></span>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-space-sm pt-space-xs">
+<button class="w-full sm:w-auto px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container font-body-sm text-body-sm font-medium transition-colors" id="modal-partial-save" type="button">
+          Save Validated Fields Only
+        </button>
+<button class="w-full sm:w-auto px-space-md py-2 rounded-lg bg-error-container text-error hover:bg-error hover:text-on-error font-body-sm text-body-sm font-medium transition-all shadow-sm" id="modal-revert" type="button">
+          Discard &amp; Revert Buffer
+        </button>
+<button class="w-full sm:w-auto px-space-md py-2 rounded-lg bg-primary text-on-primary hover:bg-tertiary font-body-sm text-body-sm font-medium transition-all shadow-sm" id="modal-keep" type="button">
+          Keep Editing
+        </button>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Script for Modal Toggle -->
+<script>
+    (function() {
+      const modal = document.getElementById('confirmation-modal');
+      const keepBtn = document.getElementById('modal-keep');
+      const closeBtn = document.getElementById('modal-close');
+      const revertBtn = document.getElementById('modal-revert');
+      const triggerBtn = document.getElementById('trigger-revert');
+      const headerDiscard = document.getElementById('header-discard');
+
+      function hideModal() {
+        modal.classList</main></div></body></html></script></div></main></div></body></html>

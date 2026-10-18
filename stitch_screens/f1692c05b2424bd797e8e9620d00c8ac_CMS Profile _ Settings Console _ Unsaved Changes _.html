@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"status-public":"#10B981","primary-fixed":"#dde1ff","dark-border":"#2A374A","on-primary-fixed-variant":"#0036bb","inverse-surface":"#273044","dark-text-secondary":"#AAB6C8","on-surface-variant":"#434656","on-surface":"#121b2e","tertiary-fixed-dim":"#b8c3ff","surface-container":"#e9edff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","inverse-primary":"#b8c4ff","primary-fixed-dim":"#b8c4ff","surface-bright":"#f9f9ff","dark-accent":"#4D76FD","status-redacted":"#64748B","surface-container-lowest":"#ffffff","on-secondary-container":"#596579","on-primary-fixed":"#001354","surface-tint":"#154ceb","surface-container-highest":"#d9e2fc","light-text-secondary":"#596579","surface-dim":"#d1daf4","outline":"#747687","on-error":"#ffffff","on-secondary-fixed-variant":"#3b475a","on-error-container":"#93000a","tertiary-container":"#4363e1","surface-variant":"#d9e2fc","secondary":"#535f73","surface-container-low":"#f1f3ff","dark-surface-raised":"#1B2637","primary":"#0042df","tertiary":"#2448c7","status-draft":"#8B5CF6","on-background":"#121b2e","secondary-fixed":"#d7e3fb","tertiary-fixed":"#dde1ff","background":"#f9f9ff","on-secondary":"#ffffff","on-tertiary-container":"#f1f0ff","on-secondary-fixed":"#101c2d","primary-container":"#315efb","on-tertiary":"#ffffff","light-text-primary":"#172033","light-surface":"#FFFFFF","inverse-on-surface":"#edf0ff","status-restricted":"#F59E0B","on-tertiary-fixed":"#001355","outline-variant":"#c4c5d8","light-border":"#E2E7EF","secondary-container":"#d7e3fb","on-tertiary-fixed-variant":"#0737b8","status-archived":"#6B7280","dark-text-primary":"#F2F5FA","surface":"#f9f9ff","dark-background":"#0E1420","on-primary":"#ffffff","secondary-fixed-dim":"#bbc7de","on-primary-container":"#f1f1ff","status-unavailable":"#EF4444","status-published":"#3B82F6","error-container":"#ffdad6","light-background":"#F8F9FB","error":"#ba1a1a"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-2xl":"3rem","space-xl":"2rem","gutter-sm":"1rem","space-md":"1rem","space-sm":"0.5rem","margin-mobile":"1rem","margin":"2rem","space-3xl":"4rem","space-xs":"0.25rem","gutter":"1.5rem","space-lg":"1.5rem"},"fontFamily":{"hero-lg":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"code-inline":["JetBrains Mono"],"body-md":["Inter"],"headline-lg-mobile":["Inter"],"caption":["Inter"],"code-block":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"label-mono":["JetBrains Mono"],"headline-lg":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"]},"fontSize":{"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between overflow-y-auto"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">terminal</span></div><div class="flex flex-col"><span class="font-headline-sm text-body-md font-semibold text-on-surface tracking-tight">SIMON IPARA</span><span class="font-label-mono text-caption text-light-text-secondary uppercase">Engineering CMS</span></div></div><span class="font-label-mono text-caption px-space-xs py-0.5 rounded-lg bg-surface-container text-primary font-medium">v2.4</span></div><nav class="flex flex-col gap-space-lg px-space-md py-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Overview</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-sm text-body-sm">Dashboard</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Content</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="projects" href="#"><span class="material-symbols-outlined text-[18px]">folder_code</span><span class="font-body-sm text-body-sm">Projects</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="skills" href="#"><span class="material-symbols-outlined text-[18px]">psychology</span><span class="font-body-sm text-body-sm">Skills</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="experience" href="#"><span class="material-symbols-outlined text-[18px]">work_history</span><span class="font-body-sm text-body-sm">Experience</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="profile" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-body-sm text-body-sm">Profile</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Evidence &amp; Provenance</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="evidence-and-artifacts" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-sm text-body-sm">Evidence &amp; Artifacts</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="claims" href="#"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-body-sm text-body-sm">Claims</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Publishing &amp; Media</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="media-library" href="#"><span class="material-symbols-outlined text-[18px]">perm_media</span><span class="font-body-sm text-body-sm">Media Library</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="navigation" href="#"><span class="material-symbols-outlined text-[18px]">alt_route</span><span class="font-body-sm text-body-sm">Navigation</span></a></div><div class="flex flex-col gap-space-xs"><span class="px-space-sm font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">System</span><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-body-sm text-body-sm">Settings</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="activity-log" href="#"><span class="material-symbols-outlined text-[18px]">history</span><span class="font-body-sm text-body-sm">Activity Log</span></a></div></nav></div><div class="p-space-md shadow-[0_1px_8px_rgba(0,0,0,0.02)] flex items-center justify-between bg-surface-container-low"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-status-public"></span><span class="font-label-mono text-caption text-light-text-secondary">SYSTEM READY</span></div><span class="font-label-mono text-caption text-on-surface-variant font-medium">PROD-SYNC</span></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span><span>manage</span><span>/</span><span class="text-on-surface font-medium">workspace</span></div></div><div class="flex-1 max-w-md mx-space-lg"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-3 text-[18px] text-light-text-secondary">search</span><input class="w-full h-9 pl-9 pr-12 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-light-text-secondary focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" placeholder="Search entities, records, claims... (Ctrl+K)" readonly="" type="text"/><div class="absolute right-2 px-1.5 py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-label-mono text-caption">⌘K</div></div></div><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-colors font-label-mono text-caption font-medium" href="#"><span class="material-symbols-outlined text-[16px]">open_in_new</span><span>Live Portfolio</span></a><div class="h-5 w-px bg-surface-container"></div><div class="flex items-center gap-space-sm"><div class="flex flex-col text-right"><span class="font-headline-sm text-body-sm font-semibold text-on-surface">simon.ipara</span><span class="font-label-mono text-caption text-light-text-secondary">Staff Engineer</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background px-space-lg py-space-lg min-h-screen"><div class="flex flex-col w-full relative">
+<!-- Top Persistent Warning & Staging Banner (Sticky below header) -->
+<aside aria-label="Buffer state alert" class="sticky top-0 z-30 mb-space-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md p-space-md bg-surface-container-lowest rounded-lg shadow-md border-l-4 border-l-status-restricted">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-status-restricted text-[20px]">warning</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-mono text-caption text-status-restricted font-semibold tracking-wider">● DRAFT BUFFER DIRTY</span>
+<span class="font-label-mono text-caption text-light-text-secondary">//</span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Unsaved modifications detected in 3 fields</span>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded-lg bg-surface-container text-secondary font-medium">3 Pending Diffs</span>
+</div>
+<p class="font-caption text-caption text-light-text-secondary truncate mt-0.5">
+          Changes in Personal Bio, Contact Endpoints, Core Axioms have not been synced to PostgreSQL replica.
+        </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 w-full md:w-auto justify-end">
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-caption font-medium transition-colors flex items-center gap-space-xs" id="discard-banner-btn">
+<span class="material-symbols-outlined text-[16px]">history</span>
+<span>Discard &amp; Revert Buffer</span>
+</button>
+<button class="h-9 px-space-md rounded-lg bg-primary hover:bg-tertiary text-on-primary font-label-mono text-caption font-semibold transition-colors flex items-center gap-space-xs shadow-sm" id="stage-banner-btn">
+<span class="material-symbols-outlined text-[16px]">sync_saved_locally</span>
+<span>Save &amp; Stage Changes</span>
+</button>
+</div>
+</aside>
+<!-- Editorial Section Header & Breadcrumb -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-xs font-label-mono text-caption text-light-text-secondary mb-1">
+<span>CMS Workspace</span>
+<span>/</span>
+<span>System</span>
+<span>/</span>
+<span class="text-primary font-medium">Profile &amp; Configuration</span>
+</div>
+<div class="flex items-center gap-space-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Identity &amp; Profile Spec</h1>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded-lg bg-surface-container text-on-surface-variant font-medium">RFC-5322 ACTIVE</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-2 py-1 bg-surface-container rounded-lg">
+<span class="w-2 h-2 rounded-full bg-status-restricted animate-pulse"></span>
+<span class="font-label-mono text-caption text-on-surface">SESSION BUFFER: DIRTY</span>
+</div>
+<span class="font-label-mono text-caption text-light-text-secondary">REV #1094-B</span>
+</div>
+</header>
+<!-- 4-Tab Navigation Bar -->
+<nav aria-label="Profile tabs" class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg mb-space-xl overflow-x-auto">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container-lowest text-primary font-body-sm text-body-sm font-semibold shadow-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Professional Identity &amp; Bio</span>
+<span class="w-2 h-2 rounded-full bg-status-restricted"></span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+<span>Navigation &amp; Route Map</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>System &amp; Publishing Settings</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-body-sm text-body-sm transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">manage_history</span>
+<span>Activity &amp; Audit Log</span>
+</button>
+</nav>
+<!-- Main Grid Workspace: Form Editor (8 cols) & Live Preview / Media (4 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left Column: Form Cards with Dirty/Error States -->
+<section class="lg:col-span-8 flex flex-col gap-space-xl">
+<!-- Card 1: Core Credential Matrix -->
+<article class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-1.5 h-4 bg-primary rounded-full"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Core Credential Matrix</h2>
+</div>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded-lg bg-surface-container text-light-text-secondary">ENDPOINT VERIFICATION: FAILING</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption text-light-text-secondary uppercase">Canonical Name</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" type="text" value="Simon Ipara"/>
+<span class="material-symbols-outlined absolute right-2.5 text-status-public text-[18px]">check_circle</span>
+</div>
+</div>
+<!-- Headline -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption text-light-text-secondary uppercase">Professional Headline</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" type="text" value="Full Stack Developer | Software Engineer"/>
+<span class="material-symbols-outlined absolute right-2.5 text-status-public text-[18px]">check_circle</span>
+</div>
+</div>
+<!-- Location -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption text-light-text-secondary uppercase">Operating Location Base</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" type="text" value="Nairobi, Kenya"/>
+<span class="material-symbols-outlined absolute right-2.5 text-status-public text-[18px]">check_circle</span>
+</div>
+</div>
+<!-- Direct Email (Error state) -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-mono text-caption text-error font-semibold uppercase">Direct Email Endpoint</label>
+<span class="font-label-mono text-caption text-error bg-error-container/40 px-1.5 py-0.2 rounded-lg">SYNTAX INVALID</span>
+</div>
+<div class="relative flex items-center">
+<input class="w-full h-9 pl-space-sm pr-9 rounded-lg bg-error-container/20 text-on-surface font-code-inline text-code-inline focus:outline-none ring-2 ring-error shadow-sm" type="email" value="simonipara428@"/>
+<span class="material-symbols-outlined absolute right-2.5 text-error text-[18px]">error</span>
+</div>
+<!-- Inline Red Alert Box -->
+<div class="p-2 bg-error-container/40 rounded-lg flex items-start gap-space-xs mt-0.5">
+<span class="material-symbols-outlined text-error text-[16px] shrink-0 mt-0.5">cancel</span>
+<span class="font-caption text-caption text-on-surface">RFC-5322 Syntax Error: Incomplete domain specification in email address. Domain tld cannot be empty.</span>
+</div>
+</div>
+<!-- GitHub Handle -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption text-light-text-secondary uppercase">GitHub Public UID</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-code-inline text-code-inline focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" type="text" value="SIM350-maker"/>
+<span class="material-symbols-outlined absolute right-2.5 text-status-public text-[18px]">check_circle</span>
+</div>
+</div>
+<!-- LinkedIn Profile -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption text-light-text-secondary uppercase">LinkedIn Handle</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-code-inline text-code-inline focus:outline-none focus:bg-surface-container focus:ring-1 focus:ring-primary" type="text" value="simonipara"/>
+<span class="material-symbols-outlined absolute right-2.5 text-status-public text-[18px]">check_circle</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Technical Narrative & Hero Copy (Unsaved Yellow Highlight) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-1.5 h-4 bg-status-restricted rounded-full"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Technical Narrative &amp; Hero Copy</h2>
+</div>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded-lg bg-status-restricted/15 text-status-restricted font-semibold">DIRTY / MODIFIED LOCAL BUFFER</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-mono text-caption text-light-text-secondary uppercase">Value Proposition &amp; Architectural Focus</label>
+<span class="font-label-mono text-caption text-status-restricted font-medium">148 / 300 chars • Buffer Uncommitted</span>
+</div>
+<!-- Textarea highlighted with amber/yellow draft indication -->
+<div class="relative">
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none ring-2 ring-status-restricted shadow-inner leading-relaxed" rows="4">I build practical software systems with thoughtful architecture, clear user experiences, and a focus on solving real problems. [MODIFIED DRAFT CONTENT]</textarea>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-1.5 py-0.5 rounded-lg bg-surface-container-lowest/90 backdrop-blur-sm shadow-sm font-label-mono text-caption text-status-restricted">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted animate-ping"></span>
+<span>+24 Delta Bytes</span>
+</div>
+</div>
+<p class="font-caption text-caption text-light-text-secondary">
+            Summarizes core engineering ethos across hero cards, metadata previews, and dynamic OpenGraph manifests.
+          </p>
+</div>
+</article>
+<!-- Card 3: Core Engineering Axioms (Inline Error on Item 2) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-1.5 h-4 bg-primary rounded-full"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Core Engineering Axioms</h2>
+</div>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded-lg bg-surface-container text-on-surface font-medium">3 STAGES DEFINED</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Axiom 01: Valid -->
+<div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low group hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-light-text-secondary cursor-grab text-[20px]">drag_indicator</span>
+<span class="font-label-mono text-caption text-primary font-bold px-1.5 py-0.5 rounded-lg bg-surface-container">01</span>
+<div class="flex-1 min-w-0">
+<input class="w-full bg-transparent text-on-surface font-body-sm text-body-sm focus:outline-none" type="text" value="Reliability over cleverness; clean primitives over deep abstraction."/>
+</div>
+<span class="material-symbols-outlined text-status-public text-[18px]">verified</span>
+</div>
+<!-- Axiom 02: Empty Body Inline Error -->
+<div class="flex flex-col gap-1 p-space-sm rounded-lg bg-error-container/20 ring-2 ring-error shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-error cursor-grab text-[20px]">drag_indicator</span>
+<span class="font-label-mono text-caption text-error font-bold px-1.5 py-0.5 rounded-lg bg-error-container">02</span>
+<div class="flex-1 min-w-0">
+<input class="w-full bg-transparent text-error placeholder:text-error/60 font-body-sm text-body-sm focus:outline-none" placeholder="Enter engineering axiom principle..." type="text" value=""/>
+</div>
+<span class="material-symbols-outlined text-error text-[18px]">error</span>
+</div>
+<div class="flex items-center gap-space-xs pl-7 pr-2 py-1 text-on-surface bg-error-container/30 rounded-lg">
+<span class="material-symbols-outlined text-error text-[16px] shrink-0">priority_high</span>
+<span class="font-caption text-caption">Empty axiom body detected. Each engineering axiom must provide an operational description before deployment.</span>
+</div>
+</div>
+<!-- Axiom 03: Valid -->
+<div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low group hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-light-text-secondary cursor-grab text-[20px]">drag_indicator</span>
+<span class="font-label-mono text-caption text-primary font-bold px-1.5 py-0.5 rounded-lg bg-surface-container">03</span>
+<div class="flex-1 min-w-0">
+<input class="w-full bg-transparent text-on-surface font-body-sm text-body-sm focus:outline-none" type="text" value="System telemetry and observability precede operational optimization."/>
+</div>
+<span class="material-symbols-outlined text-status-public text-[18px]">verified</span>
+</div>
+</div>
+<button class="h-9 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-primary font-label-mono text-caption font-semibold self-start flex items-center gap-space-xs transition-colors mt-space-xs">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Append Axiom Registry Item</span>
+</button>
+</article>
+</section>
+<!-- Right Column: Avatar/Media + Live Preview Card -->
+<aside class="lg:col-span-4 flex flex-col gap-space-xl">
+<!-- Avatar & Bio Media Spec -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-1.5 h-4 bg-primary rounded-full"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Avatar &amp; Visual Identity</h2>
+</div>
+<span class="font-label-mono text-caption px-1.5 py-0.5 rounded-lg bg-status-restricted/10 text-status-restricted font-semibold">1 PENDING MEDIA</span>
+</div>
+<div class="flex flex-col items-center p-space-md bg-surface-container-low rounded-lg gap-space-md">
+<div class="relative group">
+<img class="w-24 h-24 rounded-full object-cover shadow-sm ring-2 ring-status-restricted" data-alt="Technical professional headshot of male software engineer Simon Ipara against a modern minimalist neutral backdrop with clean architectural rim lighting in high contrast cool tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFZ0fZn37zTNvU0bTYQfN5mzca0x4JlGRAofwYrZ0PqZKXSzW0-U0Vq5F4G5pE688oOWWNLZNuOZO9QaFXBCQRgz59sor0uY1KHj7cDnLROikNT8wmT4jvJ2rQTI3BQykLjDIP4DqmtuDmInAHA8tQG8nbQekhnbY8XH66NW-cBiWDTKsdb-dO8DDbNTDsnhSiOKn39IJ_R-oKG5V_X3yqm4gZd_tCMKZaYyomvJ-JEqdu9OkrIGnFZw"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-status-restricted text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[14px]">crop</span>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-1">
+<button class="h-8 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-mono text-caption font-medium transition-colors flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">cloud_upload</span>
+<span>Replace Avatar Asset</span>
+</button>
+<span class="font-caption text-caption text-light-text-secondary">PNG, WEBP up to 2MB (1:1 Ratio)</span>
+</div>
+<div class="w-full flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-surface-container-high text-status-restricted">
+<span class="material-symbols-outlined text-[16px]">photo_size_select_small</span>
+<span class="font-label-mono text-caption font-medium">Unsaved local crop selection pending save</span>
+</div>
+</div>
+</article>
+<!-- Live Bio Card Preview with Unsaved Marker -->
+<article class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider">Live Ingestion Preview</span>
+<span class="font-label-mono text-caption px-2 py-0.5 rounded-lg bg-status-restricted text-on-primary font-bold">● DRAFT PREVIEW (Unsaved)</span>
+</div>
+<!-- Simulated Bio Card Rendered from Dirty Buffer -->
+<div class="p-space-md rounded-lg bg-surface-container-low shadow-inner flex flex-col gap-space-md">
+<div class="flex items-center gap-space-md">
+<img class="w-12 h-12 rounded-full object-cover shadow-sm ring-1 ring-primary" data-alt="Technical portrait preview thumbnail Simon Ipara minimal tech style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrPdGr1p4Ykw7z5V2ECM1zbiyImstfX2G-kMBDtpwJh3Sc_yqj-qN94K0TBP0Ser9BJqPMu32JzAqD_ZWToJy024kP_nLxDKwFQhuFqEeZb4JAQMYurm9z2bLwWNbSlRImJf764GcYsjft4cUzq-q4N3r7Z2hKbqSeWMa3RwRNAhBBIy3I38-LjFnI2vtJiYyKUXX8t2h5DmuvFfBTR2zFbn2gmynFwDMLDNMFfLRQ2UebsSTWvf53YA"/>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-body-md font-semibold text-on-surface truncate">Simon Ipara</span>
+<span class="material-symbols-outlined text-status-public text-[16px]">verified</span>
+</div>
+<span class="font-caption text-caption text-light-text-secondary truncate">Full Stack Developer | Nairobi</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface bg-surface-container-lowest p-space-sm rounded-lg leading-relaxed shadow-sm">
+            I build practical software systems with thoughtful architecture, clear user experiences, and a focus on solving real problems. <span class="bg-surface-container-high px-1 rounded-lg text-primary font-code-inline text-caption">[MODIFIED DRAFT CONTENT]</span>
+</p>
+<div class="flex items-center justify-between pt-space-xs font-label-mono text-caption text-light-text-secondary">
+<span>EDGE WORKSPACE: SYNC PAUSED</span>
+<span class="text-error font-medium">2 ISSUES BLOCKING</span>
+</div>
+</div>
+<!-- Validation Summary Card -->
+<div class="p-space-md rounded-lg bg-error-container/30 flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-error font-label-mono text-caption font-bold">
+<span class="material-symbols-outlined text-[16px]">report</span>
+<span>PUBLISH BLOCKED: 2 FAILURES</span>
+</div>
+<ul class="flex flex-col gap-1 text-on-surface font-caption text-caption list-disc list-inside">
+<li>Email format violates RFC-5322 regex validation.</li>
+<li>Axiom #2 requires non-null description payload.</li>
+</ul>
+</div>
+</article>
+</aside>
+</div>
+<!-- Unsaved Changes Confirmation Dialog Modal Overlay -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm flex items-center justify-center p-space-md transition-opacity" id="unsaved-modal-overlay">
+<div aria-labelledby="modal-title" aria-modal="true" class="w-full max-w-lg bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden p-space-xl flex flex-col gap-space-lg" role="dialog">
+<!-- Modal Header -->
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-xl bg-status-restricted/15 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-status-restricted text-[24px]">warning</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight" id="modal-title">Unsaved Changes Detected</h3>
+<span class="font-label-mono text-caption text-status-restricted font-semibold mt-0.5">BUFFER: DIRTY // 3 MODIFICATIONS UNSTAGED</span>
+</div>
+</div>
+<!-- Modal Body Text -->
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        You have uncommitted modifications in your Profile &amp; Bio buffer. Navigating away or resetting will discard edits across 3 modified sections. Would you like to stage and commit these changes to the edge registry first?
+      </p>
+<!-- Changed Fields Summary Box -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-mono text-caption uppercase text-light-text-secondary tracking-wider font-semibold">Buffered Differences Payload</span>
+<div class="flex flex-col gap-1.5 font-code-inline text-caption mt-1">
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+<span>Technical Narrative Hero Copy</span>
+</span>
+<span class="text-status-restricted font-bold">+24 chars</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span>Contact Endpoint (simonipara428@)</span>
+</span>
+<span class="text-error font-bold">1 validation error</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-status-restricted"></span>
+<span>Core Axiom #2</span>
+</span>
+<span class="text-status-restricted font-bold">Empty body draft</span>
+</div>
+</div>
+</div>
+<!-- Modal Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-end gap-space-sm pt-space-xs">
+<button class="w-full sm:w-auto h-9 px-space-md rounded-lg text-light-text-secondary hover:text-on-surface hover:bg-surface-container font-label-mono text-caption font-medium transition-colors" id="modal-cancel-btn">
+          Cancel
+        </button>
+<button class="w-full sm:w-auto h-9 px-space-md rounded-lg bg-error-container/40 hover:bg-error-container text-error font-label-mono text-caption font-medium transition-colors" id="modal-discard-btn">
+          Discard Changes
+        </button>
+<button class="w-full sm:w-auto h-9 px-space-md rounded-lg bg-primary hover:bg-tertiary text-on-primary font-label-mono text-caption font-semibold transition-colors shadow-sm flex items-center justify-center gap-space-xs" id="modal-fix-btn">
+<span class="material-symbols-outlined text-[16px]">build_circle</span>
+<span>Stay on Page &amp; Fix Errors</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+      const modal = document.getElementById('unsaved-modal-overlay');
+      const fixBtn = document.getElementById('modal-fix-btn');
+      const cancelBtn = document.getElementById('modal-cancel-btn');
+      const discardModalBtn = document.getElementById('modal-discard-btn');
+      const discardBannerBtn = document.getElementById('discard-banner-btn');
+      const stageBannerBtn = document.getElementById('stage-banner-btn');
+
+      function hideModal() {
+        modal.classList.add('hidden');
+      }
+
+      function showModal() {
+        modal.classList.remove('hidden');
+      }
+
+      if (fixBtn) fixBtn.addEventListener('click', hideModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', hideModal);
+      if (discardModalBtn) discardModalBtn.addEventListener('click', hideModal);
+      if (discardBannerBtn) discardBannerBtn.addEventListener('click', showModal);
+      if (stageBannerBtn) stageBannerBtn.addEventListener('click', showModal);
+    })();
+  </script>
+</div></main></div></body></html>

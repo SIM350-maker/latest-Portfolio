@@ -1,0 +1,568 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-unavailable":"#EF4444","light-surface":"#FFFFFF","secondary-container":"#d7e3fb","secondary-fixed-dim":"#bbc7de","on-primary-fixed":"#001354","surface-variant":"#d9e2fc","inverse-surface":"#273044","surface-container":"#e9edff","on-tertiary-container":"#f1f0ff","surface-container-highest":"#d9e2fc","dark-surface-raised":"#1B2637","on-error":"#ffffff","on-tertiary-fixed":"#001355","on-secondary-container":"#596579","on-tertiary":"#ffffff","tertiary-container":"#4363e1","tertiary-fixed":"#dde1ff","light-text-primary":"#172033","surface-tint":"#154ceb","surface-container-lowest":"#ffffff","inverse-primary":"#b8c4ff","primary-fixed":"#dde1ff","dark-surface":"#151E2D","light-border":"#E2E7EF","outline":"#747687","on-error-container":"#93000a","error":"#ba1a1a","on-secondary-fixed-variant":"#3b475a","on-surface-variant":"#434656","dark-text-primary":"#F2F5FA","primary-fixed-dim":"#b8c4ff","status-public":"#10B981","on-background":"#121b2e","secondary":"#535f73","light-background":"#F8F9FB","inverse-on-surface":"#edf0ff","status-redacted":"#64748B","on-secondary":"#ffffff","dark-text-secondary":"#AAB6C8","outline-variant":"#c4c5d8","tertiary":"#2448c7","primary-container":"#315efb","dark-accent":"#4D76FD","surface-bright":"#f9f9ff","error-container":"#ffdad6","light-text-secondary":"#596579","on-primary":"#ffffff","surface":"#f9f9ff","background":"#f9f9ff","on-tertiary-fixed-variant":"#0737b8","on-primary-fixed-variant":"#0036bb","tertiary-fixed-dim":"#b8c3ff","dark-background":"#0E1420","status-restricted":"#F59E0B","on-primary-container":"#f1f1ff","surface-dim":"#d1daf4","on-secondary-fixed":"#101c2d","on-surface":"#121b2e","status-published":"#3B82F6","surface-container-low":"#f1f3ff","surface-container-high":"#e1e8ff","status-archived":"#6B7280","secondary-fixed":"#d7e3fb","status-draft":"#8B5CF6","primary":"#0042df","dark-border":"#2A374A"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-xs":"0.25rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter":"1.5rem","space-3xl":"4rem","space-lg":"1.5rem","space-2xl":"3rem","margin":"2rem","space-xl":"2rem","gutter-sm":"1rem","space-md":"1rem"},"fontFamily":{"caption":["Inter"],"hero-lg":["Inter"],"headline-md":["Inter"],"body-md":["Inter"],"label-mono":["JetBrains Mono"],"code-block":["JetBrains Mono"],"code-inline":["JetBrains Mono"],"body-sm":["Inter"],"hero-lg-mobile":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"body-lg":["Inter"],"headline-lg-mobile":["Inter"]},"fontSize":{"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"><a class="flex flex-col" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">Simon Ipara</span><span class="font-label-mono text-caption text-on-surface-variant">Software Engineer</span></a></div><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-medium"><a aria-current="page" class="transition-colors text-primary font-medium" data-path="home" href="#home">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#about">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="projects" href="#projects">Projects</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="skills" href="#skills">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="engineering" href="#engineering">Engineering</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="evidence" href="#evidence">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="experience" href="#experience">Experience</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#contact">Contact</a></nav><div class="flex items-center gap-space-md"><button aria-label="Theme indicator" class="h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">light_mode</span><span class="font-label-mono text-caption">LIGHT</span></button><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" data-path="contact" href="#contact">Get in touch</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><button aria-label="Open menu" class="xl:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden bg-surface-container-low pt-space-3xl pb-space-3xl">
+<div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-secondary-container/40 blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -left-24 w-80 h-80 rounded-full bg-surface-variant/50 blur-3xl pointer-events-none"></div>
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Hero Text -->
+<div class="lg:col-span-8 flex flex-col space-y-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container text-on-surface-variant font-label-mono text-caption uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-status-public animate-pulse"></span>
+              SOFTWARE ENGINEER · NAIROBI, KENYA
+            </span>
+</div>
+<h1 class="font-hero-lg text-headline-lg md:font-hero-lg md:text-hero-lg text-on-surface font-bold tracking-tight">
+            I build practical software systems with thoughtful architecture, clear user experiences, and a focus on solving real problems.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            Full-stack engineering across web applications, APIs, databases, and mobile experiences—with an emphasis on maintainable systems and verifiable project work.
+          </p>
+<div class="pt-space-sm flex flex-wrap items-center gap-space-md">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-primary text-on-primary font-body-md text-body-md font-semibold hover:bg-tertiary transition-all shadow-sm hover:shadow-md" data-path="projects" href="#projects">
+<span class="">Explore projects</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-lg py-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container transition-all shadow-sm" data-path="about" href="#about">
+<span class="">About my approach</span>
+<span class="material-symbols-outlined text-[18px]">north_east</span>
+</a>
+</div>
+<div class="pt-space-md flex items-center gap-space-lg">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-mono text-caption">
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+<span class="">100% Cryptographic Provenance</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-mono text-caption">
+<span class="material-symbols-outlined text-[18px] text-secondary">database</span>
+<span class="">PostgreSQL · TypeScript · Docker</span>
+</div>
+</div>
+</div>
+<!-- Hero Metric / Visual Bento Panel -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase tracking-wider">System State</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-public/15 text-status-public font-label-mono text-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                STABLE
+              </span>
+</div>
+<!-- Mini Sparkline inline SVG -->
+<div class="py-space-sm">
+<div class="text-caption font-label-mono text-on-surface-variant mb-1">Throughput Latency (p99)</div>
+<svg class="w-full h-16 text-primary" fill="none" viewBox="0 0 280 60">
+<path d="M0 45 C 30 45, 40 30, 70 35 C 100 40, 110 15, 140 22 C 170 30, 180 10, 210 18 C 240 25, 255 12, 280 14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M0 45 C 30 45, 40 30, 70 35 C 100 40, 110 15, 140 22 C 170 30, 180 10, 210 18 C 240 25, 255 12, 280 14 L 280 60 L 0 60 Z" fill="currentColor" fill-opacity="0.08"></path>
+<circle cx="280" cy="14" fill="currentColor" r="3.5"></circle>
+</svg>
+<div class="flex justify-between items-center text-caption font-label-mono text-on-surface-variant mt-1">
+<span class="">0.8ms API Avg</span>
+<span class="text-status-public font-semibold">99.98% Uptime</span>
+</div>
+</div>
+<div class="pt-space-sm mt-space-sm grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low rounded-lg p-space-sm">
+<span class="block font-label-mono text-caption text-on-surface-variant">Architecture</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">Clean / DDD</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm">
+<span class="block font-label-mono text-caption text-on-surface-variant">Location</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">EAT (UTC+3)</span>
+</div>
+</div>
+</div>
+<div class="bg-secondary-container/50 rounded-xl p-space-md shadow-sm flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[28px]">terminal</span>
+<div class="min-w-0 flex-1">
+<p class="font-label-mono text-caption text-on-secondary-container truncate">git log -1 --format="%h - %s"</p>
+<p class="font-body-sm text-body-sm text-on-surface font-medium truncate">feat(core): harden cryptographic proof trails</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Engineering Capability Strip -->
+<section class="w-full bg-surface-container-lowest shadow-sm py-space-xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Capability 1 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">layers</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Clean Architecture</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Decoupled business logic, domain boundaries, and testable modular services.</p>
+</div>
+</div>
+<!-- Capability 2 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Type-Safe APIs</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Strict runtime schema validations, OpenAPI contracts, and end-to-end TypeScript safety.</p>
+</div>
+</div>
+<!-- Capability 3 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">storage</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Data Modeling</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Disciplined relational normalization, indexing strategies, and document paradigms.</p>
+</div>
+</div>
+<!-- Capability 4 -->
+<div class="flex items-start gap-space-md p-space-sm rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Observability &amp; Testing</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Structured telemetry, end-to-end verification, and regression prevention suites.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Projects Grid -->
+<section class="w-full py-space-3xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
+<div>
+<span class="font-label-mono text-caption text-primary uppercase tracking-wider block mb-space-xs">Production Deliverables</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Featured Projects</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-1">Production-ready systems crafted for operational stability, maintainability, and domain efficiency.</p>
+</div>
+<a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm font-semibold text-primary hover:text-tertiary transition-colors" data-path="projects" href="#projects">
+<span class="">View full catalog (9 systems)</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Project Card 1: Healthcare MIS -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+<div class="relative w-full aspect-video overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Modern clinical healthcare web management dashboard interface showing electronic patient charts, appointment booking timetable, diagnostic ledger with clean minimal typography and high-contrast blue data accents on crisp white and slate surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIyUjwdkuGuvcOcrNoDyqq2lbvBJwWtgRHtEshfkrPuVl5OZm05QAEf47pM25RY0Fkr9QBn4mpbk1KV5Bb-2lZuK-mjmEpaQURjGISMSql_AVqr5yodPaRSgfU5zwsADez2Kg64P8gff0_-HvCJtDReHdHRNek5cDyKG5poPluiU4o462SmMcGusdGPasvfr7CecXuVHJgxNc_jKYxPEK1y8tTPpDQXbsQSWo6_O5rSYqMLAsr1OY_FQ">
+<div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-status-published text-white font-label-mono text-caption uppercase tracking-wider font-semibold">Production</span>
+</div>
+<div class="absolute top-space-sm right-space-sm flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur text-on-surface font-label-mono text-caption">v3.1.2</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1">
+<div class="flex items-center justify-between text-caption font-label-mono text-on-surface-variant mb-space-xs">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">badge</span>
+                Lead Full Stack Developer
+              </span>
+<span class="">2024 · Deployed</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+              Web-Based Healthcare Management Information System
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm line-clamp-3">
+              Patient record workflows, appointment dispatching, and role-based access control with audited operational trails. Architected for zero data loss during unstable network conditions in peripheral clinics.
+            </p>
+<div class="mt-auto pt-space-lg flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">Next.js</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">Node.js</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">PostgreSQL</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">Docker</span>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<a class="font-body-sm text-body-sm font-semibold text-primary inline-flex items-center gap-1 hover:underline" data-path="projects" href="#projects">
+                Read architecture brief
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<span class="inline-flex items-center gap-1 font-label-mono text-caption text-status-public">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                HIPAA compliant
+              </span>
+</div>
+</div>
+</div>
+<!-- Project Card 2: PadTrack -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+<div class="relative w-full aspect-video overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Educational tracking application UI mock showing student attendance metrics, hygiene resource inventory distribution graphs, geographic heatmaps, and attendance milestones formatted in an accessible contemporary interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSXhjoOosMsGMo8WXlf5MYhGs_MoOtdkVir5622XiZDjdbFW6ssYvjY_7HnS9ASrSBDIKuJ8iFDqM9nkAz1AQF77wAkwsPKjHVfHXsyHKcb-8ch7l3N5YjaKYSwLNW86b0AC5jyXQT4fdFvkUqqLbhzd469O72CDbs3_WMMTMpgOiNPLKf6klXyTc2W06bpaup1zAnqOJpzVA2Po1B4wl0f9BSi6tD92PqVd_ng889CyYAba2ghcVjzw">
+<div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-status-published text-white font-label-mono text-caption uppercase tracking-wider font-semibold">Active Pilot</span>
+</div>
+<div class="absolute top-space-sm right-space-sm flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur text-on-surface font-label-mono text-caption">v1.4.0</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1">
+<div class="flex items-center justify-between text-caption font-label-mono text-on-surface-variant mb-space-xs">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">architecture</span>
+                Frontend &amp; System Architect
+              </span>
+<span class="">2024 · Pilot</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+              PadTrack — School &amp; Learner Tracking Concept
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm line-clamp-3">
+              Tracking learner attendance, supply distribution patterns, and educational milestone indicators. Focuses on transparency and audit integrity across distributed primary learning centers.
+            </p>
+<div class="mt-auto pt-space-lg flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">React</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">TypeScript</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">Tailwind CSS</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">Express</span>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<a class="font-body-sm text-body-sm font-semibold text-primary inline-flex items-center gap-1 hover:underline" data-path="projects" href="#projects">
+                Read architecture brief
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<span class="inline-flex items-center gap-1 font-label-mono text-caption text-secondary">
+<span class="material-symbols-outlined text-[14px]">analytics</span>
+                Field telemetry
+              </span>
+</div>
+</div>
+</div>
+<!-- Project Card 3: Professional Task Manager -->
+<div class="group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+<div class="relative w-full aspect-video overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High-density productivity task manager application screen showing hierarchical task trees, directed acyclic dependency graphs, keyboard shortcut legend, and clean light gray interface containers with subtle accent highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2jXT_mxF8APVhhBX6j-Q3NdkBdmSxLLBU30AxNyxPVX-_MruYJbN3SEs0WMNxGh6MYUvi-QCxt2hRNFHlAIQSBmE6_--ek3oQQSLoILbAeKfzeUAQ96aUC_be5rm8SJZm1siwsPQvmR3e_7-LdMpwOWiCPzvb0EOIaKahN-GHTr4FMyMWuDPHmW6_UN-INSCtNDHHGi6PA3vK6b8k15q5WqHROgmoN8PBKgx0vSl60292Jweam_ggLw">
+<div class="absolute top-space-sm left-space-sm flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-status-published text-white font-label-mono text-caption uppercase tracking-wider font-semibold">Open Source</span>
+</div>
+<div class="absolute top-space-sm right-space-sm flex items-center gap-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur text-on-surface font-label-mono text-caption">MIT License</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1">
+<div class="flex items-center justify-between text-caption font-label-mono text-on-surface-variant mb-space-xs">
+<span class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[14px]">code</span>
+                Full Stack Engineer
+              </span>
+<span class="">2023 · Stable</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">
+              Professional Task Manager
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-sm line-clamp-3">
+              Modular workspace task scheduling with dependency graphs, offline caching, and keyboard-first interactions designed for deep focus engineering teams.
+            </p>
+<div class="mt-auto pt-space-lg flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">TypeScript</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">React</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">REST API</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">SQLite</span>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between">
+<a class="font-body-sm text-body-sm font-semibold text-primary inline-flex items-center gap-1 hover:underline" data-path="projects" href="#projects">
+                Read architecture brief
+                <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<span class="inline-flex items-center gap-1 font-label-mono text-caption text-secondary">
+<span class="material-symbols-outlined text-[14px]">keyboard</span>
+                Vim navigation
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Engineering Principles Section -->
+<section class="w-full bg-surface-container-low py-space-3xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
+<div>
+<span class="font-label-mono text-caption text-primary uppercase tracking-wider block mb-space-xs">Philosophy &amp; Method</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Engineering Principles</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-1">Rigorous development is not measured by lines of boilerplate, but by systemic resilience and clarity under pressure.</p>
+</div>
+<a class="inline-flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold hover:bg-surface-container-highest transition-colors" data-path="engineering" href="#engineering">
+<span class="">Read Engineering Spec</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Principle 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center text-primary mb-space-lg font-label-mono text-headline-sm font-bold">
+              01
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Evidence over claims</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+              Every architectural decision is substantiated by benchmarks, reproducible code artifacts, and cryptographic provenance rather than unsubstantiated claims.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-lg flex items-center gap-space-xs text-on-surface-variant font-label-mono text-caption">
+<span class="material-symbols-outlined text-[16px] text-primary">fact_check</span>
+<span class="">Audited Artifact Verification</span>
+</div>
+</div>
+<!-- Principle 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center text-primary mb-space-lg font-label-mono text-headline-sm font-bold">
+              02
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Clarity over spectacle</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+              Rejecting brittle trendy paradigms in favor of robust semantic primitives, clean domain boundaries, and predictable mental models that scale over years.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-lg flex items-center gap-space-xs text-on-surface-variant font-label-mono text-caption">
+<span class="material-symbols-outlined text-[16px] text-primary">psychology</span>
+<span class="">Maintainable Cognitive Load</span>
+</div>
+</div>
+<!-- Principle 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center text-primary mb-space-lg font-label-mono text-headline-sm font-bold">
+              03
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">Rigorous verification</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-sm">
+              Continuous schema contracts, thorough regression testing, and resilient fault isolation prevent regressions before code ever touches production infrastructure.
+            </p>
+</div>
+<div class="pt-space-lg mt-space-lg flex items-center gap-space-xs text-on-surface-variant font-label-mono text-caption">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span class="">Deterministic CI/CD Pipelines</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Evidence Library Preview Section -->
+<section class="w-full py-space-3xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
+<div>
+<span class="font-label-mono text-caption text-primary uppercase tracking-wider block mb-space-xs">Cryptographic Repository</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Evidence Library Preview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-1">Verifiable project proofs, architectural specifications, and audited deliverables with immutable classification tiers.</p>
+</div>
+<a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm font-semibold text-primary hover:text-tertiary transition-colors" data-path="evidence" href="#evidence">
+<span class="">Explore all evidence records</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<!-- Evidence Filter Interactive Tabs -->
+<div class="flex items-center gap-space-sm mb-space-lg overflow-x-auto pb-1" id="evidence-tabs">
+<button class="evidence-tab-btn active px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-mono text-caption transition-colors" data-filter="all">All Records (14)</button>
+<button class="evidence-tab-btn px-space-md py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-mono text-caption transition-colors" data-filter="public">Public (10)</button>
+<button class="evidence-tab-btn px-space-md py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-mono text-caption transition-colors" data-filter="redacted">Redacted / Enterprise (4)</button>
+</div>
+<!-- Evidence Items List / Table Cards -->
+<div class="space-y-space-sm" id="evidence-list">
+<!-- Evidence 1 -->
+<div class="evidence-item flex flex-col md:flex-row md:items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all gap-space-md" data-category="public">
+<div class="flex items-start md:items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">HIS Architecture Specification RFC-04</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                  PUBLIC
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Formal data access layer, ACID transactional guarantees, and HIPAA security boundary specification.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-lg shrink-0 justify-between md:justify-end">
+<span class="font-label-mono text-caption text-on-surface-variant">SHA256: 4e9f..32cb</span>
+<a class="px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-body-sm text-body-sm font-semibold transition-colors inline-flex items-center gap-1" data-path="evidence" href="#evidence">
+<span class="">View Proof</span>
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</a>
+</div>
+</div>
+<!-- Evidence 2 -->
+<div class="evidence-item flex flex-col md:flex-row md:items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all gap-space-md" data-category="redacted">
+<div class="flex items-start md:items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center shrink-0 text-status-redacted">
+<span class="material-symbols-outlined text-[20px]">enhanced_encryption</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">Enterprise Payment Ledger Gateway Audit</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-status-redacted/15 text-status-redacted font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-redacted"></span>
+                  REDACTED
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">High-volume transactional settlement engine. Proprietary bank credentials sanitised under NDA terms.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-lg shrink-0 justify-between md:justify-end">
+<span class="font-label-mono text-caption text-on-surface-variant">SHA256: d18b..98a4</span>
+<a class="px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold transition-colors inline-flex items-center gap-1" data-path="evidence" href="#evidence">
+<span class="">View Sanitised</span>
+<span class="material-symbols-outlined text-[16px]">lock_open</span>
+</a>
+</div>
+</div>
+<!-- Evidence 3 -->
+<div class="evidence-item flex flex-col md:flex-row md:items-center justify-between p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all gap-space-md" data-category="public">
+<div class="flex items-start md:items-center gap-space-md min-w-0">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold truncate">PadTrack Field Trial Performance Verification</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-caption font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+                  PUBLIC
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Empirical load test metrics across low-bandwidth 2G/3G mobile networks in rural primary institutions.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-lg shrink-0 justify-between md:justify-end">
+<span class="font-label-mono text-caption text-on-surface-variant">SHA256: 7f0a..bb12</span>
+<a class="px-space-md py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-body-sm text-body-sm font-semibold transition-colors inline-flex items-center gap-1" data-path="evidence" href="#evidence">
+<span class="">View Proof</span>
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Terminal / Quick Probe Showcase -->
+<section class="w-full bg-surface-container-lowest py-space-2xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="bg-dark-surface rounded-xl p-space-lg md:p-space-xl text-dark-text-primary shadow-xl overflow-hidden relative">
+<div class="flex items-center justify-between pb-space-md text-caption font-label-mono text-dark-text-secondary">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-status-unavailable inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-status-restricted inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-status-public inline-block"></span>
+<span class="ml-2">simon@ipara-workstation: ~/production-diagnostics</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2 py-0.5 rounded bg-dark-surface-raised font-label-mono text-caption text-status-public">KERNEL 6.6.0-x86_64</span>
+</div>
+</div>
+<div class="space-y-space-sm font-code-block text-code-block">
+<div class="flex gap-2">
+<span class="text-status-public font-bold">$</span>
+<span class="text-dark-text-primary">curl -s https://api.ipara.engineer/v1/system/health | jq .</span>
+</div>
+<pre class="text-secondary-fixed-dim bg-dark-background/80 p-space-md rounded-lg overflow-x-auto text-caption font-label-mono leading-relaxed">{
+  "status": "healthy",
+  "engineer": "Simon Ipara",
+  "role": "Full Stack Software Engineer",
+  "location": "Nairobi, Kenya (UTC+3)",
+  "specialties": [
+    "Clean Domain-Driven Architecture",
+    "Type-Safe TypeScript &amp; Node.js Ecosystems",
+    "High-Concurrency PostgreSQL &amp; Data Pipelines"
+  ],
+  "verification": {
+    "cryptographic_audit": "PASSED",
+    "integrity_score": "1.00"
+  }
+}</pre>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact CTA Block -->
+<section class="w-full py-space-3xl bg-surface-container-low">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin">
+<div class="bg-surface-container-lowest rounded-xl p-space-xl md:p-space-3xl shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-8 space-y-space-sm">
+<span class="font-label-mono text-caption text-primary uppercase tracking-wider block">Initiate System Communication</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Ready to build resilient, maintainable software?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+              Available for full-time engineering appointments, consulting contracts, and technical system architecture advisory. Let's discuss real solutions to complex problems.
+            </p>
+<div class="pt-space-md flex flex-wrap items-center gap-space-md">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-3 rounded-lg bg-primary text-on-primary font-body-md text-body-md font-semibold hover:bg-tertiary transition-all shadow-sm" href="mailto:simonipara428@gmail.com">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+<span class="">simonipara428@gmail.com</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-lg py-3 rounded-lg bg-surface-container text-on-surface font-body-md text-body-md font-semibold hover:bg-surface-container-highest transition-colors" data-path="contact" href="#contact">
+<span class="">Go to Contact Console</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-space-sm bg-surface-container-low p-space-lg rounded-xl">
+<div class="font-label-mono text-caption text-on-surface-variant uppercase tracking-wider">Direct Directives</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Primary Channel:</span>
+<span class="font-label-mono text-on-surface font-medium">Email Dispatch</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Response Window:</span>
+<span class="font-label-mono text-status-public font-medium">&lt; 24 Hours</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Timezone:</span>
+<span class="font-label-mono text-on-surface font-medium">EAT (UTC+03:00)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Active Status:</span>
+<span class="font-label-mono text-status-public font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span> Open for contracts
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  (function initHomeInteractive() {
+    // Evidence Filter interactive tabs
+    const tabButtons = document.querySelectorAll('.evidence-tab-btn');
+    const items = document.querySelectorAll('.evidence-item');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        
+        tabButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'active');
+          b.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary', 'active');
+        btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+
+        items.forEach(item => {
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script></main><footer class="w-full bg-surface-container-lowest mt-space-3xl"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"><div class="md:col-span-2 space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Simon Ipara Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">Full-stack software engineer specializing in high-throughput distributed systems, strict type safety, and verifiable evidence-backed architecture.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-mono text-caption"><span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>Nairobi, Kenya (EAT / UTC+3)</span></div></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Connectivity</h3><ul class="space-y-space-sm"><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-label-mono text-caption">GitHub: SIM350-maker</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">share</span><span class="font-label-mono text-caption">LinkedIn: simonipara</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">mail</span><span class="font-label-mono text-caption">simonipara428@gmail.com</span></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">System Access</h3><ul class="space-y-space-sm"><li class=""><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-primary hover:text-tertiary transition-colors" data-path="login" href="#manage"><span class="material-symbols-outlined text-[16px]">lock</span>Admin CMS Portal</a></li><li class=""><span class="font-label-mono text-caption text-on-surface-variant block">Provenance: Verifiable Hash</span></li><li class=""><span class="font-label-mono text-caption text-on-surface-variant block">Status: Production v2.4.0</span></li></ul></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant"><p class="font-caption text-caption">© 2025 Simon Ipara. All systems verified and operational.</p><div class="flex items-center gap-space-md"><span class="font-caption text-caption">Evidence Integrity: 100% Cryptographic Audit</span></div></div></div></footer>
+
+
+
+<div id="prototype-route-switcher" class="fixed bottom-6 right-6 z-50 flex flex-col items-end"><button id="prototype-switcher-toggle" aria-expanded="false" class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-full bg-primary text-on-primary font-label-mono text-caption font-semibold shadow-xl hover:bg-tertiary transition-all duration-300 border border-primary-fixed-dim/20"><span class="w-2 h-2 rounded-full bg-status-public animate-pulse"></span><span class="material-symbols-outlined text-[18px]">route</span><span class="">Prototype Route Switcher</span><span class="material-symbols-outlined text-[16px] transition-transform" id="switcher-chevron">expand_less</span></button><div id="prototype-route-menu" class="hidden mt-2 w-80 p-space-sm bg-surface-container-lowest/90 backdrop-blur-xl border border-outline-variant/30 rounded-xl shadow-xl flex flex-col gap-1"><div class="px-2 py-1 flex items-center justify-between border-b border-outline-variant/20 mb-1"><span class="font-label-mono text-caption text-on-surface-variant uppercase tracking-wider font-semibold">Screen Navigator (10 Routes)</span><span class="text-caption font-label-mono text-primary font-bold" id="current-route-badge">#home</span></div><div class="grid grid-cols-2 gap-1 max-h-72 overflow-y-auto"><button data-route="#home" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-primary bg-surface-container-low flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">home</span>Home</button><button data-route="#about" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">person</span>About</button><button data-route="#projects" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">folder</span>Projects</button><button data-route="#case-study" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">article</span>Case Study</button><button data-route="#skills" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">terminal</span>Skills</button><button data-route="#engineering" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">memory</span>Engineering</button><button data-route="#evidence" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">verified</span>Evidence</button><button data-route="#experience" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">work</span>Experience</button><button data-route="#contact" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">mail</span>Contact</button><button data-route="#manage" class="proto-nav-btn text-left px-2 py-1.5 rounded-lg text-body-sm font-medium hover:bg-surface-container transition-colors text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">dashboard</span>CMS Portal</button></div></div></div><script>(function initPrototypeRouting() { const toggle = document.getElementById('prototype-switcher-toggle'); const menu = document.getElementById('prototype-route-menu'); const chevron = document.getElementById('switcher-chevron'); const badge = document.getElementById('current-route-badge'); if (toggle && menu) { toggle.addEventListener('click', (e) => { e.stopPropagation(); const isHidden = menu.classList.contains('hidden'); menu.classList.toggle('hidden', !isHidden); if (chevron) chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)'; }); document.addEventListener('click', (e) => { if (!menu.contains(e.target) && !toggle.contains(e.target)) { menu.classList.add('hidden'); if (chevron) chevron.style.transform = 'rotate(0deg)'; } }); } function syncActiveRoute(route) { if (!route) route = '#home'; if (badge) badge.textContent = route; const navLinks = document.querySelectorAll('header nav a'); navLinks.forEach(link => { const href = link.getAttribute('href'); const isMatch = href === route || (route === '#home' && (href === '#home' || href === '#')); if (isMatch) { link.classList.add('text-primary', 'font-medium'); link.classList.remove('text-on-surface-variant'); link.setAttribute('aria-current', 'page'); } else { link.classList.remove('text-primary', 'font-medium'); link.classList.add('text-on-surface-variant'); link.removeAttribute('aria-current'); } }); const switcherBtns = document.querySelectorAll('.proto-nav-btn'); switcherBtns.forEach(btn => { const target = btn.getAttribute('data-route'); if (target === route) { btn.classList.add('text-primary', 'bg-surface-container-low', 'font-bold'); btn.classList.remove('text-on-surface-variant'); } else { btn.classList.remove('text-primary', 'bg-surface-container-low', 'font-bold'); btn.classList.add('text-on-surface-variant'); } }); } document.querySelectorAll('.proto-nav-btn').forEach(btn => { btn.addEventListener('click', () => { const target = btn.getAttribute('data-route'); window.location.hash = target; syncActiveRoute(target); if (menu) { menu.classList.add('hidden'); if (chevron) chevron.style.transform = 'rotate(0deg)'; } }); }); window.addEventListener('hashchange', () => { syncActiveRoute(window.location.hash || '#home'); }); document.querySelectorAll('a[href^="#"]').forEach(link => { link.addEventListener('click', (e) => { const hash = link.getAttribute('href'); if (hash && hash !== '#') { syncActiveRoute(hash); } }); }); syncActiveRoute(window.location.hash || '#home'); })();</script></body></html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"status-published":"#3B82F6","light-surface":"#FFFFFF","status-unavailable":"#EF4444","inverse-surface":"#273044","on-secondary-fixed-variant":"#3b475a","dark-text-primary":"#F2F5FA","on-surface-variant":"#434656","secondary-fixed-dim":"#bbc7de","status-redacted":"#64748B","surface":"#f9f9ff","dark-surface":"#151E2D","surface-container-high":"#e1e8ff","surface-container-low":"#f1f3ff","dark-border":"#2A374A","on-background":"#121b2e","background":"#f9f9ff","primary-container":"#315efb","status-draft":"#8B5CF6","on-tertiary-fixed-variant":"#0737b8","status-restricted":"#F59E0B","dark-surface-raised":"#1B2637","surface-container-lowest":"#ffffff","error-container":"#ffdad6","outline-variant":"#c4c5d8","surface-bright":"#f9f9ff","dark-text-secondary":"#AAB6C8","primary-fixed":"#dde1ff","surface-tint":"#154ceb","tertiary-container":"#4363e1","on-tertiary":"#ffffff","surface-dim":"#d1daf4","dark-background":"#0E1420","on-primary-fixed":"#001354","on-secondary-container":"#596579","on-primary":"#ffffff","secondary":"#535f73","status-public":"#10B981","dark-accent":"#4D76FD","tertiary-fixed":"#dde1ff","secondary-container":"#d7e3fb","surface-variant":"#d9e2fc","on-tertiary-fixed":"#001355","tertiary":"#2448c7","status-archived":"#6B7280","surface-container":"#e9edff","light-border":"#E2E7EF","on-primary-fixed-variant":"#0036bb","on-secondary":"#ffffff","primary":"#0042df","light-background":"#F8F9FB","on-primary-container":"#f1f1ff","light-text-secondary":"#596579","on-surface":"#121b2e","on-error-container":"#93000a","inverse-primary":"#b8c4ff","on-secondary-fixed":"#101c2d","tertiary-fixed-dim":"#b8c3ff","on-tertiary-container":"#f1f0ff","inverse-on-surface":"#edf0ff","secondary-fixed":"#d7e3fb","light-text-primary":"#172033","on-error":"#ffffff","error":"#ba1a1a","outline":"#747687","surface-container-highest":"#d9e2fc","primary-fixed-dim":"#b8c3ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"1rem","space-sm":"0.5rem","space-3xl":"4rem","margin":"2rem","space-2xl":"3rem","gutter-sm":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-xl":"2rem","margin-mobile":"1rem","gutter":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"body-md":["Inter"],"body-sm":["Inter"],"headline-lg-mobile":["Inter"],"body-lg":["Inter"],"code-block":["JetBrains Mono"],"headline-sm":["Inter"],"headline-lg":["Inter"],"hero-lg":["Inter"],"code-inline":["JetBrains Mono"],"label-mono":["JetBrains Mono"],"hero-lg-mobile":["Inter"],"caption":["Inter"]},"fontSize":{"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"code-block":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"hero-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.025em","fontWeight":"700"}],"code-inline":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-mono":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"hero-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"700"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-light-border/70 shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Simon Ipara Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><a class="flex flex-col group" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface group-hover:text-primary transition-colors">Simon Ipara</span><span class="font-label-mono text-caption text-on-surface-variant">Full-Stack Engineer</span></a></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-semibold border-b-2 border-primary pb-0.5"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="home" href="#">Home</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="about" href="#">About</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="projects" href="#">Projects</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="skills" href="#">Skills</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="engineering" href="#">Engineering</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="evidence" href="#">Evidence</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface hover:border-b-2 hover:border-outline-variant transition-all pb-0.5" data-path="experience" href="#">Experience</a><a aria-current="page" class="transition-all text-primary font-semibold border-b-2 border-primary pb-0.5" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm md:gap-space-md"><a class="hidden sm:inline-flex items-center gap-space-xs h-9 px-space-sm rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-mono text-caption" data-path="cms-workspace" href="#" title="Admin CMS Workspace"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span><span>Manage</span></a><a class="hidden sm:inline-flex items-center justify-center h-9 px-space-md rounded-lg bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-colors" data-path="contact" href="#">Get in touch</a><a class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" data-path="cms-workspace" href="#" title="Open CMS Workspace"><span class="material-symbols-outlined text-on-surface text-[18px]">person</span></a><button aria-label="Open menu" class="xl:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<div class="max-w-[1200px] mx-auto w-full px-margin-mobile md:px-margin py-space-xl">
+<!-- Top Editorial Header & Node Metadata -->
+<section class="mb-space-xl relative">
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">
+<span class="w-2 h-2 rounded-full bg-status-public animate-pulse"></span>
+            PORT_25 // DISPATCH_READY
+          </span>
+<span class="font-label-mono text-caption text-on-surface-variant hidden sm:inline">
+            NODE: NBO-01.SYSTEMS
+          </span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-mono text-caption text-on-surface-variant">
+            LATENCY: 14ms (EAT / UTC+3)
+          </span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-mono text-caption">
+            TLS v1.3 AUDITED
+          </span>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pt-space-xs">
+<div>
+<span class="font-label-mono text-caption text-primary tracking-widest uppercase block mb-1">
+            Section 06.11 // Direct Communication Layer
+          </span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+            Initiate Communication / Contact Console
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">
+            Direct dispatch for engineering roles, technical advisory, system design consulting, and code collaboration. Verified channels routed directly to personal workstation.
+          </p>
+</div>
+<div class="hidden lg:flex flex-col items-end gap-1">
+<div class="flex items-center gap-space-xs text-on-surface font-label-mono text-caption">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span>SIMON IPARA (PRIMARY KEY ID: 0x9D4E2A10)</span>
+</div>
+<span class="font-label-mono text-caption text-on-surface-variant">
+            SIG_HASH: SHA256:7f83b165...ecb132a
+          </span>
+</div>
+</div>
+</section>
+<!-- Success Feedback Overlay Toast (Interactive State Triggered via JS) -->
+<div class="hidden fixed bottom-6 right-6 z-50 max-w-md w-full bg-inverse-surface text-inverse-on-surface p-space-md rounded-xl shadow-2xl transition-all duration-300" id="dispatch-toast">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-status-public text-[22px] mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-inverse-on-surface text-[15px]">Transmission Dispatched</h4>
+<span class="font-label-mono text-caption text-status-public">200 OK</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-dim mt-1">
+            Inquiry payload packaged and routed. Simulated prototype confirmation generated with cryptographic receipt.
+          </p>
+<div class="mt-2 pt-2 bg-dark-surface/40 p-2 rounded text-[11px] font-label-mono text-secondary-fixed-dim">
+            RECEIPT: PKT_<span id="toast-receipt-id">8829-AF</span>-SIMONIPARA
+          </div>
+</div>
+<button class="text-inverse-on-surface/60 hover:text-inverse-on-surface" onclick="document.getElementById('dispatch-toast').classList.add('hidden')">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Main Two-Column Architectural Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- LEFT COLUMN: Direct Channels & Operational Parameters (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Identity & Status Panel -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<span class="font-label-mono text-caption uppercase text-on-surface tracking-wider">
+              Channel Availability
+            </span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-status-public/10 text-status-public font-label-mono text-caption">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+              ACTIVE DISPATCH
+            </span>
+</div>
+<!-- Engagement Status -->
+<div class="bg-surface-container-low rounded-lg p-space-md mb-space-md">
+<span class="font-label-mono text-caption text-on-surface-variant block uppercase tracking-wider mb-1">
+              Current Engagement Status
+            </span>
+<p class="font-headline-sm text-headline-sm text-on-surface text-[16px] leading-snug">
+              Available for full-time engineering appointments &amp; select contract advisory
+            </p>
+<div class="flex items-center gap-space-xs mt-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">schedule</span>
+<span>Typical Response: <strong class="text-on-surface font-medium">Within 24 hours</strong></span>
+</div>
+</div>
+<!-- Direct Coordinates Grid -->
+<div class="space-y-space-sm">
+<!-- Email Item with Copy & Mailto -->
+<div class="p-space-sm rounded-lg bg-surface-container-low/70 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-on-surface-variant uppercase">Direct Mail Routing</span>
+<span class="font-label-mono text-caption text-status-public hidden" id="copy-status">COPIED TO CLIPBOARD</span>
+</div>
+<div class="flex items-center justify-between gap-space-sm">
+<a class="font-label-mono text-body-sm text-on-surface font-medium hover:text-primary transition-colors truncate" href="mailto:simonipara428@gmail.com">
+                  simonipara428@gmail.com
+                </a>
+<div class="flex items-center gap-1 shrink-0">
+<button aria-label="Copy email address" class="p-1.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" id="copy-email-btn" onclick="navigator.clipboard.writeText('simonipara428@gmail.com'); const s = document.getElementById('copy-status'); s.classList.remove('hidden'); setTimeout(() =&gt; s.classList.add('hidden'), 2200);" title="Copy email address">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+<a aria-label="Compose email" class="p-1.5 rounded bg-primary text-on-primary hover:bg-tertiary transition-colors" href="mailto:simonipara428@gmail.com" title="Open local mail client">
+<span class="material-symbols-outlined text-[16px]">outgoing_mail</span>
+</a>
+</div>
+</div>
+</div>
+<!-- GitHub Profile item -->
+<a class="p-space-sm rounded-lg bg-surface-container-low/70 flex items-center justify-between group hover:bg-surface-container transition-colors" href="https://github.com/SIM350-maker" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<div>
+<span class="font-label-mono text-caption text-on-surface-variant block uppercase">Source Repositories</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">GitHub: SIM350-maker</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary group-hover:translate-x-0.5 transition-all">open_in_new</span>
+</a>
+<!-- LinkedIn Profile item -->
+<a class="p-space-sm rounded-lg bg-surface-container-low/70 flex items-center justify-between group hover:bg-surface-container transition-colors" href="https://www.linkedin.com/in/simonipara" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+</div>
+<div>
+<span class="font-label-mono text-caption text-on-surface-variant block uppercase">Professional Network</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">LinkedIn: simonipara</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary group-hover:translate-x-0.5 transition-all">open_in_new</span>
+</a>
+<!-- Geographic & Time Coordinates -->
+<div class="p-space-sm rounded-lg bg-surface-container-low/70 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<div>
+<span class="font-label-mono text-caption text-on-surface-variant block uppercase">Base Node</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold">Nairobi, Kenya</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-mono text-caption">
+                EAT (UTC+3)
+              </span>
+</div>
+</div>
+</div>
+<!-- System Geographic & Location Card with Visual Map Integration -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm overflow-hidden flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider">
+              Operating Geography / Map Node
+            </span>
+<span class="font-label-mono text-caption text-primary">01°17′S 36°49′E</span>
+</div>
+<div class="w-full h-44 bg-cover bg-center rounded-lg shadow-inner relative overflow-hidden" data-location="Nairobi, Kenya" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXNDEZy8vfCJXaLVcKLZwjd7V_1QYSEYK95xbboqG4qKOhSy7EJUr70JF_Bu7sVE22rxs_2m0jQqm4aPjx8wHRbApeyhWKzt1xk2CTDkfO_QMhHIaAogqmsXR24pK2ZKn75sZkLeXHLDuWOLfP_3vGg7bap8aiFBn8lkiWKp8mQBnjgc4RW8dQkh6yU8xEwf3n_TrIWm4GEiO225d6m991mS14zWOnSK-ou1qjDMk341BOARCEa36Y3Q')">
+<div class="absolute inset-0 bg-gradient-to-t from-dark-surface/80 via-transparent to-transparent flex flex-col justify-end p-3">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-caption text-light-surface font-semibold drop-shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-status-public"></span> Nairobi Tech Hub Gateway
+                </span>
+<span class="font-label-mono text-caption text-surface-container-high bg-dark-surface/70 px-2 py-0.5 rounded">
+                  Fiber Backhaul Active
+                </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Cryptographic Verification & Audit Token Badge -->
+<div class="bg-surface-container-low rounded-xl p-space-md shadow-sm">
+<div class="flex items-start gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">encrypted</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-1.5 flex-wrap">
+<span class="font-headline-sm text-headline-sm text-[14px] text-on-surface">
+                  PGP Key Fingerprint &amp; Identity Validated
+                </span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-status-public/10 text-status-public font-label-mono text-[10px]">
+                  VERIFIED
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                All communications sent through encrypted channels or using Simon's published PGP key can be authenticated against canonical repository commits.
+              </p>
+<div class="mt-space-xs p-2 rounded bg-surface-container text-on-surface font-code-block text-[11px] leading-relaxed break-all select-all">
+                4B8F 90CD 23E1 8A72 FC91 5560 3E21 D09B 11FA 887B
+              </div>
+</div>
+</div>
+</div>
+<!-- Advisory & Role Scope Manifest -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<span class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider block mb-space-sm">
+            Operational Capabilities Scope
+          </span>
+<div class="grid grid-cols-2 gap-space-xs font-label-mono text-caption">
+<div class="p-2 rounded bg-surface-container-low flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[15px] text-primary">stacks</span>
+<span>Distributed Systems</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[15px] text-primary">speed</span>
+<span>High Throughput</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[15px] text-primary">security</span>
+<span>Type-Safe APIs</span>
+</div>
+<div class="p-2 rounded bg-surface-container-low flex items-center gap-1.5 text-on-surface">
+<span class="material-symbols-outlined text-[15px] text-primary">deployed_code</span>
+<span>Rust / Go / TS Core</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Interactive Contact Form & Dispatch Console (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-sm relative">
+<!-- Prototype Transmission Notice Pill -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pb-space-md mb-space-md border-b-0">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">send_and_archive</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">
+                Transmission Dispatch Console
+              </h2>
+</div>
+<div class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-mono text-caption">
+<span class="material-symbols-outlined text-[14px]">science</span>
+<span>Simulated prototype submission</span>
+</div>
+</div>
+<!-- Live Form Banner Notification / Status Area -->
+<div class="hidden mb-space-md p-space-md rounded-lg bg-surface-container-high transition-all" id="form-feedback-banner">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-status-public text-[20px]" style="font-variation-settings: 'FILL' 1;">done</span>
+<div>
+<span class="font-headline-sm text-headline-sm text-[14px] text-on-surface block">
+                  Transmission Buffer Acknowledged
+                </span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  Payload verified against schema. Direct mail dispatch queue initialized for <span class="font-semibold text-primary" id="echo-sender-email"></span>.
+                </p>
+</div>
+</div>
+</div>
+<!-- The Form -->
+<form class="space-y-space-md" id="contact-console-form" novalidate="" onsubmit="event.preventDefault(); handleFormDispatch(this);">
+<!-- Row: Name and Work Email -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Name Input -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption uppercase text-on-surface font-semibold flex items-center justify-between" for="contact-name">
+<span>Full Identity / Name <span class="text-error">*</span></span>
+<span class="text-on-surface-variant font-normal">REQUIRED</span>
+</label>
+<div class="relative">
+<input class="w-full h-10 px-3 rounded bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md shadow-inner outline-none focus:ring-2 focus:ring-primary/30 transition-all" id="contact-name" name="name" placeholder="e.g. Dr. Maya Lin" required="" type="text"/>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Engineering hiring lead or project counterpart</span>
+</div>
+<!-- Work Email Input -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption uppercase text-on-surface font-semibold flex items-center justify-between" for="contact-email">
+<span>Work Email <span class="text-error">*</span></span>
+<span class="text-on-surface-variant font-normal">SECURE_ROUTING</span>
+</label>
+<div class="relative">
+<input class="w-full h-10 px-3 rounded bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md shadow-inner outline-none focus:ring-2 focus:ring-primary/30 transition-all" id="contact-email" name="email" placeholder="name@organization.com" required="" type="email"/>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Validated with standard SMTP domain handshakes</span>
+</div>
+</div>
+<!-- Row: Inquiring Organization & Engagement Selector -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Organization Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption uppercase text-on-surface font-semibold flex items-center justify-between" for="contact-org">
+<span>Inquiring Organization</span>
+<span class="text-on-surface-variant font-normal font-label-mono">OPTIONAL</span>
+</label>
+<input class="w-full h-10 px-3 rounded bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md shadow-inner outline-none focus:ring-2 focus:ring-primary/30 transition-all" id="contact-org" name="organization" placeholder="e.g. Acme Cloud Infrastructure" type="text"/>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Company, startup, research group, or open source team</span>
+</div>
+<!-- Engagement Type Selector -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-mono text-caption uppercase text-on-surface font-semibold flex items-center justify-between" for="engagement-type">
+<span>Engagement Type <span class="text-error">*</span></span>
+<span class="text-on-surface-variant font-normal">CLASSIFIER</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 px-3 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md shadow-inner outline-none focus:ring-2 focus:ring-primary/30 transition-all appearance-none cursor-pointer" id="engagement-type" name="engagement_type" required="">
+<option selected="" value="Full-time Role">Full-time Engineering Role (Staff / Senior)</option>
+<option value="Architectural Advisory">Architectural &amp; System Advisory</option>
+<option value="Contract Build">Specialized Contract Build / Greenfield</option>
+<option value="Technical Inquiry">Technical Inquiry &amp; Code Review</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant pointer-events-none text-[18px]">
+                    expand_more
+                  </span>
+</div>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Classifies packet priority in intake queue</span>
+</div>
+</div>
+<!-- Message Textarea with Character Counter -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-mono text-caption uppercase text-on-surface font-semibold" for="contact-message">
+                  Transmission Payload / Message <span class="text-error">*</span>
+</label>
+<span class="font-label-mono text-caption text-on-surface-variant">
+<span class="font-semibold text-primary" id="char-count">0</span> / 2,000 BYTES
+                </span>
+</div>
+<div class="relative">
+<textarea class="w-full p-3 rounded bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md shadow-inner outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-y" id="contact-message" maxlength="2000" name="message" oninput="document.getElementById('char-count').innerText = this.value.length;" placeholder="Outline context: team structure, technical stack, core bottlenecks, compensation or contract terms, and expected timeline..." required="" rows="6"></textarea>
+</div>
+<div class="flex items-center justify-between font-body-sm text-[11px] text-on-surface-variant">
+<span>Supports markdown-ready descriptions &amp; repository links</span>
+<span class="font-label-mono">INPUT_ENCODING: UTF-8</span>
+</div>
+</div>
+<!-- Privacy Consent Checkbox -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-space-sm cursor-pointer select-none">
+<input class="mt-1 w-4 h-4 rounded text-primary focus:ring-primary/40 focus:ring-offset-0 cursor-pointer accent-primary" id="privacy-consent" name="consent" required="" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface cursor-pointer leading-snug" for="privacy-consent">
+                I agree to have this inquiry stored for direct communication purposes. Data is retained solely on private encrypted storage and never exposed to tracking vendors.
+              </label>
+</div>
+<!-- Action Toolbar & Dispatch Controls -->
+<div class="pt-space-xs flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-mono text-caption">
+<span class="material-symbols-outlined text-[16px] text-status-public">shield</span>
+<span>Spam Filter: ZERO-CAPTCHA / Heuristic</span>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<button class="px-space-md h-10 rounded bg-surface-container text-on-surface font-body-sm text-body-sm font-semibold hover:bg-surface-container-high transition-colors w-1/3 sm:w-auto text-center" onclick="document.getElementById('char-count').innerText = '0';" type="reset">
+                  Reset
+                </button>
+<button class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-space-xs px-space-lg h-10 rounded bg-primary text-on-primary font-body-sm text-body-sm font-semibold hover:bg-tertiary transition-all shadow-md group" id="submit-dispatch-btn" type="submit">
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform">send</span>
+<span>Dispatch Transmission / Send Message</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+<!-- Telemetry & Diagnostic Feed Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-mono text-caption uppercase text-on-surface-variant tracking-wider">
+              Console Protocol Telemetry
+            </span>
+<span class="font-label-mono text-caption text-status-public flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>
+              SOCKET_IDLE
+            </span>
+</div>
+<div class="p-space-sm rounded bg-inverse-surface text-inverse-on-surface font-code-block text-[12px] space-y-1 overflow-x-auto">
+<div class="flex items-center justify-between text-secondary-fixed-dim">
+<span>[00:00:01] INGESTION_BUS: LISTENING_ON_SECURE_HOOK</span>
+<span>PORT: 443</span>
+</div>
+<div class="text-surface-dim">
+              [00:00:02] PROXY: NAIROBI_EDGE_01 → CLOUDFLARE_HYPERDRIVE → RESEND_API
+            </div>
+<div class="text-surface-variant flex items-center gap-2">
+<span class="text-status-public">&gt;</span> STATUS: Ready for payload encapsulation.
+            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Editorial System Context / FAQ Strip -->
+<section class="mt-space-2xl pt-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-2 mb-2 text-primary font-headline-sm text-headline-sm text-[16px]">
+<span class="material-symbols-outlined text-[20px]">code_blocks</span>
+<span>Technical Advisory</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Available for architectural reviews, Rust/TypeScript performance tuning, database migration blueprints, and concurrency audits for scaling systems.
+          </p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-2 mb-2 text-primary font-headline-sm text-headline-sm text-[16px]">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+<span>Engineering Hiring</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Actively considering Senior or Staff Full-Stack roles with teams emphasizing engineering autonomy, automated verification, and high rigor standards.
+          </p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm">
+<div class="flex items-center gap-2 mb-2 text-primary font-headline-sm text-headline-sm text-[16px]">
+<span class="material-symbols-outlined text-[20px]">lock_reset</span>
+<span>Encrypted Inquiries</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            For sensitive disclosures or security advisories, encrypt communication payload using the published PGP fingerprint before dispatch.
+          </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Form Handling and Interactive State Simulation Logic -->
+<script>
+    function handleFormDispatch(form) {
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const emailVal = form.querySelector('#contact-email').value;
+      const btn = document.getElementById('submit-dispatch-btn');
+      const originalText = btn.innerHTML;
+
+      // Temporary sending state
+      btn.disabled = true;
+      btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>Encrypting &amp; Routing...</span>`;
+
+      setTimeout(() => {
+        // Reset button
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+
+        // Show banner feedback
+        const banner = document.getElementById('form-feedback-banner');
+        document.getElementById('echo-sender-email').innerText = emailVal;
+        banner.classList.remove('hidden');
+
+        // Trigger floating simulated toast
+        const toast = document.getElementById('dispatch-toast');
+        const randId = Math.random().toString(36).substring(2, 6).toUpperCase();
+        document.getElementById('toast-receipt-id').innerText = randId;
+        toast.classList.remove('hidden');
+
+        // Auto hide toast after 6 seconds
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 6000);
+
+        // Smooth scroll to top of console
+        banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 750);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl border-t border-light-border/80"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-2xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter"><div class="md:col-span-1 space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Simon Ipara Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XJU8Cqk1gOpvjMytsAq3BJ0Ce04ql_Z2-SM_1QY1wrk8KlX33jgDXIh54ONjRrdyNVu_LM4KcZIq_3Qgq8b1C7FbPKMn22FM-5He4VQ1AaOu48c19o_ZZjy4AH0Mbj5F3SDf1z2dF8iuqVEpvbnL9U1jhCHtWwo_pKxS6Qa8Q87gUWuBj9HQw7AZIMdYlf5kNY7jG65XtSONz1K0uOJeICJjySmvqQiVKFOB0LDBMU8UipKQ2qi8jP4MjC"/><span class="font-headline-sm text-headline-sm text-on-surface">Simon Ipara</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Full-stack software engineer specializing in high-throughput distributed systems, strict type safety, and verifiable evidence-backed architecture.</p><div class="flex items-center gap-space-sm pt-space-xs"><span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-mono text-caption"><span class="w-1.5 h-1.5 rounded-full bg-status-public"></span>Nairobi, Kenya (EAT / UTC+3)</span></div></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Portfolio Navigation</h3><ul class="space-y-space-xs font-body-sm text-body-sm"><li class="grid grid-cols-2 gap-space-xs"><div><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="home" href="#">Home</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="about" href="#">About</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="projects" href="#">Projects</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="skills" href="#">Skills</a></div><div><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="engineering" href="#">Engineering</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="evidence" href="#">Evidence</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="experience" href="#">Experience</a><a class="text-on-surface-variant hover:text-primary transition-colors block py-0.5" data-path="contact" href="#">Contact</a></div></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">Connectivity</h3><ul class="space-y-space-sm"><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="font-label-mono text-caption">GitHub: SIM350-maker</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">share</span><span class="font-label-mono text-caption">LinkedIn: simonipara</span></li><li class="flex items-center gap-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[16px]">mail</span><span class="font-label-mono text-caption">simonipara428@gmail.com</span></li></ul></div><div><h3 class="font-label-mono text-caption uppercase text-on-surface mb-space-md tracking-wider">System Access</h3><ul class="space-y-space-sm"><li><a class="inline-flex items-center gap-space-xs font-body-sm text-body-sm text-primary hover:text-tertiary transition-colors" data-path="cms-workspace" href="#"><span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>Admin CMS Workspace (/manage)</a></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Provenance: Verifiable Hash</span></li><li><span class="font-label-mono text-caption text-on-surface-variant block">Status: Production v2.4.0</span></li></ul></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant border-t border-light-border/60"><p class="font-caption text-caption">© 2025 Simon Ipara. All systems verified and operational.</p><div class="flex items-center gap-space-md"><span class="font-caption text-caption">Evidence Integrity: 100% Cryptographic Audit</span></div></div></div></footer></body></html>

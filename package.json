@@ -1,83 +1,28 @@
 {
-  "name": "portfolio-system",
-  "engines": {
-    "node": ">=20"
-  },
-  "version": "1.0.0",
-  "description": "Portfolio system for software engineers",
-  "main": "src/server.js",
+  "name": "site",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "jest",
-    "test:a11y": "playwright test tests/a11y.playwright.test.js",
-    "lint": "eslint src tests",
-    "test:coverage": "jest --coverage"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/tests/a11y.playwright.test.js"
-    ],
-    "globalSetup": "./tests/jest-global-setup.js",
-    "testTimeout": 20000,
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/db/**",
-      "!src/server.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 65,
-        "branches": 55,
-        "lines": 70
-      },
-      "./src/repositories/": {
-        "lines": 78
-      },
-      "./src/routes/": {
-        "lines": 75
-      },
-      "./src/middleware/": {
-        "lines": 78
-      },
-      "./src/config/": {
-        "lines": 72
-      },
-      "./src/lib/": {
-        "lines": 85
-      }
-    }
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
-    "@neon/config": "^1.8.6",
-    "@neon/env": "^1.5.3",
-    "bcryptjs": "^2.4.3",
-    "better-sqlite3": "^11.10.0",
-    "dotenv": "^16.6.1",
-    "ejs": "^3.1.10",
-    "express": "^4.18.2",
-    "express-rate-limit": "^6.7.0",
-    "express-session": "^1.17.3",
-    "helmet": "^7.0.0",
-    "morgan": "^1.10.0",
-    "pg": "^8.23.1"
+    "@neondatabase/serverless": "^1.2.0",
+    "lucide-react": "^1.59.0",
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.x",
-    "@eslint/js": "^9.39.5",
-    "@playwright/test": "^1.64.0",
-    "eslint": "^9.39.5",
-    "jest": "^30.5.2",
-    "nodemon": "^3.1.14",
-    "playwright": "^1.x",
-    "supertest": "^7.3.1",
-    "pdf-parse": "^2.4.5"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3"
-    ]
+    "@tailwindcss/turbopack": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
