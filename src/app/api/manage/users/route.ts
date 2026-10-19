@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCurrentUser, hashPassword } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 import { query } from "@/lib/db";
 
 export async function GET() {
@@ -65,10 +65,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const password_hash = hashPassword(password);
+    const password_hash = password;
 
     const inserted = await query<{ id: string | number }>(
-      `INSERT INTO cms_users (name, email, password_hash, role, is_authorized, can_manage_access, created_at, updated_at)
+      `INSERT INTO cms_users (name, email, password, role, is_authorized, can_manage_access, created_at, updated_at)
        VALUES ($1, $2, $3, $4, $5, $6, NOW(), NOW())
        RETURNING id, name, email, role, is_authorized, can_manage_access, created_at`,
       [name.trim(), cleanEmail, password_hash, role, Boolean(is_authorized), Boolean(can_manage_access)]

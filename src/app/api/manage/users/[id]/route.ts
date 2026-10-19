@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCurrentUser, hashPassword } from "@/lib/auth";
+import { getCurrentUser } from "@/lib/auth";
 import { query } from "@/lib/db";
 
 export async function PATCH(
@@ -64,8 +64,8 @@ export async function PATCH(
       values.push(Boolean(can_manage_access));
     }
     if (new_password) {
-      fields.push(`password_hash = $${paramIndex++}`);
-      values.push(hashPassword(new_password));
+      fields.push(`password = $${paramIndex++}`);
+      values.push(new_password);
     }
 
     if (fields.length === 0) {

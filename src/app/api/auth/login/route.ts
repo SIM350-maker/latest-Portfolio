@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { query } from "@/lib/db";
-import { verifyPassword, createSessionToken } from "@/lib/auth";
+import { createSessionToken } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,12 +21,12 @@ export async function POST(req: NextRequest) {
       id: string | number;
       name: string;
       email: string;
-      password_hash: string;
+      password: string;
       role: string;
       is_authorized: boolean;
       can_manage_access: boolean;
     }>(
-      "SELECT id, name, email, password_hash, role, is_authorized, can_manage_access FROM cms_users WHERE LOWER(email) = $1 LIMIT 1",
+      "SELECT id, name, email, password, role, is_authorized, can_manage_access FROM cms_users WHERE LOWER(email) = $1 LIMIT 1",
       [cleanEmail]
     );
 
@@ -54,9 +54,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 2. Verify password securely using scrypt / constant-time comparison
-    const passwordValid = verifyPassword(password, user.password_hash);
-    if (!passwordValid) {
+    // 2. Verify password (plain text comparison)
+    if (password !== user.password) {
       return NextResponse.json(
         { error: "Invalid security passkey. Please check your credentials." },
         { status: 401 }

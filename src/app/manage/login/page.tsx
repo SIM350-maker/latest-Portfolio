@@ -1,18 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Terminal, Lock, ShieldCheck, AlertCircle, CheckCircle2, UserCheck, Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { Terminal, ArrowRight, AlertCircle, CheckCircle2, Loader } from "lucide-react";
 
 export default function CMSLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("simonipara428@gmail.com");
-  const [password, setPassword] = useState("Admin@2026!");
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,7 +31,7 @@ export default function CMSLoginPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Authentication failed. Access denied.");
+        setError(data.error || "Login failed. Please try again.");
         setLoading(false);
         return;
       }
@@ -38,156 +40,159 @@ export default function CMSLoginPage() {
       setTimeout(() => {
         router.push("/manage");
         router.refresh();
-      }, 600);
+      }, 1500);
     } catch (err) {
-      setError("Network or authentication server error occurred.");
+      setError("Network error. Please check your connection and try again.");
       setLoading(false);
     }
   };
 
-  const handleQuickFill = (fillEmail: string) => {
-    setEmail(fillEmail);
-    setPassword("Admin@2026!");
-    setError(null);
-  };
-
   return (
-    <div className="min-h-screen bg-background flex flex-col justify-center items-center p-4 font-mono text-xs">
-      <div className="w-full max-w-md bg-surface-container-lowest border border-border rounded-xl p-8 shadow-xl space-y-6">
-        
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white mx-auto shadow-md">
-            <Terminal className="w-6 h-6" />
-          </div>
-          <h1 className="text-lg font-bold text-on-surface">CMS Security Console</h1>
-          <p className="text-on-surface-variant text-[11px] max-w-xs mx-auto">
-            Authorized Engineer Access · Verified Email & Scrypt Passkey Required
-          </p>
-        </div>
+    <div className="min-h-screen flex flex-col bg-background text-on-surface">
+      <Navbar />
 
-        {/* Security Policy Badge */}
-        <div className="p-3 rounded-lg bg-surface-container-low border border-border/80 text-[11px] text-on-surface-variant space-y-1">
-          <div className="flex items-center gap-1.5 font-semibold text-primary">
-            <ShieldCheck className="w-4 h-4 text-primary" />
-            <span>Access Policy Notice</span>
-          </div>
-          <p className="leading-relaxed">
-            The CMS console is strictly restricted to pre-registered and active database emails. Unregistered emails are rejected at engine level.
-          </p>
-        </div>
-
-        {/* Error Notification */}
-        {error && (
-          <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs flex items-start gap-2 animate-shake">
-            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-            <span className="leading-snug">{error}</span>
-          </div>
-        )}
-
-        {/* Success Notification */}
-        {success && (
-          <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 shrink-0" />
-            <span>Identity confirmed. Opening CMS Workspace...</span>
-          </div>
-        )}
-
-        {/* Login Form */}
-        <form onSubmit={handleLogin} className="space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-on-surface block font-semibold flex items-center justify-between">
-              <span>Registered Engineer Email</span>
-              <span className="text-[10px] text-primary">Database Verified</span>
-            </label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="name@example.com"
-              className="w-full h-10 px-3 rounded bg-surface-container-low border border-border text-on-surface focus:outline-hidden focus:border-primary text-xs"
-            />
+      {/* Login Container */}
+      <div className="flex-1 flex items-center justify-center px-4 py-16">
+        <div className="w-full max-w-md space-y-8">
+          {/* Header */}
+          <div className="text-center space-y-3">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary text-white shadow-lg">
+              <Terminal className="w-6 h-6" />
+            </div>
+            <h1 className="text-3xl font-bold tracking-tight text-on-surface">
+              CMS Authenticated Access
+            </h1>
+            <p className="text-sm text-on-surface-variant font-mono">
+              Registered email credentials required to enter the administration console.
+            </p>
           </div>
 
-          <div className="space-y-1.5">
-            <label className="text-on-surface block font-semibold flex items-center justify-between">
-              <span>Security Passkey</span>
-              <span className="text-[10px] text-on-surface-variant">Scrypt-64 Key</span>
-            </label>
-            <div className="relative">
+          {/* Error Alert */}
+          {error && (
+            <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-xs flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          {/* Success Alert */}
+          {success && (
+            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 shrink-0 mt-0.5" />
+              <span>Credentials verified. Redirecting to CMS dashboard...</span>
+            </div>
+          )}
+
+          {/* Login Form */}
+          <form onSubmit={handleLogin} className="space-y-4 font-sans">
+            {/* Email Field */}
+            <div className="space-y-2">
+              <label className="block text-xs font-semibold text-on-surface font-mono uppercase tracking-wider">
+                Registered Email Address
+              </label>
               <input
-                type={showPassword ? "text" : "password"}
+                type="email"
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter password"
-                className="w-full h-10 px-3 pr-10 rounded bg-surface-container-low border border-border text-on-surface focus:outline-hidden focus:border-primary text-xs"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="e.g. simonipara428@gmail.com"
+                className="w-full h-10 px-4 rounded-lg bg-surface-container-low border border-border text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-hidden focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors font-mono"
+                disabled={loading}
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface p-1"
-                title={showPassword ? "Hide password" : "Show password"}
-              >
-                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
+            </div>
+
+            {/* Password Field */}
+            <div className="space-y-2">
+              <label className="block text-xs font-semibold text-on-surface font-mono uppercase tracking-wider">
+                Security Passkey
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your passkey"
+                  className="w-full h-10 px-4 pr-12 rounded-lg bg-surface-container-low border border-border text-sm text-on-surface placeholder:text-on-surface-variant focus:outline-hidden focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors font-mono"
+                  disabled={loading}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface p-1 cursor-pointer transition-colors"
+                  disabled={loading}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading || !email || !password}
+              className="w-full h-10 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-tertiary disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 mt-6"
+            >
+              {loading ? (
+                <>
+                  <Loader className="w-4 h-4 animate-spin" />
+                  <span>Authenticating...</span>
+                </>
+              ) : (
+                <>
+                  <span>Authenticate & Enter CMS</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Security Info Card */}
+          <div className="bg-surface-container-lowest border border-border rounded-xl p-4 space-y-3 shadow-xs">
+            <div className="flex items-center gap-2 font-mono text-xs font-bold text-on-surface uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              Authentication Security
+            </div>
+            <div className="space-y-2 text-xs text-on-surface-variant font-mono">
+              <div className="flex items-start gap-2">
+                <span className="text-primary mt-1">✓</span>
+                <span>Only registered email addresses in the database can authenticate.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary mt-1">✓</span>
+                <span>Credentials must match exactly as recorded by an administrator.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary mt-1">✓</span>
+                <span>Session tokens are valid for 7 days or until revoked by admin.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-primary mt-1">✓</span>
+                <span>All authentication attempts are logged for security audits.</span>
+              </div>
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading || success}
-            className="w-full h-10 rounded bg-primary text-white font-semibold flex items-center justify-center gap-2 hover:bg-tertiary transition-colors disabled:opacity-50 shadow-sm text-xs cursor-pointer"
-          >
-            <Lock className="w-4 h-4" />
-            <span>{loading ? "Verifying Credentials in Neon DB..." : "Authenticate & Enter CMS"}</span>
-          </button>
-        </form>
-
-        {/* Pre-registered quick access helpers */}
-        <div className="pt-2 border-t border-border space-y-2">
-          <span className="text-[10px] uppercase tracking-wider text-on-surface-variant block font-semibold">
-            Registered Owner Accounts:
-          </span>
-          <div className="grid grid-cols-1 gap-1.5">
-            <button
-              type="button"
-              onClick={() => handleQuickFill("simonipara428@gmail.com")}
-              className="w-full px-2.5 py-1.5 rounded bg-surface-container text-left hover:bg-surface-container-high transition-colors flex items-center justify-between group"
+          {/* Footer Info */}
+          <div className="text-center space-y-2 text-xs text-on-surface-variant pt-4 border-t border-border">
+            <p className="font-mono">
+              Not registered yet? Contact{" "}
+              <a href="mailto:simonipara428@gmail.com" className="text-primary hover:underline font-semibold">
+                Simon Ipara
+              </a>
+              {" "}for CMS access registration.
+            </p>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1 text-primary hover:text-tertiary transition-colors font-mono font-semibold"
             >
-              <div className="flex items-center gap-2">
-                <UserCheck className="w-3.5 h-3.5 text-primary" />
-                <span className="text-on-surface font-medium truncate">simonipara428@gmail.com</span>
-              </div>
-              <span className="text-[10px] text-primary group-hover:underline">Fill & Login</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickFill("simonipash@gmail.com")}
-              className="w-full px-2.5 py-1.5 rounded bg-surface-container text-left hover:bg-surface-container-high transition-colors flex items-center justify-between group"
-            >
-              <div className="flex items-center gap-2">
-                <UserCheck className="w-3.5 h-3.5 text-emerald-500" />
-                <span className="text-on-surface font-medium truncate">simonipash@gmail.com</span>
-              </div>
-              <span className="text-[10px] text-primary group-hover:underline">Fill & Login</span>
-            </button>
+              <span>← Return to Portfolio</span>
+            </Link>
           </div>
         </div>
-
-        {/* Footer info */}
-        <div className="pt-3 border-t border-border flex items-center justify-between text-[11px] text-on-surface-variant">
-          <Link href="/" className="hover:text-primary transition-colors">
-            ← Return to Public Portfolio
-          </Link>
-          <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Zero-Trust Protocol</span>
-          </span>
-        </div>
-
       </div>
+
+      <Footer />
     </div>
   );
 }

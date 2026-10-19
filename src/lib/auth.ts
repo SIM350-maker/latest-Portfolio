@@ -14,24 +14,6 @@ export interface SessionUser {
 const SESSION_COOKIE_NAME = "cms_session_token";
 const SECRET = process.env.AUTH_SECRET || "cms-secure-engineering-secret-key-simon-ipara-2026-portfolio";
 
-export function hashPassword(password: string): string {
-  const salt = crypto.randomBytes(16).toString("hex");
-  const hash = crypto.scryptSync(password, salt, 64).toString("hex");
-  return `${salt}:${hash}`;
-}
-
-export function verifyPassword(password: string, storedHash: string): boolean {
-  try {
-    const [salt, key] = storedHash.split(":");
-    if (!salt || !key) return false;
-    const keyBuffer = Buffer.from(key, "hex");
-    const derivedBuffer = crypto.scryptSync(password, salt, 64);
-    return crypto.timingSafeEqual(keyBuffer, derivedBuffer);
-  } catch (err) {
-    return false;
-  }
-}
-
 export function createSessionToken(user: SessionUser): string {
   const header = Buffer.from(JSON.stringify({ alg: "HS256", typ: "JWT" })).toString("base64url");
   const exp = Date.now() + 7 * 24 * 60 * 60 * 1000; // 7 days expiration
