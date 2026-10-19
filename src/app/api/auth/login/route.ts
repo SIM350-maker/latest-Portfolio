@@ -104,10 +104,10 @@ export async function POST(req: NextRequest) {
     });
 
     return response;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Login API error:", error);
     return NextResponse.json(
-      { error: "Internal authentication service error occurred." },
+      { error: `Internal authentication error: ${error?.message || String(error)}` },
       { status: 500 }
     );
   }
