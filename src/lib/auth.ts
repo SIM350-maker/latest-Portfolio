@@ -83,7 +83,13 @@ export function verifySessionToken(token: string): SessionUser | null {
 
 export async function getCurrentUser(): Promise<SessionUser | null> {
   try {
-    const cookieStore = await cookies();
+    let cookieStore;
+    try {
+      cookieStore = await cookies();
+    } catch (e) {
+      // During static prerendering, cookies() is not available
+      return null;
+    }
     const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
     if (!token) return null;
 
