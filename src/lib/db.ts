@@ -1,4 +1,4 @@
-import { neon } from "@neondatabase/serverless";
+import { neon, neonConfig } from "@neondatabase/serverless";
 
 const databaseUrl =
   process.env.DATABASE_URL ||
@@ -8,7 +8,9 @@ export const sql = neon(databaseUrl);
 
 export async function query<T = any>(queryText: string, params: any[] = []): Promise<T[]> {
   try {
-    const result = await (sql as any)(queryText, params);
+    // Use the sql.query method for parameterized queries
+    // This avoids the tagged template literal requirement
+    const result = await (sql as any).query(queryText, params);
     return result as T[];
   } catch (error) {
     console.error("Database query error:", error);
