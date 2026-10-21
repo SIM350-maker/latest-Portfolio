@@ -82,21 +82,21 @@ export default function EvidenceDetailClient({ slug }: { slug: string }) {
             </div>
 
             {/* Linked Project info */}
-            {project && (
-              <div className="pt-4 border-t border-border flex items-center justify-between">
-                <div>
-                  <span className="font-mono text-[11px] text-on-surface-variant block uppercase">Attributed Project</span>
-                  <span className="font-bold text-sm text-on-surface">{project.title}</span>
+{project && (
+                <div className="pt-4 border-t border-border flex items-center justify-between">
+                  <div>
+                    <span className="font-mono text-[11px] text-on-surface-variant block uppercase">Attributed Project</span>
+                    <span className="font-bold text-sm text-on-surface">{project.title}</span>
+                  </div>
+                  <Link
+                    href="/evidence"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+                  >
+                    <span>View Evidence</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-                >
-                  <span>View Project Case Study</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            )}
+              )}
 
           </div>
 

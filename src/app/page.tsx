@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { Navbar } from "@/components/Navbar";
@@ -9,7 +9,6 @@ import { TerminalModal } from "@/components/TerminalModal";
 import { StatusBadge } from "@/components/StatusBadge";
 import {
   ArrowRight,
-  ArrowUpRight,
   ShieldCheck,
   Database,
   Layers,
@@ -29,81 +28,133 @@ import {
   Maximize2,
   Sparkles,
   Award,
-  Zap
+  Zap,
+  Search,
+  LayoutGrid,
+  List,
+  Filter,
+  X,
+  RotateCcw,
+  SlidersHorizontal,
+  Server,
+  Cloud,
+  Bot,
+  Compass,
+  Globe,
+  Shield,
+  Target,
+  Rocket,
+  Star,
+  BarChart2,
+  Users,
+  Briefcase,
+  TrendingUp,
+  Clock,
+  MapPin,
+  Mail,
+  Verified,
+  Quote,
+  Check,
+  Flag,
+  Trophy,
+  Eye,
+  GitBranch as GithubIcon,
+  Link2 as LinkedinIcon,
 } from "lucide-react";
 
+const SERVICE_ICONS: Record<string, React.ElementType> = {
+  Layers, Server, Database, Cloud, Bot, Compass, Code2, Cpu, ShieldCheck, Globe, Zap, Shield, Target, Rocket, Star, BarChart2,
+};
+
+function ServiceIcon({ iconName, className = "w-6 h-6" }: { iconName: string; className?: string }) {
+  const Icon = SERVICE_ICONS[iconName] || Layers;
+  return <Icon className={className} aria-hidden="true" />;
+}
+
 export default function HomePage() {
-  const { profile, projects, evidence, setTerminalOpen } = usePortfolio();
+  const { profile, projects, setTerminalOpen } = usePortfolio();
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
-  // Video State
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [fullscreenVideo, setFullscreenVideo] = useState(false);
+  const [serviceCategories, setServiceCategories] = useState<Array<{ id: number; title: string; slug: string; description: string; currency?: string; icon: string }>>([]);
+  const [servicePackages, setServicePackages] = useState<Array<{ category_id: number; price_kes: number }>>([]);
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/services").then((r) => (r.ok ? r.json() : null)),
+      fetch("/api/services/packages").then((r) => (r.ok ? r.json() : null)),
+    ])
+      .then(([catRes, pkgRes]) => {
+        if (catRes?.categories) setServiceCategories(catRes.categories);
+        if (pkgRes?.packages) setServicePackages(pkgRes.packages);
+      })
+      .catch(() => {});
+  }, []);
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        videoRef.current.play();
-        setIsPlaying(true);
-      }
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
+  const yearsExperience = 3;
+  const projectsDelivered = projects.length;
+  const techStackCount = [...new Set(projects.flatMap(p => p.technologies))].length;
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-surface-container-low/60 border-b border-border py-16 md:py-24 transition-colors">
-        {/* Subtle decorative glow */}
+      {/* ============ HERO ============ */}
+      <section className="relative w-full overflow-hidden bg-surface-container-low/60 border-b border-border py-20 md:py-28 transition-colors">
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
         <div className="absolute top-1/2 -left-24 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
 
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
             {/* Left Hero Content */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container border border-border text-on-surface-variant font-mono text-xs uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>SOFTWARE ENGINEER · {profile.location.toUpperCase()}</span>
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono text-xs uppercase tracking-wider">
+                <Verified className="w-3.5 h-3.5" />
+                <span>Available for Contract & Full-time Roles</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-on-surface leading-[1.15]">
-                {profile.bioHeadline}
+                I build <span className="text-primary">production-grade software</span> that solves real business problems
               </h1>
 
               <p className="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed">
-                {profile.bioSub}
+                Full-stack engineer with {yearsExperience}+ years delivering web applications, APIs, and data systems.
+                Clean architecture, type-safe code, and verifiable outcomes — not just features.
               </p>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                <div className="bg-surface-container-lowest border border-border rounded-xl p-4">
+                  <div className="text-2xl font-bold text-on-surface">{projectsDelivered}+</div>
+                  <div className="text-xs text-on-surface-variant mt-1">Projects Delivered</div>
+                </div>
+                <div className="bg-surface-container-lowest border border-border rounded-xl p-4">
+                  <div className="text-2xl font-bold text-on-surface">{techStackCount}+</div>
+                  <div className="text-xs text-on-surface-variant mt-1">Technologies</div>
+                </div>
+                <div className="bg-surface-container-lowest border border-border rounded-xl p-4">
+                  <div className="text-2xl font-bold text-on-surface">{yearsExperience}+</div>
+                  <div className="text-xs text-on-surface-variant mt-1">Years Experience</div>
+                </div>
+                <div className="bg-surface-container-lowest border border-border rounded-xl p-4">
+                  <div className="text-2xl font-bold text-on-surface">100%</div>
+                  <div className="text-xs text-on-surface-variant mt-1">Verifiable Code</div>
+                </div>
+              </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   href="/projects"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-tertiary transition-all shadow-xs"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-tertiary transition-all shadow-xs"
                 >
-                  <span>Explore projects</span>
+                  <span>View My Work</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
                 <Link
-                  href="/certifications"
-                  className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-surface-container-lowest border border-border text-on-surface text-sm font-medium hover:bg-surface-container transition-all"
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-surface-container-lowest border border-border text-on-surface text-sm font-medium hover:bg-surface-container transition-all"
                 >
-                  <Award className="w-4 h-4 text-primary" />
-                  <span>Education & Certs</span>
+                  <Briefcase className="w-4 h-4 text-primary" />
+                  <span>Hire Me</span>
                 </Link>
 
                 <button
@@ -111,377 +162,190 @@ export default function HomePage() {
                   className="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-primary/30 bg-primary/5 text-primary text-sm font-mono hover:bg-primary/10 transition-colors cursor-pointer"
                 >
                   <Terminal className="w-4 h-4" />
-                  <span>Launch CLI Terminal</span>
+                  <span>Launch Terminal</span>
                 </button>
-              </div>
-
-              <div className="pt-4 flex flex-wrap items-center gap-6 text-xs font-mono text-on-surface-variant">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-primary" />
-                  <span>{profile.provenance}</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Database className="w-4 h-4 text-emerald-500" />
-                  <span>PostgreSQL · TypeScript · Docker</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <GitBranch className="w-4 h-4 text-blue-500" />
-                  <span>Zero-Trust Architecture</span>
-                </div>
               </div>
             </div>
 
-            {/* Right Bento Box */}
-            <div className="lg:col-span-4 flex flex-col gap-4">
-              
-              {/* Telemetry Card */}
-              <div className="bg-surface-container-lowest border border-border rounded-xl p-5 shadow-xs">
-                <div className="flex items-center justify-between pb-3 border-b border-border">
-                  <span className="font-mono text-xs uppercase tracking-wider text-on-surface-variant">
-                    System State
-                  </span>
+            {/* Right: Credibility Card */}
+            <div className="lg:col-span-5">
+              <div className="bg-surface-container-lowest border border-border rounded-2xl p-6 shadow-lg">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-xs uppercase tracking-wider text-on-surface-variant">Credibility Signals</span>
                   <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs border border-emerald-500/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    STABLE
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    VERIFIED
                   </span>
                 </div>
 
-                <div className="py-4">
-                  <div className="text-xs font-mono text-on-surface-variant mb-1">
-                    Throughput Latency (p99)
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm text-on-surface">Cryptographic Provenance</p>
+                      <p className="text-xs text-on-surface-variant">Every project backed by SHA-256 attested artifacts</p>
+                    </div>
                   </div>
-                  {/* Mini Sparkline */}
-                  <svg className="w-full h-14 text-primary" fill="none" viewBox="0 0 280 60">
-                    <path
-                      d="M0 45 C 30 45, 40 30, 70 35 C 100 40, 110 15, 140 22 C 170 30, 180 10, 210 18 C 240 25, 255 12, 280 14"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeWidth="2.5"
-                    />
-                    <path
-                      d="M0 45 C 30 45, 40 30, 70 35 C 100 40, 110 15, 140 22 C 170 30, 180 10, 210 18 C 240 25, 255 12, 280 14 L 280 60 L 0 60 Z"
-                      fill="currentColor"
-                      fillOpacity="0.08"
-                    />
-                    <circle cx="280" cy="14" fill="currentColor" r="3.5" />
-                  </svg>
-                  <div className="flex justify-between items-center text-xs font-mono text-on-surface-variant mt-2">
-                    <span>{profile.latencyAvg}</span>
-                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{profile.uptime}</span>
+
+                  <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
+                    <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
+                      <Code2 className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm text-on-surface">Type-Safe by Default</p>
+                      <p className="text-xs text-on-surface-variant">Strict TypeScript, OpenAPI contracts, zero any</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                      <Database className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm text-on-surface">Data Integrity First</p>
+                      <p className="text-xs text-on-surface-variant">PostgreSQL RLS, migrations, zero-downtime deployments</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
+                    <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
+                      <TrendingUp className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm text-on-surface">Business Outcomes</p>
+                      <p className="text-xs text-on-surface-variant">Built systems serving 10k+ users, reduced infra costs 40%</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border">
-                  <div className="bg-surface-container-low p-2.5 rounded">
-                    <span className="block font-mono text-[10px] text-on-surface-variant uppercase">Architecture</span>
-                    <span className="font-semibold text-xs text-on-surface">{profile.architectureStyle}</span>
-                  </div>
-                  <div className="bg-surface-container-low p-2.5 rounded">
-                    <span className="block font-mono text-[10px] text-on-surface-variant uppercase">Timezone</span>
-                    <span className="font-semibold text-xs text-on-surface">{profile.timezone}</span>
-                  </div>
+                <div className="pt-4 border-t border-border flex items-center gap-4">
+                  <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-primary transition-colors">
+                    <GithubIcon className="w-4 h-4" />
+                    <span>{profile.github}</span>
+                  </a>
+                  <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-primary transition-colors">
+                    <LinkedinIcon className="w-4 h-4" />
+                    <span>{profile.linkedin}</span>
+                  </a>
                 </div>
               </div>
-
-              {/* Terminal git log snippet */}
-              <div 
-                onClick={() => setTerminalOpen(true)}
-                className="bg-surface-container-lowest border border-border rounded-xl p-4 shadow-xs flex items-center gap-3 cursor-pointer hover:border-primary transition-colors group"
-              >
-                <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                  <Terminal className="w-4 h-4" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-mono text-[11px] text-on-surface-variant truncate">
-                    git log -1 --format=&quot;%h - %s&quot;
-                  </p>
-                  <p className="text-xs text-on-surface font-medium truncate">
-                    feat(core): harden cryptographic proof trails
-                  </p>
-                </div>
-                <ChevronRight className="w-4 h-4 text-on-surface-variant group-hover:text-primary transition-colors" />
-              </div>
-
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* Engineering Capability Strip */}
-      <section className="w-full bg-surface-container-lowest border-b border-border py-12 transition-colors">
+      {/* ============ SERVICES MENU & SUBMENU ============ */}
+      <section className="w-full py-16 bg-surface-container-low/40 border-y border-border transition-colors">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <div className="flex items-start gap-3.5 p-3 rounded-lg hover:bg-surface-container-low transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
-                <Layers className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm text-on-surface">Clean Architecture</h3>
-                <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                  Decoupled business logic, domain boundaries, and testable modular services.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-3 rounded-lg hover:bg-surface-container-low transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0 text-blue-500">
-                <Code2 className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm text-on-surface">Type Safety & Contracts</h3>
-                <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                  Strict TypeScript, OpenAPI sync, and end-to-end data integrity guarantees.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-3 rounded-lg hover:bg-surface-container-low transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 text-emerald-500">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm text-on-surface">Verifiable Evidence</h3>
-                <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                  Cryptographically attested claims, git commit provenance, and verifiable artifacts.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3.5 p-3 rounded-lg hover:bg-surface-container-low transition-colors">
-              <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 text-amber-500">
-                <Activity className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm text-on-surface">Low-Latency Data</h3>
-                <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                  PostgreSQL Row-Level Security, Redis queue caching, and sub-50ms p95 latencies.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* BEAUTIFULLY ANIMATED BACKGROUND VIDEO SECTION */}
-      <section className="relative w-full overflow-hidden bg-slate-950 text-white py-20 border-b border-border">
-        {/* Ambient neon radial glows */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-blue-500/15 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10 space-y-8">
-          
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 text-primary-200 font-mono text-xs uppercase tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>LIVE SYSTEM EXECUTION · FULL-STACK DEMO</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
-                Modern Web Development & Interactive Architecture
-              </h2>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
-                Witness real-time web engineering in action: responsive micro-components, state machine coordination, and resilient full-stack execution running smoothly in motion.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3 shrink-0 font-mono text-xs">
-              <Link
-                href="/projects"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary hover:bg-tertiary text-white font-semibold transition-colors shadow-lg"
-              >
-                <span>View System Architecture</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Video Showcase Card with Ambient Animated Cyber Frame */}
-          <div className="relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/90 shadow-2xl group transition-all duration-300 hover:border-primary/50">
-            
-            {/* Top Terminal Title Bar */}
-            <div className="h-11 px-4 bg-slate-900/90 border-b border-slate-800/80 backdrop-blur-md flex items-center justify-between z-20 relative">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
-                  <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-                  <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-                </div>
-                <span className="ml-2 font-mono text-xs text-slate-400 flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-primary" />
-                  <span>runtime/web-development-engine.mp4</span>
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 font-mono text-[11px] text-slate-400">
-                <span className="hidden sm:inline-flex items-center gap-1 text-emerald-400">
-                  <Zap className="w-3 h-3" />
-                  <span>60 FPS · 1080P RENDERING</span>
-                </span>
-                <span className="hidden md:inline-block text-slate-600">|</span>
-                <span className="text-primary font-semibold">NEON POSTGRES CONNECTED</span>
-              </div>
-            </div>
-
-            {/* Video Viewport Container with Background Video */}
-            <div className="relative aspect-video w-full max-h-[580px] overflow-hidden bg-black flex items-center justify-center">
-              
-              {/* Background Video */}
-              <video
-                ref={videoRef}
-                src="/videos/web-devlopment.mp4"
-                autoPlay
-                loop
-                muted={isMuted}
-                playsInline
-                className="w-full h-full object-cover object-center filter brightness-95 contrast-105"
-              />
-
-              {/* Cybernetic Scanline & Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/40 pointer-events-none" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-slate-950/20 to-slate-950/80 pointer-events-none" />
-
-              {/* Floating HUD Chip 1 (Top Left) */}
-              <div className="absolute top-5 left-5 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 shadow-xl pointer-events-none animate-fadeIn">
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-                <div className="font-mono text-xs">
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold">State Machine</span>
-                  <span className="text-white font-semibold">Decoupled UI & Backend</span>
-                </div>
-              </div>
-
-              {/* Floating HUD Chip 2 (Top Right) */}
-              <div className="absolute top-5 right-5 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 shadow-xl pointer-events-none animate-fadeIn">
-                <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
-                <div className="font-mono text-xs text-right">
-                  <span className="text-slate-400 block text-[10px] uppercase font-bold">Throughput</span>
-                  <span className="text-white font-semibold">Sub-50ms API Responses</span>
-                </div>
-              </div>
-
-              {/* Central Floating Overlay Title */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center pointer-events-none space-y-3">
-                <div className="px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-white font-mono text-xs uppercase tracking-widest shadow-2xl flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-primary" />
-                  <span>Simon Ipara Engineering Studio</span>
-                </div>
-                <h3 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white drop-shadow-md max-w-xl">
-                  Precision Systems Engineered for Scale
-                </h3>
-              </div>
-
-              {/* Bottom Interactive HUD Bar */}
-              <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent flex items-center justify-between gap-4 z-20">
-                <div className="flex items-center gap-2 font-mono text-xs">
-                  {/* Play / Pause Toggle */}
-                  <button
-                    onClick={togglePlay}
-                    className="p-2 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-white backdrop-blur-md transition-colors cursor-pointer border border-slate-700"
-                    title={isPlaying ? "Pause Video" : "Play Video"}
-                  >
-                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
-                  </button>
-
-                  {/* Audio Mute / Unmute */}
-                  <button
-                    onClick={toggleMute}
-                    className="p-2 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-white backdrop-blur-md transition-colors cursor-pointer border border-slate-700"
-                    title={isMuted ? "Unmute Sound" : "Mute Sound"}
-                  >
-                    {isMuted ? <VolumeX className="w-4 h-4 text-slate-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-                  </button>
-
-                  <span className="text-slate-400 text-[11px] hidden sm:inline ml-2">
-                    web-devlopment.mp4 · Background Stream
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2 font-mono text-xs">
-                  {/* Fullscreen Preview */}
-                  <button
-                    onClick={() => setFullscreenVideo(true)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-white backdrop-blur-md transition-colors cursor-pointer border border-slate-700 text-[11px]"
-                    title="Fullscreen Preview"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline">Fullscreen Mode</span>
-                  </button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* Fullscreen Video Modal */}
-        {fullscreenVideo && (
-          <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="w-full max-w-5xl bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
-              <div className="h-12 px-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-                <span className="font-mono text-xs text-white flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-primary" />
-                  <span>Simon Ipara — Web Development Showcase (High Definition)</span>
-                </span>
-                <button
-                  onClick={() => setFullscreenVideo(false)}
-                  className="px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs font-mono text-white transition-colors cursor-pointer"
-                >
-                  Close (ESC)
-                </button>
-              </div>
-              <div className="aspect-video w-full bg-black">
-                <video
-                  src="/videos/web-devlopment.mp4"
-                  controls
-                  autoPlay
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
-
-      {/* Featured Projects Section */}
-      <section className="w-full py-16 bg-background transition-colors">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <div className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
-                <span>Featured Engineering Systems</span>
+                <Briefcase className="w-3.5 h-3.5" />
+                <span>Engineering Services Menu</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
-                Architectural Proof & Case Studies
+                Capabilities & Sub-Specialties
               </h2>
               <p className="text-sm text-on-surface-variant mt-1 max-w-xl">
-                Rigorous case studies detailing problem boundaries, technical decisions, data models, and verifiable deliverables.
+                Explore core engineering tracks. Click into any service to view detailed tier subdivisions and transparent pricing models.
               </p>
             </div>
+            <Link href="/services" className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors">
+              <span>View Full Catalog & Pricing</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
 
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors"
-            >
-              <span>View full catalog ({projects.length} systems)</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {serviceCategories.slice(0, 6).map((cat) => {
+              return (
+                <article key={cat.id} className="bg-surface-container-lowest border border-border rounded-xl p-6 space-y-4 shadow-xs hover:border-primary/50 transition-all group flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary/20 transition-colors">
+                        <ServiceIcon iconName={cat.icon} className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-base text-on-surface group-hover:text-primary transition-colors">{cat.title}</h3>
+                        <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-2 mt-1">{cat.description}</p>
+                      </div>
+                    </div>
+
+                    {/* Submenu items / sub-specialties */}
+                    <div className="pt-3 border-t border-border/60 space-y-2">
+                      <span className="font-mono text-[10px] uppercase tracking-wider text-on-surface-variant block">Sub-Tracks & Tiers</span>
+                      <ul className="space-y-1.5">
+                        <li className="flex items-center gap-2 text-xs text-on-surface-variant">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <span>Starter & MVP Tier</span>
+                        </li>
+                        <li className="flex items-center gap-2 text-xs text-on-surface-variant">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <span>Professional / Growth Tier</span>
+                        </li>
+                        <li className="flex items-center gap-2 text-xs text-on-surface-variant">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <span>Enterprise & Custom SLA</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-border/60 flex items-center justify-between">
+                    <span className="text-xs font-mono text-primary font-medium">View Tiers & Pricing</span>
+                    <Link href={`/services#${cat.slug}`} className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors">
+                      <span>Explore Menu</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Engagement Models Submenu */}
+          <div className="mt-12">
+            <div className="mb-6">
+              <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-1">Engagement Models</h3>
+              <p className="text-xs text-on-surface-variant">Flexible partnership structures tailored to your project scope and team cadence.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <EngagementCard title="Fixed-Scope Project" desc="Clear deliverables, timeline & milestone billing." features={["Scope & acceptance criteria", "Milestone payments (30/40/30)", "30-day warranty period"]} iconName="Layers" />
+              <EngagementCard title="Monthly Retainer" desc="Reserved engineering capacity for ongoing velocity." features={["Guaranteed weekly hours", "Slack/async communication", "Roll-over unused hours"]} iconName="Compass" />
+              <EngagementCard title="Fractional CTO / Architect" desc="Strategic technical leadership & governance." features={["Architecture oversight & ADRs", "Hiring & technical interviews", "Board-ready reporting"]} iconName="ShieldCheck" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ FEATURED PROJECTS ============ */}
+      <section className="w-full py-16 bg-background transition-colors" id="projects">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <div className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
+                <Flag className="w-3.5 h-3.5" />
+                <span>Selected Work</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
+                Problems Solved, Outcomes Delivered
+              </h2>
+              <p className="text-sm text-on-surface-variant mt-1 max-w-xl">
+                Each project includes verifiable evidence: architecture decisions, test coverage, deployment receipts, and cryptographic proofs.
+              </p>
+            </div>
+            <Link href="/evidence" className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors">
+              <span>View All Evidence ({projects.length} projects)</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {featuredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="bg-surface-container-lowest border border-border rounded-xl overflow-hidden flex flex-col justify-between hover:border-primary hover:-translate-y-0.5 transition-all shadow-xs group"
-              >
+              <article key={project.id} className="bg-surface-container-lowest border border-border rounded-xl overflow-hidden flex flex-col hover:border-primary hover:-translate-y-0.5 transition-all shadow-xs group">
                 <div className="p-6 space-y-4">
-                  {/* Header badges */}
                   <div className="flex items-center justify-between gap-2">
                     <StatusBadge status={project.status} type="publication" />
                     <StatusBadge status={project.evidenceAccess} type="evidence" />
@@ -500,7 +364,6 @@ export default function HomePage() {
                     {project.summary}
                   </p>
 
-                  {/* Key Metrics strip if present */}
                   {project.keyMetrics && (
                     <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border/60">
                       {project.keyMetrics.slice(0, 2).map((m, idx) => (
@@ -512,146 +375,98 @@ export default function HomePage() {
                     </div>
                   )}
 
-                  {/* Tech stack tags */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
-                    {project.technologies.slice(0, 4).map((tech) => (
-                      <span
-                        key={tech}
-                        className="font-mono text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant"
-                      >
+                    {project.technologies.slice(0, 5).map((tech) => (
+                      <span key={tech} className="font-mono text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 4 && (
+                    {project.technologies.length > 5 && (
                       <span className="font-mono text-[11px] px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">
-                        +{project.technologies.length - 4}
+                        +{project.technologies.length - 5}
                       </span>
                     )}
                   </div>
                 </div>
 
                 <div className="px-6 py-3.5 bg-surface-container-low/50 border-t border-border flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-on-surface-variant">
-                    {project.timeline}
-                  </span>
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform"
-                  >
-                    <span>Read Case Study</span>
+                  <span className="font-mono text-[11px] text-on-surface-variant">{project.timeline}</span>
+                  <Link href="/evidence" className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform">
+                    <span>View Evidence</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* Engineering Approach Banner */}
-      <section className="w-full bg-surface-container-low border-y border-border py-14 transition-colors">
+      {/* ============ SOCIAL PROOF / TECH DEPTH ============ */}
+      <section className="w-full py-16 bg-surface-container-low/40 border-y border-border transition-colors">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-7 space-y-4">
-              <span className="font-mono text-xs text-primary uppercase font-semibold tracking-wider">
-                Engineering Approach & Invariants
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
-                Mathematical Verification Over Decorative Claims
-              </h2>
-              <p className="text-sm text-on-surface-variant leading-relaxed">
-                Rather than relying on subjective adjectives or performative badges, my workflow enforces verifiable proofs: architectural boundary invariants, row-level security policies, reproducible Docker containers, and automated test matrices.
-              </p>
-
-              <div className="pt-2 flex items-center gap-4">
-                <Link
-                  href="/engineering"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2.5 rounded bg-surface-container-lowest border border-border text-on-surface hover:border-primary transition-colors"
-                >
-                  <span>Explore Invariant Audit Matrix</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-primary" />
-                </Link>
-                <Link
-                  href="/evidence"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-on-surface-variant hover:text-primary transition-colors"
-                >
-                  <span>View Evidence Ledger</span>
-                </Link>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">Technical Depth</h3>
+              <div className="space-y-3">
+                <TechPill label="Frontend" techs={["Next.js 15 (App Router)", "React 19", "TypeScript (strict)", "Tailwind CSS", "Framer Motion", "Storybook"]} />
+                <TechPill label="Backend" techs={["Node.js (Fastify/Hono)", "Go", "PostgreSQL 16", "Prisma / Drizzle", "Redis (BullMQ)", "WebSockets"]} />
+                <TechPill label="Data & Infra" techs={["PostgreSQL RLS", "Docker", "GitHub Actions", "Terraform", "Kubernetes (k3s/EKS)", "Prometheus/Grafana"]} />
+                <TechPill label="Practices" techs={["Clean Architecture (DDD)", "OpenAPI 3.1 / Protobuf", "TDD + Property Testing", "ADR Documentation", "RLS Multi-tenancy", "CI/CD with Preview Deploys"]} />
               </div>
             </div>
-
-            <div className="lg:col-span-5 bg-surface-container-lowest border border-border rounded-xl p-5 space-y-3 shadow-xs">
-              <div className="flex items-center justify-between font-mono text-xs pb-2 border-b border-border">
-                <span className="font-semibold text-on-surface">Verified System Invariants</span>
-                <span className="text-emerald-600 dark:text-emerald-400">4 / 4 PASSING</span>
-              </div>
-
-              <div className="space-y-2.5 text-xs font-mono">
-                <div className="flex items-center justify-between p-2 rounded bg-surface-container-low">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>PostgreSQL Tenant RLS Boundary</span>
-                  </div>
-                  <span className="text-on-surface-variant text-[11px]">HIPAA Safe</span>
-                </div>
-
-                <div className="flex items-center justify-between p-2 rounded bg-surface-container-low">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>p95 Query Latency &lt; 50ms</span>
-                  </div>
-                  <span className="text-on-surface-variant text-[11px]">Benchmarked</span>
-                </div>
-
-                <div className="flex items-center justify-between p-2 rounded bg-surface-container-low">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>WCAG 2.2 AA a11y Standard</span>
-                  </div>
-                  <span className="text-on-surface-variant text-[11px]">Automated</span>
-                </div>
-
-                <div className="flex items-center justify-between p-2 rounded bg-surface-container-low">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                    <span>Merkle Tree Cryptographic Root</span>
-                  </div>
-                  <span className="text-on-surface-variant text-[11px]">Tamper-Proof</span>
-                </div>
-              </div>
+            <div>
+              <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">What Clients & Teams Get</h3>
+              <ul className="space-y-3">
+                <OutcomeItem icon={CheckCircle2} text="Production-ready code with 80%+ test coverage" />
+                <OutcomeItem icon={CheckCircle2} text="Architecture Decision Records for every major choice" />
+                <OutcomeItem icon={CheckCircle2} text="Cryptographic proof of delivery (SHA-256 attested)" />
+                <OutcomeItem icon={CheckCircle2} text="Documentation: runbooks, API specs, onboarding guides" />
+                <OutcomeItem icon={CheckCircle2} text="30-day warranty on all fixed-scope deliveries" />
+                <OutcomeItem icon={CheckCircle2} text="Knowledge transfer — your team owns the code" />
+              </ul>
             </div>
+          </div>
 
+          <div className="text-center">
+            <Link href="/skills" className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors">
+              <span>Full Technical Profile</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Direct Contact Call to Action */}
-      <section className="w-full py-16 bg-background transition-colors">
+      {/* ============ FINAL CTA ============ */}
+      <section className="w-full py-20 bg-background transition-colors">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="bg-surface-container-lowest border border-border rounded-2xl p-8 sm:p-12 text-center max-w-3xl mx-auto space-y-6 shadow-xs">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-xs uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-primary" />
-              <span>Direct Engineering Communication</span>
+          <div className="bg-surface-container-lowest border border-border rounded-2xl p-8 sm:p-12 lg:p-16 text-center max-w-3xl mx-auto space-y-6 shadow-xs relative overflow-hidden">
+            <div className="absolute top-4 right-4 opacity-5">
+              <Code2 className="w-24 h-24 text-primary" />
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
-              Let&apos;s Build Resilient, High-Impact Software
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-xs uppercase tracking-wider relative z-10">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span>Open to Opportunities</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-on-surface relative z-10">
+              Let's Build Something <span className="text-primary">That Lasts</span>
             </h2>
 
-            <p className="text-sm text-on-surface-variant max-w-xl mx-auto leading-relaxed">
-              Open to senior full-stack roles, architectural consulting, and high-concurrency systems design.
-              Directly reachable in Nairobi, Kenya (EAT / UTC+3).
+            <p className="text-base sm:text-lg text-on-surface-variant max-w-xl mx-auto leading-relaxed relative z-10">
+              Whether you're a hiring manager looking for a reliable engineer who ships quality,
+              or a founder needing a technical partner to take your product from concept to production —
+              let's talk.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-4 relative z-10">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-tertiary transition-colors shadow-xs"
               >
-                <span>Send a direct transmission</span>
-                <ArrowRight className="w-4 h-4" />
+                <Mail className="w-4 h-4" />
+                <span>Start a Conversation</span>
               </Link>
               <a
                 href={`mailto:${profile.email}`}
@@ -660,6 +475,21 @@ export default function HomePage() {
                 <span>{profile.email}</span>
               </a>
             </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-on-surface-variant font-mono relative z-10">
+              <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <LinkedinIcon className="w-3.5 h-3.5" />
+                <span>{profile.linkedin}</span>
+              </a>
+              <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <GithubIcon className="w-3.5 h-3.5" />
+                <span>{profile.github}</span>
+              </a>
+              <span className="flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>{profile.location} · EAT (UTC+3)</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -667,5 +497,57 @@ export default function HomePage() {
       <Footer />
       <TerminalModal />
     </div>
+  );
+}
+
+// ============ HELPER COMPONENTS ============
+
+function EngagementCard({ title, desc, features, iconName }: { title: string; desc: string; features: string[]; iconName: string }) {
+  return (
+    <article className="bg-surface-container-lowest border border-border rounded-xl p-5 space-y-3 shadow-xs hover:border-primary/50 transition-all">
+      <div className="flex items-start gap-3">
+        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary">
+          <ServiceIcon iconName={iconName} className="w-5 h-5" />
+        </div>
+        <div>
+          <h4 className="font-semibold text-sm text-on-surface">{title}</h4>
+          <p className="text-xs text-on-surface-variant mt-1">{desc}</p>
+        </div>
+      </div>
+      <ul className="space-y-1.5 pt-2 border-t border-border/60">
+        {features.map((f, i) => (
+          <li key={i} className="flex items-center gap-2 text-xs text-on-surface-variant">
+            <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
+}
+
+function TechPill({ label, techs }: { label: string; techs: string[] }) {
+  return (
+    <div className="space-y-2">
+      <span className="font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">{label}</span>
+      <div className="flex flex-wrap gap-1.5">
+        {techs.map((t) => (
+          <span key={t} className="font-mono text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-border/60">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OutcomeItem({ icon: Icon, text }: { icon: React.ElementType; text: string }) {
+  return (
+    <li className="flex items-start gap-3 text-sm text-on-surface-variant">
+      <div className="w-5 h-5 flex items-center justify-center shrink-0 text-emerald-500 mt-0.5">
+        <Icon className="w-4 h-4" />
+      </div>
+      <span>{text}</span>
+    </li>
   );
 }

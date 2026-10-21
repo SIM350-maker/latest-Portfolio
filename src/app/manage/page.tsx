@@ -19,7 +19,14 @@ import {
   Lock,
   GitCommit,
   Check,
-  X
+  X,
+  GraduationCap,
+  Award,
+  BookOpen,
+  Settings,
+  Users,
+  History,
+  Cpu,
 } from "lucide-react";
 
 export default function CMSDashboardPage() {
@@ -202,10 +209,10 @@ export default function CMSDashboardPage() {
                       </td>
                       <td className="py-3 px-3 text-right space-x-2">
                         <Link
-                          href={`/projects/${project.slug}`}
+                          href="/evidence"
                           target="_blank"
                           className="text-primary hover:underline"
-                          title="View live case study"
+                          title="View evidence"
                         >
                           View
                         </Link>
@@ -291,6 +298,19 @@ export default function CMSDashboardPage() {
                   className="p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center justify-between text-xs font-mono transition-colors"
                 >
                   <span className="text-on-surface">Configure Skills & Stacks</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-primary" />
+                </Link>
+
+                <Link
+                  href="/manage/academics"
+                  className="p-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container flex items-center justify-between text-xs font-mono transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded bg-primary/10 text-primary flex items-center justify-center">
+                      <GraduationCap className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-on-surface">Manage Academics & Certs</span>
+                  </div>
                   <ArrowRight className="w-3.5 h-3.5 text-primary" />
                 </Link>
 

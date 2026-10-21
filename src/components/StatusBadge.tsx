@@ -15,17 +15,57 @@ export function StatusBadge({
             Published
           </span>
         );
+      case "sent":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-indigo-500/30 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+            Sent
+          </span>
+        );
+      case "approved":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            Approved
+          </span>
+        );
+      case "ready_for_review":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-sky-500/30 bg-sky-500/10 text-sky-600 dark:text-sky-400">
+            Ready for Review
+          </span>
+        );
+      case "documents_in_progress":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-sky-500/30 bg-sky-500/10 text-sky-600 dark:text-sky-400">
+            Documents in Progress
+          </span>
+        );
       case "draft":
         return (
           <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-purple-500/30 bg-purple-500/10 text-purple-600 dark:text-purple-400">
             Draft
           </span>
         );
+      case "imported":
+      case "analyzed":
+      case "matched":
+      case "new":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400">
+            {status.replace("_", " ")}
+          </span>
+        );
+      case "rejected":
+      case "failed":
+        return (
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400">
+            {status}
+          </span>
+        );
       case "archived":
       default:
         return (
           <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider font-semibold border border-gray-400/30 bg-gray-400/10 text-gray-600 dark:text-gray-400">
-            Archived
+            {status ? status.replace("_", " ") : "Archived"}
           </span>
         );
     }

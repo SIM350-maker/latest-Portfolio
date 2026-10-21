@@ -25,7 +25,11 @@ import {
   UserCheck,
   Users,
   LogOut,
-  Lock
+  Lock,
+  Briefcase,
+  FileText,
+  Bot,
+  Send
 } from "lucide-react";
 
 interface CMSUser {
@@ -97,7 +101,7 @@ export function CMSLayout({ children }: { children: React.ReactNode }) {
       title: "Content & Education",
       items: [
         { label: "Projects", href: "/manage/projects", icon: FolderGit2 },
-        { label: "Education & Certs", href: "/manage/education", icon: GraduationCap },
+        { label: "Education & Certs", href: "/manage/academics", icon: GraduationCap },
         { label: "Skills & Stacks", href: "/manage/skills", icon: Cpu },
         { label: "Experience", href: "/manage/experience", icon: History },
         { label: "Profile & Bio", href: "/manage/profile", icon: UserCheck },
@@ -108,6 +112,15 @@ export function CMSLayout({ children }: { children: React.ReactNode }) {
       items: [
         { label: "Evidence & Artifacts", href: "/manage/evidence", icon: ShieldCheck },
         { label: "Technical Claims", href: "/manage/claims", icon: FileBadge2 },
+      ]
+    },
+    {
+      title: "Career Automation",
+      items: [
+        { label: "Career Centre", href: "/manage/career", icon: Briefcase },
+        { label: "Job Adverts", href: "/manage/career/adverts", icon: FileText },
+        { label: "AI Builder", href: "/manage/career/builder", icon: Bot },
+        { label: "Applications", href: "/manage/career/applications", icon: Send },
       ]
     },
     {

@@ -123,7 +123,7 @@ export default function EvidencePage() {
                   <div className="flex items-center gap-2 text-[11px] font-mono">
                     <span className="text-on-surface-variant">Attribution:</span>
                     <Link
-                      href={`/projects/${item.projectSlug}`}
+                      href="/evidence"
                       className="font-semibold text-primary hover:underline flex items-center gap-1"
                     >
                       <span>{item.projectName}</span>

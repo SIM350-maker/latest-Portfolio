@@ -132,10 +132,10 @@ export default function CMSProjectsPage() {
                     <td className="py-3 px-4 text-on-surface-variant">{project.timeline}</td>
                     <td className="py-3 px-4 text-right space-x-2">
                       <Link
-                        href={`/projects/${project.slug}`}
+                        href="/evidence"
                         target="_blank"
                         className="p-1.5 inline-block text-primary hover:text-tertiary"
-                        title="View Live Page"
+                        title="View Evidence"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                       </Link>

@@ -6,10 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "tsx --test tests/**/*.test.ts",
+    "test:unit": "tsx --test tests/unit/**/*.test.ts",
+    "test:integration": "tsx --test tests/integration/**/*.test.ts",
+    "migrate:career": "tsx scripts/migrate-career.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",
+    "framer-motion": "^14.4.0",
     "lucide-react": "^1.59.0",
     "next": "16.4.2",
     "react": "19.3.0",
@@ -23,6 +28,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

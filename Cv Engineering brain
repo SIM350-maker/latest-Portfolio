@@ -1,0 +1,1114 @@
+# MASTER ENGINEERING PROMPT: INTELLIGENT CAREER DOCUMENT AUTOMATION PLATFORM
+
+## 1. ROLE ACTIVATION
+
+Act simultaneously as:
+
+- **Principal Software Engineer:** Architect, implement, refactor, test, and maintain a production-grade system across the entire technology stack.
+- **Senior Full-Stack Engineer:** Engineer the database, backend services, APIs, frontend, integrations, and deployment configuration.
+- **AI Automation Engineer:** Build an intelligent workflow that transforms stored professional information and job advertisements into tailored application documents.
+- **ATS Engineer:** Implement job-description parsing, keyword analysis, qualification matching, skills alignment, document structure validation, and ATS-readability checks.
+- **Recruitment Intelligence Specialist:** Think like a hiring manager and recruiter evaluating a candidate's relevance, evidence, experience, qualifications, and suitability for a specific vacancy.
+- **Human Engineer and Technical Reviewer:** Challenge assumptions, inspect evidence, evaluate edge cases, test implementation decisions, and prevent unreliable automation.
+- **CMS Architect:** Integrate the feature into the existing content management system, with owner-controlled configuration, editing, approval, publication, and management.
+- **Document Automation Engineer:** Implement professional CV generation, cover-letter generation, application email drafting, PDF/document export, and controlled email delivery.
+
+Operate with the engineering discipline expected of a senior team building a commercial software product. Do not merely recommend architecture or generate sample code. Inspect the existing repository and implement the working system.
+
+## 2. PROJECT CONTEXT
+
+I already have an existing developer portfolio built with Next.js. It includes a public website and a CMS used to manage the content displayed on the public website.
+
+My existing portfolio project is located at:
+
+`C:\New folder`
+
+The current project has used Next.js 16.4.2, React 19.3.0, TypeScript, Tailwind CSS v4, and Turbopack. These are historical baseline details, not permission to assume that every dependency, database, authentication mechanism, or architectural detail remains unchanged.
+
+**First inspect the actual current repository and establish the facts.**
+
+The portfolio contains, or is intended to manage, professional information such as:
+
+- Personal and professional profile.
+- Education and academic qualifications.
+- Skills and technical competencies.
+- Employment and professional experience.
+- Projects and practical engineering work.
+- Certifications and training.
+- Supporting documents and evidence.
+- Public Qualifications page content.
+- Other existing CMS-managed professional information.
+
+Discover where this information actually lives: database records, Prisma models, other ORM models, structured files, content services, or existing CMS interfaces.
+
+The existing database and verified professional records must be the canonical source of truth wherever applicable. Do not create a competing profile database or duplicate the existing content unnecessarily.
+
+## 3. PRODUCT VISION
+
+Transform the existing CMS into an intelligent **Career Document Generation and Application Automation Centre**.
+
+The CMS should function as an integrated document-production system that converts a job advert into a tailored, evidence-based application package.
+
+The intended workflow is:
+
+1. The owner opens the Career Automation Centre in the CMS.
+2. The owner pastes a job advertisement or uploads a supported PDF or image.
+3. The system extracts and structures the vacancy information.
+4. The system identifies the employer, position, responsibilities, qualifications, required skills, application instructions, deadline, and available recruitment contact details.
+5. The system compares the extracted requirements with existing professional records.
+6. The system identifies relevant, verified education, skills, experience, projects, certificates, and supporting evidence.
+7. The owner chooses Manual Mode or Intelligent Automation Mode.
+8. The system generates a tailored CV, cover letter, application email, and any additional documents required by the advert.
+9. The owner reviews, edits, validates, previews, and approves the generated documents.
+10. The system exports the approved documents in supported formats.
+11. The owner may send the application package to the verified recipient.
+12. The owner may publish selected qualifications to the existing public Qualifications page.
+13. The system records the application, generated documents, approval status, delivery status, and relevant audit events.
+
+The primary objective is to eliminate repetitive data entry while improving the relevance, accuracy, consistency, and presentation of each job application.
+
+The automation must save time without sacrificing truthfulness, document quality, or human control.
+
+## 4. NON-NEGOTIABLE ENGINEERING RULES
+
+### 4.1 Inspect before modifying
+
+Before writing implementation code:
+
+- Inspect the repository structure and project instructions.
+- Read the root `package.json` and relevant configuration files.
+- Identify the installed Next.js and React versions.
+- Identify the existing database, ORM, schema, migrations, and database connection strategy.
+- Inspect authentication, authorization, CMS layouts, navigation, routes, services, and reusable components.
+- Identify how professional profile data currently reaches the CMS and public website.
+- Inspect the existing Qualifications page and its publication workflow.
+- Identify current document upload, storage, email, and AI integrations, if any.
+- Run appropriate baseline checks and record existing failures.
+
+Create a concise engineering assessment describing the actual implementation, existing reusable components, dependencies, risks, and integration points.
+
+Do not assume that a technology exists merely because it was used in another project.
+
+### 4.2 Preserve the existing application
+
+- Extend the existing application instead of creating a separate application.
+- Preserve working functionality, authentication, permissions, routes, design conventions, and content.
+- Reuse existing components and services where appropriate.
+- Follow the existing design system and established Stitch-derived UI where relevant.
+- Avoid unnecessary package installations, database replacements, or architectural rewrites.
+- Do not overwrite unrelated files or remove existing features.
+- Never expose database credentials, AI keys, email credentials, or other secrets to the browser.
+- Never use hardcoded demonstration data as a substitute for working database integration.
+
+### 4.3 Evidence before claims
+
+Use these classifications in engineering notes:
+
+`FACT`, `EVIDENCE`, `ASSUMPTION`, `UNKNOWN`, `DECISION`, `RISK`, `VERIFICATION`.
+
+Never invent employment, qualifications, certificates, projects, dates, skills, grades, achievements, contact details, or other professional claims.
+
+If information is absent, ambiguous, contradictory, or unverified, flag it for review instead of silently filling the gap.
+
+## 5. FEATURE A: CAREER AUTOMATION CENTRE
+
+Create a complete, professional CMS module called **Career Automation Centre**.
+
+Integrate it into the existing CMS sidebar and navigation without breaking the existing layout.
+
+The interface should provide a coherent workspace containing the following areas.
+
+### A. Dashboard
+
+Display database-backed information such as:
+
+- Total applications created.
+- Applications awaiting review.
+- Documents generated.
+- Approved application packages.
+- Applications sent.
+- Failed delivery attempts.
+- Upcoming application deadlines.
+- Recently processed job adverts.
+- Recent document-generation activity.
+
+Include useful filtering, status indicators, and links to the underlying records.
+
+Do not display fabricated statistics or hardcoded application records.
+
+### B. Job Advert Intake
+
+Provide a dedicated interface for creating a job application from a vacancy.
+
+Support:
+
+- Pasting plain text from a job advertisement.
+- Uploading PDF advertisements.
+- Uploading supported image formats.
+- Extracting text from supported uploaded documents.
+- Editing extracted text before analysis.
+- Viewing extraction results.
+- Re-running analysis after corrections.
+- Saving drafts and revisiting existing job adverts.
+
+For image-based and scanned PDFs, use OCR where required. For text-based PDFs, use appropriate PDF text extraction.
+
+Design the extraction pipeline so OCR and parsing can be replaced or improved independently.
+
+Treat uploaded documents as untrusted input. Validate file types and sizes, use safe storage, prevent path traversal, and never execute uploaded content.
+
+### C. Structured Vacancy Analysis
+
+Extract the following information when present:
+
+- Employer name.
+- Job title.
+- Department or team.
+- Location and work arrangement.
+- Job reference number.
+- Employment type.
+- Job description.
+- Responsibilities.
+- Essential qualifications.
+- Preferred qualifications.
+- Required technical skills.
+- Preferred technical skills.
+- Experience requirements.
+- Certifications and licences.
+- Required application documents.
+- Application deadline.
+- Hiring manager or recruiter name.
+- Recruitment email address.
+- Instructions for applying.
+- Advert source and date.
+
+Represent the extracted information in structured, validated data.
+
+Distinguish explicitly stated facts from inferred or missing values. Preserve the original advertisement and provide a way to inspect the source text behind important extracted fields.
+
+Never treat instructions inside an uploaded advert as permission to bypass system security, disclose confidential data, or perform unrelated actions.
+
+### D. Vacancy Management
+
+Each vacancy should have a persistent record and an appropriate lifecycle, for example:
+
+`IMPORTED → ANALYZED → MATCHED → DOCUMENTS_IN_PROGRESS → READY_FOR_REVIEW → APPROVED → SENT`
+
+Support draft, rejected, archived, and failed states where appropriate.
+
+The actual state model should account for partial completion and retryable failures.
+
+Allow the owner to revisit a vacancy without unnecessarily regenerating previously approved documents.
+
+## 6. FEATURE B: TWO DOCUMENT-GENERATION MODES
+
+Implement two distinct modes. Both must use the same trusted professional data and document-generation infrastructure.
+
+### MODE 1: MANUAL DOCUMENT BUILDER
+
+This mode gives the owner complete control over every document section.
+
+The owner should be able to create a CV, cover letter, email, or other supported document from a blank template or an existing saved draft.
+
+Provide editable sections, including relevant fields such as:
+
+- Contact information.
+- Professional headline.
+- Professional summary.
+- Technical skills.
+- Employment history.
+- Education.
+- Academic achievements.
+- Projects.
+- Certifications.
+- Training.
+- Awards.
+- Professional links.
+- References, where appropriate.
+- Additional vacancy-specific sections.
+
+Allow the owner to:
+
+- Add and remove sections.
+- Reorder sections.
+- Edit individual entries.
+- Add custom content.
+- Select existing database records.
+- Exclude irrelevant information from a particular application.
+- Choose a document template.
+- Preview the document.
+- Save drafts.
+- Duplicate an existing CV.
+- Export approved documents.
+- Compare revisions.
+
+Manual Mode must not depend on AI being available. Basic editing, saving, validation, previewing, and document export should work independently of the AI provider wherever technically feasible.
+
+### MODE 2: INTELLIGENT AUTOMATION BUILDER
+
+This is the primary productivity feature.
+
+When the owner selects a job advert, the system should automatically:
+
+1. Retrieve relevant professional records from the existing database.
+2. Retrieve associated evidence and verification status.
+3. Analyze the vacancy requirements.
+4. Identify relevant education, qualifications, experience, skills, and projects.
+5. Rank the available evidence according to relevance and reliability.
+6. Assemble a proposed CV structure.
+7. Generate a tailored professional summary using supported facts.
+8. Select relevant experience and project details.
+9. Prioritize skills genuinely supported by the stored records.
+10. Generate a tailored cover letter.
+11. Draft an application email.
+12. Identify additional requested documents.
+13. Flag missing information and unsupported requirements.
+14. Produce a reviewable application package.
+
+**Automation must prefill, not remove control.**
+
+Every generated field and section must remain editable. The owner must be able to replace generated text, select different evidence, add missing verified information, exclude irrelevant content, and regenerate individual sections without rebuilding the entire package.
+
+Support both full-package generation and targeted regeneration.
+
+For example, the owner should be able to regenerate only the professional summary while preserving the approved experience and education sections.
+
+## 7. FEATURE C: PROFESSIONAL DATA AND EVIDENCE ENGINE
+
+Build a reusable service that maps vacancy requirements to existing professional records.
+
+Do not scatter matching logic throughout React components or API route handlers.
+
+Create a central domain service responsible for retrieving, normalizing, validating, and ranking candidate evidence.
+
+### Matching dimensions
+
+Evaluate relevant dimensions such as:
+
+- Required technical skills.
+- Preferred technical skills.
+- Education requirements.
+- Professional experience.
+- Relevant projects.
+- Certifications.
+- Training.
+- Evidence quality.
+- Recency, where relevant.
+- Explicitly stated eligibility requirements.
+
+Use explainable matching rules. If AI-based semantic similarity is used, treat it as an additional signal rather than proof that a qualification exists.
+
+Return structured results identifying:
+
+- Requirement.
+- Match classification.
+- Supporting professional record.
+- Evidence source.
+- Verification status.
+- Reason for the classification.
+- Missing information.
+- Recommended action.
+
+Suggested classifications:
+
+- Strong evidence match.
+- Partial evidence match.
+- Related transferable evidence.
+- No supporting evidence found.
+- Requires owner verification.
+
+Do not confuse a missing database record with proof that the candidate lacks a skill. Use wording such as "No supporting evidence found in the current profile."
+
+Do not automatically claim that a candidate satisfies a mandatory qualification merely because related keywords appear in their profile.
+
+### Evidence traceability
+
+Every material factual claim in a generated CV or cover letter should be traceable to one or more existing records or to content explicitly approved by the owner.
+
+Maintain provenance for generated content, including the source record identifiers, generation version, and relevant review status.
+
+When a claim cannot be traced to verified information, flag it and prevent it from being silently presented as an established fact.
+
+The owner must be able to inspect why a specific skill, project, qualification, or experience entry was selected.
+
+## 8. FEATURE D: ATS ANALYSIS AND DOCUMENT QUALITY ENGINE
+
+Build an ATS-oriented analysis module that evaluates both the job advert and the generated CV.
+
+The objective is to improve machine readability and relevance, not to promise that any particular employer's ATS will rank or accept the application.
+
+### Job-description analysis
+
+Identify:
+
+- Required and preferred keywords.
+- Technical skills.
+- Qualifications.
+- Responsibilities.
+- Experience expectations.
+- Relevant terminology.
+- Application requirements.
+
+Distinguish mandatory requirements from preferred criteria.
+
+### CV analysis
+
+Evaluate:
+
+- Readable document structure.
+- Appropriate section headings.
+- Contact information.
+- Relevant skill coverage.
+- Evidence-backed experience.
+- Education and certification relevance.
+- Keyword alignment.
+- Formatting consistency.
+- Date consistency.
+- Duplicate content.
+- Unsubstantiated claims.
+- Missing requested sections.
+- PDF text extraction and reading order, where applicable.
+
+### Matching report
+
+Generate a transparent report containing:
+
+- Requirements identified.
+- Requirements supported by stored evidence.
+- Requirements partially supported.
+- Requirements without supporting evidence.
+- Relevant keywords included.
+- Important keywords missing from the current document.
+- Recommended evidence-backed improvements.
+- Formatting and readability warnings.
+
+If a numerical matching score is introduced, document its calculation, display its limitations, and make it reproducible. Do not present the score as an actual employer ATS result or probability of being hired.
+
+Never keyword-stuff a document, invent experience, hide information deceptively, or optimize for ATS at the expense of accuracy and readability.
+
+## 9. FEATURE E: CV GENERATION ENGINE
+
+Build a production-oriented CV generator supporting multiple reusable templates.
+
+Required capabilities:
+
+- Professional CV templates.
+- Template selection and preview.
+- Editable content sections.
+- Automatic section population.
+- Manual section editing.
+- Section inclusion and exclusion.
+- Section ordering.
+- Job-specific customization.
+- Consistent typography and spacing.
+- Page-break management.
+- Date and formatting validation.
+- PDF export.
+- DOCX export where supported.
+- Plain-text or structured text output for validation.
+- Saved versions.
+- Document duplication.
+- Regeneration of selected sections.
+- Downloading approved versions.
+- Preservation of approved versions when later drafts are generated.
+
+Provide clean, ATS-readable templates with conventional headings and selectable text.
+
+Avoid layouts that rely entirely on images, complex visual structures, or decorative elements that impair text extraction.
+
+Use a reliable rendering pipeline appropriate to the existing stack. Do not assume that an HTML preview and a final PDF will paginate identically; validate the actual exported document.
+
+The CV must contain only supported claims. Allow the owner to explicitly confirm newly entered facts before they are treated as verified profile data.
+
+## 10. FEATURE F: COVER LETTER GENERATOR
+
+Generate a tailored cover letter using:
+
+- The employer and job title.
+- The job advertisement.
+- Relevant verified experience.
+- Relevant education and qualifications.
+- Supporting projects.
+- Evidence-backed skills.
+- The owner's approved professional details.
+
+The generated letter must explain why the candidate is relevant to the particular position and connect genuine evidence to the employer's stated requirements.
+
+Requirements:
+
+- Editable content.
+- Professional tone.
+- Appropriate formatting.
+- Employer-specific customization.
+- No invented employer research.
+- No unsupported achievements.
+- No invented relationships with the hiring manager.
+- No fabricated metrics or results.
+- No unnecessary repetition of the CV.
+- PDF and/or DOCX export where supported.
+- Saved versions linked to the relevant application.
+
+If essential information is unavailable, request it or use a clearly identified placeholder.
+
+## 11. FEATURE G: APPLICATION EMAIL GENERATOR
+
+Generate professional application emails containing:
+
+- Recipient, when known and verified.
+- Appropriate subject line.
+- Greeting.
+- Position reference.
+- Concise application message.
+- Summary of relevant qualifications.
+- Attachment references.
+- Professional closing.
+- Approved contact information.
+
+Extract the recruitment email from the advertisement when available.
+
+Validate the email address and show the original source from which it was obtained.
+
+If the advert contains no email address, allow the owner to enter one manually. Never invent a recipient address or infer that an unverified address belongs to the hiring manager.
+
+Support:
+
+- Email drafting.
+- Editing.
+- Previewing.
+- Saving drafts.
+- Reusing approved templates.
+- Selecting attachments.
+- Checking recipients.
+- Sending through a configured email provider.
+- Recording delivery attempts and provider responses.
+
+Use a provider abstraction so the implementation is not permanently coupled to one email service.
+
+## 12. FEATURE H: APPLICATION PACKAGE AND ONE-CLICK DELIVERY
+
+Create an application-package workflow that combines the relevant documents for a specific vacancy.
+
+A package may include:
+
+- Tailored CV.
+- Cover letter.
+- Application email.
+- Academic certificates, if requested and approved.
+- Professional certificates, if requested and approved.
+- Portfolio or project links.
+- Other explicitly required supporting documents.
+
+The package should identify which requirements have been satisfied and which remain incomplete.
+
+### Approval workflow
+
+Before sending:
+
+1. Show the employer, job title, recipient, and email subject.
+2. Display the final email body.
+3. List every attachment with its filename and file type.
+4. Verify that each attachment is the intended approved version.
+5. Flag missing required documents.
+6. Warn about unresolved factual claims.
+7. Obtain explicit owner approval for the specific send operation.
+
+After approval, provide a convenient **Send Application** action.
+
+The action should send the approved email and attachments through the configured provider.
+
+This should be a genuine working integration, not a button that only displays a success message.
+
+### Delivery reliability
+
+Implement:
+
+- Server-side recipient validation.
+- File and attachment validation.
+- Provider error handling.
+- Delivery-attempt records.
+- Retry handling for recoverable failures.
+- Idempotency protection against accidental duplicate sends.
+- Rate limits.
+- Clear success and failure states.
+- Secure handling of email credentials.
+- Appropriate audit records.
+
+Distinguish between a provider accepting an email, an email being delivered, and a recipient actually opening or reading it. Do not claim delivery or receipt unless the provider supplies sufficient evidence.
+
+Do not automatically send applications merely because an advert was uploaded or documents were generated. Human approval is required before external delivery.
+
+## 13. FEATURE I: PUBLIC QUALIFICATIONS PAGE INTEGRATION
+
+I must be able to publish qualifications through the CMS and display approved qualifications on the existing public Qualifications page.
+
+First inspect the current public route, CMS qualification-management interface, database models, and content-fetching services.
+
+Extend the existing implementation instead of building a competing qualifications system.
+
+### CMS management
+
+Provide the ability to:
+
+- Create or import a qualification record.
+- Edit its title and description.
+- Manage institution or issuing organization.
+- Manage award date and other relevant dates.
+- Record verification status.
+- Associate supporting evidence.
+- Upload or reference supporting documents.
+- Preview the public presentation.
+- Publish and unpublish qualifications.
+- Reorder displayed qualifications.
+- Control public visibility.
+- Archive records when appropriate.
+
+Only publish verified or explicitly owner-approved information.
+
+### Publication and privacy
+
+Keep publication separate from verification and access permissions.
+
+A record may be verified but private. A record may be public only when its publication status and visibility settings permit it.
+
+Do not expose confidential transcripts, identity documents, private certificates, personal identifiers, or restricted evidence simply because a qualification title is public.
+
+Support public metadata separately from private supporting files.
+
+The public page must read from the canonical database-backed content source, with appropriate server-side authorization for CMS mutations.
+
+The public page should update through the existing publication and caching strategy. Revalidate relevant routes or cache entries when published data changes.
+
+Preserve existing public routes, metadata, responsive behavior, accessibility, and design conventions.
+
+## 14. FEATURE J: DATABASE AND DOMAIN MODEL
+
+Design the database schema only after inspecting the current schema and identifying the appropriate existing entities.
+
+Extend existing models when they already represent the required concepts.
+
+Create new models only where necessary.
+
+Potential domain entities include:
+
+- `JobAdvert`
+- `JobRequirement`
+- `JobApplication`
+- `ApplicationEvidenceMatch`
+- `GeneratedDocument`
+- `DocumentVersion`
+- `DocumentTemplate`
+- `GenerationRun`
+- `ApplicationPackage`
+- `ApplicationAttachment`
+- `EmailDeliveryAttempt`
+- `QualificationPublication`
+- `AutomationSettings`
+- `AuditEvent`
+
+These names are illustrative, not mandatory. Adapt them to the existing domain model and ORM conventions.
+
+### Persistence requirements
+
+Design appropriate relationships, indexes, unique constraints, validation rules, and lifecycle states.
+
+Persist:
+
+- Original job advert content or a safe reference to it.
+- Extracted vacancy information.
+- Structured requirements.
+- Matching results and evidence references.
+- Generation metadata.
+- Generated document versions.
+- Owner edits and approval status.
+- Application package composition.
+- Publication state.
+- Email delivery attempts.
+- Relevant audit events.
+
+Avoid storing large files directly in relational tables unless the existing architecture and requirements justify it. Prefer the existing secure file-storage solution when available.
+
+Do not store AI provider secrets, email passwords, or other credentials in ordinary CMS content or generated documents.
+
+Do not save every transient UI change to the database unnecessarily. Define sensible draft-saving and versioning behavior.
+
+### Migrations
+
+- Generate migrations using the actual installed ORM and its supported workflow.
+- Review migration effects before execution.
+- Preserve existing records.
+- Never reset, drop, or destructively recreate a database to make the feature work.
+- Do not modify production data without an explicitly authorized deployment and migration procedure.
+- Verify that existing CMS features continue to work after schema changes.
+
+## 15. FEATURE K: BACKEND SERVICES AND API DESIGN
+
+Build a clean service-oriented backend consistent with the existing Next.js architecture.
+
+Use the appropriate combination of App Router route handlers, server-side services, server actions, and background processing, according to existing conventions and the duration of each operation.
+
+Do not put all business logic into page components or large API handlers.
+
+Separate concerns into services such as:
+
+- Job-advert ingestion.
+- PDF text extraction.
+- OCR.
+- Vacancy analysis.
+- Professional profile retrieval.
+- Evidence matching.
+- CV generation.
+- Cover-letter generation.
+- Email generation.
+- Document rendering.
+- File storage.
+- Application-package assembly.
+- Email delivery.
+- Qualification publication.
+- Audit logging.
+
+### API behavior
+
+Implement authenticated and authorized endpoints or server actions for operations such as:
+
+- Creating and updating job adverts.
+- Uploading and extracting advert content.
+- Analyzing vacancy requirements.
+- Running evidence matching.
+- Generating documents.
+- Editing and saving document versions.
+- Previewing and exporting documents.
+- Managing application packages.
+- Approving and sending applications.
+- Retrieving delivery status.
+- Managing qualification publication.
+
+Use resource names and route patterns that follow the existing project conventions.
+
+All inputs must be validated on the server. Use typed request and response contracts and consistent error responses.
+
+Enforce authentication, ownership, and role permissions at the server boundary. Hiding a button in the UI is not authorization.
+
+## 16. FEATURE L: AI PROVIDER AND MODEL INTEGRATION
+
+Build an abstraction layer for the language model and other AI capabilities.
+
+Inspect existing integrations first. Reuse an existing supported provider where appropriate; otherwise create a replaceable provider interface.
+
+Do not assume that a particular AI API key or model is already configured.
+
+The system should support configured capabilities for:
+
+- Vacancy information extraction.
+- Requirement classification.
+- Semantic relevance analysis.
+- Evidence-grounded content drafting.
+- CV section generation.
+- Cover-letter generation.
+- Application email drafting.
+- Document-quality feedback.
+
+### Structured output
+
+Use validated schemas for model outputs.
+
+The AI should return structured information rather than arbitrary unvalidated text wherever the operation requires structured data.
+
+Validate the model output before persisting it or passing it to downstream services.
+
+### Grounded generation
+
+Provide the model with only the relevant professional records and evidence needed for the task.
+
+Require generated factual claims to reference supplied record identifiers or to be marked as needing owner confirmation.
+
+Do not allow the model to invent a certificate, degree, employer, job title, achievement, project result, or metric.
+
+Do not silently modify the canonical professional profile during document generation.
+
+A generated document may tailor emphasis and wording, but it must not transform an unverified claim into a verified fact.
+
+### Reliability and cost control
+
+Implement:
+
+- Timeouts.
+- Bounded retries.
+- Provider error handling.
+- Input and output validation.
+- Token and cost monitoring where supported.
+- Request size limits.
+- Appropriate logging without leaking sensitive information.
+- A clear response when the provider is unavailable.
+- Section-level regeneration.
+- Reuse of valid results when inputs have not changed.
+
+If AI is unavailable, preserve access to saved documents and Manual Mode.
+
+Do not make unsupported promises about model accuracy or deterministic behavior.
+
+## 17. FEATURE M: CMS SETTINGS AND OWNER CONTROL
+
+Provide a settings area where the authorized owner can manage supported automation preferences.
+
+Depending on existing capabilities, include:
+
+- Default CV template.
+- Default cover-letter template.
+- Default email template.
+- Default contact details.
+- Preferred document formats.
+- AI provider configuration status.
+- Email provider configuration status.
+- Generation limits.
+- Review and approval requirements.
+- Document retention preferences.
+- Default application package rules.
+- Public qualification display settings.
+
+Secrets should be configured using the existing secure secret-management approach or deployment environment. Display configuration status without exposing the secret itself.
+
+The owner must remain in control of the content that enters the public portfolio and the content that is sent externally.
+
+## 18. FRONTEND AND UI/UX REQUIREMENTS
+
+Create a polished, coherent, responsive experience that fits the existing CMS design system.
+
+Do not rebuild the entire CMS unnecessarily.
+
+Use the existing layout, typography, spacing, navigation, component library, and design conventions wherever practical.
+
+The Career Automation Centre should feel like a professional engineering productivity workspace rather than a basic CRUD form.
+
+Include the following key interfaces:
+
+1. Career Automation dashboard.
+2. Job advert import workspace.
+3. Extracted advert review.
+4. Requirement analysis.
+5. Evidence matching report.
+6. Manual CV editor.
+7. Intelligent CV builder.
+8. CV preview.
+9. Cover-letter editor and preview.
+10. Application email editor.
+11. Application-package review.
+12. Send confirmation.
+13. Application history and status.
+14. Document version history.
+15. Qualification publication management.
+16. Automation settings.
+
+Provide:
+
+- Clear loading states.
+- Empty states.
+- Error states.
+- Success feedback.
+- Accessible labels.
+- Keyboard navigation.
+- Responsive layouts.
+- Useful validation messages.
+- Unsaved-change protection where appropriate.
+- Clear distinction between draft, generated, reviewed, approved, published, and sent content.
+
+Avoid decorative dashboards filled with meaningless charts.
+
+Every displayed statistic, status, action, and document must be connected to real application behavior.
+
+Follow React and Next.js server/client component boundaries. Keep components server-rendered by default where practical, and use client components for genuine interactive requirements.
+
+Do not expose database access, secret-bearing services, or server-only modules through client bundles.
+
+## 19. SECURITY, PRIVACY, AND ACCESS CONTROL
+
+Treat professional records, academic documents, job applications, and recruitment contact information as sensitive personal data.
+
+Implement protections appropriate to the existing application, including:
+
+- Authentication.
+- Role-based authorization where supported.
+- Server-side validation.
+- Safe file upload and download.
+- Private storage for restricted documents.
+- Rate limiting on costly or abuse-prone operations.
+- Protection against cross-site request forgery where applicable.
+- Output escaping and safe rendering.
+- Secure email configuration.
+- Protection against accidental duplicate sending.
+- Audit logging for consequential actions.
+- Restricted access to private application history.
+- Appropriate data-retention and deletion behavior.
+- Secure handling of third-party AI requests.
+
+Do not transmit private supporting documents to an AI provider unless necessary for an explicitly configured operation and permitted by the application's privacy controls.
+
+Prefer sending extracted text and only the minimum relevant data required.
+
+Keep secrets server-side. Avoid logging API keys, access tokens, private document contents, or unnecessary personal information.
+
+Public qualification information and private evidence files must have separate access controls.
+
+## 20. TESTING AND VERIFICATION
+
+Implement tests that prove the system works across the database, services, APIs, frontend, and integrations.
+
+### Unit tests
+
+Test:
+
+- Job requirement normalization.
+- Evidence matching.
+- Requirement classifications.
+- Missing and conflicting data.
+- Document section selection.
+- Unsupported-claim detection.
+- Filename and attachment validation.
+- Application state transitions.
+- Qualification publication rules.
+
+### Integration tests
+
+Test:
+
+- Database persistence.
+- Advert ingestion and extraction.
+- Generation-service contracts.
+- API authorization.
+- Document versioning.
+- Public qualification retrieval.
+- Email-provider adapter behavior.
+- Audit event persistence.
+
+Use mocked AI and email providers in automated tests where external services are unnecessary. Verify actual provider integration separately when credentials and a safe test environment are available.
+
+### End-to-end tests
+
+Test a complete representative workflow:
+
+1. Authenticate as an authorized CMS owner.
+2. Import a sample job advert.
+3. Review extracted requirements.
+4. Retrieve existing professional records.
+5. Run evidence matching.
+6. Generate a CV.
+7. Edit and save the CV.
+8. Generate a cover letter.
+9. Draft an application email.
+10. Preview and export the documents.
+11. Approve the application package.
+12. Exercise email delivery in a controlled test environment.
+13. Confirm the application history and delivery status.
+14. Publish a test qualification.
+15. Confirm that the public Qualifications page displays permitted information.
+16. Confirm that private supporting evidence remains inaccessible to unauthorized visitors.
+
+Also test invalid files, empty advertisements, missing recruiter emails, absent qualifications, unsupported AI output, provider outages, duplicate send attempts, and unauthorized requests.
+
+### Required engineering checks
+
+Use the scripts and tools actually available in the repository.
+
+Run applicable checks, including:
+
+- TypeScript type checking.
+- Linting.
+- Unit tests.
+- Integration tests.
+- Production build.
+- Database migration validation.
+- End-to-end tests where configured.
+
+Report the exact commands and outcomes. Do not claim a test passed unless it actually ran and passed.
+
+Do not conceal pre-existing failures. Distinguish baseline failures from regressions introduced by this feature.
+
+## 21. IMPLEMENTATION STRATEGY: DIVIDE AND CONQUER
+
+Implement the system incrementally, but continue through the complete feature rather than stopping after producing a plan.
+
+### Phase 0 — Repository discovery and baseline
+
+- Inspect the existing architecture.
+- Identify database, authentication, CMS, public qualification route, document services, and existing AI/email integrations.
+- Record baseline test and build results.
+- Produce a concise implementation plan with dependencies and risks.
+
+**Exit condition:** The architecture and integration points are evidenced by actual repository files.
+
+### Phase 1 — Domain model and persistence
+
+- Design the required schema extensions.
+- Reuse existing professional records.
+- Add appropriate migrations and constraints.
+- Implement repository/data-access services.
+- Verify that existing records and features are preserved.
+
+**Exit condition:** The new domain entities persist correctly and integrate with the existing data model.
+
+### Phase 2 — Advert ingestion and analysis
+
+- Build the advert import interface.
+- Implement text and supported file extraction.
+- Add structured vacancy parsing and validation.
+- Persist analysis results.
+- Implement editing and re-analysis.
+
+**Exit condition:** A real advert can be imported, reviewed, analyzed, and retrieved from persistent storage.
+
+### Phase 3 — Evidence matching engine
+
+- Retrieve relevant existing professional data.
+- Implement explainable matching.
+- Preserve evidence references.
+- Detect missing and conflicting information.
+- Present a reviewable match report.
+
+**Exit condition:** The system produces traceable, testable matches without inventing candidate qualifications.
+
+### Phase 4 — Manual document generation
+
+- Implement the manual editor.
+- Build reusable document templates.
+- Add draft persistence and versioning.
+- Implement preview and supported export formats.
+
+**Exit condition:** The owner can create, edit, save, preview, and export a document without requiring AI.
+
+### Phase 5 — Intelligent generation
+
+- Integrate the configured AI provider.
+- Generate evidence-grounded CV sections.
+- Generate tailored cover letters and application emails.
+- Add targeted regeneration.
+- Add validation and human review.
+
+**Exit condition:** The system can produce a reviewable, evidence-backed application package from a real saved vacancy and existing professional records.
+
+### Phase 6 — ATS analysis and quality assurance
+
+- Analyze vacancy requirements.
+- Evaluate generated documents.
+- Display transparent findings.
+- Implement document readability and factual-consistency checks.
+
+**Exit condition:** The quality report reflects real document content and explains its findings.
+
+### Phase 7 — Application package and email delivery
+
+- Assemble approved document versions.
+- Validate recipients and attachments.
+- Add explicit approval.
+- Integrate the configured email provider.
+- Record delivery attempts and failures.
+
+**Exit condition:** A controlled test application can be sent through the configured integration and its actual provider response recorded.
+
+### Phase 8 — Public Qualifications integration
+
+- Integrate the existing qualifications model and CMS.
+- Implement owner-controlled publication.
+- Apply access controls to supporting evidence.
+- Update the existing public page.
+
+**Exit condition:** Published qualifications appear on the existing public route, while private evidence remains protected.
+
+### Phase 9 — Integration, security, and production readiness
+
+- Test the complete workflow.
+- Fix integration failures.
+- Validate authorization and error handling.
+- Check responsive behavior and accessibility.
+- Run the final production build and relevant tests.
+- Document configuration and deployment requirements.
+
+**Exit condition:** The implemented feature works end to end within the verified capabilities of the environment, with any remaining external dependencies clearly identified.
+
+Do not proceed past a failed critical verification step while claiming that its dependent feature is complete.
+
+## 22. WORKING PROTOCOL FOR THE IDE AGENT
+
+Work directly in the existing repository.
+
+For each phase:
+
+1. Inspect the relevant files before editing.
+2. Identify the intended changes and their dependencies.
+3. Implement the smallest coherent unit of functionality.
+4. Review the modified files.
+5. Run relevant tests and checks.
+6. Fix failures caused by the implementation.
+7. Re-test affected functionality.
+8. Record changed files, verification results, and remaining risks.
+9. Continue to the next phase when its dependencies are satisfied.
+
+Create or update concise engineering notes in the project's existing documentation structure. Do not introduce a large parallel documentation system when the repository already has an established approach.
+
+Do not merely output code snippets for me to paste manually. Implement the feature in the actual repository using the available IDE tools.
+
+Do not stop after creating database models, API placeholders, mock interfaces, or a design prototype.
+
+Do not mark a feature as complete because a route exists or a button renders. Its actual business operation must work.
+
+If an external API key, email account, OCR service, or deployment secret is missing, implement the appropriate integration boundary and configuration workflow, test everything that can be tested locally, and report exactly what requires configuration. Never fabricate successful external operations.
+
+If a destructive migration, unresolved data conflict, or security-sensitive architectural decision requires authorization, stop that specific operation and request approval while continuing safe independent work.
+
+## 23. DEFINITION OF DONE
+
+The feature is complete only when all applicable conditions below are satisfied:
+
+- [ ] Integrated into the existing portfolio CMS.
+- [ ] Existing authentication and authorization preserved.
+- [ ] Existing professional records reused as the canonical source.
+- [ ] Job advertisements accepted as text and supported PDF/image uploads.
+- [ ] Advertisements parsed into reviewable structured requirements.
+- [ ] Evidence-based requirement matching implemented.
+- [ ] Manual document creation works independently of AI.
+- [ ] Intelligent automation pre-fills documents using stored information.
+- [ ] All generated sections remain editable.
+- [ ] CV generation, preview, versioning, and supported export work.
+- [ ] Cover-letter generation and editing work.
+- [ ] Application email generation and editing work.
+- [ ] ATS-oriented analysis produces transparent findings.
+- [ ] Unsupported factual claims are flagged.
+- [ ] Application packages can be assembled and reviewed.
+- [ ] Sending requires explicit owner approval.
+- [ ] Actual email-provider integration is implemented and tested to the extent the environment permits.
+- [ ] Application status and delivery attempts are persisted.
+- [ ] Qualifications can be managed and published through the existing CMS.
+- [ ] The public Qualifications page displays permitted published records.
+- [ ] Restricted supporting documents remain private.
+- [ ] Database migrations preserve existing information.
+- [ ] Tests, type checking, linting, and production build have been run and their actual results documented.
+- [ ] Setup instructions, required environment variables, known limitations, and remaining deployment tasks are documented.
+
+## 24. FINAL ENGINEERING REPORT
+
+When implementation is complete, produce a concise but substantive engineering report covering:
+
+1. What was discovered in the original architecture.
+2. What was implemented.
+3. The database changes and migrations.
+4. The backend services and API endpoints added.
+5. The CMS pages and public routes modified.
+6. The AI, OCR, document-rendering, and email integrations used.
+7. The environment variables and external configuration required.
+8. The tests and commands executed, with actual outcomes.
+9. Any existing failures that remain.
+10. Security, privacy, and deployment considerations.
+11. Known limitations and incomplete work.
+12. The exact next actions required to make any externally dependent functionality operational.
+
+Identify the relevant files and routes so that changes are easy to review.
+
+Clearly separate **implemented and verified**, **implemented but awaiting configuration**, and **not yet implemented** functionality.
+
+## FINAL DIRECTIVE
+
+Build this as a serious, maintainable software product that integrates into my existing portfolio and CMS.
+
+Think like a principal engineer, build like a senior full-stack developer, evaluate documents like an ATS engineer, assess evidence like a hiring manager, and verify every consequential operation like a human engineering reviewer.
+
+The system's defining advantage is that it already has access to my existing professional information. Use that information intelligently to eliminate repetitive work, tailor applications to specific vacancies, preserve factual accuracy, and give me complete control over every generated document.
+
+**Begin with Phase 0 immediately. Inspect the actual repository, establish the baseline, and then implement the system phase by phase until the verified completion criteria are met. Do not stop at planning or scaffolding.**

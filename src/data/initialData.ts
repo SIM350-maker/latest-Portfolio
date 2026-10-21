@@ -412,7 +412,7 @@ export const INITIAL_EXPERIENCE: ExperienceItem[] = [
   {
     id: "exp-3",
     role: "Bachelor of Science in Computer Science / Software Engineering",
-    organization: "Accredited University",
+    organization: "Chuka University",
     location: "Kenya",
     period: "2020 — 2024",
     type: "Education",

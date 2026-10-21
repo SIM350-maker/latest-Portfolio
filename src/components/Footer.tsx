@@ -92,72 +92,56 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/about" className="hover:text-primary transition-colors">
-                  About & Background
+                  About (Bio, Philosophy, Quick Links)
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-primary transition-colors">
-                  Projects & Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link href="/skills" className="hover:text-primary transition-colors">
-                  Skills & Technical Stacks
-                </Link>
-              </li>
-              <li>
-                <Link href="/certifications" className="hover:text-primary transition-colors flex items-center gap-1.5 font-medium text-on-surface">
-                  <Award className="w-3.5 h-3.5 text-primary" />
-                  <span>Education & Certifications</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/engineering" className="hover:text-primary transition-colors">
-                  Engineering Principles & ADR
+                <Link href="/services" className="hover:text-primary transition-colors font-medium text-on-surface">
+                  Services & Engagement Models
                 </Link>
               </li>
               <li>
                 <Link href="/evidence" className="hover:text-primary transition-colors">
-                  Evidence & Artifacts Ledger
+                  Evidence & Cryptographic Proofs
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-primary transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Case Studies Column */}
+          {/* Case Studies Column - consolidated */}
           <div>
             <h4 className="font-mono text-xs uppercase tracking-wider font-semibold text-on-surface mb-3">
-              Case Studies & History
+              Featured Projects
             </h4>
             <ul className="space-y-2 text-xs text-on-surface-variant">
               <li>
-                <Link href="/projects/healthcare-mis" className="hover:text-primary transition-colors">
+                <Link href="/evidence" className="hover:text-primary transition-colors">
                   Healthcare MIS (Lead Architecture)
                 </Link>
               </li>
               <li>
-                <Link href="/projects/task-manager" className="hover:text-primary transition-colors">
+                <Link href="/evidence" className="hover:text-primary transition-colors">
                   Task Manager & DAG Engine
                 </Link>
               </li>
               <li>
-                <Link href="/projects/padtrack" className="hover:text-primary transition-colors">
+                <Link href="/evidence" className="hover:text-primary transition-colors">
                   PadTrack (Offline SQLite)
                 </Link>
               </li>
               <li>
-                <Link href="/projects/evoting" className="hover:text-primary transition-colors">
+                <Link href="/evidence" className="hover:text-primary transition-colors">
                   E-Voting Cryptographic Ledger
                 </Link>
               </li>
               <li>
-                <Link href="/experience" className="hover:text-primary transition-colors">
-                  Career Milestones & Roles
-                </Link>
-              </li>
-              <li>
-                <Link href="/certifications" className="hover:text-primary transition-colors">
-                  Verified Academic Transcripts
+                <Link href="/projects" className="hover:text-primary transition-colors font-medium text-on-surface">
+                  View All Projects →
                 </Link>
               </li>
             </ul>
@@ -179,7 +163,7 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/manage/education" className="hover:text-primary transition-colors flex items-center gap-1">
+                    <Link href="/manage/academics" className="hover:text-primary transition-colors flex items-center gap-1">
                       <GraduationCap className="w-3 h-3 text-primary" />
                       <span>Manage Education & Certs</span>
                     </Link>
