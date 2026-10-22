@@ -156,10 +156,13 @@ function Hero({ setTerminalOpen }: { setTerminalOpen: (open: boolean) => void })
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Hero Content */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-mono text-xs uppercase tracking-wider">
-              <Verified className="w-3.5 h-3.5" />
-              <span>Available for Contract & Full-time Roles</span>
-            </div>
+<div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-primary/5 border border-primary/10 backdrop-blur-sm hover:bg-primary/8 transition-colors duration-300 group">
+  <Verified className="w-4 h-4 text-primary group-hover:text-emerald-500 transition-colors" />
+  <span className="font-mono text-sm font-medium text-on-surface uppercase tracking-wider">
+    Available for Contract & Full-time Roles
+  </span>
+  <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-primary animate-pulse slow" />
+</div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-on-surface leading-[1.1]">
               I build <span className="text-primary">production-grade software</span> that solves real business problems
