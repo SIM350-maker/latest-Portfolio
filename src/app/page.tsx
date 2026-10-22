@@ -236,162 +236,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ SERVICES MENU & SUBMENU ============ */}
-      <section className="w-full py-16 bg-surface-container-low/40 border-y border-border transition-colors">
+      {/* ============ SERVICES SNAP ============ */}
+      <section className="w-full py-8 bg-background transition-colors">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
-                <Briefcase className="w-3.5 h-3.5" />
-                <span>Engineering Services Menu</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
-                Capabilities & Sub-Specialties
-              </h2>
-              <p className="text-sm text-on-surface-variant mt-1 max-w-xl">
-                Explore core engineering tracks. Click into any service to view detailed tier subdivisions and transparent pricing models.
-              </p>
-            </div>
-            <Link href="/services" className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors">
-              <span>View Full Catalog & Pricing</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+          <div className="mb-8">
+            <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
+              <Briefcase className="w-3.5 h-3.5" /> Engineering Services
+            </h2>
+            <p className="text-sm text-on-surface-variant mb-4">
+              I offer end-to-end engineering services across specialized tracks. Each track includes tiered pricing and a defined capability scope.
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {serviceCategories.slice(0, 6).map((cat) => {
               return (
-                <article key={cat.id} className="bg-surface-container-lowest border border-border rounded-xl p-6 space-y-4 shadow-xs hover:border-primary/50 transition-all group flex flex-col justify-between">
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary/20 transition-colors">
-                        <ServiceIcon iconName={cat.icon} className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-base text-on-surface group-hover:text-primary transition-colors">{cat.title}</h3>
-                        <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-2 mt-1">{cat.description}</p>
-                      </div>
-                    </div>
-
-                    {/* Submenu items / sub-specialties */}
-                    <div className="pt-3 border-t border-border/60 space-y-2">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-on-surface-variant block">Sub-Tracks & Tiers</span>
-                      <ul className="space-y-1.5">
-                        <li className="flex items-center gap-2 text-xs text-on-surface-variant">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          <span>Starter & MVP Tier</span>
-                        </li>
-                        <li className="flex items-center gap-2 text-xs text-on-surface-variant">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          <span>Professional / Growth Tier</span>
-                        </li>
-                        <li className="flex items-center gap-2 text-xs text-on-surface-variant">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          <span>Enterprise & Custom SLA</span>
-                        </li>
-                      </ul>
-                    </div>
+                <Link
+                  key={cat.id}
+                  href={`/services/${cat.slug}`}
+                  className="group flex flex-col items-center gap-3 bg-surface-container-lowest border border-border rounded-xl p-4 hover:bg-primary/5 hover text-on-surface transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                    <ServiceIcon iconName={cat.icon} className="w-5 h-5" />
                   </div>
-
-                  <div className="pt-4 border-t border-border/60 flex items-center justify-between">
-                    <span className="text-xs font-mono text-primary font-medium">View Tiers & Pricing</span>
-                    <Link href={`/services#${cat.slug}`} className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors">
-                      <span>Explore Menu</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
-                </article>
+                  <h3 className="font-semibold text-base text-on-surface line-clamp-1">{cat.title}</h3>
+                  <p className="text-xs text-on-surface-variant line-clamp-1">{cat.description}</p>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-primary">Learn more</span>
+                </Link>
               );
             })}
-          </div>
-
-          {/* Engagement Models Submenu */}
-          <div className="mt-12">
-            <div className="mb-6">
-              <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-1">Engagement Models</h3>
-              <p className="text-xs text-on-surface-variant">Flexible partnership structures tailored to your project scope and team cadence.</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <EngagementCard title="Fixed-Scope Project" desc="Clear deliverables, timeline & milestone billing." features={["Scope & acceptance criteria", "Milestone payments (30/40/30)", "30-day warranty period"]} iconName="Layers" />
-              <EngagementCard title="Monthly Retainer" desc="Reserved engineering capacity for ongoing velocity." features={["Guaranteed weekly hours", "Slack/async communication", "Roll-over unused hours"]} iconName="Compass" />
-              <EngagementCard title="Fractional CTO / Architect" desc="Strategic technical leadership & governance." features={["Architecture oversight & ADRs", "Hiring & technical interviews", "Board-ready reporting"]} iconName="ShieldCheck" />
-            </div>
           </div>
         </div>
       </section>
 
       {/* ============ FEATURED PROJECTS ============ */}
-      <section className="w-full py-16 bg-background transition-colors" id="projects">
+      <section className="w-full py-8 bg-background transition-colors" id="projects">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <div className="inline-flex items-center gap-1.5 font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
-                <Flag className="w-3.5 h-3.5" />
-                <span>Selected Work</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
-                Problems Solved, Outcomes Delivered
-              </h2>
-              <p className="text-sm text-on-surface-variant mt-1 max-w-xl">
-                Each project includes verifiable evidence: architecture decisions, test coverage, deployment receipts, and cryptographic proofs.
-              </p>
-            </div>
-            <Link href="/evidence" className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors">
-              <span>View All Evidence ({projects.length} projects)</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+          <div className="mb-6">
+            <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
+              <Flag className="w-3.5 h-3.5" /> Selected Work
+            </h2>
+            <p className="text-sm text-on-surface-variant mb-4">
+              Each project includes verifiable evidence: architecture decisions, test coverage, deployment receipts, and cryptographic proofs.
+            </p>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project) => (
-              <article key={project.id} className="bg-surface-container-lowest border border-border rounded-xl overflow-hidden flex flex-col hover:border-primary hover:-translate-y-0.5 transition-all shadow-xs group">
-                <div className="p-6 space-y-4">
-                  <div className="flex items-center justify-between gap-2">
-                    <StatusBadge status={project.status} type="publication" />
-                    <StatusBadge status={project.evidenceAccess} type="evidence" />
-                  </div>
-
-                  <div>
-                    <span className="font-mono text-[11px] text-on-surface-variant uppercase tracking-wider block mb-1">
-                      {project.category}
-                    </span>
-                    <h3 className="font-semibold text-lg text-on-surface group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {featuredProjects.slice(0, 3).map((project) => (
+              <article
+                key={project.id}
+                className="bg-surface-container-lowest border border-border rounded-xl overflow-hidden flex flex-col hover:border-primary hover:-translate-y-0.5 transition-all shadow-xs group"
+              >
+                <div className="p-4">
+                  <span className="font-mono text-[11px] text-on-surface-variant uppercase tracking-wider block mb-1">
+                    {project.category}
+                  </span>
+                  <h3 className="font-semibold text-lg text-on-surface group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
+                <div className="p-3 bg-surface-container-low/50 border-t border-border flex flex-col gap-2">
                   <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-3">
                     {project.summary}
                   </p>
-
-                  {project.keyMetrics && (
-                    <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border/60">
-                      {project.keyMetrics.slice(0, 2).map((m, idx) => (
-                        <div key={idx} className="bg-surface-container-low p-2 rounded">
-                          <span className="font-mono text-[10px] text-on-surface-variant block">{m.label}</span>
-                          <span className="font-mono font-semibold text-xs text-on-surface">{m.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
                   <div className="flex flex-wrap gap-1.5 pt-1">
-                    {project.technologies.slice(0, 5).map((tech) => (
+                    {project.technologies.slice(0, 4).map((tech) => (
                       <span key={tech} className="font-mono text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">
                         {tech}
                       </span>
                     ))}
-                    {project.technologies.length > 5 && (
+                    {project.technologies.length > 4 && (
                       <span className="font-mono text-[11px] px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">
-                        +{project.technologies.length - 5}
+                        +{project.technologies.length - 4}
                       </span>
                     )}
                   </div>
                 </div>
-
-                <div className="px-6 py-3.5 bg-surface-container-low/50 border-t border-border flex items-center justify-between">
+                <div className="px-3 py-2 bg-surface-container-low/50 border-t border-border flex items-center justify-between">
                   <span className="font-mono text-[11px] text-on-surface-variant">{project.timeline}</span>
-                  <Link href="/evidence" className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform">
+                  <Link
+                    href={`/evidence/${project.id}`}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform"
+                  >
                     <span>View Evidence</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
@@ -399,24 +323,33 @@ export default function HomePage() {
               </article>
             ))}
           </div>
+          <div className="mt-6 text-center">
+            <Link
+              href="/evidence"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors"
+            >
+              <span>View All Evidence ({projects.length} projects)</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* ============ SOCIAL PROOF / TECH DEPTH ============ */}
-      <section className="w-full py-16 bg-surface-container-low/40 border-y border-border transition-colors">
+      <section className="w-full py-8 bg-surface-container-low/40 border-y border-border transition-colors">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <div>
               <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">Technical Depth</h3>
               <div className="space-y-3">
-                <TechPill label="Frontend" techs={["Next.js 15 (App Router)", "React 19", "TypeScript (strict)", "Tailwind CSS", "Framer Motion", "Storybook"]} />
-                <TechPill label="Backend" techs={["Node.js (Fastify/Hono)", "Go", "PostgreSQL 16", "Prisma / Drizzle", "Redis (BullMQ)", "WebSockets"]} />
-                <TechPill label="Data & Infra" techs={["PostgreSQL RLS", "Docker", "GitHub Actions", "Terraform", "Kubernetes (k3s/EKS)", "Prometheus/Grafana"]} />
-                <TechPill label="Practices" techs={["Clean Architecture (DDD)", "OpenAPI 3.1 / Protobuf", "TDD + Property Testing", "ADR Documentation", "RLS Multi-tenancy", "CI/CD with Preview Deploys"]} />
+                <TechPill label="Frontend" techs={["Next.js 15 (App Router)", "React 19", "TypeScript (strict)", "Tailwind CSS", "Framer Motion"]} />
+                <TechPill label="Backend" techs={["Node.js (Fastify/Hono)", "Go", "PostgreSQL 16", "Prisma / Drizzle", "Redis (BullMQ)"]} />
+                <TechPill label="Data & Infra" techs={["PostgreSQL RLS", "Docker", "GitHub Actions", "Terraform"]} />
+                <TechPill label="Practices" techs={["Clean Architecture (DDD)", "OpenAPI 3.1 / Protobuf", "TDD + Property Testing", "ADR Documentation"]} />
               </div>
             </div>
             <div>
-              <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">What Clients & Teams Get</h3>
+              <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">What You Get</h3>
               <ul className="space-y-3">
                 <OutcomeItem icon={CheckCircle2} text="Production-ready code with 80%+ test coverage" />
                 <OutcomeItem icon={CheckCircle2} text="Architecture Decision Records for every major choice" />
@@ -427,9 +360,11 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-
           <div className="text-center">
-            <Link href="/skills" className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors">
+            <Link
+              href="/skills"
+              className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors"
+            >
               <span>Full Technical Profile</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>

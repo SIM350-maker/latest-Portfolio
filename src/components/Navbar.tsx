@@ -33,8 +33,7 @@ interface NavItem {
   }>;
 }
 
-// 4-page structure: Home, About (hub), Services (deep-dive), Contact
-// Deep-dive pages: Experience, Qualifications, Engineering, Skills
+// 5-page structure: Home, About (hub), Services (deep-dive), Contact
 const navStructure: NavItem[] = [
   { 
     label: "Home", 
@@ -47,14 +46,26 @@ const navStructure: NavItem[] = [
     icon: User,
     children: [
       { label: "Who I Am", href: "/about#who-i-am", icon: User, description: "Bio & philosophy" },
-      { label: "Services", href: "/services", icon: Briefcase, description: "What I offer, pricing & models" },
       { label: "Experience", href: "/experience", icon: Briefcase, description: "Work history & roles" },
       { label: "Qualifications", href: "/qualifications", icon: GraduationCap, description: "Academic credentials" },
       { label: "Skills", href: "/skills", icon: Award, description: "Technical competencies" },
       { label: "Methodology", href: "/engineering", icon: Terminal, description: "Technical invariants" },
     ]
   },
-  ];
+  { 
+    label: "Services", 
+    href: "/services", 
+    icon: Briefcase,
+    children: [
+      { label: "Fullstack", href: "/services/fullstack", icon: Briefcase, description: "End-to-end web applications" },
+      { label: "Backend", href: "/services/backend", icon: Briefcase, description: "Server logic & APIs" },
+      { label: "Database", href: "/services/database", icon: Briefcase, description: "Data modeling & optimization" },
+      { label: "Cloud", href: "/services/cloud", icon: Briefcase, description: "Deployment & infrastructure" },
+      { label: "AI/ML", href: "/services/ai", icon: Briefcase, description: "Intelligent systems & automation" },
+      { label: "Consulting", href: "/services/consulting", icon: Briefcase, description: "Strategic technology guidance" },
+    ]
+  },
+];
 
 export function Navbar() {
   const pathname = usePathname();
