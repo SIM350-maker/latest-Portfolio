@@ -60,9 +60,17 @@ import {
   Flag,
   Trophy,
   Eye,
-  GithubIcon,
-  LinkedinIcon,
+  GitBranch as GithubIcon,
+  Link2 as LinkedinIcon,
 } from "lucide-react";
+
+interface ServiceCategory {
+  id: number;
+  title: string;
+  slug: string;
+  description: string;
+  icon: keyof typeof SERVICE_ICONS;
+}
 
 const SERVICE_ICONS: Record<string, React.ElementType> = {
   Layers, Server, Database, Cloud, Bot, Compass, Code2, Cpu, ShieldCheck, Globe, Zap, Shield, Target, Rocket, Star, BarChart2,
@@ -136,7 +144,7 @@ function OutcomeList({ items }: { items: { icon: React.ElementType; text: string
 // ============================================================
 // HERO SECTION
 // ============================================================
-function Hero() {
+function Hero({ setTerminalOpen }: { setTerminalOpen: (open: boolean) => void }) {
   const { profile } = usePortfolio();
 
   return (
@@ -190,14 +198,11 @@ function Hero() {
 
             {/* Scroll indicator */}
             <div className="pt-6 text-center">
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 1.5, repeat: true, ease: "sinusoidal" }}
-              >
-                <svg className="w-6 h-6 text-on-surface-variant" viewBox="0 0 24 24" fill="currentColor">
+              <div className="flex items-center justify-center">
+                <svg className="w-6 h-6 text-on-surface-variant rotate-0 transition-transform duration-1500 ease-in-out infinite alternate" aria-hidden="true">
                   <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
                 </svg>
-              </motion.div>
+              </div>
             </div>
           </div>
 
@@ -276,7 +281,20 @@ function Hero() {
 // SERVICES SNAP SECTION
 // ============================================================
 function ServicesSnap() {
-  const { serviceCategories, servicePackages } = usePortfolio();
+  const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>([]);
+  const [servicePackages, setServicePackages] = useState<Array<{ category_id: number; price_kes: number }>>([]);
+
+  useEffect(() => {
+    Promise.all([
+      fetch("/api/services").then((r) => (r.ok ? r.json() : null)),
+      fetch("/api/services/packages").then((r) => (r.ok ? r.json() : null)),
+    ])
+      .then(([catRes, pkgRes]) => {
+        if (catRes?.categories) setServiceCategories(catRes.categories);
+        if (pkgRes?.packages) setServicePackages(pkgRes.packages);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="w-full bg-background py-8">
@@ -290,27 +308,29 @@ function ServicesSnap() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {serviceCategories.slice(0, 6).map((cat) => {
-            const pkg = servicePackages?.find((p) => p.category_id === cat.id);
-            return (
-              <Link
-                key={cat.id}
-                href={`/services/${cat.slug}`}
-                className="group flex flex-col items-center gap-3 bg-surface-container-lowest border border-border rounded-xl p-4 hover:bg-primary/5 hover:text-on-surface transition-colors cursor-pointer"
-              >
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
-                  <ServiceIcon iconName={cat.icon} className="w-5 h-5" />
-                </div>
-                <h3 className="font-semibold text-base text-on-surface line-clamp-1">{cat.title}</h3>
-                <p className="text-xs text-on-surface-variant line-clamp-1">{cat.description}</p>
-                <div className="mt-2 text-[10px] font-mono uppercase tracking-wider text-primary">
-                  <span>Learn more →</span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        {serviceCategories.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {serviceCategories.slice(0, 6).map((cat) => {
+              const pkg = servicePackages?.find((p) => p.category_id === cat.id);
+              return (
+                <Link
+                  key={cat.id}
+                  href={`/services/${cat.slug}`}
+                  className="group flex flex-col items-center gap-3 bg-surface-container-lowest border border-border rounded-xl p-4 hover:bg-primary/5 hover:text-on-surface transition-colors cursor-pointer"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                    <ServiceIcon iconName={cat.icon} className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-semibold text-base text-on-surface line-clamp-1">{cat.title}</h3>
+                  <p className="text-xs text-on-surface-variant line-clamp-1">{cat.description}</p>
+                  <div className="mt-2 text-[10px] font-mono uppercase tracking-wider text-primary">
+                    <span>Learn more →</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -512,13 +532,13 @@ function FinalCTA() {
 // MAIN PAGE COMPONENT
 // ============================================================
 export default function HomePage() {
-  const { profile, projects, serviceCategories, servicePackages, setTerminalOpen } = usePortfolio();
+  const { profile, projects, setTerminalOpen } = usePortfolio();
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
       <Navbar />
 
-      <Hero />
+      <Hero setTerminalOpen={setTerminalOpen} />
 
       <ServicesSnap />
 
