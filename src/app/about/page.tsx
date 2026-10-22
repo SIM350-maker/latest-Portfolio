@@ -17,7 +17,6 @@ import {
   Award,
   Code2,
   Cpu,
-  Layers,
   ShieldCheck,
   FileText,
   ScrollText,
@@ -26,60 +25,9 @@ import {
   CheckCircle2,
   ChevronRight,
   Sparkles,
-  Server,
-  Database,
-  Cloud,
-  Bot,
-  Compass,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
-
-interface ServiceItem {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-const SERVICE_SUMMARY: readonly ServiceItem[] = [
-  {
-    title: "Full-Stack Web Applications",
-    description:
-      "Product-grade web apps built on Next.js, React, Node.js and PostgreSQL.",
-    icon: Layers,
-  },
-  {
-    title: "Backend APIs & Microservices",
-    description:
-      "Contract-first REST services with validation, auth and clean domain boundaries.",
-    icon: Server,
-  },
-  {
-    title: "Database Architecture & Security",
-    description:
-      "Schema design, migrations and PostgreSQL RLS for multi-tenant data.",
-    icon: Database,
-  },
-  {
-    title: "Cloud, DevOps & Reliability",
-    description:
-      "Containerised deployments, CI/CD pipelines and production observability.",
-    icon: Cloud,
-  },
-  {
-    title: "AI Integration & Automation",
-    description:
-      "LLM-assisted workflows, document generation and evidence-backed automation.",
-    icon: Bot,
-  },
-  {
-    title: "Technical Consulting & Reviews",
-    description:
-      "Architecture reviews, ADR authoring, performance audits and engineering mentorship.",
-    icon: Compass,
-  },
-] as const;
 
 interface PrincipleItem {
   title: string;
@@ -173,25 +121,6 @@ function SkillTag({ name }: { name: string }) {
     >
       {name}
     </motion.span>
-  );
-}
-
-function ServiceCard({ service }: { service: typeof SERVICE_SUMMARY[0] }) {
-  const Icon = service.icon;
-  return (
-    <motion.div
-      className="bg-surface-container-lowest border border-border rounded-xl p-5 space-y-2 hover:border-primary/50 transition-colors"
-    >
-      <div className="w-9 h-9 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-        <Icon className="w-4.5 h-4.5" aria-hidden="true" />
-      </div>
-      <h3 className="font-semibold text-sm text-on-surface">
-        {service.title}
-      </h3>
-      <p className="text-xs text-on-surface-variant leading-relaxed">
-        {service.description}
-      </p>
-    </motion.div>
   );
 }
 
@@ -354,11 +283,9 @@ export default function AboutPage() {
 
   const jumpLinks = [
     { label: "Who I Am", href: "#who-i-am" },
-    { label: "What I Do", href: "#what-i-do" },
     { label: "Academics", href: "#academics" },
     { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
-    { label: "Methodology", href: "#methodology" },
     { label: "Documents", href: "#documents" },
   ];
 
@@ -480,44 +407,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* 2. WHAT I DO */}
-          <section
-            aria-labelledby="what-i-do-heading"
-            className="space-y-6 scroll-mt-24"
-            id="what-i-do"
-          >
-            <div className="space-y-2">
-              <SectionEyebrow>What I Do</SectionEyebrow>
-              <h2
-                id="what-i-do-heading"
-                className="text-2xl font-bold text-on-surface"
-              >
-                Digital products and engineering services
-              </h2>
-              <p className="text-sm text-on-surface-variant max-w-2xl leading-relaxed">
-                I design, build, and operate software from product engineering through
-                backend systems, data architecture, deployment and ongoing reliability.
-                These are the six areas clients and employers engage me for.
-              </p>
-            </div>
-
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              {SERVICE_SUMMARY.map((service) => (
-                <ServiceCard key={service.title} service={service} />
-              ))}
-            </motion.div>
-
-            <DrillDownButton href="/services">
-              See services, categories, engagement models & pricing
-            </DrillDownButton>
-          </section>
-
-          {/* 3. ACADEMIC JOURNEY */}
+          {/* 2. ACADEMIC JOURNEY */}
           <section
             aria-labelledby="academics-heading"
             className="space-y-6 scroll-mt-24"
@@ -595,7 +485,7 @@ export default function AboutPage() {
             </DrillDownButton>
 
             {/* Professional Documents - merged with Academic Journey */}
-            <div className="pt-8 border-t border-border">
+            <div className="pt-8 border-t border-border scroll-mt-24" id="documents">
               <div className="space-y-2 mb-6">
                 <SectionEyebrow>Professional Documents</SectionEyebrow>
                 <h3 className="text-xl font-bold text-on-surface">Verify or download the record</h3>
@@ -642,7 +532,7 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* 4. EXPERIENCE */}
+          {/* 3. EXPERIENCE */}
           <section
             aria-labelledby="experience-heading"
             className="space-y-6 scroll-mt-24"
@@ -673,7 +563,7 @@ export default function AboutPage() {
             </DrillDownButton>
           </section>
 
-          {/* 5. SKILLS */}
+          {/* 4. SKILLS */}
           <section
             aria-labelledby="skills-heading"
             className="space-y-6 scroll-mt-24"
@@ -701,7 +591,7 @@ export default function AboutPage() {
             </DrillDownButton>
           </section>
 
-          {/* 8. CTA */}
+          {/* 5. CTA */}
           <section
             aria-labelledby="cta-heading"
             className="border-t border-border pt-10 pb-4 text-center space-y-5"
