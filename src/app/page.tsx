@@ -155,138 +155,188 @@ function OutcomeList({ items }: { items: { icon: React.ElementType; text: string
 }
 
 // ============================================================
-// HERO SECTION
+// HERO SECTION - FUTURISTIC
 // ============================================================
 function Hero({ setTerminalOpen }: { setTerminalOpen: (open: boolean) => void }) {
   const { profile } = usePortfolio();
 
   return (
-    <section className="relative min-h-[70vh] bg-gradient-to-b from-surface/50 to-surface/80 border-b border-border">
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -left-24 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+    <section className="relative min-h-[90vh] bg-gradient-to-br from-surface via-surface to-surface-container/30 border-b border-border overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute bottom-32 -left-32 w-80 h-80 rounded-full bg-blue-500/5 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none" />
+      
+      {/* Grid pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
+                           linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
 
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-20 sm:py-28 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Hero Content */}
           <div className="lg:col-span-7 space-y-6">
             {/* Verified Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-primary/5 border border-primary/10 backdrop-blur-sm hover:bg-primary/8 transition-colors duration-300 group">
-              <Verified className="w-4 h-4 text-primary group-hover:text-emerald-500 transition-colors" />
-              <span className="font-mono text-sm font-medium text-on-surface uppercase tracking-wider">
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-emerald-500/10 border border-primary/20 backdrop-blur-sm hover:from-primary/15 hover:to-emerald-500/15 hover:border-primary/30 transition-all duration-300 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+              <Verified className="w-4 h-4 text-primary group-hover:text-emerald-400 transition-colors relative z-10" />
+              <span className="font-mono text-sm font-medium text-on-surface uppercase tracking-wider relative z-10">
                 Available for Contract & Full-time Roles
               </span>
-              <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-primary animate-pulse slow" />
-            </div>
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-on-surface leading-[1.1]">
-              I build <span className="text-primary">production-grade software</span> that solves real business problems
-            </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-on-surface leading-[1.05]"
+            >
+              I build <span className="bg-gradient-to-r from-primary to-emerald-400 bg-clip-text text-transparent">production-grade software</span> that solves real business problems
+            </motion.h1>
 
-            <p className="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed"
+            >
               Full-stack engineer with 3+ years delivering web applications, APIs, and data systems. Clean architecture, type-safe code, and verifiable outcomes — not just features.
-            </p>
+            </motion.p>
 
             {/* CTA Buttons */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="pt-4 flex flex-wrap items-center gap-4"
+            >
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-tertiary transition-all shadow-xs"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-white text-sm font-semibold hover:shadow-[0_0_40px_rgba(99,102,241,0.4)] transition-all shadow-lg overflow-hidden"
               >
-                <span>View My Work</span>
-                <ArrowRight className="w-4 h-4" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <span className="relative z-10">View My Work</span>
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-surface-container-lowest border border-border text-on-surface text-sm font-medium hover:bg-surface-container transition-all"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-surface-container-lowest border border-primary/20 text-on-surface text-sm font-medium hover:bg-primary/10 hover:border-primary/40 transition-all overflow-hidden"
               >
-                <Briefcase className="w-4 h-4 text-primary" />
-                <span>Hire Me</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <Briefcase className="w-4 h-4 text-primary relative z-10" />
+                <span className="relative z-10">Hire Me</span>
               </Link>
 
               <button
                 onClick={() => setTerminalOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-lg border border-primary/30 bg-primary/5 text-primary text-sm font-mono hover:bg-primary/10 transition-colors cursor-pointer"
+                className="group relative inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-primary/30 bg-primary/5 text-primary text-sm font-mono hover:bg-primary/10 hover:border-primary/50 transition-all overflow-hidden"
               >
-                <Terminal className="w-4 h-4" />
-                <span>Launch Terminal</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <Terminal className="w-4 h-4 relative z-10" />
+                <span className="relative z-10">Launch Terminal</span>
               </button>
-            </div>
+            </motion.div>
 
             {/* Scroll indicator */}
-            <div className="pt-6 text-center">
-              <div className="flex items-center justify-center">
-                <svg className="w-6 h-6 text-on-surface-variant rotate-0 transition-transform duration-1500 ease-in-out infinite alternate" aria-hidden="true">
-                  <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="pt-6 text-center"
+            >
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="inline-flex flex-col items-center gap-2"
+              >
+                <span className="font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">Scroll</span>
+                <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14M19 12l-7 7-7-7" />
                 </svg>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
-          {/* Right: Credibility Card */}
+          {/* Right: Credibility Card - Futuristic */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <div className="bg-surface-container-lowest border border-border rounded-2xl p-6 shadow-lg">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs uppercase tracking-wider text-on-surface-variant">Credibility Signals</span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-xs border border-emerald-500/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  VERIFIED
-                </span>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 via-blue-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-70" />
+              
+              <div className="relative bg-surface-container-lowest/90 backdrop-blur-sm border border-primary/20 rounded-2xl p-6 shadow-2xl">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    <span className="font-mono text-xs uppercase tracking-wider text-primary font-medium">Credibility Signals</span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-mono text-xs border border-emerald-500/30">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    VERIFIED
+                  </span>
+                </div>
+
+                <div className="space-y-3">
+                  {[
+                    { icon: ShieldCheck, title: "Cryptographic Provenance", desc: "Every project backed by SHA-256 attested artifacts", color: "blue" },
+                    { icon: Code2, title: "Type-Safe by Default", desc: "Strict TypeScript, OpenAPI contracts, zero any", color: "primary" },
+                    { icon: Database, title: "Data Integrity First", desc: "PostgreSQL RLS, migrations, zero-downtime deployments", color: "emerald" },
+                    { icon: TrendingUp, title: "Business Outcomes", desc: "Built systems serving 10k+ users, reduced infra costs 40%", color: "amber" },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+                      className={`
+                        group flex items-center gap-3 p-3 rounded-xl
+                        bg-surface-container/50 border border-border/50
+                        hover:bg-primary/5 hover:border-primary/30
+                        transition-all duration-300 cursor-default
+                      `}
+                    >
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all ${
+                        item.color === 'blue' ? 'bg-blue-500/10 text-blue-400 group-hover:bg-blue-500/20' :
+                        item.color === 'primary' ? 'bg-primary/10 text-primary group-hover:bg-primary/20' :
+                        item.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20' :
+                        'bg-amber-500/10 text-amber-400 group-hover:bg-amber-500/20'
+                      }`}>
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-sm text-on-surface group-hover:text-primary transition-colors">{item.title}</p>
+                        <p className="text-xs text-on-surface-variant/70 group-hover:text-on-surface-variant transition-colors">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="pt-4 border-t border-border/50 flex items-center justify-center gap-6">
+                  <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-primary transition-all hover:scale-105">
+                    <GithubIcon className="w-4 h-4" />
+                    <span>{profile.github}</span>
+                  </a>
+                  <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-primary transition-all hover:scale-105">
+                    <LinkedinIcon className="w-4 h-4" />
+                    <span>{profile.linkedin}</span>
+                  </a>
+                </div>
               </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-on-surface">Cryptographic Provenance</p>
-                    <p className="text-xs text-on-surface-variant/70">Every project backed by SHA-256 attested artifacts</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
-                    <Code2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-on-surface">Type-Safe by Default</p>
-                    <p className="text-xs text-on-surface-variant/70">Strict TypeScript, OpenAPI contracts, zero any</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500">
-                    <Database className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-on-surface">Data Integrity First</p>
-                    <p className="text-xs text-on-surface-variant/70">PostgreSQL RLS, migrations, zero-downtime deployments</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 p-3 bg-surface-container-low rounded-xl">
-                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500">
-                    <TrendingUp className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-on-surface">Business Outcomes</p>
-                    <p className="text-xs text-on-surface-variant/70">Built systems serving 10k+ users, reduced infra costs 40%</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-border flex items-center gap-4">
-                <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-primary transition-colors">
-                  <GithubIcon className="w-4 h-4" />
-                  <span>{profile.github}</span>
-                </a>
-                <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-xs font-mono text-on-surface-variant hover:text-primary transition-colors">
-                  <LinkedinIcon className="w-4 h-4" />
-                  <span>{profile.linkedin}</span>
-                </a>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
