@@ -433,75 +433,103 @@ function ServicesSnap() {
 }
 
 // ============================================================
-// FEATURED PROJECTS SNAP
+// PROJECTS SNAP - FUTURISTIC
 // ============================================================
 function ProjectsSnap() {
   const { projects } = usePortfolio();
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 
   return (
-    <section className="w-full bg-background py-8">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        <div className="mb-6">
-          <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
-            <Flag className="w-3.5 h-3.5" /> Selected Work
+    <section className="w-full bg-background py-12 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 right-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <div className="mb-10 text-center">
+          <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-3 inline-flex items-center gap-2">
+            <Flag className="w-4 h-4" />
+            Projects
           </h2>
-          <p className="text-sm text-on-surface-variant mb-4">
-            Each project includes verifiable evidence: architecture decisions, test coverage, deployment receipts, and cryptographic proofs.
+          <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            Curated case studies with verifiable evidence: architecture decisions, test coverage, deployment receipts, and cryptographic proofs.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {featuredProjects.map((project) => (
-            <article
+        {/* Project Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {featuredProjects.map((project, index) => (
+            <motion.article
               key={project.id}
-              className="bg-surface-container-lowest border border-border rounded-xl overflow-hidden flex flex-col hover:border-primary hover:-translate-y-0.5 transition-all shadow-xs group"
+              className={`
+                group relative flex flex-col overflow-hidden
+                bg-surface-container-lowest/80 backdrop-blur-sm
+                border border-border
+                rounded-2xl
+                transition-all duration-300 ease-out
+                hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]
+                cursor-pointer
+              `}
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <div className="p-4 flex flex-col h-100">
-                <span className="font-mono text-[11px] text-on-surface-variant uppercase tracking-wider block mb-1">
+              {/* Category Badge */}
+              <div className="absolute top-4 left-4 z-10">
+                <span className="font-mono text-[10px] text-on-surface-variant uppercase tracking-wider bg-surface-container-lowest/90 backdrop-blur-sm px-2 py-1 rounded-full border border-border">
                   {project.category}
                 </span>
-                <h3 className="font-semibold text-lg text-on-surface group-hover:text-primary transition-colors">
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex flex-col h-full">
+                <h3 className="font-semibold text-lg text-on-surface group-hover:text-primary transition-colors mb-2">
                   {project.title}
                 </h3>
-              </div>
-              <div className="p-3 bg-surface-container-low/50 border-t border-border flex flex-col gap-2 flex-1">
-                <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-3">
+                <p className="text-xs text-on-surface-variant/70 leading-relaxed line-clamp-3 flex-1 mb-4">
                   {project.summary}
                 </p>
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <span key={tech} className="font-mono text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.technologies.slice(0, 5).map((tech) => (
+                    <span key={tech} className="font-mono text-[10px] px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary">
                       {tech}
                     </span>
                   ))}
-                  {project.technologies.length > 4 && (
-                    <span className="font-mono text-[11px] px-1.5 py-0.5 rounded bg-surface-container text-on-surface-variant">
-                      +{project.technologies.length - 4}
+                  {project.technologies.length > 5 && (
+                    <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary">
+                      +{project.technologies.length - 5}
                     </span>
                   )}
                 </div>
-              </div>
-              <div className="px-3 py-2 bg-surface-container-low/50 border-t border-border flex items-center justify-between">
-                <span className="font-mono text-[11px] text-on-surface-variant">{project.timeline}</span>
+
+                {/* CTA */}
                 <Link
                   href={`/evidence/${project.id}`}
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform"
+                  className="inline-flex items-center gap-1.5 w-full justify-center px-3 py-2 bg-primary/5 border border-primary/10 rounded-xl text-primary font-mono text-xs font-medium hover:bg-primary hover:text-white transition-all"
                 >
                   <span>View Evidence</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
-            </article>
+
+              {/* Bottom accent line */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary/20 to-primary group-hover:from-primary group-hover:to-primary/80 transition-all duration-500" />
+            </motion.article>
           ))}
         </div>
-        <div className="mt-6 text-center">
+
+        {/* View All Link */}
+        <div className="mt-10 text-center">
           <Link
             href="/evidence"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary/10 border border-primary/20 text-primary font-mono text-sm font-medium hover:bg-primary hover:text-white transition-all shadow-xs"
           >
             <span>View All Evidence ({projects.length} projects)</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -510,47 +538,132 @@ function ProjectsSnap() {
 }
 
 // ============================================================
-// TECH DEPTH & OUTCOMES
+// TECHNOLOGIES & OUTCOMES - FUTURISTIC
 // ============================================================
 function TechDepth() {
   const { profile } = usePortfolio();
 
-  return (
-    <section className="w-full bg-surface-container-low/40 border-y border-border transition-colors py-8">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          <div>
-            <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">Technical Depth</h3>
-            <div className="space-y-3">
-              <TechPill label="Frontend" techs={["Next.js 15 (App Router)", "React 19", "TypeScript (strict)", "Tailwind CSS", "Framer Motion"]} />
-              <TechPill label="Backend" techs={["Node.js (Fastify/Hono)", "Go", "PostgreSQL 16", "Prisma / Drizzle", "Redis (BullMQ)"]} />
-              <TechPill label="Data & Infra" techs={["PostgreSQL RLS", "Docker", "GitHub Actions", "Terraform"]} />
-              <TechPill label="Practices" techs={["Clean Architecture (DDD)", "OpenAPI 3.1 / Protobuf", "TDD + Property Testing", "ADR Documentation"]} />
-            </div>
-          </div>
+  const techCategories = [
+    { label: "Frontend", techs: ["Next.js 15 (App Router)", "React 19", "TypeScript (strict)", "Tailwind CSS", "Framer Motion"], color: "blue" },
+    { label: "Backend", techs: ["Node.js (Fastify/Hono)", "Go", "PostgreSQL 16", "Prisma / Drizzle", "Redis (BullMQ)"], color: "purple" },
+    { label: "Data & Infra", techs: ["PostgreSQL RLS", "Docker", "GitHub Actions", "Terraform"], color: "emerald" },
+    { label: "Practices", techs: ["Clean Architecture (DDD)", "OpenAPI 3.1 / Protobuf", "TDD + Property Testing", "ADR Documentation"], color: "teal" },
+  ];
 
-          <div>
-            <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-4">What You Get</h3>
-            <OutcomeList
-              items={[
-                { icon: CheckCircle2, text: "Production-ready code with 80%+ test coverage" },
-                { icon: CheckCircle2, text: "Architecture Decision Records for every major choice" },
-                { icon: CheckCircle2, text: "Cryptographic proof of delivery (SHA-256 attested)" },
-                { icon: CheckCircle2, text: "Documentation: runbooks, API specs, onboarding guides" },
-                { icon: CheckCircle2, text: "30-day warranty on all fixed-scope deliveries" },
-                { icon: CheckCircle2, text: "Knowledge transfer — your team owns the code" },
-              ]}
-            />
+  const outcomes = [
+    { icon: CheckCircle2, text: "Production-ready code with 80%+ test coverage" },
+    { icon: CheckCircle2, text: "Architecture Decision Records for every major choice" },
+    { icon: CheckCircle2, text: "Cryptographic proof of delivery (SHA-256 attested)" },
+    { icon: CheckCircle2, text: "Documentation: runbooks, API specs, onboarding guides" },
+    { icon: CheckCircle2, text: "30-day warranty on all fixed-scope deliveries" },
+    { icon: CheckCircle2, text: "Knowledge transfer — your team owns the code" },
+  ];
+
+  const colorClasses: Record<string, { bg: string; border: string; text: string }> = {
+    blue: { bg: "bg-blue-500/10", border: "border-blue-500/20", text: "text-blue-400" },
+    purple: { bg: "bg-purple-500/10", border: "border-purple-500/20", text: "text-purple-400" },
+    emerald: { bg: "bg-emerald-500/10", border: "border-emerald-500/20", text: "text-emerald-400" },
+    teal: { bg: "bg-teal-500/10", border: "border-teal-500/20", text: "text-teal-400" },
+  };
+
+  return (
+    <section className="w-full bg-surface-container-low/40 border-y border-border py-12 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/3 via-transparent to-transparent pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <div className="mb-10 text-center">
+          <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-3 inline-flex items-center gap-2">
+            <Code2 className="w-4 h-4" />
+            Technologies & Outcomes
+          </h2>
+          <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            Modern stack choices backed by engineering rigor. Every technology serves a purpose — every outcome is verifiable.
+          </p>
+        </div>
+
+        {/* Technologies Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          {techCategories.map((cat, index) => {
+            const colors = colorClasses[cat.color];
+            return (
+              <motion.div
+                key={cat.label}
+                className={`
+                  group relative p-5 rounded-2xl
+                  bg-surface-container-lowest/80 backdrop-blur-sm
+                  border ${colors.border}
+                  transition-all duration-300 ease-out
+                  hover:scale-[1.02] hover:-translate-y-1
+                  hover:shadow-[0_0_25px_rgba(99,102,241,0.15)]
+                `}
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                {/* Accent indicator */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${colors.text}/30 ${colors.text} group-hover:w-full transition-all duration-300`} />
+                
+                <span className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider font-medium mb-3 ${colors.text}`}>
+                  <span className={`w-2 h-2 rounded-full ${colors.bg}`} />
+                  {cat.label}
+                </span>
+                
+                <div className="flex flex-wrap gap-1.5">
+                  {cat.techs.map((tech) => (
+                    <span key={tech} className={`font-mono text-[10px] px-2 py-0.5 rounded ${colors.bg} ${colors.border} ${colors.text}/80 hover:${colors.text} transition-colors`}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Outcomes List */}
+        <div className="relative">
+          <h3 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-6 inline-flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4" />
+            What You Get
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {outcomes.map(({ icon: Icon, text }, index) => (
+              <motion.li
+                key={text}
+                className={`
+                  group relative flex items-start gap-3 text-sm text-on-surface-variant
+                  p-4 rounded-xl
+                  bg-surface-container-lowest/80 backdrop-blur-sm
+                  border border-border
+                  transition-all duration-300 ease-out
+                  hover:border-primary/30 hover:bg-primary/5
+                `}
+                whileHover={{ x: 4 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 + index * 0.05, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <div className="w-6 h-6 flex items-center justify-center shrink-0 text-emerald-500 group-hover:scale-110 transition-transform">
+                  <Icon className="w-4 h-4" />
+                </div>
+                <span className="flex-1">{text}</span>
+              </motion.li>
+            ))}
           </div>
         </div>
 
-        <div className="text-center">
+        {/* View Skills Link */}
+        <div className="mt-10 text-center">
           <Link
             href="/skills"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-primary hover:text-tertiary transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary/10 border border-primary/20 text-primary font-mono text-sm font-medium hover:bg-primary hover:text-white transition-all shadow-xs"
           >
             <span>Full Technical Profile</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -559,38 +672,64 @@ function TechDepth() {
 }
 
 // ============================================================
-// FINAL CTA
+// FINAL CTA - FUTURISTIC
 // ============================================================
 function FinalCTA() {
   const { profile } = usePortfolio();
 
   return (
-    <section className="w-full bg-background py-12">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        <div className="bg-surface-container-lowest border border-border rounded-2xl p-8 sm:p-12 lg:p-16 text-center max-w-3xl mx-auto space-y-6 relative overflow-hidden">
+    <section className="w-full bg-background py-16 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/3 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="bg-surface-container-lowest/80 backdrop-blur-sm border border-primary/10 rounded-3xl p-8 sm:p-12 lg:p-16 text-center max-w-3xl mx-auto space-y-6 relative overflow-hidden">
+          {/* Animated background orbs */}
           <div className="absolute top-4 right-4 opacity-5">
             <Code2 className="w-24 h-24 text-primary" />
           </div>
+          <div className="absolute bottom-4 left-4 opacity-3">
+            <Terminal className="w-16 h-16 text-primary" />
+          </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-mono text-xs uppercase tracking-wider relative z-10">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-mono text-xs uppercase tracking-wider relative z-10 group">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse group-hover:scale-150 transition-transform" />
             <span>Open to Opportunities</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-on-surface relative z-10">
+          {/* Headline */}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-on-surface relative z-10"
+          >
             Let's Build Something <span className="text-primary">That Lasts</span>
-          </h2>
+          </motion.h2>
 
-          <p className="text-base sm:text-lg text-on-surface-variant max-w-xl mx-auto leading-relaxed relative z-10">
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-base sm:text-lg text-on-surface-variant max-w-xl mx-auto leading-relaxed relative z-10"
+          >
             Whether you're a hiring manager looking for a reliable engineer who ships quality,
             or a founder needing a technical partner to take your product from concept to production —
             let's talk.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4 relative z-10">
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex flex-wrap items-center justify-center gap-4 relative z-10"
+          >
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-tertiary transition-colors shadow-xs"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-tertiary hover:shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all shadow-lg"
             >
               <Mail className="w-4 h-4" />
               <span>Start a Conversation</span>
@@ -598,18 +737,24 @@ function FinalCTA() {
 
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-border bg-surface-container-low text-on-surface text-sm font-mono hover:bg-surface-container transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-primary/20 bg-primary/5 text-primary text-sm font-mono hover:bg-primary/10 hover:border-primary/40 transition-all"
             >
               <span>{profile.email}</span>
             </a>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-on-surface-variant font-mono relative z-10">
-            <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+          {/* Contact Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-on-surface-variant font-mono relative z-10"
+          >
+            <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors group">
               <LinkedinIcon className="w-3.5 h-3.5" />
               <span>{profile.linkedin}</span>
             </a>
-            <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+            <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary transition-colors group">
               <GithubIcon className="w-3.5 h-3.5" />
               <span>{profile.github}</span>
             </a>
@@ -617,7 +762,7 @@ function FinalCTA() {
               <MapPin className="w-3.5 h-3.5" />
               <span>{profile.location} · EAT (UTC+3)</span>
             </span>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
