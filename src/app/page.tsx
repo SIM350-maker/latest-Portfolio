@@ -62,18 +62,31 @@ import {
   Eye,
   GitBranch as GithubIcon,
   Link2 as LinkedinIcon,
+  CreditCard,
+  Zap as ZapIcon,
+  Layers as LayersIcon,
 } from "lucide-react";
-
-interface ServiceCategory {
-  id: number;
-  title: string;
-  slug: string;
-  description: string;
-  icon: keyof typeof SERVICE_ICONS;
-}
 
 const SERVICE_ICONS: Record<string, React.ElementType> = {
   Layers, Server, Database, Cloud, Bot, Compass, Code2, Cpu, ShieldCheck, Globe, Zap, Shield, Target, Rocket, Star, BarChart2,
+};
+
+const CATEGORY_ACCENTS: Record<string, string> = {
+  fullstack: "blue",
+  backend: "purple",
+  database: "emerald",
+  cloud: "teal",
+  ai: "amber",
+  consulting: "violet",
+};
+
+const CATEGORY_ACCENT_CLASSES: Record<string, { bg: string; border: string; glow: string; text: string }> = {
+  fullstack: { bg: "bg-blue-500/10", border: "border-blue-500/20", glow: "hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]", text: "text-blue-400" },
+  backend: { bg: "bg-purple-500/10", border: "border-purple-500/20", glow: "hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]", text: "text-purple-400" },
+  database: { bg: "bg-emerald-500/10", border: "border-emerald-500/20", glow: "hover:shadow-[0_0_30px_rgba(16,185,129,0.3)]", text: "text-emerald-400" },
+  cloud: { bg: "bg-teal-500/10", border: "border-teal-500/20", glow: "hover:shadow-[0_0_30px_rgba(20,184,166,0.3)]", text: "text-teal-400" },
+  ai: { bg: "bg-amber-500/10", border: "border-amber-500/20", glow: "hover:shadow-[0_0_30px_rgba(245,158,11,0.3)]", text: "text-amber-400" },
+  consulting: { bg: "bg-violet-500/10", border: "border-violet-500/20", glow: "hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]", text: "text-violet-400" },
 };
 
 function ServiceIcon({ iconName, className = "w-6 h-6" }: { iconName: string; className?: string }) {
@@ -282,11 +295,11 @@ function Hero({ setTerminalOpen }: { setTerminalOpen: (open: boolean) => void })
 }
 
 // ============================================================
-// SERVICES SNAP SECTION
+// SERVICES SNAP SECTION - FUTURISTIC
 // ============================================================
 function ServicesSnap() {
-  const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>([]);
-  const [servicePackages, setServicePackages] = useState<Array<{ category_id: number; price_kes: number }>>([]);
+  const [serviceCategories, setServiceCategories] = useState<Array<{ id: number; title: string; slug: string; description: string; icon: string }>>([]);
+  const [servicePackages, setServicePackages] = useState<Array<{ category_id: number; price_kes: number; name: string }>>([]);
 
   useEffect(() => {
     Promise.all([
@@ -301,40 +314,119 @@ function ServicesSnap() {
   }, []);
 
   return (
-    <section className="w-full bg-background py-8">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        <div className="mb-6">
-          <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-2">
-            <Briefcase className="w-3.5 h-3.5" /> Engineering Tracks
+    <section className="w-full bg-background py-12 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <div className="mb-10 text-center">
+          <h2 className="font-mono text-xs uppercase text-primary tracking-wider font-semibold mb-3 inline-flex items-center gap-2">
+            <Briefcase className="w-4 h-4" />
+            Services
           </h2>
-          <p className="text-sm text-on-surface-variant mb-4">
-            I offer specialized engineering services across tracks that combine technical depth with business impact. Each track includes tiered pricing and a defined capability scope.
+          <p className="text-sm sm:text-base text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            Specialized engineering services with transparent, tiered pricing. Each track combines deep technical expertise with measurable business outcomes.
           </p>
         </div>
 
+        {/* Service Cards Grid */}
         {serviceCategories.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {serviceCategories.slice(0, 6).map((cat) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {serviceCategories.slice(0, 6).map((cat, index) => {
               const pkg = servicePackages?.find((p) => p.category_id === cat.id);
+              const accent = CATEGORY_ACCENT_CLASSES[cat.slug] || CATEGORY_ACCENT_CLASSES.fullstack;
+              
               return (
-                <Link
+                <motion.article
                   key={cat.id}
-                  href={`/services/${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 bg-surface-container-lowest border border-border rounded-xl p-4 hover:bg-primary/5 hover:text-on-surface transition-colors cursor-pointer"
+                  className={`
+                    group relative flex flex-col items-center gap-3
+                    bg-surface-container-lowest/80 backdrop-blur-sm
+                    border ${accent.border}
+                    rounded-2xl p-5
+                    transition-all duration-300 ease-out
+                    hover:scale-[1.02] hover:-translate-y-1 ${accent.glow}
+                    cursor-pointer
+                    overflow-hidden
+                  `}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.08, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
-                    <ServiceIcon iconName={cat.icon} className="w-5 h-5" />
+                  {/* Category Accent Line - Top */}
+                  <div className={`
+                    absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${accent.text}/30 ${accent.text}
+                    group-hover:w-full group-hover:opacity-100
+                    transition-all duration-300
+                  `} />
+
+                  {/* Icon Wrapper */}
+                  <div className={`
+                    relative w-14 h-14 rounded-xl flex items-center justify-center
+                    ${accent.bg} ${accent.border}
+                    group-hover:bg-primary/10
+                    transition-all duration-300
+                    group-hover:shadow-lg ${accent.glow.replace('hover:', 'group-hover:')}
+                  `}>
+                    <ServiceIcon iconName={cat.icon} className="w-6 h-6 text-primary" />
+                    {/* Pulsing ring on hover */}
+                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <h3 className="font-semibold text-base text-on-surface line-clamp-1">{cat.title}</h3>
-                  <p className="text-xs text-on-surface-variant line-clamp-1">{cat.description}</p>
-                  <div className="mt-2 text-[10px] font-mono uppercase tracking-wider text-primary">
-                    <span>Learn more →</span>
+
+                  {/* Title & Description */}
+                  <div className="text-center space-y-1.5">
+                    <h3 className="font-semibold text-lg text-on-surface group-hover:text-primary transition-colors">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs text-on-surface-variant/70 line-clamp-2">
+                      {cat.description}
+                    </p>
                   </div>
-                </Link>
+
+                  {/* Pricing Preview */}
+                  {pkg && (
+                    <div className="mt-2 flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 border border-primary/10 rounded-full">
+                      <CreditCard className="w-3.5 h-3.5 text-primary" />
+                      <span className="font-mono text-[11px] font-semibold text-primary">
+                        From KES {pkg.price_kes.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* CTA Arrow */}
+                  <div className="mt-3 flex items-center gap-1.5 text-primary group-hover:gap-2.5 transition-all">
+                    <span className="font-mono text-[10px] uppercase tracking-wider">Explore</span>
+                    <motion.span
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </motion.span>
+                  </div>
+
+                  {/* Link wrapper */}
+                  <Link href={`/services/${cat.slug}`} className="absolute inset-0 z-10" />
+                </motion.article>
               );
             })}
           </div>
         )}
+
+        {/* View All Services Link */}
+        <div className="mt-10 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary/10 border border-primary/20 text-primary font-mono text-sm font-medium hover:bg-primary hover:text-white transition-all shadow-xs"
+          >
+            <span>View All Services & Pricing</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );
